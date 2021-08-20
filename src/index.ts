@@ -7,9 +7,16 @@ import syntax from './micromark-extension'
 
 const toFrontMatter = (yamlString: string) => `---\n${yamlString}\n---`
 
-export default function remarkComponentsPlugin(...args: any[]) {
-  console.log(args);
-  
+interface ComponentHanlder {
+  name: string
+  instance: any
+  options?: any
+}
+
+interface RemarkMDCOptions {
+  components?: ComponentHanlder[]
+}
+export default function remarkMDC({ components = [] }: RemarkMDCOptions = {}) {
   // @ts-ignore
   const data = this.data()
 
@@ -43,10 +50,10 @@ export default function remarkComponentsPlugin(...args: any[]) {
         data
       )
 
-      // const { instance: handler, options } = components.find(c => c.name === node.name) || {}
-      // if (handler) {
-      //   jobs.push(handler(options)(node, data))
-      // }
+      const { instance: handler, options } = components.find(c => c.name === node.name) || {}
+      if (handler) {
+        jobs.push(handler(options)(node, data))
+      }
     }
 
     await Promise.all(jobs)
