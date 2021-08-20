@@ -7850,32 +7850,10 @@ micromark-util-types@^1.0.0:
   resolved "https://registry.yarnpkg.com/micromark-util-types/-/micromark-util-types-1.0.0.tgz#0ebdfaea3fa7c15fc82b1e06ea1ef0152d0fb2f0"
   integrity sha512-psf1WAaP1B77WpW4mBGDkTr+3RsPuDAgsvlP47GJzbH1jmjH8xjOx7Z6kp84L8oqHmy5pYO3Ev46odosZV+3AA==
 
-micromark@^3.0.0:
+micromark@^3.0.0, micromark@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/micromark/-/micromark-3.0.4.tgz#dd470b4328b128c1bbd01073f5e3da95d2b03a44"
   integrity sha512-H8RU40LHR/E9/pZ4x/GkBw7JU5JbXus8YezNeROKpj2fKKNg5V4ItFEAPC6dX31kHtjVyjegsxQd/FX/eb3Mmg==
-  dependencies:
-    "@types/debug" "^4.0.0"
-    debug "^4.0.0"
-    micromark-core-commonmark "^1.0.0"
-    micromark-factory-space "^1.0.0"
-    micromark-util-character "^1.0.0"
-    micromark-util-chunked "^1.0.0"
-    micromark-util-combine-extensions "^1.0.0"
-    micromark-util-decode-numeric-character-reference "^1.0.0"
-    micromark-util-encode "^1.0.0"
-    micromark-util-normalize-identifier "^1.0.0"
-    micromark-util-resolve-all "^1.0.0"
-    micromark-util-sanitize-uri "^1.0.0"
-    micromark-util-subtokenize "^1.0.0"
-    micromark-util-symbol "^1.0.0"
-    micromark-util-types "^1.0.0"
-    parse-entities "^3.0.0"
-
-micromark@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/micromark/-/micromark-3.0.3.tgz#4c9f76fce8ba68eddf8730bb4fee2041d699d5b7"
-  integrity sha512-fWuHx+JKV4zA8WfCFor2DWP9XmsZkIiyWRGofr7P7IGfpRIlb7/C5wwusGsNyr1D8HI5arghZDG1Ikc0FBwS5Q==
   dependencies:
     "@types/debug" "^4.0.0"
     debug "^4.0.0"
