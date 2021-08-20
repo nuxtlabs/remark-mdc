@@ -63,7 +63,7 @@
     "nuxt-edge": "^2.16.0-27156975.1455784",
     "prettier": "^2.3.2",
     "remark-parse": "^10.0.0",
-    "ts-loader": "^8",
+    "ts-loader": "^9",
     "unbuild": "^0.4.2",
     "unified": "^10.1.0"
   },
