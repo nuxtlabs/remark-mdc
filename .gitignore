@@ -1,0 +1,14 @@
+node_modules
+*.iml
+.idea
+*.log*
+.nuxt
+.output
+.vscode
+.DS_Store
+coverage
+dist
+sw.js
+.env
+
+module/
