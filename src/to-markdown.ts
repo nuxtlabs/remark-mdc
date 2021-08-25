@@ -1,8 +1,8 @@
 import { stringifyEntitiesLight } from 'stringify-entities'
 import { visitParents } from 'unist-util-visit-parents'
-import { containerFlow } from 'mdast-util-to-markdown/lib/util/container-flow'
-import { containerPhrasing } from 'mdast-util-to-markdown/lib/util/container-phrasing'
-import { checkQuote } from 'mdast-util-to-markdown/lib/util/check-quote'
+import { containerFlow } from 'mdast-util-to-markdown/lib/util/container-flow.js'
+import { containerPhrasing } from 'mdast-util-to-markdown/lib/util/container-phrasing.js'
+import { checkQuote } from 'mdast-util-to-markdown/lib/util/check-quote.js'
 import type { Parent } from 'mdast-util-to-markdown/lib/types'
 
 const own = {}.hasOwnProperty

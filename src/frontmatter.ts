@@ -1,10 +1,10 @@
 import matter from 'gray-matter'
-import { unflatten, flatten } from 'flat'
+import flat from 'flat'
 
 export function stringify(data: any, content: string = '') {
   // flatten frontmatter data
   // convert `parent: { child: ... }` into flat keys `parent.child`
-  data = flatten(data, {
+  data = flat.flatten(data, {
     // preserve arrays and their contents as is and do not waltk through arrays
     // flatten array will be like `parent.0.child` and `parent.1.child` with is not readable
     safe: true
@@ -21,7 +21,7 @@ export function parseFrontMatter(file: string) {
 
   // unflatten frontmatter data
   // convert `parent.child` keys into `parent: { child: ... }`
-  const unflattenData: any = unflatten(data || {}, {})
+  const unflattenData: any = flat.unflatten(data || {}, {})
 
   return {
     content,
