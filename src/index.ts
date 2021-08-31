@@ -34,7 +34,7 @@ export default <Plugin<Array<RemarkMDCOptions>, string, Root>>(
         data[field] = []
       }
 
-      (data[field] as any[]).push(value)
+      ;(data[field] as any[]).push(value)
     }
 
     return async (tree: any, { data }: { data: any }) => {
