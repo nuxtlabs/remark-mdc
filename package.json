@@ -10,11 +10,11 @@
   "license": "MIT",
   "exports": {
     ".": {
-      "require": "./dist/index.js",
+      "require": "./dist/index.cjs",
       "import": "./dist/index.mjs"
     }
   },
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
@@ -34,7 +34,7 @@
   "dependencies": {
     "flat": "^5.0.2",
     "gray-matter": "^4.0.3",
-    "mdast-util-to-markdown": "^1.2.1",
+    "mdast-util-to-markdown": "^1.2.3",
     "micromark": "^3.0.5",
     "micromark-core-commonmark": "^1.0.1",
     "micromark-factory-space": "^1.0.0",
@@ -43,8 +43,8 @@
     "parse-entities": "^3.0.0",
     "scule": "^0.2.1",
     "stringify-entities": "^4.0.1",
-    "unist-util-visit": "^4.0.0",
-    "unist-util-visit-parents": "^5.0.0"
+    "unist-util-visit": "^4.1.0",
+    "unist-util-visit-parents": "^5.1.0"
   },
   "devDependencies": {
     "@nuxt/kit": "npm:@nuxt/kit-edge",
@@ -53,18 +53,18 @@
     "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/eslint-config-typescript": "^6.0.1",
     "@types/flat": "^5.0.2",
-    "@types/jest": "^27.0.1",
-    "babel-jest": "^27.1.0",
+    "@types/jest": "^27.0.2",
+    "babel-jest": "^27.2.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "jest": "^27.1.0",
-    "nuxt-edge": "^2.16.0-27172816.2ef05373",
-    "prettier": "^2.3.2",
+    "jest": "^27.2.1",
+    "nuxt-edge": "^2.16.0-27205934.39779d8f",
+    "prettier": "^2.4.1",
     "remark-parse": "^10.0.0",
     "ts-loader": "^8",
-    "unbuild": "^0.4.2",
+    "unbuild": "^0.5.4",
     "unified": "^10.1.0"
   },
   "publishConfig": {
