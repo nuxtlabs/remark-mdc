@@ -1,6 +1,6 @@
 import type { Plugin } from 'unified'
 import type { Root } from 'mdast'
-import { kebabCase } from 'scule'
+import * as scule from 'scule'
 import { visit } from 'unist-util-visit'
 import { parseFrontMatter } from './frontmatter'
 import toMarkdown from './to-markdown'
@@ -44,7 +44,7 @@ export default <Plugin<Array<RemarkMDCOptions>, string, Root>>(
       function visitor(node: any) {
         const nodeData = node.data || (node.data = {})
 
-        nodeData.hName = kebabCase(node.name)
+        nodeData.hName = scule.kebabCase(node.name)
         nodeData.hProperties = bindData(
           {
             ...node.attributes,
