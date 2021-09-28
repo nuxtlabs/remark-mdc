@@ -1,7 +1,8 @@
-import { BuildOptions } from 'unbuild'
+import { defineBuildConfig } from 'unbuild'
 
-export default <BuildOptions>{
-  entries: [{ input: 'src/index' }],
+export default defineBuildConfig({
+  entries: [{ input: 'src/index.ts', name: 'index' }],
   declaration: true,
+  inlineDependencies: true,
   externals: ['unified', 'mdast']
-}
+})
