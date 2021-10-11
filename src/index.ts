@@ -1,4 +1,5 @@
 import type { Plugin } from 'unified'
+import type { Node } from 'unist'
 import type { Root } from 'mdast'
 import { kebabCase } from 'scule'
 import { visit } from 'unist-util-visit'
@@ -13,6 +14,12 @@ interface ComponentHanlder {
   name: string
   instance: any
   options?: any
+}
+
+interface ComponentNode extends Node {
+  name?: string
+  attributes?: Record<string, any>
+  rawData?: string
 }
 
 interface RemarkMDCOptions {
@@ -37,36 +44,45 @@ export default <Plugin<Array<RemarkMDCOptions>, string, Root>>(
       ;(data[field] as any[]).push(value)
     }
 
-    return async (tree: any, { data }: { data: any }) => {
-      const jobs: Promise<any>[] = []
-      visit(tree, ['textComponent', 'leafComponent', 'containerComponent'], visitor)
+    if (components.length) {
+      return async (tree: ComponentNode, { data }: { data: any }) => {
+        const jobs: Promise<unknown>[] = []
+        visit<ComponentNode, string[]>(tree, ['textComponent', 'leafComponent', 'containerComponent'], node => {
+          bindNode(node, data)
+          const { instance: handler, options } = components.find(c => c.name === node.name) || {}
+          if (handler) {
+            jobs.push(handler(options)(node, data))
+          }
+        })
 
-      function visitor(node: any) {
-        const nodeData = node.data || (node.data = {})
-
-        nodeData.hName = kebabCase(node.name)
-        nodeData.hProperties = bindData(
-          {
-            ...node.attributes,
-            // parse data slots and retrive data
-            ...getNodeData(node)
-          },
-          data
-        )
-
-        const { instance: handler, options } = components.find(c => c.name === node.name) || {}
-        if (handler) {
-          jobs.push(handler(options)(node, data))
-        }
+        await Promise.all(jobs)
+        return tree
       }
+    }
 
-      await Promise.all(jobs)
-      return tree
+    return (tree: ComponentNode, { data }: { data: Record<string, any> }) => {
+      visit<ComponentNode, string[]>(tree, ['textComponent', 'leafComponent', 'containerComponent'], node => {
+        bindNode(node, data)
+      })
     }
   }
 )
 
-function getNodeData(node: any) {
+function bindNode(node: ComponentNode, data: Record<string, any>) {
+  const nodeData = node.data || (node.data = {})
+
+  nodeData.hName = kebabCase(node.name)
+  nodeData.hProperties = bindData(
+    {
+      ...node.attributes,
+      // parse data slots and retrive data
+      ...getNodeData(node)
+    },
+    data
+  )
+}
+
+function getNodeData(node: ComponentNode) {
   if (!node.rawData) {
     return {}
   }
@@ -77,8 +93,8 @@ function getNodeData(node: any) {
   return data
 }
 
-function bindData(data: any, pageData: any) {
-  const enteries = Object.entries(data).map(([key, value]) => {
+function bindData(data: Record<string, any>, pageData: Record<string, any>) {
+  const entries = Object.entries(data).map(([key, value]) => {
     if (key.startsWith(':')) {
       return [key, value]
     }
@@ -87,5 +103,5 @@ function bindData(data: any, pageData: any) {
     }
     return [`:${key}`, JSON.stringify(value)]
   })
-  return Object.fromEntries(enteries)
+  return Object.fromEntries(entries)
 }
