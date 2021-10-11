@@ -75,7 +75,7 @@ function bindNode(node: ComponentNode, data: Record<string, any>) {
   nodeData.hProperties = bindData(
     {
       ...node.attributes,
-      // parse data slots and retrive data
+      // Parse data slots and retrieve data
       ...getNodeData(node)
     },
     data
