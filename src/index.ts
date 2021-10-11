@@ -45,7 +45,7 @@ export default <Plugin<Array<RemarkMDCOptions>, string, Root>>(
     }
 
     if (components.length) {
-      return async (tree: ComponentNode, { data }: { data: any }) => {
+      return async (tree: ComponentNode, { data }: { data: Record<string, any> }) => {
         const jobs: Promise<unknown>[] = []
         visit<ComponentNode, string[]>(tree, ['textComponent', 'leafComponent', 'containerComponent'], node => {
           bindNode(node, data)
