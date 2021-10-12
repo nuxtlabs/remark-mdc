@@ -129,7 +129,7 @@ function attributes(node: Parent, context: any) {
 
 function content(node: Parent, context: any) {
   const content = inlineComponentLabel(node) ? Object.assign({}, node, { children: node.children.slice(1) }) : node
-
+  context.indexStack = context.stack
   return containerFlow(content, context)
 }
 
