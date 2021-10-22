@@ -1,5 +1,4 @@
 import { stringifyEntitiesLight } from 'stringify-entities'
-import { visitParents } from 'unist-util-visit-parents'
 import { containerFlow } from 'mdast-util-to-markdown/lib/util/container-flow.js'
 import { containerPhrasing } from 'mdast-util-to-markdown/lib/util/container-phrasing.js'
 import { checkQuote } from 'mdast-util-to-markdown/lib/util/check-quote.js'
@@ -8,6 +7,7 @@ import type { Parent } from 'mdast-util-to-markdown/lib/types'
 const own = {}.hasOwnProperty
 
 const shortcut = /^[^\t\n\r "#'.<=>`}]+$/
+const baseFense = 2
 
 // TODO: convert container sections to markdown
 const unsafe = [
@@ -29,30 +29,56 @@ const unsafe = [
 ]
 
 const handlers = {
-  containerComponent: handleComponent,
-  leafComponent: handleComponent,
-  textComponent: handleComponent
+  containerComponent,
+  textComponent,
+  componentContainerSection
 }
 
-handleComponent.peek = peekComponent
+type NodeComponentContainerSection = Parent & { name: string }
+function componentContainerSection(node: NodeComponentContainerSection, _: any, context: any) {
+  return `#${(node as any).name}\n\n${content(node, context)}`
+}
 
-function handleComponent(node: Parent, _: any, context: any) {
-  const prefix = fence(node)
+type NodeTextComponent = Parent & { name: string; rawData: string }
+function textComponent(node: NodeTextComponent, _: any, context: any) {
   const exit = context.enter(node.type)
-  let value = prefix + ((node as any).name || '') + label(node, context) + attributes(node, context)
+  let value = ':' + (node.name || '') + label(node, context) + attributes(node, context)
+  value += '\n' + content(node, context)
+  exit()
+  return value
+}
+
+type NodeContainerComponent = Parent & { name: string; rawData: string }
+let nest = 0
+function containerComponent(node: NodeContainerComponent, _: any, context: any) {
+  const prefix = ':'.repeat(baseFense + nest)
+  nest += 1
+  const exit = context.enter(node.type)
+  let value = prefix + (node.name || '') + label(node, context) + attributes(node, context)
   let subvalue
+
+  if (node.rawData) {
+    value += `\n---${node.rawData}---\n`
+  }
 
   if ((node.type as string) === 'containerComponent') {
     subvalue = content(node, context)
     if (subvalue) value += '\n' + subvalue
     value += '\n' + prefix
-  }
 
+    if (nest > 1) {
+      value = value
+        .split('\n')
+        .map(line => '  ' + line)
+        .join('\n')
+    }
+  }
+  nest -= 1
   exit()
   return value
 }
 
-function peekComponent() {
+containerComponent.peek = function peekComponent() {
   return ':'
 }
 
@@ -135,34 +161,6 @@ function content(node: Parent, context: any) {
 
 function inlineComponentLabel(node: Parent) {
   return node.children && node.children[0] && node.children[0].data && node.children[0].data.componentLabel
-}
-
-function fence(node: Parent) {
-  let size = 0
-
-  if ((node.type as string) === 'containerComponent') {
-    visitParents(node, 'containerComponent', onvisit)
-    size += 3
-  } else if ((node.type as string) === 'leafComponent') {
-    size = 2
-  } else {
-    size = 1
-  }
-
-  return ':'.repeat(size)
-
-  function onvisit(_node: any, parents: any[]) {
-    let index = parents.length
-    let nesting = 0
-
-    while (index--) {
-      if (parents[index].type === 'containerComponent') {
-        nesting++
-      }
-    }
-
-    if (nesting > size) size = nesting
-  }
 }
 
 export default {

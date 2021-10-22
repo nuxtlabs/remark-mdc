@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@nuxt/kit": "npm:@nuxt/kit-edge",
-    "@nuxt/nitro": "npm:@nuxt/nitro-edge",
+    "@nuxt/bridge": "npm:@nuxt/bridge-edge",
     "@nuxt/test-utils": "^0.2.2",
     "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/eslint-config-typescript": "^6.0.1",
@@ -63,7 +63,8 @@
     "nuxt-edge": "^2.16.0-27213135.034b9901",
     "prettier": "^2.4.1",
     "remark-parse": "^10.0.0",
-    "ts-loader": "^9",
+    "remark-stringify": "^10.0.1",
+    "ts-loader": "^8",
     "unbuild": "^0.5.4",
     "unified": "^10.1.0"
   },

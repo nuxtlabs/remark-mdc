@@ -1,5 +1,5 @@
 import { resolve } from 'path'
-import { defineNuxtConfig } from '@nuxt/kit'
+import { defineNuxtConfig } from '@nuxt/bridge'
 
 export default defineNuxtConfig({
   target: 'static',
@@ -11,6 +11,16 @@ export default defineNuxtConfig({
       level: 2
     }
   ],
-  buildModules: ['@nuxt/typescript-build', '@nuxt/nitro/compat'],
-  content: {}
+  build: {
+    transpile: [
+      'unified',
+      'bail',
+      'trough',
+      'vfile',
+      'micromark',
+      'zwitch',
+      'longest-streak',
+      /(unist|remark|mdast|parse|character|stringify|is)-*/
+    ]
+  }
 })
