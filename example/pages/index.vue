@@ -35,11 +35,9 @@ export default {
 ---
 data: value
 ---
-
 Default slot
 
 #secondary-slot
-
 Secondary slot value
 ::
     `
