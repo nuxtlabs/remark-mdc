@@ -2025,9 +2025,9 @@
   integrity sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==
 
 "@types/node@*":
-  version "16.11.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.2.tgz#31c249c136c3f9b35d4b60fb8e50e01a1f0cc9a5"
-  integrity sha512-w34LtBB0OkDTs19FQHXy4Ig/TOXI4zqvXS2Kk1PAsRKZ0I+nik7LlMYxckW0tSNGtvWmzB+mrCTbuEjuB9DVsw==
+  version "16.11.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.3.tgz#fad0b069ec205b0e81429c805d306d2c12e26be1"
+  integrity sha512-aIYL9Eemcecs1y77XzFGiSc+FdfN58k4J23UEe6+hynf4Wd9g4DzQPwIKL080vSMuubFqy2hWwOzCtJdc6vFKw==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
@@ -3052,7 +3052,7 @@ babel-helper-replace-supers@^6.24.1:
     babel-traverse "^6.24.1"
     babel-types "^6.24.1"
 
-babel-jest@^27.2.3, babel-jest@^27.3.1:
+babel-jest@^27.3.1:
   version "27.3.1"
   resolved "https://registry.yarnpkg.com/babel-jest/-/babel-jest-27.3.1.tgz#0636a3404c68e07001e434ac4956d82da8a80022"
   integrity sha512-SjIF8hh/ir0peae2D6S6ZKRhUy7q/DnpH7k/V6fT4Bgs/LXXUztOpX4G2tCgq8mLo5HA9mN6NmlFMeYtKmIsTQ==
@@ -3947,9 +3947,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000844, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001255, caniuse-lite@^1.0.30001264, caniuse-lite@^1.0.30001265:
-  version "1.0.30001270"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001270.tgz#cc9c37a4ec5c1a8d616fc7bace902bb053b0cdea"
-  integrity sha512-TcIC7AyNWXhcOmv2KftOl1ShFAaHQYcB/EPL/hEyMrcS7ZX0/DvV1aoy6BzV0+16wTpoAyTMGDNAJfSqS/rz7A==
+  version "1.0.30001271"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001271.tgz#0dda0c9bcae2cf5407cd34cac304186616cc83e8"
+  integrity sha512-BBruZFWmt3HFdVPS8kceTBIguKxu4f99n5JNp06OlPD/luoAMIaIK5ieV5YjnBLH3Nysai9sxj9rpJj4ZisXOA==
 
 chalk@^1.1.3:
   version "1.1.3"
@@ -7834,7 +7834,7 @@ jest-worker@^27.3.1:
     merge-stream "^2.0.0"
     supports-color "^8.0.0"
 
-jest@^27.2.3:
+jest@^27.3.1:
   version "27.3.1"
   resolved "https://registry.yarnpkg.com/jest/-/jest-27.3.1.tgz#b5bab64e8f56b6f7e275ba1836898b0d9f1e5c8a"
   integrity sha512-U2AX0AgQGd5EzMsiZpYt8HyZ+nSVIh5ujQ9CPp9EQZJMjXIiSZpJNweZl0swatKRoqHWgGKM3zaSwm4Zaz87ng==
@@ -8437,7 +8437,7 @@ merge2@^1.3.0:
   resolved "https://registry.yarnpkg.com/merge2/-/merge2-1.4.1.tgz#4368892f885e907455a6fd7dc55c0c9d404990ae"
   integrity sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==
 
-micromark-core-commonmark@^1.0.1:
+micromark-core-commonmark@^1.0.1, micromark-core-commonmark@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/micromark-core-commonmark/-/micromark-core-commonmark-1.0.4.tgz#fee459d29c5912a32f059c3a9836d4318ac85f30"
   integrity sha512-HAtoZisp1M/sQFuw2zoUKGo1pMKod7GSvdM6B2oBU0U2CEN5/C6Tmydmi1rmvEieEhGQsjMyiiSoYgxISNxGFA==
@@ -8609,7 +8609,7 @@ micromark-util-types@^1.0.0, micromark-util-types@^1.0.1:
   resolved "https://registry.yarnpkg.com/micromark-util-types/-/micromark-util-types-1.0.1.tgz#8bb8a092d93d326bd29fe29602799f2d0d922fd4"
   integrity sha512-UT0ylWEEy80RFYzK9pEaugTqaxoD/j0Y9WhHpSyitxd99zjoQz7JJ+iKuhPAgOW2MiPSUAx+c09dcqokeyaROA==
 
-micromark@^3.0.0, micromark@^3.0.5:
+micromark@^3.0.0, micromark@^3.0.7:
   version "3.0.7"
   resolved "https://registry.yarnpkg.com/micromark/-/micromark-3.0.7.tgz#036dfc974ddf8e6e773b197839c5671d92d0928c"
   integrity sha512-67ipZ2CzQVsDyH1kqNLh7dLwe5QMPJwjFBGppW7JCLByaSc6ZufV0ywPOxt13MIDAzzmj3wctDL6Ov5w0fOHXw==
@@ -9213,7 +9213,7 @@ number-is-nan@^1.0.0:
   optionalDependencies:
     fsevents "~2.3.2"
 
-nuxt-edge@^2.16.0-27213135.034b9901:
+nuxt-edge@^2.16.0-27226092.034b9901:
   version "2.16.0-27226092.034b9901"
   resolved "https://registry.yarnpkg.com/nuxt-edge/-/nuxt-edge-2.16.0-27226092.034b9901.tgz#6787995050d53c104aad71b9b2f76db2d4f1499e"
   integrity sha512-9FY+4C1ox/2KDZqdDW1kH7JhMCCY0P0QLS6KNScnEgw124Ol3cCpyunwc6AInYfX0Zb/5tEeZeFdo993+CzqyA==
@@ -12425,7 +12425,7 @@ unbox-primitive@^1.0.1:
     has-symbols "^1.0.2"
     which-boxed-primitive "^1.0.2"
 
-unbuild@^0.5.4:
+unbuild@^0.5.10:
   version "0.5.10"
   resolved "https://registry.yarnpkg.com/unbuild/-/unbuild-0.5.10.tgz#8bd4b865006b2fc4b79f806705891144c510c2b9"
   integrity sha512-uPBMCwMxpzxvKSyGNOOt+y48+O5Q1565LVZA+58h/4SberH0q8PVXBuXHpCRyXkG8FmtopwOzXPKcabQlijf3g==
