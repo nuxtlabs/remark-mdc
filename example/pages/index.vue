@@ -1,22 +1,48 @@
 <template>
-  <pre>{{ ast }}</pre>
+  <div class="flex">
+    <textarea v-model="markdown" class="flex-1"></textarea>
+    <pre class="flex-1">{{ ast }}</pre>
+    <pre class="flex-1">{{ md }}</pre>
+  </div>
 </template>
 
 <script lang="ts">
-import { markdownToAST } from '~/utils/toAST'
-const markdown = `
-ssas
-::test
-# Test
-::
-`
+import { astToMarkdown, markdownToAST } from '~/utils/toAST'
+
 export default {
   name: 'PageSlug',
-  async asyncData() {
-    const ast = await markdownToAST(markdown)
+  asyncData() {
     return {
-      ast
+      markdown: '',
+      ast: {},
+      md: ''
     }
+  },
+  watch: {
+    async markdown(val) {
+      try {
+        this.ast = await markdownToAST(val)
+        this.md = await astToMarkdown(this.ast)
+      } catch (e) {
+        console.error(e)
+      }
+    }
+  },
+  mounted() {
+    this.markdown = `# Hello World
+
+::test-component
+---
+data: value
+---
+
+Default slot
+
+#secondary-slot
+
+Secondary slot value
+::
+    `
   }
 }
 </script>
@@ -26,13 +52,9 @@ export default {
   display: flex;
   width: 100%;
 }
-.w-25 {
-  width: 25%;
-}
-.w-75 {
-  width: 75%;
-}
-.px-4 {
-  padding: 0 2em;
+.flex-1 {
+  flex: 1;
+  height: calc(100vh - 40px);
+  overflow: scroll;
 }
 </style>
