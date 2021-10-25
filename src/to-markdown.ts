@@ -36,11 +36,13 @@ const handlers = {
 
 type NodeComponentContainerSection = Parent & { name: string }
 function componentContainerSection(node: NodeComponentContainerSection, _: any, context: any) {
+  context.indexStack = context.stack
   return `#${(node as any).name}\n\n${content(node, context)}`
 }
 
 type NodeTextComponent = Parent & { name: string; rawData: string }
 function textComponent(node: NodeTextComponent, _: any, context: any) {
+  context.indexStack = context.stack
   const exit = context.enter(node.type)
   let value = ':' + (node.name || '') + label(node, context) + attributes(node, context)
   value += '\n' + content(node, context)
@@ -51,6 +53,7 @@ function textComponent(node: NodeTextComponent, _: any, context: any) {
 type NodeContainerComponent = Parent & { name: string; rawData: string }
 let nest = 0
 function containerComponent(node: NodeContainerComponent, _: any, context: any) {
+  context.indexStack = context.stack
   const prefix = ':'.repeat(baseFense + nest)
   nest += 1
   const exit = context.enter(node.type)
@@ -155,7 +158,6 @@ function attributes(node: Parent, context: any) {
 
 function content(node: Parent, context: any) {
   const content = inlineComponentLabel(node) ? Object.assign({}, node, { children: node.children.slice(1) }) : node
-  context.indexStack = context.stack
   return containerFlow(content, context)
 }
 
