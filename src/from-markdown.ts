@@ -188,6 +188,7 @@ function exitAttributes() {
       cleaned.class += ' ' + attribute[1]
     } else if (attribute[0][0] === ':' && typeof attribute[1] !== 'string') {
       // Ignore attributes like `{ :attr: true }` which is unvalid attribute (example `:block{:attr}`)
+      // TODO: Warn users about the invalid usage of attribute
       continue
     } else {
       cleaned[attribute[0]] = attribute[1]
