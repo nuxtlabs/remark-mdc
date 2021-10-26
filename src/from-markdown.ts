@@ -187,7 +187,7 @@ function exitAttributes() {
     if (attribute[0] === 'class' && cleaned.class) {
       cleaned.class += ' ' + attribute[1]
     } else if (attribute[0][0] === ':' && typeof attribute[1] !== 'string') {
-      // Ignore attributes like `{ :attr1: true }` which is unvalid attribute (example `:block{:attr1}`)
+      // Ignore attributes like `{ :attr: true }` which is unvalid attribute (example `:block{:attr}`)
       continue
     } else {
       cleaned[attribute[0]] = attribute[1]
