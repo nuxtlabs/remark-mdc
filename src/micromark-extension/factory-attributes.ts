@@ -56,7 +56,7 @@ export default function createAttributes(
       effects.enter(attributeType)
       effects.enter(attributeNameType)
       effects.consume(code)
-      return name as State
+      return (code === 58 /* `:` */ || code === 95 /* `_` */ ? nameBefore : name) as State
     }
 
     if (disallowEol && markdownSpace(code)) {
@@ -123,6 +123,10 @@ export default function createAttributes(
 
     effects.consume(code)
     return shortcut
+  }
+
+  function nameBefore(code: number) {
+    return asciiAlpha(code) ? name : nok(code)
   }
 
   function name(code: number) {
