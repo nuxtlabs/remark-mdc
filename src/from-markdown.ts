@@ -171,13 +171,13 @@ function exitAttributeName(token: Token) {
   // Attribute names in CommonMark are significantly limited, so character
   // references can’t exist.
 
-  // Use `true` as attrubute default value to solve issue of attributes without value (example `:block{attr1 attr2}`)
+  // Use `true` as attribute default value to solve issue of attributes without value (example `:block{attr1 attr2}`)
   this.getData('componentAttributes').push([this.sliceSerialize(token), true])
 }
 
 function exitAttributes() {
   const attributes = this.getData('componentAttributes')
-  const cleaned: any = {}
+  const cleaned: Record<string, any> = {}
   let index = -1
   let attribute
 
@@ -186,6 +186,10 @@ function exitAttributes() {
 
     if (attribute[0] === 'class' && cleaned.class) {
       cleaned.class += ' ' + attribute[1]
+    } else if (attribute[0][0] === ':' && typeof attribute[1] !== 'string') {
+      // Ignore attributes like `{ :attr: true }` which is unvalid attribute (example `:block{:attr}`)
+      // TODO: Warn users about the invalid usage of attribute
+      continue
     } else {
       cleaned[attribute[0]] = attribute[1]
     }
