@@ -131,6 +131,8 @@ function attributes(node: Parent, context: any) {
 
         classesFull = classesFull.length ? quoted('class', classesFull.join(' ')) : ''
         classes = classes.length ? '.' + classes.join('.') : ''
+      } else if (key.startsWith(':') && value === 'true') {
+        values.push(key.slice(1))
       } else {
         values.push(quoted(key, value))
       }
@@ -151,8 +153,8 @@ function attributes(node: Parent, context: any) {
 
   return values.length ? '{' + values.join(' ') + '}' : ''
 
-  function quoted(key: string, value: any) {
-    return key + (value ? '=' + quote + stringifyEntitiesLight(value, { subset }) + quote : '')
+  function quoted(key: string, value: string) {
+    return key + '=' + quote + stringifyEntitiesLight(value, { subset }) + quote
   }
 }
 
