@@ -44,7 +44,7 @@ function tokenize(this: TokenizeContext, effects: Effects, ok: State, nok: State
       return nok
     }
 
-    return effects.attempt(attributes, ok, ok)(code)
+    return effects.attempt(attributes, ok, nok)(code)
   }
 }
 
