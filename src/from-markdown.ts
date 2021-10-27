@@ -1,6 +1,7 @@
 // @ts-nocheck
 import type { Token } from 'micromark-util-types'
 import { parseEntities } from 'parse-entities'
+import { kebabCase } from 'scule'
 
 const canContainEols = ['textComponent']
 const enter = {
@@ -183,15 +184,17 @@ function exitAttributes() {
 
   while (++index < attributes.length) {
     attribute = attributes[index]
+    // Convert attribute names to kebab-case
+    const name = kebabCase(attribute[0])
 
-    if (attribute[0] === 'class' && cleaned.class) {
+    if (name === 'class' && cleaned.class) {
       cleaned.class += ' ' + attribute[1]
-    } else if (attribute[0][0] === ':' && typeof attribute[1] !== 'string') {
+    } else if (name[0] === ':' && typeof attribute[1] !== 'string') {
       // Ignore attributes like `{ :attr: true }` which is unvalid attribute (example `:block{:attr}`)
       // TODO: Warn users about the invalid usage of attribute
       continue
     } else {
-      cleaned[attribute[0]] = attribute[1]
+      cleaned[name] = attribute[1]
     }
   }
 
@@ -222,8 +225,8 @@ function decodeLight(value: string) {
   return value.replace(/&(#(\d{1,7}|x[\da-f]{1,6})|[\da-z]{1,31});/gi, decodeIfPossible)
 }
 
-function decodeIfPossible($0: string, $1: string) {
-  return parseEntities($1) || $0
+function decodeIfPossible($0: string, _$1: string) {
+  return parseEntities($0) || $0
 }
 
 export default {
