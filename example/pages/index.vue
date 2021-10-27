@@ -24,6 +24,7 @@ export default {
         this.ast = await markdownToAST(val)
         this.md = await astToMarkdown(this.ast)
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.error(e)
       }
     }
