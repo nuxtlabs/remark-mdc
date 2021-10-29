@@ -19,6 +19,7 @@ interface ComponentHanlder {
 interface ComponentNode extends Node {
   name?: string
   attributes?: Record<string, any>
+  fmAttributes?: Record<string, any>
   rawData?: string
 }
 
@@ -71,12 +72,14 @@ export default <Plugin<Array<RemarkMDCOptions>, string, Root>>(
 function bindNode(node: ComponentNode, data: Record<string, any>) {
   const nodeData = node.data || (node.data = {})
 
+  node.fmAttributes = getNodeData(node)
+
   nodeData.hName = kebabCase(node.name)
   nodeData.hProperties = bindData(
     {
       ...node.attributes,
       // Parse data slots and retrieve data
-      ...getNodeData(node)
+      ...node.fmAttributes
     },
     data
   )

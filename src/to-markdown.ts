@@ -3,6 +3,7 @@ import { containerFlow } from 'mdast-util-to-markdown/lib/util/container-flow.js
 import { containerPhrasing } from 'mdast-util-to-markdown/lib/util/container-phrasing.js'
 import { checkQuote } from 'mdast-util-to-markdown/lib/util/check-quote.js'
 import type { Parent } from 'mdast-util-to-markdown/lib/types'
+import { stringify } from './frontmatter'
 
 const own = {}.hasOwnProperty
 
@@ -50,7 +51,7 @@ function textComponent(node: NodeTextComponent, _: any, context: any) {
   return value
 }
 
-type NodeContainerComponent = Parent & { name: string; rawData: string }
+type NodeContainerComponent = Parent & { name: string; fmAttributes?: Record<string, any> }
 let nest = 0
 function containerComponent(node: NodeContainerComponent, _: any, context: any) {
   context.indexStack = context.stack
@@ -60,8 +61,9 @@ function containerComponent(node: NodeContainerComponent, _: any, context: any) 
   let value = prefix + (node.name || '') + label(node, context) + attributes(node, context)
   let subvalue
 
-  if (node.rawData) {
-    value += `\n---${node.rawData}---\n`
+  // Convert attributes to YAML FrontMatter format
+  if (node.fmAttributes) {
+    value += '\n' + stringify(node.fmAttributes).trim()
   }
 
   if ((node.type as string) === 'containerComponent') {
