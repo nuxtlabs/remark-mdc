@@ -59,12 +59,12 @@
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.3.1",
-    "nuxt-edge": "^2.16.0-27226092.034b9901",
+    "nuxt-edge": "^2.16.0-27257777.293dc11a",
     "prettier": "^2.4.1",
     "remark-parse": "^10.0.0",
     "remark-stringify": "^10.0.1",
     "ts-loader": "^8",
-    "unbuild": "^0.5.10",
+    "unbuild": "^0.5.11",
     "unified": "^10.1.0"
   },
   "publishConfig": {
