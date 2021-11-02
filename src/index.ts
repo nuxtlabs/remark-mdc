@@ -27,7 +27,7 @@ interface RemarkMDCOptions {
   components?: ComponentHanlder[]
 }
 
-export default <Plugin<Array<RemarkMDCOptions>, string, Root>>(
+export default <Plugin<Array<RemarkMDCOptions>, Root, Root>>(
   function remarkMDC({ components = [] }: RemarkMDCOptions = {}) {
     // @ts-ignore
     const data = this.data()
