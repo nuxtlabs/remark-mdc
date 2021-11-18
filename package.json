@@ -55,18 +55,17 @@
     "@types/flat": "^5.0.2",
     "@types/jest": "^27.0.2",
     "babel-jest": "^27.3.1",
-    "eslint": "^7.32.0",
+    "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-nuxt": "^3.0.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.3.1",
-    "nuxt-edge": "^2.16.0-27263533.293dc11a",
+    "nuxt-edge": "^2.16.0-27286577.ab1c6cb4",
     "prettier": "^2.4.1",
     "remark-parse": "^10.0.0",
     "remark-stringify": "^10.0.1",
-    "ts-loader": "^8",
-    "unbuild": "^0.5.11",
-    "unified": "^10.1.0"
+    "ts-loader": "^9",
+    "unbuild": "^0.5.11"
   },
   "publishConfig": {
     "access": "public"
