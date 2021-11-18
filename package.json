@@ -35,6 +35,7 @@
     "flat": "^5.0.2",
     "gray-matter": "^4.0.3",
     "mdast-util-to-markdown": "^1.2.4",
+    "mdast-util-from-markdown": "1.0.4",
     "micromark": "^3.0.7",
     "micromark-core-commonmark": "^1.0.4",
     "micromark-factory-space": "^1.0.0",
