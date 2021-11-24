@@ -1,4 +1,4 @@
-import matter, { stringify as grayMatterStringify } from 'gray-matter'
+import * as matter from 'gray-matter'
 import flat from 'flat'
 
 export function stringify(data: any, content: string = '') {
@@ -10,11 +10,11 @@ export function stringify(data: any, content: string = '') {
     safe: true
   })
 
-  return grayMatterStringify(content, data)
+  return matter.stringify(content, data)
 }
 
 export function parseFrontMatter(file: string) {
-  const { data, content, ...rest } = matter(file, {
+  const { data, content, ...rest } = matter.default(file, {
     excerpt: true,
     excerpt_separator: '<!--more-->'
   })
