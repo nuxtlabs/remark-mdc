@@ -9,6 +9,7 @@ import {
   asciiAlphanumeric,
   markdownSpace
 } from 'micromark-util-character'
+import { Codes } from './constants'
 
 export default function createAttributes(
   effects: Effects,
@@ -56,7 +57,7 @@ export default function createAttributes(
       effects.enter(attributeType)
       effects.enter(attributeNameType)
       effects.consume(code)
-      return name as State
+      return (code === Codes.colon ? bindAttributeName : name) as State
     }
 
     if (disallowEol && markdownSpace(code)) {
@@ -123,6 +124,42 @@ export default function createAttributes(
 
     effects.consume(code)
     return shortcut
+  }
+
+  /*
+    Vue bind shorthand `:`
+  */
+
+  function bindAttributeName(code: number) {
+    if (code === 45 /* `-` */ || asciiAlphanumeric(code)) {
+      effects.consume(code)
+      return bindAttributeName
+    }
+
+    effects.exit(attributeNameType)
+
+    if (disallowEol && markdownSpace(code)) {
+      return factorySpace(effects, bindAttributeNameAfter as State, 'whitespace')(code)
+    }
+
+    if (!disallowEol && markdownLineEndingOrSpace(code)) {
+      return factoryWhitespace(effects, bindAttributeNameAfter as State)(code)
+    }
+
+    return bindAttributeNameAfter(code)
+  }
+
+  function bindAttributeNameAfter(code: number) {
+    if (code === 61 /* `=` */) {
+      effects.enter(attributeInitializerType)
+      effects.consume(code)
+      effects.exit(attributeInitializerType)
+      return valueBefore
+    }
+
+    // Attribute w/o value.
+    effects.exit(attributeType)
+    return nok(code)
   }
 
   function name(code: number) {

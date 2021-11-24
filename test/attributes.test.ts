@@ -74,12 +74,23 @@ describe('Attributes', () => {
   })
 
   test('Invalid bindings', async () => {
+    /**
+     * Invalid attributes will fail parsing and the result
+     * will be a paragram and text Node with the original text
+     */
     const markdown = ':test{:}'
     const { children } = (await markdownToAST(markdown)) as any
 
-    expect(children[0].type).toEqual('textComponent')
-    expect(children[0].name).toEqual('test')
-
-    expect(Object.keys(children[0].data.hProperties)).toHaveLength(0)
+    expect(children).toMatchObject([
+      {
+        type: 'paragraph',
+        children: [
+          {
+            type: 'text',
+            value: ':test{:}'
+          }
+        ]
+      }
+    ])
   })
 })
