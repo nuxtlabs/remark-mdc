@@ -6,31 +6,11 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { ref, watch } from '@vue/composition-api'
 import { astToMarkdown, markdownToAST } from '~/utils/toAST'
 
-export default {
-  name: 'PageSlug',
-  asyncData() {
-    return {
-      markdown: '',
-      ast: {},
-      md: ''
-    }
-  },
-  watch: {
-    async markdown(val) {
-      try {
-        this.ast = await markdownToAST(val)
-        this.md = await astToMarkdown(this.ast)
-      } catch (e) {
-        // eslint-disable-next-line no-console
-        console.error(e)
-      }
-    }
-  },
-  mounted() {
-    this.markdown = `# Hello World
+const markdown = ref(`# Hello World
 
 ::test-component
 ---
@@ -41,9 +21,20 @@ Default slot
 #secondary-slot
 Secondary slot value
 ::
-    `
+
+`)
+const md = ref('')
+const ast = ref<any>({})
+
+watch(markdown, async (val: string) => {
+  try {
+    ast.value = (await markdownToAST(val)) as any
+    md.value = (await astToMarkdown(ast.value)) as string
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error(e)
   }
-}
+})
 </script>
 
 <style>
