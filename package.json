@@ -1,7 +1,7 @@
 {
   "name": "@docus/remark-mdc",
   "version": "0.1.0",
-  "description": "Remark plugin to support MDC systax",
+  "description": "Remark plugin to support MDC syntax",
   "keywords": [
     "remark",
     "mdc"
