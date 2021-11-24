@@ -108,7 +108,10 @@ function exitContainerDataSection(token: Token) {
    * This issue occurs because `---` separtors ar conflict with markdown lists
    */
   while (section.type === 'listItem' || section.type === 'list') {
-    this.exit(this.tokenStack[this.tokenStack.length - 1])
+    // As of mdast-util-from-markdown@1.1.0 tokenStach items is an array containing the token and a handler
+    // https://github.com/syntax-tree/mdast-util-from-markdown/blob/752dc22acfc517d280612e8d499d5ce0cd5a4495/dev/lib/index.js#L548
+    const [stackToken] = this.tokenStack[this.tokenStack.length - 1]
+    this.exit(stackToken)
     section = this.stack[this.stack.length - 1]
   }
 
@@ -215,8 +218,10 @@ function exitToken(token: Token) {
 }
 
 function conditionalExit(token: Token) {
-  const section: Token = this.tokenStack[this.tokenStack.length - 1]
-  if (section.type === token.type) {
+  // As of mdast-util-from-markdown@1.1.0 tokenStach items is an array containing the token and a handler
+  // https://github.com/syntax-tree/mdast-util-from-markdown/blob/752dc22acfc517d280612e8d499d5ce0cd5a4495/dev/lib/index.js#L548
+  const [section] = this.tokenStack[this.tokenStack.length - 1]
+  if ((section as Token).type === token.type) {
     this.exit(token)
   }
 }
