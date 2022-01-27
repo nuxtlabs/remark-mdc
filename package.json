@@ -49,7 +49,7 @@
     "@nuxt/bridge": "npm:@nuxt/bridge-edge",
     "@nuxt/kit": "npm:@nuxt/kit-edge",
     "@nuxt/test-utils": "^0.2.2",
-    "@nuxtjs/eslint-config-typescript": "^7.0.2",
+    "@nuxtjs/eslint-config-typescript": "^8.0.0",
     "@types/flat": "^5.0.2",
     "@types/jest": "^27.0.3",
     "babel-jest": "^27.3.1",
