@@ -1,8 +1,10 @@
 import { defineBuildConfig } from 'unbuild'
 
 export default defineBuildConfig({
-  entries: [{ input: 'src/index.ts', name: 'index' }],
+  entries: ['src/index'],
   declaration: true,
-  inlineDependencies: true,
-  externals: ['unified', 'mdast']
+  externals: ['unified', 'mdast'],
+  rollup: {
+    emitCJS: true
+  }
 })
