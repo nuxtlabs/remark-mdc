@@ -27,47 +27,45 @@ interface RemarkMDCOptions {
   components?: ComponentHanlder[]
 }
 
-export default <Plugin<Array<RemarkMDCOptions>, Root, Root>>(
-  function remarkMDC({ components = [] }: RemarkMDCOptions = {}) {
-    // @ts-ignore
-    const data = this.data()
+export default <Plugin<Array<RemarkMDCOptions>, Root, Root>>function ({ components = [] }: RemarkMDCOptions = {}) {
+  // @ts-ignore
+  const data = this.data()
 
-    add('micromarkExtensions', syntax())
-    add('fromMarkdownExtensions', fromMarkdown)
-    add('toMarkdownExtensions', toMarkdown)
+  add('micromarkExtensions', syntax())
+  add('fromMarkdownExtensions', fromMarkdown)
+  add('toMarkdownExtensions', toMarkdown)
 
-    function add(field: string, value: any) {
-      /* istanbul ignore if - other extensions. */
-      if (!data[field]) {
-        data[field] = []
-      }
-
-      ;(data[field] as any[]).push(value)
+  function add(field: string, value: any) {
+    /* istanbul ignore if - other extensions. */
+    if (!data[field]) {
+      data[field] = []
     }
 
-    if (components.length) {
-      return async (tree: ComponentNode, { data }: { data: Record<string, any> }) => {
-        const jobs: Promise<unknown>[] = []
-        visit<ComponentNode, string[]>(tree, ['textComponent', 'leafComponent', 'containerComponent'], node => {
-          bindNode(node, data)
-          const { instance: handler, options } = components.find(c => c.name === node.name) || {}
-          if (handler) {
-            jobs.push(handler(options)(node, data))
-          }
-        })
+    ;(data[field] as any[]).push(value)
+  }
 
-        await Promise.all(jobs)
-        return tree
-      }
-    }
-
-    return (tree: ComponentNode, { data }: { data: Record<string, any> }) => {
+  if (components.length) {
+    return async (tree: ComponentNode, { data }: { data: Record<string, any> }) => {
+      const jobs: Promise<unknown>[] = []
       visit<ComponentNode, string[]>(tree, ['textComponent', 'leafComponent', 'containerComponent'], node => {
         bindNode(node, data)
+        const { instance: handler, options } = components.find(c => c.name === node.name) || {}
+        if (handler) {
+          jobs.push(handler(options)(node, data))
+        }
       })
+
+      await Promise.all(jobs)
+      return tree
     }
   }
-)
+
+  return (tree: ComponentNode, { data }: { data: Record<string, any> }) => {
+    visit<ComponentNode, string[]>(tree, ['textComponent', 'leafComponent', 'containerComponent'], node => {
+      bindNode(node, data)
+    })
+  }
+}
 
 function bindNode(node: ComponentNode, data: Record<string, any>) {
   const nodeData = node.data || (node.data = {})

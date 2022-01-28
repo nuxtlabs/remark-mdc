@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest'
 import { markdownToAST } from './utils/toAST'
 
 describe('Span Syntax', () => {

@@ -10,8 +10,7 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["node", "jest"]
+    "types": ["node"]
   },
-  "include": ["src/**/*", "example"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src/**/*", "example"]
 }
