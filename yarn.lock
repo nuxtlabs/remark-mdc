@@ -4816,7 +4816,7 @@ esbuild@^0.13.12, esbuild@^0.13.8:
     esbuild-windows-64 "0.13.15"
     esbuild-windows-arm64 "0.13.15"
 
-esbuild@^0.14.12, esbuild@^0.14.14:
+esbuild@^0.14.14:
   version "0.14.14"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.14.14.tgz#3b99f20d628013c3e2ae90e67687e03f1d6eb071"
   integrity sha512-aiK4ddv+uui0k52OqSHu4xxu+SzOim7Rlz4i25pMEiC8rlnGU0HJ9r+ZMfdWL5bzifg+nhnn7x4NSWTeehYblg==
@@ -7778,7 +7778,7 @@ mkdist@^0.3.9:
     mri "^1.2.0"
     pathe "^0.2.0"
 
-mlly@^0.3.10, mlly@^0.3.19, mlly@^0.3.6:
+mlly@^0.3.10, mlly@^0.3.6:
   version "0.3.19"
   resolved "https://registry.yarnpkg.com/mlly/-/mlly-0.3.19.tgz#a4aac171d2142eafc9c9d4c1937dac5a11f70565"
   integrity sha512-zMq5n3cOf4fOzA4WoeulxagbAgMChdev3MgP6K51k7M0u2whTXxupfIY4VVzws4vxkiWhwH1rVQcsw7zDGfRhA==
@@ -10251,7 +10251,7 @@ rollup-pluginutils@^2.8.2:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@^2.58.0, rollup@^2.59.0, rollup@^2.65.0, rollup@^2.66.1:
+rollup@^2.58.0, rollup@^2.59.0, rollup@^2.66.1:
   version "2.66.1"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.66.1.tgz#366b0404de353c4331d538c3ad2963934fcb4937"
   integrity sha512-crSgLhSkLMnKr4s9iZ/1qJCplgAgrRY+igWv8KhG/AjKOJ0YX/WpmANyn8oxrw+zenF3BXWDLa7Xl/QZISH+7w==
@@ -11208,10 +11208,10 @@ tinypool@^0.1.1:
   resolved "https://registry.yarnpkg.com/tinypool/-/tinypool-0.1.1.tgz#99eaf29d030feeca2da6c1d6b33f90fc18093bc7"
   integrity sha512-sW2fQZ2BRb/GX5v55NkHiTrbMLx0eX0xNpP+VGhOe2f7Oo04+LeClDyM19zCE/WCy7jJ8kzIJ0Ojrxj3UhN9Sg==
 
-tinyspy@^0.2.8:
-  version "0.2.8"
-  resolved "https://registry.yarnpkg.com/tinyspy/-/tinyspy-0.2.8.tgz#b821b3d43a7d5ae47bc575a5d8627e84fdf4e809"
-  integrity sha512-4VXqQzzh9gC5uOLk77cLr9R3wqJq07xJlgM9IUdCNJCet139r+046ETKbU1x7mGs7B0k7eopyH5U6yflbBXNyA==
+tinyspy@^0.2.10:
+  version "0.2.10"
+  resolved "https://registry.yarnpkg.com/tinyspy/-/tinyspy-0.2.10.tgz#7f684504bda345620f7a6a8462c618ef3d055517"
+  integrity sha512-Qij6rGWCDjWIejxCXXVi6bNgvrYBp3PbqC4cBP/0fD6WHDOHCw09Zd13CsxrDqSR5PFq01WeqDws8t5lz5sH0A==
 
 tmp@^0.0.33:
   version "0.0.33"
@@ -11401,10 +11401,10 @@ unbox-primitive@^1.0.1:
     has-symbols "^1.0.2"
     which-boxed-primitive "^1.0.2"
 
-unbuild@^0.6.8:
-  version "0.6.8"
-  resolved "https://registry.yarnpkg.com/unbuild/-/unbuild-0.6.8.tgz#f12ec8f813ee87fd3365013764cef9b00e726bfb"
-  integrity sha512-JIJ3Oup8m+dNahm1ZfJm1u8RJQRhOx6nCH2cRXzKlydF1d5gSyI+xIgUIzF0qxOVtFdQL78xVRGRy1r/qzRJ/g==
+unbuild@^0.6.9:
+  version "0.6.9"
+  resolved "https://registry.yarnpkg.com/unbuild/-/unbuild-0.6.9.tgz#f144c5641c177dac9ca666c23212aa0b291edd71"
+  integrity sha512-IALhVj6cLWAxFqX5qcuR932Y3OKFgWcZXPeQ0qU1YAuBucWzpY171GHMi+rXot3C4V7JwD0khGmjvu41E980mQ==
   dependencies:
     "@rollup/plugin-alias" "^3.1.9"
     "@rollup/plugin-commonjs" "^21.0.1"
@@ -11415,19 +11415,19 @@ unbuild@^0.6.8:
     chalk "^5.0.0"
     consola "^2.15.3"
     defu "^5.0.1"
-    esbuild "^0.14.12"
+    esbuild "^0.14.14"
     hookable "^5.1.1"
-    jiti "^1.12.9"
+    jiti "^1.12.14"
     magic-string "^0.25.7"
     mkdirp "^1.0.4"
     mkdist "^0.3.9"
-    mlly "^0.3.19"
+    mlly "^0.4.1"
     mri "^1.2.0"
     pathe "^0.2.0"
     pkg-types "^0.3.2"
     pretty-bytes "^5.6.0"
     rimraf "^3.0.2"
-    rollup "^2.65.0"
+    rollup "^2.66.1"
     rollup-plugin-dts "^4.1.0"
     rollup-plugin-esbuild "^4.8.2"
     scule "^0.2.1"
@@ -11838,17 +11838,17 @@ vite@>=2.7.13, vite@^2.7.13:
   optionalDependencies:
     fsevents "~2.3.2"
 
-vitest@^0.2.4:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/vitest/-/vitest-0.2.4.tgz#335f4ac2444f636240ad70fe0c808bd26fcc1ac8"
-  integrity sha512-QZHT00/6yOMPPGpSxcidgdMrx8xpwPaxt0icQfuhe/c1bTB4Es7THE9c+7HTpAiytlaCty2zSomSiP6Gcnl50Q==
+vitest@^0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/vitest/-/vitest-0.2.5.tgz#6dec59ee7153fe5667be67acf18dbd241f939033"
+  integrity sha512-QruEhsNxy8ycLxYG9rrGUfHZzJ8A6YvA9ULZ4w/ecvm0Zejm1nxUar/XkRWkL2xzrqA5AjmfqDSQZ8q2bFbA0Q==
   dependencies:
     "@types/chai" "^4.3.0"
     "@types/chai-subset" "^1.3.3"
     chai "^4.3.6"
     local-pkg "^0.4.1"
     tinypool "^0.1.1"
-    tinyspy "^0.2.8"
+    tinyspy "^0.2.10"
     vite ">=2.7.13"
 
 vm-browserify@^1.0.1:
