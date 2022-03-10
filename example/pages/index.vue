@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <textarea v-model="markdown" class="flex-1"></textarea>
+    <textarea v-model="markdown" class="flex-1" />
     <pre class="flex-1">{{ ast }}</pre>
     <pre class="flex-1">{{ md }}</pre>
   </div>

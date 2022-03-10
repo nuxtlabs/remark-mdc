@@ -2,7 +2,7 @@ import { promises as fsp } from 'fs'
 import { resolve } from 'path'
 import { execSync } from 'child_process'
 
-async function loadPackage(dir: string) {
+async function loadPackage (dir: string) {
   const pkgPath = resolve(dir, 'package.json')
 
   const data = JSON.parse(await fsp.readFile(pkgPath, 'utf-8').catch(() => '{}'))
@@ -16,7 +16,7 @@ async function loadPackage(dir: string) {
   }
 }
 
-async function main() {
+async function main () {
   const pkg = await loadPackage(process.cwd())
 
   const commit = execSync('git rev-parse --short HEAD').toString('utf-8').trim()
@@ -30,7 +30,7 @@ async function main() {
   pkg.save()
 }
 
-main().catch(err => {
+main().catch((err) => {
   // eslint-disable-next-line no-console
   console.error(err)
   process.exit(1)
