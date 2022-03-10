@@ -1,3 +1,5 @@
+import type { Effects } from 'micromark-factory-space'
+
 // Measure the number of character codes in chunks.
 // Counts tabs based on their expanded size, and CR+LF as one character.
 export function sizeChunks (chunks: any[]) {
@@ -33,4 +35,59 @@ export function linePrefixSize (events: any[]) {
   }
 
   return size
+}
+
+/**
+ * Manage token state
+ */
+export const useTokenState = (tokenName: string) => {
+  const token = {
+    isOpen: false,
+    /**
+     * Enter into token, close previous open token if any
+     */
+    enter: (effects: Effects) => {
+      const initialState = token.isOpen
+      token.exit(effects)
+      effects.enter(tokenName)
+      token.isOpen = true
+
+      // Revert to initial state
+      return () => {
+        token.isOpen = initialState
+      }
+    },
+    /**
+     * Enter into token only once, if token is already open, do nothing
+     */
+    enterOnce: (effects: Effects) => {
+      const initialState = token.isOpen
+
+      if (!token.isOpen) {
+        effects.enter(tokenName)
+        token.isOpen = true
+      }
+
+      // Revert to initial state
+      return () => {
+        token.isOpen = initialState
+      }
+    },
+    /**
+     * Exit from token if it is open
+     */
+    exit: (effects: Effects) => {
+      const initialState = token.isOpen
+      if (token.isOpen) {
+        effects.exit(tokenName)
+        token.isOpen = false
+      }
+
+      // Revert to initial state
+      return () => {
+        token.isOpen = initialState
+      }
+    }
+  }
+  return token
 }

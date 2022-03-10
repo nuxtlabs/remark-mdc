@@ -1,12 +1,13 @@
 import type { Effects, State, Code, TokenizeContext } from 'micromark-util-types'
 import { factorySpace } from 'micromark-factory-space'
-import { markdownLineEnding, asciiAlpha } from 'micromark-util-character'
-import { linePrefixSize } from './utils'
+import { markdownLineEnding, asciiAlpha, markdownSpace } from 'micromark-util-character'
+import { linePrefixSize, useTokenState } from './utils'
 import { Codes, ContainerSequenceSize } from './constants'
 import createName from './factory-name'
 import createLabel from './factory-label'
 import createAttributes from './factory-attributes'
 import { tokenizeFrontMatter } from './tokenize-frontmatter'
+
 const label: any = { tokenize: tokenizeLabel, partial: true }
 const attributes: any = { tokenize: tokenizeAttributes, partial: true }
 
@@ -21,6 +22,8 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
   let previous: any
   const containerSequenceSize: number[] = []
   let containerFirstLine = true
+
+  const section = useTokenState('componentContainerSection')
 
   /**
    * data tokenizer
@@ -39,12 +42,15 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
   function tokenizeSectionClosing (effects: Effects, ok: State, nok: State) {
     let size = 0
     let sectionIndentSize = 0
-
+    let revertSectionState: () => void
     return closingPrefixAfter
 
     function closingPrefixAfter (code: Code): State | void {
       sectionIndentSize = linePrefixSize(self.events)
-      effects.exit('componentContainerSection')
+
+      // Close section
+      revertSectionState = section.exit(effects)
+
       effects.enter('componentContainerSectionSequence')
       return closingSectionSequence(code)
     }
@@ -56,11 +62,23 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
         return closingSectionSequence
       }
 
-      if (size !== sectionSeparatorLength) { return nok(code) }
-      if (sectionIndentSize !== initialPrefix) { return nok(code) }
+      if (size !== sectionSeparatorLength) {
+        // Revert section state to inital value before failing
+        revertSectionState()
+        return nok(code)
+      }
+      if (sectionIndentSize !== initialPrefix) {
+        // Revert sect to inital value before failing
+        revertSectionState()
+        return nok(code)
+      }
 
       // non ascii chars are invalid
-      if (!asciiAlpha(code)) { return nok(code) }
+      if (!asciiAlpha(code)) {
+        // Revert sect to inital value before failing
+        revertSectionState()
+        return nok(code)
+      }
 
       effects.exit('componentContainerSectionSequence')
       return factorySpace(effects, ok, 'whitespace')(code)
@@ -68,7 +86,8 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
   }
 
   function sectionOpen (code: number): void | State {
-    effects.enter('componentContainerSection')
+    // Open new Section
+    section.enter(effects)
 
     if (markdownLineEnding(code)) {
       return factorySpace(effects, lineStart as State, 'whitespace')(code)
@@ -142,13 +161,12 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
       effects.exit('componentContainer')
       return ok(code)
     }
-    if (containerFirstLine && code === Codes.dash) {
+    if (containerFirstLine && (code === Codes.dash || markdownSpace(code))) {
       containerFirstLine = false
       return tokenizeFrontMatter(effects, ok, nok, contentStart, initialPrefix)(code)
     }
 
     effects.enter('componentContainerContent')
-    effects.enter('componentContainerSection')
     return lineStart(code)
   }
 
@@ -195,6 +213,9 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
       return after(code)
     }
 
+    // Open new Section
+    section.enterOnce(effects)
+
     // @ts-ignore
     const token = effects.enter('chunkDocument', {
       contentType: 'document',
@@ -222,7 +243,8 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
   }
 
   function after (code: Code): State | void {
-    effects.exit('componentContainerSection')
+    // Close section
+    section.exit(effects)
     effects.exit('componentContainerContent')
     effects.exit('componentContainer')
     return ok(code)
