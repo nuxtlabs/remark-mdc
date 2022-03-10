@@ -7,7 +7,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from '@vue/composition-api'
 import { astToMarkdown, markdownToAST } from '~/utils/toAST'
 
 const markdown = ref(`# Hello World
@@ -26,14 +25,16 @@ Secondary slot value
 const md = ref('')
 const ast = ref<any>({})
 
-watch(markdown, async (val: string) => {
-  try {
-    ast.value = (await markdownToAST(val)) as any
-    md.value = (await astToMarkdown(ast.value)) as string
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.error(e)
-  }
+watch(markdown, (val: string) => {
+  ;(async () => {
+    try {
+      ast.value = (await markdownToAST(val)) as any
+      md.value = (await astToMarkdown(ast.value)) as string
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e)
+    }
+  })()
 })
 </script>
 
