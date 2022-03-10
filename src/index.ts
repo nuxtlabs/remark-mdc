@@ -8,7 +8,7 @@ import toMarkdown from './to-markdown'
 import fromMarkdown from './from-markdown'
 import syntax from './micromark-extension'
 
-const toFrontMatter = (yamlString: string) => `---\n${yamlString}\n---`
+const toFrontMatter = (yamlString: string) => `---\n${yamlString.replace(/-*$/, '')}\n---`
 
 interface ComponentHanlder {
   name: string
@@ -27,7 +27,7 @@ interface RemarkMDCOptions {
   components?: ComponentHanlder[]
 }
 
-export default <Plugin<Array<RemarkMDCOptions>, Root, Root>>function ({ components = [] }: RemarkMDCOptions = {}) {
+export default <Plugin<Array<RemarkMDCOptions>, Root, Root>> function ({ components = [] }: RemarkMDCOptions = {}) {
   // @ts-ignore
   const data = this.data()
 
@@ -35,7 +35,7 @@ export default <Plugin<Array<RemarkMDCOptions>, Root, Root>>function ({ componen
   add('fromMarkdownExtensions', fromMarkdown)
   add('toMarkdownExtensions', toMarkdown)
 
-  function add(field: string, value: any) {
+  function add (field: string, value: any) {
     /* istanbul ignore if - other extensions. */
     if (!data[field]) {
       data[field] = []
@@ -47,7 +47,7 @@ export default <Plugin<Array<RemarkMDCOptions>, Root, Root>>function ({ componen
   if (components.length) {
     return async (tree: ComponentNode, { data }: { data: Record<string, any> }) => {
       const jobs: Promise<unknown>[] = []
-      visit<ComponentNode, string[]>(tree, ['textComponent', 'leafComponent', 'containerComponent'], node => {
+      visit<ComponentNode, string[]>(tree, ['textComponent', 'leafComponent', 'containerComponent'], (node) => {
         bindNode(node, data)
         const { instance: handler, options } = components.find(c => c.name === node.name) || {}
         if (handler) {
@@ -61,13 +61,13 @@ export default <Plugin<Array<RemarkMDCOptions>, Root, Root>>function ({ componen
   }
 
   return (tree: ComponentNode, { data }: { data: Record<string, any> }) => {
-    visit<ComponentNode, string[]>(tree, ['textComponent', 'leafComponent', 'containerComponent'], node => {
+    visit<ComponentNode, string[]>(tree, ['textComponent', 'leafComponent', 'containerComponent'], (node) => {
       bindNode(node, data)
     })
   }
 }
 
-function bindNode(node: ComponentNode, data: Record<string, any>) {
+function bindNode (node: ComponentNode, data: Record<string, any>) {
   const nodeData = node.data || (node.data = {})
 
   node.fmAttributes = getNodeData(node)
@@ -83,7 +83,7 @@ function bindNode(node: ComponentNode, data: Record<string, any>) {
   )
 }
 
-function getNodeData(node: ComponentNode) {
+function getNodeData (node: ComponentNode) {
   if (!node.rawData) {
     return {}
   }
@@ -94,7 +94,7 @@ function getNodeData(node: ComponentNode) {
   return data
 }
 
-function bindData(data: Record<string, any>, pageData: Record<string, any>) {
+function bindData (data: Record<string, any>, pageData: Record<string, any>) {
   const entries = Object.entries(data).map(([key, value]) => {
     if (key.startsWith(':')) {
       return [key, value]
