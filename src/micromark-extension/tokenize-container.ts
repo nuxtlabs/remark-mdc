@@ -170,7 +170,6 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
      * disbale spliting inner sections
      */
     if (code === Codes.colon) {
-      // const check = effects.check({ tokenize: detectContainer, partial: true } as any, chunkStart as State, chunkStart)
       return effects.attempt(
         { tokenize: tokenizeClosingFence, partial: true } as any,
         after as State,
