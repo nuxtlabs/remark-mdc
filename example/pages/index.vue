@@ -8,20 +8,46 @@
 
 <script setup lang="ts">
 import { astToMarkdown, markdownToAST } from '~/utils/toAST'
+const defaultValue = `# Hello World
+::simple-text
+test
+::
 
-const markdown = ref(`# Hello World
+::single-empty-slot
+#slot
+::
 
-::test-component
+::with-frontmatter
 ---
-data: value
+key: value
+array:
+  - item
+  - itemKey: value
+---
+::
+
+::with-frontmatter-and-nested-component
+---
+key: value
+array:
+  - item
+  - itemKey: value
 ---
 Default slot
 
 #secondary-slot
-Secondary slot value
-::
 
-`)
+Secondary slot value
+
+  :::hello
+  ---
+  key: value
+  ---
+  :::
+
+::
+`
+const markdown = ref('')
 const md = ref('')
 const ast = ref<any>({})
 
@@ -35,6 +61,9 @@ watch(markdown, (val: string) => {
       console.error(e)
     }
   })()
+})
+onMounted(() => {
+  markdown.value = defaultValue
 })
 </script>
 
