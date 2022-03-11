@@ -25,7 +25,7 @@
     "dev": "nuxi dev example",
     "generate": "nuxi generate example",
     "lint": "eslint --ext .js,.ts,.vue .",
-    "test": "yarn lint && vitest",
+    "test": "yarn lint && vitest run",
     "prepare": "yarn build",
     "release": "standard-version && git push --follow-tags && npm publish"
   },
@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@nuxt/kit": "npm:@nuxt/kit-edge@latest",
-    "@nuxtjs/eslint-config-typescript": "^8.0.0",
+    "@nuxtjs/eslint-config-typescript": "latest",
     "@types/flat": "^5.0.2",
     "eslint": "^8.7.0",
     "eslint-plugin-nuxt": "latest",
