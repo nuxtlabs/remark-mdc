@@ -384,7 +384,9 @@ __metadata:
     "@nuxtjs/eslint-config-typescript": latest
     "@types/flat": ^5.0.2
     eslint: ^8.7.0
+    eslint-plugin-import: ^2.25.4
     eslint-plugin-nuxt: latest
+    eslint-plugin-vue: ^8.5.0
     flat: ^5.0.2
     gray-matter: ^4.0.3
     mdast-util-from-markdown: ^1.2.0
@@ -3689,7 +3691,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-import@npm:^2.25.3":
+"eslint-plugin-import@npm:^2.25.3, eslint-plugin-import@npm:^2.25.4":
   version: 2.25.4
   resolution: "eslint-plugin-import@npm:2.25.4"
   dependencies:
@@ -3790,7 +3792,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-vue@npm:^8.1.1":
+"eslint-plugin-vue@npm:^8.1.1, eslint-plugin-vue@npm:^8.5.0":
   version: 8.5.0
   resolution: "eslint-plugin-vue@npm:8.5.0"
   dependencies:
