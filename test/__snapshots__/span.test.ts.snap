@@ -1,0 +1,259 @@
+// Vitest Snapshot v1
+
+exports[`span > inside-link 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "attributes": {},
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 7,
+                      "line": 1,
+                      "offset": 6,
+                    },
+                    "start": {
+                      "column": 3,
+                      "line": 1,
+                      "offset": 2,
+                    },
+                  },
+                  "type": "text",
+                  "value": "span",
+                },
+              ],
+              "data": {
+                "hName": "span",
+                "hProperties": {},
+              },
+              "fmAttributes": {},
+              "name": "span",
+              "position": {
+                "end": {
+                  "column": 8,
+                  "line": 1,
+                  "offset": 7,
+                },
+                "start": {
+                  "column": 2,
+                  "line": 1,
+                  "offset": 1,
+                },
+              },
+              "type": "textComponent",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 16,
+              "line": 1,
+              "offset": 15,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "title": null,
+          "type": "link",
+          "url": "#href",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 16,
+          "line": 1,
+          "offset": 15,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 16,
+      "line": 1,
+      "offset": 15,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`span > simple 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "attributes": {},
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 6,
+                  "line": 1,
+                  "offset": 5,
+                },
+                "start": {
+                  "column": 2,
+                  "line": 1,
+                  "offset": 1,
+                },
+              },
+              "type": "text",
+              "value": "span",
+            },
+          ],
+          "data": {
+            "hName": "span",
+            "hProperties": {},
+          },
+          "fmAttributes": {},
+          "name": "span",
+          "position": {
+            "end": {
+              "column": 7,
+              "line": 1,
+              "offset": 6,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "textComponent",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 7,
+          "line": 1,
+          "offset": 6,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 7,
+      "line": 1,
+      "offset": 6,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`span > with-attributes 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "attributes": {
+            "class": "aclass anotherclass andother",
+            "foo": "bar",
+            "id": "theid",
+          },
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 6,
+                  "line": 1,
+                  "offset": 5,
+                },
+                "start": {
+                  "column": 2,
+                  "line": 1,
+                  "offset": 1,
+                },
+              },
+              "type": "text",
+              "value": "span",
+            },
+          ],
+          "data": {
+            "hName": "span",
+            "hProperties": {
+              "class": "aclass anotherclass andother",
+              "foo": "bar",
+              "id": "theid",
+            },
+          },
+          "fmAttributes": {},
+          "name": "span",
+          "position": {
+            "end": {
+              "column": 7,
+              "line": 1,
+              "offset": 6,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "textComponent",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 70,
+          "line": 1,
+          "offset": 69,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 70,
+      "line": 1,
+      "offset": 69,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;

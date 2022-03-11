@@ -14,7 +14,7 @@ export function stringify (data: any, content: string = '') {
 }
 
 export function parseFrontMatter (file: string) {
-  const { data, content, ...rest } = matter.default(file, {
+  const { data, content, ...rest } = matter.default({ content: file }, {
     excerpt: true,
     excerpt_separator: '<!--more-->'
   })
