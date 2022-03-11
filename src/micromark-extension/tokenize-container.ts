@@ -2,7 +2,7 @@ import type { Effects, State, Code, TokenizeContext } from 'micromark-util-types
 import { factorySpace } from 'micromark-factory-space'
 import { markdownLineEnding, asciiAlpha, markdownSpace } from 'micromark-util-character'
 import { linePrefixSize, useTokenState } from './utils'
-import { Codes, ContainerSequenceSize } from './constants'
+import { Codes, ContainerSequenceSize, slotSeparatorCode, slotSeparatorLength } from './constants'
 import createName from './factory-name'
 import createLabel from './factory-label'
 import createAttributes from './factory-attributes'
@@ -10,10 +10,6 @@ import { tokenizeFrontMatter } from './tokenize-frontmatter'
 
 const label: any = { tokenize: tokenizeLabel, partial: true }
 const attributes: any = { tokenize: tokenizeAttributes, partial: true }
-
-// section sparator
-const sectionSeparatorCode = Codes.hash
-const sectionSeparatorLength = 1
 
 function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: State) {
   const self = this
@@ -56,13 +52,13 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     }
 
     function closingSectionSequence (code: Code): State | void {
-      if (code === sectionSeparatorCode) {
+      if (code === slotSeparatorCode) {
         effects.consume(code)
         size++
         return closingSectionSequence
       }
 
-      if (size !== sectionSeparatorLength) {
+      if (size !== slotSeparatorLength) {
         // Revert section state to inital value before failing
         revertSectionState()
         return nok(code)
@@ -176,7 +172,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     }
 
     // detect slots
-    if (!containerSequenceSize.length && (code === sectionSeparatorCode || code === Codes.space)) {
+    if (!containerSequenceSize.length && (code === slotSeparatorCode || code === Codes.space)) {
       return effects.attempt(
         { tokenize: tokenizeSectionClosing, partial: true } as any,
         sectionOpen as State,
