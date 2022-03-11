@@ -50,7 +50,7 @@
     "@nuxtjs/eslint-config-typescript": "^8.0.0",
     "@types/flat": "^5.0.2",
     "eslint": "^8.7.0",
-    "eslint-plugin-import": "latest",
+    "eslint-plugin-nuxt": "latest",
     "nuxt3": "latest",
     "remark-parse": "^10.0.1",
     "remark-stringify": "^10.0.2",
