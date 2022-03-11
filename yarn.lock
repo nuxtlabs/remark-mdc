@@ -466,6 +466,7 @@ __metadata:
     "@nuxtjs/eslint-config-typescript": ^8.0.0
     "@types/flat": ^5.0.2
     eslint: ^8.7.0
+    eslint-plugin-import: latest
     flat: ^5.0.2
     gray-matter: ^4.0.3
     mdast-util-from-markdown: ^1.2.0
@@ -4067,7 +4068,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-import@npm:^2.25.3":
+"eslint-plugin-import@npm:^2.25.3, eslint-plugin-import@npm:latest":
   version: 2.25.4
   resolution: "eslint-plugin-import@npm:2.25.4"
   dependencies:
