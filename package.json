@@ -51,6 +51,7 @@
     "@types/flat": "^5.0.2",
     "eslint": "^8.11.0",
     "eslint-plugin-nuxt": "latest",
+    "jiti": "^1.13.0",
     "nuxt3": "latest",
     "remark-parse": "^10.0.1",
     "remark-stringify": "^10.0.2",
