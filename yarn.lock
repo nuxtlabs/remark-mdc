@@ -558,11 +558,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/kit@npm:@nuxt/kit-edge@3.0.0-27454252.7bf338d, @nuxt/kit@npm:@nuxt/kit-edge@latest":
-  version: 3.0.0-27454252.7bf338d
-  resolution: "@nuxt/kit-edge@npm:3.0.0-27454252.7bf338d"
+"@nuxt/kit@npm:@nuxt/kit-edge@3.0.0-27454426.4cefce4, @nuxt/kit@npm:@nuxt/kit-edge@latest":
+  version: 3.0.0-27454426.4cefce4
+  resolution: "@nuxt/kit-edge@npm:3.0.0-27454426.4cefce4"
   dependencies:
-    "@nuxt/schema": "npm:@nuxt/schema-edge@3.0.0-27454252.7bf338d"
+    "@nuxt/schema": "npm:@nuxt/schema-edge@3.0.0-27454426.4cefce4"
     c12: ^0.1.4
     consola: ^2.15.3
     defu: ^5.0.1
@@ -580,18 +580,18 @@ __metadata:
     unctx: ^1.0.2
     unimport: 0.0.8
     untyped: ^0.4.2
-  checksum: 9e0f1bbd87c81f74507fbfea6b16edfd90625c07971ec0de2bae51fa5720e605fb44ba0dc627e6430cde75ce76fd452509c711d7e0dff28e6dd56c87ffe1bfd4
+  checksum: 9229416fab554271c993dbd3f701900a2d477bf085a6556cf34b6aae488325ffc25008f7b0969f7a0febd1135f6498131254047810926b5ce521fa275aaa1582
   languageName: node
   linkType: hard
 
-"@nuxt/nitro@npm:@nuxt/nitro-edge@3.0.0-27454252.7bf338d":
-  version: 3.0.0-27454252.7bf338d
-  resolution: "@nuxt/nitro-edge@npm:3.0.0-27454252.7bf338d"
+"@nuxt/nitro@npm:@nuxt/nitro-edge@3.0.0-27454426.4cefce4":
+  version: 3.0.0-27454426.4cefce4
+  resolution: "@nuxt/nitro-edge@npm:3.0.0-27454426.4cefce4"
   dependencies:
     "@cloudflare/kv-asset-handler": ^0.2.0
     "@netlify/functions": ^1.0.0
     "@nuxt/devalue": ^2.0.0
-    "@nuxt/kit": "npm:@nuxt/kit-edge@3.0.0-27454252.7bf338d"
+    "@nuxt/kit": "npm:@nuxt/kit-edge@3.0.0-27454426.4cefce4"
     "@nuxt/ui-templates": "npm:@nuxt/ui-templates-edge@latest"
     "@rollup/plugin-alias": ^3.1.9
     "@rollup/plugin-commonjs": ^21.0.2
@@ -646,13 +646,13 @@ __metadata:
     unstorage: ^0.3.3
     vue-bundle-renderer: ^0.3.5
     vue-server-renderer: ^2.6.14
-  checksum: cebb8d95eb2522b08905f0b852a7dffa00061b3c5e96d7b3236462c19dc96c82f31950f67a894e3a9bc36ce3d859f4c47f7bee6de04ac9dd3dfa0b89e2c866f5
+  checksum: b0ff7ce79247673a033a1471db0d1193f78512c5853db94bab070054b3a2e738474bb19ac50d1719e614ede18aebace291e1d8af14cd24c1e2c3020e9ec1ecdc
   languageName: node
   linkType: hard
 
-"@nuxt/schema@npm:@nuxt/schema-edge@3.0.0-27454252.7bf338d":
-  version: 3.0.0-27454252.7bf338d
-  resolution: "@nuxt/schema-edge@npm:3.0.0-27454252.7bf338d"
+"@nuxt/schema@npm:@nuxt/schema-edge@3.0.0-27454426.4cefce4":
+  version: 3.0.0-27454426.4cefce4
+  resolution: "@nuxt/schema-edge@npm:3.0.0-27454426.4cefce4"
   dependencies:
     c12: ^0.1.4
     create-require: ^1.1.1
@@ -664,7 +664,7 @@ __metadata:
     std-env: ^3.0.1
     ufo: ^0.7.11
     unimport: 0.0.8
-  checksum: dd69582794d0ef17986550224635fb8ba0fdd1b1778f0ae3d238aa37b01e9705cf54d413fe0c1f874fa462451d488e150b8b8c2230ce132388a1eba5f2b4bc29
+  checksum: 7dbc7fc6647981eece07e4987ff5389ade8d4ff33a166b407c4d4b15e304b7990a0a2312df614cdaead85e7263b42218b84b3178b19021f64ed943964bef0874
   languageName: node
   linkType: hard
 
@@ -675,11 +675,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/vite-builder@npm:@nuxt/vite-builder-edge@3.0.0-27454252.7bf338d":
-  version: 3.0.0-27454252.7bf338d
-  resolution: "@nuxt/vite-builder-edge@npm:3.0.0-27454252.7bf338d"
+"@nuxt/vite-builder@npm:@nuxt/vite-builder-edge@3.0.0-27454426.4cefce4":
+  version: 3.0.0-27454426.4cefce4
+  resolution: "@nuxt/vite-builder-edge@npm:3.0.0-27454426.4cefce4"
   dependencies:
-    "@nuxt/kit": "npm:@nuxt/kit-edge@3.0.0-27454252.7bf338d"
+    "@nuxt/kit": "npm:@nuxt/kit-edge@3.0.0-27454426.4cefce4"
     "@vitejs/plugin-vue": ^2.2.4
     "@vitejs/plugin-vue-jsx": ^1.3.8
     autoprefixer: ^10.4.2
@@ -707,7 +707,7 @@ __metadata:
     vite-node: ^0.6.1
   peerDependencies:
     vue: 3.2.31
-  checksum: 87afb914401a4fb2d87245af5fedbe15987851eae908feadebcc1914b4d8ba7052558b64a46efa70380fa14b1bc37cff1d9231d27bc21706c16c1948b567140b
+  checksum: ef50d258b91e6add29575d12a99bf89cedd1d606efe496d8bb95b9dd3a99bc0af5958359b4c748dc9a2fb32bd1bab9533b0d68d7cdf2af07d9f2504e981d94d0
   languageName: node
   linkType: hard
 
@@ -6849,9 +6849,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nuxi@npm:nuxi-edge@3.0.0-27454252.7bf338d":
-  version: 3.0.0-27454252.7bf338d
-  resolution: "nuxi-edge@npm:3.0.0-27454252.7bf338d"
+"nuxi@npm:nuxi-edge@3.0.0-27454426.4cefce4":
+  version: 3.0.0-27454426.4cefce4
+  resolution: "nuxi-edge@npm:3.0.0-27454426.4cefce4"
   dependencies:
     fsevents: ~2.3.2
   dependenciesMeta:
@@ -6859,19 +6859,19 @@ __metadata:
       optional: true
   bin:
     nuxi-edge: ./bin/nuxi.mjs
-  checksum: 57fc88a9cb0196a537216b75c10eb476033694312f72c3e41702afc221b60d1dbbcfbeff944a42e5f993e2fed19495836a0cbe7c6d810cd4631ad1146ba0919f
+  checksum: 0a94be989a42cc8bce777731ad2da10860cfd7e72a7b3a465d12e0f4e196953243edeb22fca7a0d2e8f211f1e456723bc969c2cb11c95cae529770ad27fb5018
   languageName: node
   linkType: hard
 
 "nuxt3@npm:latest":
-  version: 3.0.0-27454252.7bf338d
-  resolution: "nuxt3@npm:3.0.0-27454252.7bf338d"
+  version: 3.0.0-27454426.4cefce4
+  resolution: "nuxt3@npm:3.0.0-27454426.4cefce4"
   dependencies:
-    "@nuxt/kit": "npm:@nuxt/kit-edge@3.0.0-27454252.7bf338d"
-    "@nuxt/nitro": "npm:@nuxt/nitro-edge@3.0.0-27454252.7bf338d"
-    "@nuxt/schema": "npm:@nuxt/schema-edge@3.0.0-27454252.7bf338d"
+    "@nuxt/kit": "npm:@nuxt/kit-edge@3.0.0-27454426.4cefce4"
+    "@nuxt/nitro": "npm:@nuxt/nitro-edge@3.0.0-27454426.4cefce4"
+    "@nuxt/schema": "npm:@nuxt/schema-edge@3.0.0-27454426.4cefce4"
     "@nuxt/ui-templates": "npm:@nuxt/ui-templates-edge@latest"
-    "@nuxt/vite-builder": "npm:@nuxt/vite-builder-edge@3.0.0-27454252.7bf338d"
+    "@nuxt/vite-builder": "npm:@nuxt/vite-builder-edge@3.0.0-27454426.4cefce4"
     "@vue/reactivity": ^3.2.31
     "@vue/shared": ^3.2.31
     "@vueuse/head": ^0.7.5
@@ -6890,7 +6890,7 @@ __metadata:
     mlly: ^0.4.3
     murmurhash-es: ^0.1.1
     nitropack: "npm:nitropack-edge@latest"
-    nuxi: "npm:nuxi-edge@3.0.0-27454252.7bf338d"
+    nuxi: "npm:nuxi-edge@3.0.0-27454426.4cefce4"
     ohmyfetch: ^0.4.15
     pathe: ^0.2.0
     scule: ^0.2.1
@@ -6903,7 +6903,7 @@ __metadata:
   bin:
     nuxi: ./bin/nuxt.mjs
     nuxt: ./bin/nuxt.mjs
-  checksum: 4ececef36998e5ea1d3b38b0905f7c1af998a737b503ac0d97368ebab92243d89b34b2db3422aad0efa31f84d672fbd3f229b5098cad7594d4e7a3002b776978
+  checksum: abc253bb593c5c5419b8b4a3fbc4cadc1343f21aec48f8299422b576bb8c15c5c45ac391e7f6c2ed577b5859dc415309247cf5281b90c0e99d0bf3b2c4d3b9e2
   languageName: node
   linkType: hard
 
