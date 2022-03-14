@@ -3,9 +3,6 @@ import type { Preset } from 'unified'
 import parse from 'remark-parse'
 import mdc from '../../../src'
 
-// workaround for kleur
-process.env = process.env || {}
-
 const content = `
 # Hello World
 

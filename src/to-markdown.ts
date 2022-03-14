@@ -105,7 +105,7 @@ function label (node: Parent, context: any) {
 
   const exit = context.enter('label')
   const subexit = context.enter(node.type + 'Label')
-  const value = containerPhrasing(label, context, { before: '[', after: ']' })
+  const value = containerPhrasing(label, context, { before: '[', after: ']' } as any)
   subexit()
   exit()
   return value ? '[' + value + ']' : ''
@@ -170,7 +170,7 @@ function attributes (node: Parent, context: any) {
 
 function content (node: Parent, context: any) {
   const content = inlineComponentLabel(node) ? Object.assign({}, node, { children: node.children.slice(1) }) : node
-  return containerFlow(content, context)
+  return containerFlow(content, context, {} as any)
 }
 
 function inlineComponentLabel (node: Parent) {

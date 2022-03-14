@@ -7,8 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { astToMarkdown, markdownToAST } from '~/utils/toAST'
-const defaultValue = `# Hello World
+const markdown = ref(`# Hello World
 ::simple-text
 test
 ::
@@ -46,25 +45,9 @@ Secondary slot value
   :::
 
 ::
-`
-const markdown = ref('')
-const md = ref('')
-const ast = ref<any>({})
-
-watch(markdown, (val: string) => {
-  ;(async () => {
-    try {
-      ast.value = (await markdownToAST(val)) as any
-      md.value = (await astToMarkdown(ast.value)) as string
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error(e)
-    }
-  })()
-})
-onMounted(() => {
-  markdown.value = defaultValue
-})
+`)
+const ast = useMarkdownParser(markdown)
+const md = useMarkdownGenerator(ast)
 </script>
 
 <style>
