@@ -1,0 +1,499 @@
+// Vitest Snapshot v1
+
+exports[`block-component > empty 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [],
+      "data": {
+        "hName": "component",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "name": "component",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 2,
+          "offset": 14,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 2,
+      "offset": 14,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`block-component > empty-slot 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "attributes": {},
+          "children": [],
+          "data": {
+            "hName": "component-slot",
+            "hProperties": {
+              "v-slot:text": "",
+            },
+          },
+          "name": "text",
+          "position": {
+            "end": {
+              "column": 3,
+              "line": 3,
+              "offset": 20,
+            },
+            "start": {
+              "column": 2,
+              "line": 2,
+              "offset": 13,
+            },
+          },
+          "type": "componentContainerSection",
+        },
+      ],
+      "data": {
+        "hName": "component",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "name": "component",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 3,
+          "offset": 20,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 3,
+      "offset": 20,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`block-component > frontmatter 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [],
+      "data": {
+        "hName": "with-frontmatter",
+        "hProperties": {
+          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
+          "key": "value",
+        },
+      },
+      "fmAttributes": {
+        "array": [
+          "item",
+          {
+            "itemKey": "value",
+          },
+        ],
+        "key": "value",
+      },
+      "name": "with-frontmatter",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 8,
+          "offset": 75,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "rawData": "
+key: value
+array:
+  - item
+  - itemKey: value
+---",
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 8,
+      "offset": 75,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`block-component > frontmatter1 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [],
+      "data": {
+        "hName": "with-frontmatter",
+        "hProperties": {
+          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
+          ":key2": "{\\"subkey\\":\\"value\\",\\"subkey2\\":\\"value\\"}",
+          "key": "value",
+        },
+      },
+      "fmAttributes": {
+        "array": [
+          "item",
+          {
+            "itemKey": "value",
+          },
+        ],
+        "key": "value",
+        "key2": {
+          "subkey": "value",
+          "subkey2": "value",
+        },
+      },
+      "name": "with-frontmatter",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 11,
+          "offset": 114,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "rawData": "
+key: value
+key2:
+  subkey: value
+  subkey2: value
+array:
+  - item
+  - itemKey: value
+---",
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 11,
+      "offset": 114,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`block-component > nested-component 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 13,
+                  "line": 8,
+                  "offset": 106,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 8,
+                  "offset": 94,
+                },
+              },
+              "type": "text",
+              "value": "Default slot",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 13,
+              "line": 8,
+              "offset": 106,
+            },
+            "start": {
+              "column": 1,
+              "line": 8,
+              "offset": 94,
+            },
+          },
+          "type": "paragraph",
+        },
+        {
+          "attributes": {},
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 21,
+                      "line": 12,
+                      "offset": 145,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 12,
+                      "offset": 125,
+                    },
+                  },
+                  "type": "text",
+                  "value": "Secondary slot value",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 21,
+                  "line": 12,
+                  "offset": 145,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 12,
+                  "offset": 125,
+                },
+              },
+              "type": "paragraph",
+            },
+            {
+              "attributes": {},
+              "children": [],
+              "data": {
+                "hName": "hello",
+                "hProperties": {
+                  "key": "value",
+                },
+              },
+              "fmAttributes": {
+                "key": "value",
+              },
+              "name": "hello",
+              "position": {
+                "end": {
+                  "column": 6,
+                  "line": 18,
+                  "offset": 188,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 14,
+                  "offset": 149,
+                },
+              },
+              "rawData": "
+  key: value
+  ---",
+              "type": "containerComponent",
+            },
+          ],
+          "data": {
+            "hName": "component-slot",
+            "hProperties": {
+              "v-slot:secondary-slot": "",
+            },
+          },
+          "name": "secondary-slot",
+          "position": {
+            "end": {
+              "column": 3,
+              "line": 19,
+              "offset": 191,
+            },
+            "start": {
+              "column": 2,
+              "line": 10,
+              "offset": 109,
+            },
+          },
+          "type": "componentContainerSection",
+        },
+      ],
+      "data": {
+        "hName": "with-frontmatter-and-nested-component",
+        "hProperties": {
+          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
+          "key": "value",
+        },
+      },
+      "fmAttributes": {
+        "array": [
+          "item",
+          {
+            "itemKey": "value",
+          },
+        ],
+        "key": "value",
+      },
+      "name": "with-frontmatter-and-nested-component",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 19,
+          "offset": 191,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "rawData": "
+key: value
+array:
+  - item
+  - itemKey: value
+---",
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 19,
+      "offset": 191,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`block-component > text 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 5,
+                  "line": 2,
+                  "offset": 16,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 2,
+                  "offset": 12,
+                },
+              },
+              "type": "text",
+              "value": "text",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 5,
+              "line": 2,
+              "offset": 16,
+            },
+            "start": {
+              "column": 1,
+              "line": 2,
+              "offset": 12,
+            },
+          },
+          "type": "paragraph",
+        },
+      ],
+      "data": {
+        "hName": "component",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "name": "component",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 3,
+          "offset": 19,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 3,
+      "offset": 19,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;

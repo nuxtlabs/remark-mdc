@@ -1,4 +1,4 @@
-import type { Effects, State } from 'micromark-util-types'
+import type { Effects, State, Code } from 'micromark-util-types'
 import { markdownLineEnding } from 'micromark-util-character'
 
 // This is a fork of:
@@ -7,7 +7,7 @@ import { markdownLineEnding } from 'micromark-util-character'
 // text instead of strings, and optionally disallows EOLs.
 
 // eslint-disable-next-line max-params
-export default function createLabel(
+export default function createLabel (
   effects: Effects,
   ok: State,
   nok: State,
@@ -21,9 +21,9 @@ export default function createLabel(
 
   return start
 
-  function start(code: number) {
+  function start (code: Code): void | State {
     /* istanbul ignore if - always `[` */
-    if (code !== 91 /* `[` */) throw new Error('expected `[`')
+    if (code !== 91 /* `[` */) { throw new Error('expected `[`') }
     effects.enter(type)
     effects.enter(markerType)
     effects.consume(code)
@@ -31,7 +31,7 @@ export default function createLabel(
     return afterStart
   }
 
-  function afterStart(code: number) {
+  function afterStart (code: Code): void | State {
     if (code === 93 /* `]` */) {
       effects.enter(markerType)
       effects.consume(code)
@@ -44,7 +44,7 @@ export default function createLabel(
     return atBreak(code)
   }
 
-  function atBreak(code: number) {
+  function atBreak (code: Code): void | State {
     if (
       code === null /* EOF */ ||
       /* <https://github.com/micromark/micromark/blob/bf53bf9/lib/constant/constants.js#L34> */
@@ -73,7 +73,7 @@ export default function createLabel(
     return label(code)
   }
 
-  function label(code: number): void | State {
+  function label (code: number): void | State {
     if (
       code === null /* EOF */ ||
       markdownLineEnding(code) ||
@@ -97,7 +97,7 @@ export default function createLabel(
     return (code === 92 /* `\` */ ? labelEscape : label) as State
   }
 
-  function atClosingBrace(code: number) {
+  function atClosingBrace (code: Code): void | State {
     effects.exit(stringType)
     effects.enter(markerType)
     effects.consume(code)
@@ -106,7 +106,7 @@ export default function createLabel(
     return ok
   }
 
-  function labelEscape(code: number): void | State {
+  function labelEscape (code: number): void | State {
     if (code === 91 /* `[` */ || code === 92 /* `\` */ || code === 93 /* `]` */) {
       effects.consume(code)
       size++

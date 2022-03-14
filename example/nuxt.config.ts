@@ -1,17 +1,3 @@
-import { defineNuxtConfig } from '@nuxt/bridge'
+import { defineNuxtConfig } from 'nuxt3'
 
-export default defineNuxtConfig({
-  target: 'static',
-  build: {
-    transpile: [
-      'unified',
-      'bail',
-      'trough',
-      'vfile',
-      'micromark',
-      'zwitch',
-      'longest-streak',
-      /(unist|remark|mdast|parse|character|stringify|is)-*/
-    ]
-  }
-})
+export default defineNuxtConfig({})
