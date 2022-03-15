@@ -7,6 +7,7 @@ export const slotSeparatorCode = 35 // '#'
 export const slotSeparatorLength = 1
 
 export const Codes = {
+  eof: null,
   /**
    * '#'
    */
@@ -58,5 +59,13 @@ export const Codes = {
   /**
    * '_'
    */
-  underscore: 95
+  underscore: 95,
+  /**
+   * 'X'
+   */
+  uppercaseX: 88,
+  /**
+   * 'x'
+   */
+  lowercaseX: 120
 }

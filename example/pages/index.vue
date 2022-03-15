@@ -8,6 +8,12 @@
 
 <script setup lang="ts">
 const markdown = ref(`# Hello World
+
+[span]
+
+- [ ] Task 1 [span]
+- [x] Task 2
+
 ::simple-text
 test
 ::

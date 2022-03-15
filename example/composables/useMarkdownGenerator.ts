@@ -21,10 +21,12 @@ export function useMarkdownGenerator (input: Ref<object>) {
     if (!_stream) {
       const unified = await import('unified').then(r => r.unified)
       const stringify = await import('remark-stringify').then(r => r.default)
+      const gfm = await import('remark-gfm').then(r => r.default)
       const mdc = await import('../../src').then(r => r.default)
 
       _stream = await unified()
         .use(jsonParser)
+        .use(gfm)
         .use(mdc)
         .use(stringify, {
           bullet: '-'
