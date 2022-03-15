@@ -1,5 +1,142 @@
 // Vitest Snapshot v1
 
+exports[`span > [ ] 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "attributes": {},
+          "children": [],
+          "data": {
+            "hName": "span",
+            "hProperties": {},
+          },
+          "fmAttributes": {},
+          "name": "span",
+          "position": {
+            "end": {
+              "column": 4,
+              "line": 1,
+              "offset": 3,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "textComponent",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 4,
+          "line": 1,
+          "offset": 3,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 4,
+      "line": 1,
+      "offset": 3,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`span > [x] 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "attributes": {},
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 3,
+                  "line": 1,
+                  "offset": 2,
+                },
+                "start": {
+                  "column": 2,
+                  "line": 1,
+                  "offset": 1,
+                },
+              },
+              "type": "text",
+              "value": "x",
+            },
+          ],
+          "data": {
+            "hName": "span",
+            "hProperties": {},
+          },
+          "fmAttributes": {},
+          "name": "span",
+          "position": {
+            "end": {
+              "column": 4,
+              "line": 1,
+              "offset": 3,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "textComponent",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 4,
+          "line": 1,
+          "offset": 3,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 4,
+      "line": 1,
+      "offset": 3,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`span > inside-link 1`] = `
 {
   "children": [
@@ -85,6 +222,150 @@ exports[`span > inside-link 1`] = `
       "column": 16,
       "line": 1,
       "offset": 15,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`span > respect-gfm-check-list 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "checked": false,
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 13,
+                      "line": 1,
+                      "offset": 12,
+                    },
+                    "start": {
+                      "column": 7,
+                      "line": 1,
+                      "offset": 6,
+                    },
+                  },
+                  "type": "text",
+                  "value": "task 1",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 13,
+                  "line": 1,
+                  "offset": 12,
+                },
+                "start": {
+                  "column": 7,
+                  "line": 1,
+                  "offset": 6,
+                },
+              },
+              "type": "paragraph",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 13,
+              "line": 1,
+              "offset": 12,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "spread": false,
+          "type": "listItem",
+        },
+        {
+          "checked": true,
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 13,
+                      "line": 2,
+                      "offset": 25,
+                    },
+                    "start": {
+                      "column": 7,
+                      "line": 2,
+                      "offset": 19,
+                    },
+                  },
+                  "type": "text",
+                  "value": "task 2",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 13,
+                  "line": 2,
+                  "offset": 25,
+                },
+                "start": {
+                  "column": 7,
+                  "line": 2,
+                  "offset": 19,
+                },
+              },
+              "type": "paragraph",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 13,
+              "line": 2,
+              "offset": 25,
+            },
+            "start": {
+              "column": 1,
+              "line": 2,
+              "offset": 13,
+            },
+          },
+          "spread": false,
+          "type": "listItem",
+        },
+      ],
+      "ordered": false,
+      "position": {
+        "end": {
+          "column": 13,
+          "line": 2,
+          "offset": 25,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "spread": false,
+      "start": null,
+      "type": "list",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 13,
+      "line": 2,
+      "offset": 25,
     },
     "start": {
       "column": 1,
