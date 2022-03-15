@@ -19,6 +19,10 @@ describe('span', () => {
           foo: 'bar'
         })
       }
+    },
+    'respect-gfm-check-list': {
+      markdown: '- [ ] task 1\n- [X] task 2',
+      expected: '-   [ ] task 1\n-   [x] task 2'
     }
   })
 })

@@ -1,6 +1,7 @@
 import { unified } from 'unified'
 import type { Preset } from 'unified'
 import parse from 'remark-parse'
+import gfm from 'remark-gfm'
 import strigify from 'remark-stringify'
 import { expect, test } from 'vitest'
 import mdc from '../../src'
@@ -35,7 +36,10 @@ async function markdownToAST (markdown: string) {
     }
   }
 
-  const stream = unified().use(parse).use(mdc)
+  const stream = unified()
+    .use(parse)
+    .use(gfm)
+    .use(mdc)
 
   const file = await stream.use(compiler as Preset).process(markdown)
 
@@ -51,6 +55,7 @@ async function astToMarkdown (ast: any) {
   const stream = await unified()
     .use(jsonParser)
     .use(mdc)
+    .use(gfm)
     .use(strigify, {
       bullet: '-'
     })
