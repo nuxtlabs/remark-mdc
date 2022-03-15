@@ -4,7 +4,7 @@ import { Codes } from './constants'
 import createLabel from './factory-label'
 
 const label: any = { tokenize: tokenizeLabel, partial: true }
-const gfmCheck: any = { tokenize: checkFormGfmTaskCheckbox, partial: true }
+const gfmCheck: any = { tokenize: checkGfmTaskCheckbox, partial: true }
 
 function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: State) {
   const self = this
@@ -15,11 +15,10 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
       throw new Error('expected `[`')
     }
 
+    // When we are in the beggining of task list line,
+    // there is a good chance that we are dealing with a GFM task list
     if (
-      // Exit if there’s stuff before.
       self.previous === Codes.eof &&
-      // Exit if not in the first content that is the first child of a list
-      // item.
       self._gfmTasklistFirstContentOfListItem
     ) {
       return effects.check(gfmCheck, nok, attemptLabel)(code)
@@ -54,7 +53,7 @@ export default {
   tokenize
 }
 
-function checkFormGfmTaskCheckbox (effects: Effects, ok: State, nok: State) {
+function checkGfmTaskCheckbox (effects: Effects, ok: State, nok: State) {
   return enter
 
   function enter (code: Code): void | State {

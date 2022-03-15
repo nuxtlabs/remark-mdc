@@ -1,5 +1,142 @@
 // Vitest Snapshot v1
 
+exports[`span > [ ] 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "attributes": {},
+          "children": [],
+          "data": {
+            "hName": "span",
+            "hProperties": {},
+          },
+          "fmAttributes": {},
+          "name": "span",
+          "position": {
+            "end": {
+              "column": 4,
+              "line": 1,
+              "offset": 3,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "textComponent",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 4,
+          "line": 1,
+          "offset": 3,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 4,
+      "line": 1,
+      "offset": 3,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`span > [x] 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "attributes": {},
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 3,
+                  "line": 1,
+                  "offset": 2,
+                },
+                "start": {
+                  "column": 2,
+                  "line": 1,
+                  "offset": 1,
+                },
+              },
+              "type": "text",
+              "value": "x",
+            },
+          ],
+          "data": {
+            "hName": "span",
+            "hProperties": {},
+          },
+          "fmAttributes": {},
+          "name": "span",
+          "position": {
+            "end": {
+              "column": 4,
+              "line": 1,
+              "offset": 3,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "textComponent",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 4,
+          "line": 1,
+          "offset": 3,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 4,
+      "line": 1,
+      "offset": 3,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`span > inside-link 1`] = `
 {
   "children": [

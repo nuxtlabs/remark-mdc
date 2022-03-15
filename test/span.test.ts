@@ -20,6 +20,21 @@ describe('span', () => {
         })
       }
     },
+    '[x]': {
+      markdown: '[x]',
+      extra (_markdown, ast, _expected) {
+        expect(ast.children[0].children[0].type).toEqual('textComponent')
+        expect(ast.children[0].children[0].children[0].value).toEqual('x')
+      }
+    },
+    '[ ]': {
+      markdown: '[ ]',
+      expected: '[]',
+      extra (_markdown, ast, _expected) {
+        expect(ast.children[0].children[0].type).toEqual('textComponent')
+        expect(ast.children[0].children[0].children.length).toEqual(0)
+      }
+    },
     'respect-gfm-check-list': {
       markdown: '- [ ] task 1\n- [X] task 2',
       expected: '-   [ ] task 1\n-   [x] task 2'
