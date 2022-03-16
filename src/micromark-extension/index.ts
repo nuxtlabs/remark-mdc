@@ -17,7 +17,7 @@ export default function micromarkComponentsExtension () {
       [Codes.openingCurlyBracket]: tokenizeAttribute
     },
     flow: {
-      [Codes.colon]: [tokenizeContainer, tokenizeInline]
+      [Codes.colon]: [tokenizeContainer]
     },
     flowInitial: {
       '-2': tokenizeContainerIndented,

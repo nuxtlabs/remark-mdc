@@ -4,18 +4,35 @@ exports[`Attributes > boolean 1`] = `
 {
   "children": [
     {
-      "attributes": {
-        "prop": true,
-      },
-      "children": [],
-      "data": {
-        "hName": "test",
-        "hProperties": {
-          ":prop": "true",
+      "children": [
+        {
+          "attributes": {
+            "prop": true,
+          },
+          "children": [],
+          "data": {
+            "hName": "test",
+            "hProperties": {
+              ":prop": "true",
+            },
+          },
+          "fmAttributes": {},
+          "name": "test",
+          "position": {
+            "end": {
+              "column": 12,
+              "line": 1,
+              "offset": 11,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "textComponent",
         },
-      },
-      "fmAttributes": {},
-      "name": "test",
+      ],
       "position": {
         "end": {
           "column": 12,
@@ -28,7 +45,7 @@ exports[`Attributes > boolean 1`] = `
           "offset": 0,
         },
       },
-      "type": "textComponent",
+      "type": "paragraph",
     },
   ],
   "position": {
@@ -51,20 +68,37 @@ exports[`Attributes > class-suger 1`] = `
 {
   "children": [
     {
-      "attributes": {
-        "class": "class another-class",
-        "key": "value",
-      },
-      "children": [],
-      "data": {
-        "hName": "test",
-        "hProperties": {
-          "class": "class another-class",
-          "key": "value",
+      "children": [
+        {
+          "attributes": {
+            "class": "class another-class",
+            "key": "value",
+          },
+          "children": [],
+          "data": {
+            "hName": "test",
+            "hProperties": {
+              "class": "class another-class",
+              "key": "value",
+            },
+          },
+          "fmAttributes": {},
+          "name": "test",
+          "position": {
+            "end": {
+              "column": 41,
+              "line": 1,
+              "offset": 40,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "textComponent",
         },
-      },
-      "fmAttributes": {},
-      "name": "test",
+      ],
       "position": {
         "end": {
           "column": 41,
@@ -77,7 +111,7 @@ exports[`Attributes > class-suger 1`] = `
           "offset": 0,
         },
       },
-      "type": "textComponent",
+      "type": "paragraph",
     },
   ],
   "position": {
@@ -100,18 +134,35 @@ exports[`Attributes > html-characters 1`] = `
 {
   "children": [
     {
-      "attributes": {
-        "icon": "©",
-      },
-      "children": [],
-      "data": {
-        "hName": "test",
-        "hProperties": {
-          "icon": "©",
+      "children": [
+        {
+          "attributes": {
+            "icon": "©",
+          },
+          "children": [],
+          "data": {
+            "hName": "test",
+            "hProperties": {
+              "icon": "©",
+            },
+          },
+          "fmAttributes": {},
+          "name": "test",
+          "position": {
+            "end": {
+              "column": 21,
+              "line": 1,
+              "offset": 20,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "textComponent",
         },
-      },
-      "fmAttributes": {},
-      "name": "test",
+      ],
       "position": {
         "end": {
           "column": 21,
@@ -124,7 +175,7 @@ exports[`Attributes > html-characters 1`] = `
           "offset": 0,
         },
       },
-      "type": "textComponent",
+      "type": "paragraph",
     },
   ],
   "position": {
@@ -147,18 +198,35 @@ exports[`Attributes > html-characters-unquoted 1`] = `
 {
   "children": [
     {
-      "attributes": {
-        "icon": "©",
-      },
-      "children": [],
-      "data": {
-        "hName": "test",
-        "hProperties": {
-          "icon": "©",
+      "children": [
+        {
+          "attributes": {
+            "icon": "©",
+          },
+          "children": [],
+          "data": {
+            "hName": "test",
+            "hProperties": {
+              "icon": "©",
+            },
+          },
+          "fmAttributes": {},
+          "name": "test",
+          "position": {
+            "end": {
+              "column": 19,
+              "line": 1,
+              "offset": 18,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "textComponent",
         },
-      },
-      "fmAttributes": {},
-      "name": "test",
+      ],
       "position": {
         "end": {
           "column": 19,
@@ -171,7 +239,7 @@ exports[`Attributes > html-characters-unquoted 1`] = `
           "offset": 0,
         },
       },
-      "type": "textComponent",
+      "type": "paragraph",
     },
   ],
   "position": {
@@ -194,18 +262,35 @@ exports[`Attributes > id-suger 1`] = `
 {
   "children": [
     {
-      "attributes": {
-        "id": "id",
-      },
-      "children": [],
-      "data": {
-        "hName": "test",
-        "hProperties": {
-          "id": "id",
+      "children": [
+        {
+          "attributes": {
+            "id": "id",
+          },
+          "children": [],
+          "data": {
+            "hName": "test",
+            "hProperties": {
+              "id": "id",
+            },
+          },
+          "fmAttributes": {},
+          "name": "test",
+          "position": {
+            "end": {
+              "column": 11,
+              "line": 1,
+              "offset": 10,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "textComponent",
         },
-      },
-      "fmAttributes": {},
-      "name": "test",
+      ],
       "position": {
         "end": {
           "column": 11,
@@ -218,7 +303,7 @@ exports[`Attributes > id-suger 1`] = `
           "offset": 0,
         },
       },
-      "type": "textComponent",
+      "type": "paragraph",
     },
   ],
   "position": {
@@ -294,18 +379,35 @@ exports[`Attributes > value-with-space 1`] = `
 {
   "children": [
     {
-      "attributes": {
-        "attr": "value",
-      },
-      "children": [],
-      "data": {
-        "hName": "test",
-        "hProperties": {
-          "attr": "value",
+      "children": [
+        {
+          "attributes": {
+            "attr": "value",
+          },
+          "children": [],
+          "data": {
+            "hName": "test",
+            "hProperties": {
+              "attr": "value",
+            },
+          },
+          "fmAttributes": {},
+          "name": "test",
+          "position": {
+            "end": {
+              "column": 19,
+              "line": 1,
+              "offset": 18,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "textComponent",
         },
-      },
-      "fmAttributes": {},
-      "name": "test",
+      ],
       "position": {
         "end": {
           "column": 19,
@@ -318,7 +420,7 @@ exports[`Attributes > value-with-space 1`] = `
           "offset": 0,
         },
       },
-      "type": "textComponent",
+      "type": "paragraph",
     },
   ],
   "position": {

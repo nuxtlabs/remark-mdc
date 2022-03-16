@@ -4,14 +4,31 @@ exports[`label > empty 1`] = `
 {
   "children": [
     {
-      "attributes": {},
-      "children": [],
-      "data": {
-        "hName": "test",
-        "hProperties": {},
-      },
-      "fmAttributes": {},
-      "name": "test",
+      "children": [
+        {
+          "attributes": {},
+          "children": [],
+          "data": {
+            "hName": "test",
+            "hProperties": {},
+          },
+          "fmAttributes": {},
+          "name": "test",
+          "position": {
+            "end": {
+              "column": 8,
+              "line": 1,
+              "offset": 7,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "textComponent",
+        },
+      ],
       "position": {
         "end": {
           "column": 8,
@@ -24,7 +41,7 @@ exports[`label > empty 1`] = `
           "offset": 0,
         },
       },
-      "type": "textComponent",
+      "type": "paragraph",
     },
   ],
   "position": {
@@ -153,31 +170,48 @@ exports[`label > scaped-characters 1`] = `
 {
   "children": [
     {
-      "attributes": {},
       "children": [
         {
+          "attributes": {},
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 25,
+                  "line": 1,
+                  "offset": 24,
+                },
+                "start": {
+                  "column": 7,
+                  "line": 1,
+                  "offset": 6,
+                },
+              },
+              "type": "text",
+              "value": "scape [ character",
+            },
+          ],
+          "data": {
+            "hName": "test",
+            "hProperties": {},
+          },
+          "fmAttributes": {},
+          "name": "test",
           "position": {
             "end": {
-              "column": 25,
+              "column": 26,
               "line": 1,
-              "offset": 24,
+              "offset": 25,
             },
             "start": {
-              "column": 7,
+              "column": 1,
               "line": 1,
-              "offset": 6,
+              "offset": 0,
             },
           },
-          "type": "text",
-          "value": "scape [ character",
+          "type": "textComponent",
         },
       ],
-      "data": {
-        "hName": "test",
-        "hProperties": {},
-      },
-      "fmAttributes": {},
-      "name": "test",
       "position": {
         "end": {
           "column": 26,
@@ -190,7 +224,7 @@ exports[`label > scaped-characters 1`] = `
           "offset": 0,
         },
       },
-      "type": "textComponent",
+      "type": "paragraph",
     },
   ],
   "position": {
@@ -213,31 +247,48 @@ exports[`label > simple 1`] = `
 {
   "children": [
     {
-      "attributes": {},
       "children": [
         {
+          "attributes": {},
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 12,
+                  "line": 1,
+                  "offset": 11,
+                },
+                "start": {
+                  "column": 7,
+                  "line": 1,
+                  "offset": 6,
+                },
+              },
+              "type": "text",
+              "value": "label",
+            },
+          ],
+          "data": {
+            "hName": "test",
+            "hProperties": {},
+          },
+          "fmAttributes": {},
+          "name": "test",
           "position": {
             "end": {
-              "column": 12,
+              "column": 13,
               "line": 1,
-              "offset": 11,
+              "offset": 12,
             },
             "start": {
-              "column": 7,
+              "column": 1,
               "line": 1,
-              "offset": 6,
+              "offset": 0,
             },
           },
-          "type": "text",
-          "value": "label",
+          "type": "textComponent",
         },
       ],
-      "data": {
-        "hName": "test",
-        "hProperties": {},
-      },
-      "fmAttributes": {},
-      "name": "test",
       "position": {
         "end": {
           "column": 13,
@@ -250,7 +301,7 @@ exports[`label > simple 1`] = `
           "offset": 0,
         },
       },
-      "type": "textComponent",
+      "type": "paragraph",
     },
   ],
   "position": {
