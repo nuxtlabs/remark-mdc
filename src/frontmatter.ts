@@ -10,7 +10,9 @@ export function stringify (data: any, content: string = '') {
     safe: true
   })
 
-  return matter.stringify(content, data)
+  return matter.stringify(content, data, {
+    lineWidth: -1
+  })
 }
 
 export function parseFrontMatter (file: string) {
