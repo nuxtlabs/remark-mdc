@@ -1,38 +1,41 @@
+/**
+ * Based on: https://github.com/syntax-tree/mdast-util-directive
+ * Version: 2.1.0
+ * License: MIT (https://github.com/syntax-tree/mdast-util-directive/blob/main/license)
+ */
 import { stringifyEntitiesLight } from 'stringify-entities'
-import { containerFlow } from 'mdast-util-to-markdown/lib/util/container-flow.js'
-import { containerPhrasing } from 'mdast-util-to-markdown/lib/util/container-phrasing.js'
-import { checkQuote } from 'mdast-util-to-markdown/lib/util/check-quote.js'
 import type { Parent } from 'mdast-util-to-markdown/lib/types'
-import { stringify } from './frontmatter'
+import { containerFlow, containerPhrasing, checkQuote } from './mdast-util-to-markdown'
+import { stringifyFrontMatter } from './frontmatter'
 
 const own = {}.hasOwnProperty
 
 const shortcut = /^[^\t\n\r "#'.<=>`}]+$/
 const baseFense = 2
 
-// TODO: convert container sections to markdown
-const unsafe = [
-  {
-    character: '\r',
-    inConstruct: ['leafComponentLabel', 'containerComponentLabel']
-  },
-  {
-    character: '\n',
-    inConstruct: ['leafComponentLabel', 'containerComponentLabel']
-  },
-  {
-    before: '[^:]',
-    character: ':',
-    after: '[A-Za-z]',
-    inConstruct: ['phrasing']
-  },
-  { atBreak: true, character: ':', after: ':' }
-]
-
-const handlers = {
-  containerComponent,
-  textComponent,
-  componentContainerSection
+export default {
+  unsafe: [
+    {
+      character: '\r',
+      inConstruct: ['leafComponentLabel', 'containerComponentLabel']
+    },
+    {
+      character: '\n',
+      inConstruct: ['leafComponentLabel', 'containerComponentLabel']
+    },
+    {
+      before: '[^:]',
+      character: ':',
+      after: '[A-Za-z]',
+      inConstruct: ['phrasing']
+    },
+    { atBreak: true, character: ':', after: ':' }
+  ],
+  handlers: {
+    containerComponent,
+    textComponent,
+    componentContainerSection
+  }
 }
 
 type NodeComponentContainerSection = Parent & { name: string }
@@ -71,7 +74,7 @@ function containerComponent (node: NodeContainerComponent, _: any, context: any)
 
   // Convert attributes to YAML FrontMatter format
   if (node.fmAttributes) {
-    value += '\n' + stringify(node.fmAttributes).trim()
+    value += '\n' + stringifyFrontMatter(node.fmAttributes).trim()
   }
 
   if ((node.type as string) === 'containerComponent') {
@@ -105,7 +108,7 @@ function label (node: Parent, context: any) {
 
   const exit = context.enter('label')
   const subexit = context.enter(node.type + 'Label')
-  const value = containerPhrasing(label, context, { before: '[', after: ']' } as any)
+  const value = containerPhrasing(label, context, { before: '[', after: ']' })
   subexit()
   exit()
   return value ? '[' + value + ']' : ''
@@ -141,8 +144,8 @@ function attributes (node: Parent, context: any) {
 
         classesFull = classesFull.length ? quoted('class', classesFull.join(' ')) : ''
         classes = classes.length ? '.' + classes.join('.') : ''
-      } else if (value === 'true') {
-        values.push(key.startsWith(':') ? key.slice(1) : key)
+      } else if (key.startsWith(':') && value === 'true') {
+        values.push(key.slice(1))
       } else {
         values.push(quoted(key, value))
       }
@@ -170,14 +173,9 @@ function attributes (node: Parent, context: any) {
 
 function content (node: Parent, context: any) {
   const content = inlineComponentLabel(node) ? Object.assign({}, node, { children: node.children.slice(1) }) : node
-  return containerFlow(content, context, {} as any)
+  return containerFlow(content, context)
 }
 
 function inlineComponentLabel (node: Parent) {
   return node.children && node.children[0] && node.children[0].data && node.children[0].data.componentLabel
-}
-
-export default {
-  handlers,
-  unsafe
 }

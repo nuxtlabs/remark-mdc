@@ -66,11 +66,19 @@ exports[`label > invalid-label-eof 1`] = `
     {
       "children": [
         {
+          "attributes": {},
+          "children": [],
+          "data": {
+            "hName": "test",
+            "hProperties": {},
+          },
+          "fmAttributes": {},
+          "name": "test",
           "position": {
             "end": {
-              "column": 7,
+              "column": 6,
               "line": 1,
-              "offset": 6,
+              "offset": 5,
             },
             "start": {
               "column": 1,
@@ -78,8 +86,23 @@ exports[`label > invalid-label-eof 1`] = `
               "offset": 0,
             },
           },
+          "type": "textComponent",
+        },
+        {
+          "position": {
+            "end": {
+              "column": 7,
+              "line": 1,
+              "offset": 6,
+            },
+            "start": {
+              "column": 6,
+              "line": 1,
+              "offset": 5,
+            },
+          },
           "type": "text",
-          "value": ":test[",
+          "value": "[",
         },
       ],
       "position": {
@@ -119,11 +142,19 @@ exports[`label > invalid-label-eol 1`] = `
     {
       "children": [
         {
+          "attributes": {},
+          "children": [],
+          "data": {
+            "hName": "test",
+            "hProperties": {},
+          },
+          "fmAttributes": {},
+          "name": "test",
           "position": {
             "end": {
-              "column": 7,
+              "column": 6,
               "line": 1,
-              "offset": 6,
+              "offset": 5,
             },
             "start": {
               "column": 1,
@@ -131,8 +162,23 @@ exports[`label > invalid-label-eol 1`] = `
               "offset": 0,
             },
           },
+          "type": "textComponent",
+        },
+        {
+          "position": {
+            "end": {
+              "column": 7,
+              "line": 1,
+              "offset": 6,
+            },
+            "start": {
+              "column": 6,
+              "line": 1,
+              "offset": 5,
+            },
+          },
           "type": "text",
-          "value": ":test[",
+          "value": "[",
         },
       ],
       "position": {

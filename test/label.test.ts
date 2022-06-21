@@ -15,11 +15,11 @@ describe('label', () => {
     },
     'invalid-label-eol': {
       markdown: ':test[\n',
-      expected: '\\:test\\['
+      expected: ':test\\['
     },
     'invalid-label-eof': {
       markdown: ':test[',
-      expected: '\\:test\\['
+      expected: ':test\\['
     }
   })
 })

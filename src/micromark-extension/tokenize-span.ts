@@ -18,7 +18,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     // When we are in the beggining of task list line,
     // there is a good chance that we are dealing with a GFM task list
     if (
-      self.previous === Codes.eof &&
+      self.previous === Codes.EOF &&
       self._gfmTasklistFirstContentOfListItem
     ) {
       return effects.check(gfmCheck, nok, attemptLabel)(code)

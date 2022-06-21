@@ -11,7 +11,8 @@ describe('Attributes', () => {
       expected: ':test{.class.another-class key="value"}'
     },
     boolean: {
-      markdown: ':test{prop}'
+      markdown: ':test{prop}',
+      expected: ':test{prop="true"}'
     },
     'html-characters': {
       markdown: ':test{icon="&copy;"}',
@@ -27,7 +28,7 @@ describe('Attributes', () => {
     },
     'invlid-binding': {
       markdown: ':test{:}',
-      expected: '\\:test{:}'
+      expected: ':test{:}'
     }
   })
 })

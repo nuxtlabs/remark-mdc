@@ -328,11 +328,19 @@ exports[`Attributes > invlid-binding 1`] = `
     {
       "children": [
         {
+          "attributes": {},
+          "children": [],
+          "data": {
+            "hName": "test",
+            "hProperties": {},
+          },
+          "fmAttributes": {},
+          "name": "test",
           "position": {
             "end": {
-              "column": 9,
+              "column": 6,
               "line": 1,
-              "offset": 8,
+              "offset": 5,
             },
             "start": {
               "column": 1,
@@ -340,8 +348,23 @@ exports[`Attributes > invlid-binding 1`] = `
               "offset": 0,
             },
           },
+          "type": "textComponent",
+        },
+        {
+          "position": {
+            "end": {
+              "column": 9,
+              "line": 1,
+              "offset": 8,
+            },
+            "start": {
+              "column": 6,
+              "line": 1,
+              "offset": 5,
+            },
+          },
           "type": "text",
-          "value": ":test{:}",
+          "value": "{:}",
         },
       ],
       "position": {
