@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/docusgen/remark-mdc/compare/v0.1.0...v0.1.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* add `jiti` dev dependency ([420ea22](https://github.com/docusgen/remark-mdc/commit/420ea2294ac2197ccebbdeef914c36e5760fa4a9))
+* **block-container:** consume codes after attempts ([#40](https://github.com/docusgen/remark-mdc/issues/40)) ([1f2ee9b](https://github.com/docusgen/remark-mdc/commit/1f2ee9b7a215d48779704f07ca0f51c0b1d02a80))
+* **build:** generate cjs file ([d82e60e](https://github.com/docusgen/remark-mdc/commit/d82e60e1cd357b833ad62d49d4330d290b1f7df0))
+* **frontmatter:** remove line width limit ([3108772](https://github.com/docusgen/remark-mdc/commit/3108772b34385ecbcd86c74169cc808493425965))
+* **gray-matter:** fix gray-matter imports ([#33](https://github.com/docusgen/remark-mdc/issues/33)) ([435a62a](https://github.com/docusgen/remark-mdc/commit/435a62aa041e6d34c8f02bd9ae331c4cdf18da88))
+* **inline:** do not detect inline components as block ([325e75e](https://github.com/docusgen/remark-mdc/commit/325e75e169a5717c7a3828bccd9dca47be042458)), closes [#44](https://github.com/docusgen/remark-mdc/issues/44)
+* **span:** conflict span syntax with gfm task list ([#43](https://github.com/docusgen/remark-mdc/issues/43)) ([629710c](https://github.com/docusgen/remark-mdc/commit/629710c9a6cb261ea22a0e4120ec9f702f7e7b7e))
+* **span:** respect reference-style link ([44289c2](https://github.com/docusgen/remark-mdc/commit/44289c27c849f25c64e071f7614b853a835e8925))
+* update release scripts ([5082fc7](https://github.com/docusgen/remark-mdc/commit/5082fc77f1206779e13c994f0fb8b73aea1b83d4))
+
 ## 0.1.0 (2021-11-24)
 
 
