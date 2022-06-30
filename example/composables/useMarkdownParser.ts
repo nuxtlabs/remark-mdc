@@ -4,12 +4,6 @@ import type { Ref } from 'vue'
 // workaround for kleur
 process.env = process.env || {}
 
-// Buffer workaround
-if (typeof window !== 'undefined' && typeof Buffer === 'undefined') {
-  // @ts-ignore
-  window.Buffer = { from: a => a }
-}
-
 function compiler (this: any) {
   this.Compiler = function (root: any) {
     return root

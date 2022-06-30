@@ -3,12 +3,6 @@ import type { Ref } from 'vue'
 // workaround for kleur
 process.env = process.env || {}
 
-// Buffer workaround
-if (typeof window !== 'undefined' && typeof Buffer === 'undefined') {
-  // @ts-ignore
-  window.Buffer = { from: a => a }
-}
-
 function jsonParser (this: any) {
   this.Parser = function (root: any) {
     return JSON.parse(root)
