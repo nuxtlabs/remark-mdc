@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Functions to track output positions.
  * This info isn’t used yet but suchs functionality allows line wrapping,
