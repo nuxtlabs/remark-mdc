@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/nuxtlabs/remark-mdc/compare/v0.1.2...v1.0.0) (2022-06-30)
+
+
+### Features
+
+* text interpolate & span attributes in headings ([70ee30e](https://github.com/nuxtlabs/remark-mdc/commit/70ee30e6a31279c7464b439cd704d339b009b85c))
+
+
+### Bug Fixes
+
+* remove buffer workaround ([00e74fa](https://github.com/nuxtlabs/remark-mdc/commit/00e74fa8b7f53ea0d7740cbe47973ee8df9b27d0))
+* typings ([33f84d2](https://github.com/nuxtlabs/remark-mdc/commit/33f84d2dea2ea083e8d4de53f3ed9cee56958645))
+
 ### [0.1.2](https://github.com/nuxtlabs/remark-mdc/compare/v0.1.1...v0.1.2) (2022-06-21)
 
 
