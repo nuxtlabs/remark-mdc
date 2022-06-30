@@ -25,7 +25,7 @@ export function stringifyFrontMatter (data: any, content: string = '') {
 }
 
 export function parseFrontMatter (content: string) {
-  let data = {}
+  let data: any = {}
   if (content.startsWith(FRONTMATTER_DELIMITER)) {
     const idx = content.indexOf('\n' + FRONTMATTER_DELIMITER)
     if (idx !== -1) {

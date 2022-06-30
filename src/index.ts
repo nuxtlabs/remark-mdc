@@ -105,3 +105,5 @@ function bindData (data: Record<string, any>) {
   })
   return Object.fromEntries(entries)
 }
+
+export { stringifyFrontMatter, parseFrontMatter } from './frontmatter'
