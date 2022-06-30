@@ -587,9 +587,9 @@ exports[`span > with-attributes 1`] = `
           "name": "span",
           "position": {
             "end": {
-              "column": 7,
+              "column": 70,
               "line": 1,
-              "offset": 6,
+              "offset": 69,
             },
             "start": {
               "column": 1,
