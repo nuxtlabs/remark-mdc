@@ -1,12 +1,12 @@
 {
-  "name": "@docus/remark-mdc",
+  "name": "remark-mdc",
   "version": "0.1.2",
   "description": "Remark plugin to support MDC syntax",
   "keywords": [
     "remark",
     "mdc"
   ],
-  "repository": "https://github.com/docusgen/remark-mdc",
+  "repository": "https://github.com/nuxtlabs/remark-mdc",
   "license": "MIT",
   "exports": {
     ".": {

@@ -1,6 +1,6 @@
 # remark-mdc
 
-remark plugin to support MDC Syntax
+Remark plugin to support MDC Syntax
 
 
 
@@ -8,9 +8,9 @@ remark plugin to support MDC Syntax
 
 ```bash
 # Using Yarn
-yarn add --dev @docus/remark-mdc
+yarn add --dev remark-mdc
 # Using NPM
-npm install --save-dev @docus/remark-mdc
+npm install --save-dev remark-mdc
 ```
 
 ## Use
@@ -18,7 +18,7 @@ npm install --save-dev @docus/remark-mdc
 ```js
 import { unified, Preset } from 'unified';
 import parse from 'remark-parse'
-import remarkMDC from '@docus/remark-mdc'
+import remarkMDC from 'remark-mdc'
 
 function compiler() {
   this.Compiler = function(root) {

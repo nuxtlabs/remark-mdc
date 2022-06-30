@@ -362,41 +362,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docus/remark-mdc@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@docus/remark-mdc@workspace:."
-  dependencies:
-    "@nuxt/kit": "npm:@nuxt/kit-edge@latest"
-    "@nuxtjs/eslint-config-typescript": latest
-    "@types/flat": ^5.0.2
-    eslint: ^8.11.0
-    eslint-plugin-nuxt: latest
-    flat: ^5.0.2
-    gray-matter: ^4.0.3
-    jiti: ^1.13.0
-    js-yaml: ^4.1.0
-    mdast-util-from-markdown: ^1.2.0
-    mdast-util-to-markdown: ^1.3.0
-    micromark: ^3.0.10
-    micromark-core-commonmark: ^1.0.6
-    micromark-factory-space: ^1.0.0
-    micromark-factory-whitespace: ^1.0.0
-    micromark-util-character: ^1.1.0
-    nuxt3: latest
-    parse-entities: ^4.0.0
-    remark-gfm: ^3.0.1
-    remark-parse: ^10.0.1
-    remark-stringify: ^10.0.2
-    scule: ^0.2.1
-    standard-version: ^9.3.2
-    stringify-entities: ^4.0.2
-    unbuild: ^0.7.0
-    unist-util-visit: ^4.1.0
-    unist-util-visit-parents: ^5.1.0
-    vitest: latest
-  languageName: unknown
-  linkType: soft
-
 "@eslint/eslintrc@npm:^1.2.1":
   version: 1.2.1
   resolution: "@eslint/eslintrc@npm:1.2.1"
@@ -8184,6 +8149,41 @@ __metadata:
   checksum: 02254f74d67b3419c2c9cf62d799ec35f6c6cd74db25c001361751991552a7ce86049a972107bff8122d85d15ae4a8d1a0618f3bc01a7df837af021ae9b2a04e
   languageName: node
   linkType: hard
+
+"remark-mdc@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "remark-mdc@workspace:."
+  dependencies:
+    "@nuxt/kit": "npm:@nuxt/kit-edge@latest"
+    "@nuxtjs/eslint-config-typescript": latest
+    "@types/flat": ^5.0.2
+    eslint: ^8.11.0
+    eslint-plugin-nuxt: latest
+    flat: ^5.0.2
+    gray-matter: ^4.0.3
+    jiti: ^1.13.0
+    js-yaml: ^4.1.0
+    mdast-util-from-markdown: ^1.2.0
+    mdast-util-to-markdown: ^1.3.0
+    micromark: ^3.0.10
+    micromark-core-commonmark: ^1.0.6
+    micromark-factory-space: ^1.0.0
+    micromark-factory-whitespace: ^1.0.0
+    micromark-util-character: ^1.1.0
+    nuxt3: latest
+    parse-entities: ^4.0.0
+    remark-gfm: ^3.0.1
+    remark-parse: ^10.0.1
+    remark-stringify: ^10.0.2
+    scule: ^0.2.1
+    standard-version: ^9.3.2
+    stringify-entities: ^4.0.2
+    unbuild: ^0.7.0
+    unist-util-visit: ^4.1.0
+    unist-util-visit-parents: ^5.1.0
+    vitest: latest
+  languageName: unknown
+  linkType: soft
 
 "remark-parse@npm:^10.0.1":
   version: 10.0.1
