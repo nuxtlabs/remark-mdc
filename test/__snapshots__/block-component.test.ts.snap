@@ -421,6 +421,142 @@ array:
 }
 `;
 
+exports[`block-component > section-order 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "attributes": {},
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 6,
+                      "line": 3,
+                      "offset": 19,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 3,
+                      "offset": 14,
+                    },
+                  },
+                  "type": "text",
+                  "value": "Hello",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 6,
+                  "line": 3,
+                  "offset": 19,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 3,
+                  "offset": 14,
+                },
+              },
+              "type": "paragraph",
+            },
+          ],
+          "data": {
+            "hName": "component-slot",
+            "hProperties": {
+              "v-slot:title": "",
+            },
+          },
+          "name": "title",
+          "position": {
+            "end": {
+              "column": 1,
+              "line": 4,
+              "offset": 20,
+            },
+            "start": {
+              "column": 2,
+              "line": 2,
+              "offset": 8,
+            },
+          },
+          "type": "componentContainerSection",
+        },
+        {
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 4,
+                  "line": 5,
+                  "offset": 32,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 5,
+                  "offset": 29,
+                },
+              },
+              "type": "text",
+              "value": "WTF",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 4,
+              "line": 5,
+              "offset": 32,
+            },
+            "start": {
+              "column": 1,
+              "line": 5,
+              "offset": 29,
+            },
+          },
+          "type": "paragraph",
+        },
+      ],
+      "data": {
+        "hName": "comp",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "name": "comp",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 6,
+          "offset": 35,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "rawData": undefined,
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 6,
+      "offset": 35,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`block-component > text 1`] = `
 {
   "children": [

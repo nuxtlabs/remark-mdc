@@ -77,6 +77,14 @@ function containerComponent (node: NodeContainerComponent, _: any, context: any)
     value += '\n' + stringifyFrontMatter(node.fmAttributes).trim()
   }
 
+  // Sort section, always put sections after the other children
+  node.children = node.children.sort((a: any, b: any) => {
+    const aName = a.type === 'componentContainerSection' ? (a.name || '').toLowerCase() : ''
+    const bName = b.type === 'componentContainerSection' ? (b.name || '').toLowerCase() : ''
+
+    return aName > bName ? 1 : -1
+  })
+
   if ((node.type as string) === 'containerComponent') {
     subvalue = content(node, context)
     if (subvalue) { value += '\n' + subvalue }
