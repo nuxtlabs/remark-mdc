@@ -67,6 +67,34 @@ describe('block-component', () => {
         '  :::',
         '::'
       ].join('\n')
+    },
+    'section-order': {
+      markdown: [
+        '::comp',
+        '#title',
+        'Hello',
+        '#default',
+        'P1',
+        '',
+        'P2',
+        '',
+        'P',
+        '::'
+      ].join('\n'),
+      expected: [
+        '::comp',
+        '',
+        'P1',
+        '',
+        'P2',
+        '',
+        'P',
+        '',
+        '#title',
+        '',
+        'Hello',
+        '::'
+      ].join('\n')
     }
   })
 })
