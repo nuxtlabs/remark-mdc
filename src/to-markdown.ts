@@ -82,7 +82,7 @@ function containerComponent (node: NodeContainerComponent, _: any, context: any)
     const aName = a.type === 'componentContainerSection' ? (a.name || '').toLowerCase() : ''
     const bName = b.type === 'componentContainerSection' ? (b.name || '').toLowerCase() : ''
 
-    return aName > bName ? 1 : -1
+    return aName.localeCompare(bName)
   })
 
   if ((node.type as string) === 'containerComponent') {
