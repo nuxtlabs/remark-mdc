@@ -1,4 +1,4 @@
-import type { Effects, State } from 'micromark-util-types'
+import type { Effects, State, Code } from 'micromark-util-types'
 import { asciiAlpha, asciiAlphanumeric } from 'micromark-util-character'
 import { Codes } from './constants'
 
@@ -8,7 +8,7 @@ export default function createName (effects: Effects, ok: State, nok: State, nam
 
   return start
 
-  function start (code: number) {
+  function start (code: Code): State | void {
     if (asciiAlpha(code)) {
       effects.enter(nameType)
       effects.consume(code)
@@ -18,7 +18,7 @@ export default function createName (effects: Effects, ok: State, nok: State, nam
     return nok(code)
   }
 
-  function name (code: number) {
+  function name (code: Code): State | void {
     if (code === Codes.dash || code === Codes.underscore || asciiAlphanumeric(code)) {
       effects.consume(code)
       return name

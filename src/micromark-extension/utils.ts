@@ -1,4 +1,5 @@
-import type { Effects } from 'micromark-factory-space'
+import type { Effects, State, Code } from 'micromark-util-types'
+import { Codes } from './constants'
 
 // Measure the number of character codes in chunks.
 // Counts tabs based on their expanded size, and CR+LF as one character.
@@ -90,4 +91,29 @@ export const useTokenState = (tokenName: string) => {
     }
   }
   return token
+}
+
+export const tokenizeCodeFence = { tokenize: checkCodeFenced, partial: true }
+function checkCodeFenced (effects: Effects, ok: State, nok: State) {
+  let backTickCount = 0
+
+  return start
+
+  function start (code: Code): State | void {
+    effects.enter('codeFenced')
+    return after(code)
+  }
+
+  function after (code: Code): State | void {
+    if (code === Codes.backTick) {
+      backTickCount++
+      effects.consume(code)
+      return after
+    }
+    effects.exit('codeFenced')
+    if (backTickCount >= 3) {
+      return ok(code)
+    }
+    return nok(code)
+  }
 }
