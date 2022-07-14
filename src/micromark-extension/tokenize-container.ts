@@ -1,7 +1,7 @@
 import type { Effects, State, Code, TokenizeContext } from 'micromark-util-types'
 import { factorySpace } from 'micromark-factory-space'
 import { markdownLineEnding, asciiAlpha, markdownSpace } from 'micromark-util-character'
-import { linePrefixSize, useTokenState } from './utils'
+import { linePrefixSize, tokenizeCodeFence, useTokenState } from './utils'
 import { Codes, ContainerSequenceSize, slotSeparatorCode, slotSeparatorLength } from './constants'
 import createName from './factory-name'
 import createLabel from './factory-label'
@@ -18,6 +18,12 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
   let previous: any
   const childContainersSequenceSize: number[] = []
   let containerFirstLine = true
+
+  /**
+   * Show whether the current line is in the code fence or not.
+   * Lines inside the code fence will not check for the slot separator and component end.
+   */
+  let vistingCodeFenced = false
 
   const section = useTokenState('componentContainerSection')
 
@@ -81,22 +87,22 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     }
   }
 
-  function sectionOpen (code: number): void | State {
+  function sectionOpen (code: Code): void | State {
     // Open new Section
     section.enter(effects)
 
     if (markdownLineEnding(code)) {
-      return factorySpace(effects, lineStart as State, 'whitespace')(code)
+      return factorySpace(effects, lineStart, 'whitespace')(code)
     }
 
     effects.enter('componentContainerSectionTitle')
-    return sectionTitle(code) as State
+    return sectionTitle(code)
   }
 
   function sectionTitle (code: Code): State | void {
     if (markdownLineEnding(code)) {
       effects.exit('componentContainerSectionTitle')
-      return factorySpace(effects, lineStart as State, 'linePrefix', 4)(code)
+      return factorySpace(effects, lineStart, 'linePrefix', 4)(code)
     }
     effects.consume(code)
     return sectionTitle
@@ -114,23 +120,23 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     }
 
     effects.exit('componentContainerSequence')
-    return createName.call(self, effects, afterName as State, nok, 'componentContainerName')(code)
+    return createName.call(self, effects, afterName, nok, 'componentContainerName')(code)
   }
 
   function afterName (code: Code): State | void {
     return code === Codes.openingSquareBracket
-      ? effects.attempt(label, afterLabel as State, afterLabel as State)(code)
+      ? effects.attempt(label, afterLabel, afterLabel)(code)
       : afterLabel(code)
   }
 
   function afterLabel (code: Code): State | void {
     return code === Codes.openingCurlyBracket
-      ? effects.attempt(attributes, afterAttributes as State, afterAttributes as State)(code)
+      ? effects.attempt(attributes, afterAttributes, afterAttributes)(code)
       : afterAttributes(code)
   }
 
   function afterAttributes (code: Code): State | void {
-    return factorySpace(effects, openAfter as State, 'whitespace')(code)
+    return factorySpace(effects, openAfter, 'whitespace')(code)
   }
 
   function openAfter (code: Code): State | void {
@@ -171,12 +177,28 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
       return after(code)
     }
 
+    // Check for code fence
+    if (code === Codes.backTick) {
+      return effects.check(
+        tokenizeCodeFence,
+        (code) => {
+          vistingCodeFenced = !vistingCodeFenced
+          return chunkStart(code)
+        },
+        chunkStart
+      )(code)
+    }
+
+    if (vistingCodeFenced) {
+      return chunkStart(code)
+    }
+
     // detect slots
     if (!childContainersSequenceSize.length && (code === slotSeparatorCode || code === Codes.space)) {
       return effects.attempt(
-        { tokenize: tokenizeSectionClosing, partial: true } as any,
-        sectionOpen as State,
-        chunkStart as State
+        { tokenize: tokenizeSectionClosing, partial: true },
+        sectionOpen,
+        chunkStart
       )(code)
     }
 
@@ -185,9 +207,9 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
      */
     if (code === Codes.colon) {
       return effects.attempt(
-        { tokenize: tokenizeClosingFence, partial: true } as any,
-        after as State,
-        chunkStart as State
+        { tokenize: tokenizeClosingFence, partial: true },
+        after,
+        chunkStart
       )(code)
     }
 
@@ -200,7 +222,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     }
 
     return initialPrefix
-      ? factorySpace(effects, lineStartAfterPrefix as State, 'linePrefix', initialPrefix + 1)(code)
+      ? factorySpace(effects, lineStartAfterPrefix, 'linePrefix', initialPrefix + 1)(code)
       : lineStartAfterPrefix(code)
   }
 
@@ -249,7 +271,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
   function tokenizeClosingFence (effects: Effects, ok: State, nok: State) {
     let size = 0
 
-    return factorySpace(effects, closingPrefixAfter as State, 'linePrefix', 4)
+    return factorySpace(effects, closingPrefixAfter, 'linePrefix', 4)
 
     function closingPrefixAfter (code: Code): State | void {
       effects.enter('componentContainerFence')
@@ -274,7 +296,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
       // it is important to match sequence
       if (size !== sizeOpen) { return nok(code) }
       effects.exit('componentContainerSequence')
-      return factorySpace(effects, closingSequenceEnd as State, 'whitespace')(code)
+      return factorySpace(effects, closingSequenceEnd, 'whitespace')(code)
     }
 
     function closingSequenceEnd (code: Code): State | void {
