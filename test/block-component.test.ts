@@ -95,6 +95,22 @@ describe('block-component', () => {
         'Hello',
         '::'
       ].join('\n')
+    },
+    'ignore-code-fence': {
+      markdown: [
+        '::component',
+        '',
+        'First line',
+        '',
+        '```cpp',
+        '#include <iostream>',
+        '```',
+        '',
+        'Second line',
+        '::',
+        '',
+        'Third line'
+      ].join('\n')
     }
   })
 })
