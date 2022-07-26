@@ -73,6 +73,8 @@ describe('block-component', () => {
         '::comp',
         '#title',
         'Hello',
+        '#another-title',
+        'World',
         '#default',
         'P1',
         '',
@@ -93,6 +95,10 @@ describe('block-component', () => {
         '#title',
         '',
         'Hello',
+        '',
+        '#another-title',
+        '',
+        'World',
         '::'
       ].join('\n')
     },
