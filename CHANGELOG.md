@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.2](https://github.com/nuxtlabs/remark-mdc/compare/v1.0.0...v1.0.2) (2022-07-26)
+
+
+### Bug Fixes
+
+* **block-component:** do not look for sections inside code fence ([#46](https://github.com/nuxtlabs/remark-mdc/issues/46)) ([fb26100](https://github.com/nuxtlabs/remark-mdc/commit/fb26100f11a15fe415bdfb0bd430c0365a1def6f))
+* move slots to bottom and sort by name ([#45](https://github.com/nuxtlabs/remark-mdc/issues/45)) ([2d1cb48](https://github.com/nuxtlabs/remark-mdc/commit/2d1cb48bfb91893cc3757d194f77165d8981273f))
+* **to-markdown:** keep slots order ([#47](https://github.com/nuxtlabs/remark-mdc/issues/47)) ([a58c694](https://github.com/nuxtlabs/remark-mdc/commit/a58c694d7e0ab73222b3643fcf760df4ba91fe46))
+
 ### [1.0.1](https://github.com/nuxtlabs/remark-mdc/compare/v1.0.0...v1.0.1) (2022-07-14)
 
 
