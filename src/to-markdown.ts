@@ -77,13 +77,13 @@ function containerComponent (node: NodeContainerComponent, _: any, context: any)
     value += '\n' + stringifyFrontMatter(node.fmAttributes).trim()
   }
 
-  // Sort section, always put sections after the other children
-  node.children = node.children.sort((a: any, b: any) => {
-    const aName = a.type === 'componentContainerSection' ? (a.name || '').toLowerCase() : ''
-    const bName = b.type === 'componentContainerSection' ? (b.name || '').toLowerCase() : ''
-
-    return aName.localeCompare(bName)
-  })
+  // Move default slot's children to the beginning of the content
+  const defaultSlotChildren = node.children.filter((child: any) => child.type !== 'componentContainerSection')
+  const slots = node.children.filter((child: any) => child.type === 'componentContainerSection')
+  node.children = [
+    ...defaultSlotChildren,
+    ...slots
+  ]
 
   if ((node.type as string) === 'containerComponent') {
     subvalue = content(node, context)
