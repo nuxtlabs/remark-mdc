@@ -102,6 +102,38 @@ describe('block-component', () => {
         '::'
       ].join('\n')
     },
+    'section-order-2': {
+      markdown: [
+        '::comp',
+        '#a',
+        'A',
+        '#c',
+        'C',
+        '#b',
+        'B',
+        '#default',
+        'P1',
+        '::'
+      ].join('\n'),
+      expected: [
+        '::comp',
+        '',
+        'P1',
+        '',
+        '#a',
+        '',
+        'A',
+        '',
+        '#c',
+        '',
+        'C',
+        '',
+        '#b',
+        '',
+        'B',
+        '::'
+      ].join('\n')
+    },
     'ignore-code-fence': {
       markdown: [
         '::component',
