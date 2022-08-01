@@ -5,15 +5,15 @@ describe('block-component', () => {
   runMarkdownTests({
     empty: {
       markdown: '::component\n::',
-      expected: '::component\n\n::'
+      expected: '::component\n::'
     },
     text: {
       markdown: '::component\ntext\n::',
-      expected: '::component\n\ntext\n::'
+      expected: '::component\ntext\n::'
     },
     'empty-slot': {
       markdown: '::component\n#text\n::',
-      expected: '::component\n\n#text\n\n\n::'
+      expected: '::component\n#text\n::'
     },
     frontmatter: {
       markdown: '::with-frontmatter\n---\nkey: value\narray:\n  - item\n  - itemKey: value\n---\n::'
@@ -57,7 +57,6 @@ describe('block-component', () => {
         'Default slot',
         '',
         '#secondary-slot',
-        '',
         'Secondary slot value',
         '',
         '  :::hello',
@@ -85,7 +84,6 @@ describe('block-component', () => {
       ].join('\n'),
       expected: [
         '::comp',
-        '',
         'P1',
         '',
         'P2',
@@ -93,11 +91,9 @@ describe('block-component', () => {
         'P',
         '',
         '#title',
-        '',
         'Hello',
         '',
         '#another-title',
-        '',
         'World',
         '::'
       ].join('\n')
@@ -117,19 +113,15 @@ describe('block-component', () => {
       ].join('\n'),
       expected: [
         '::comp',
-        '',
         'P1',
         '',
         '#a',
-        '',
         'A',
         '',
         '#c',
-        '',
         'C',
         '',
         '#b',
-        '',
         'B',
         '::'
       ].join('\n')
@@ -137,7 +129,6 @@ describe('block-component', () => {
     'ignore-code-fence': {
       markdown: [
         '::component',
-        '',
         'First line',
         '',
         '```cpp',
