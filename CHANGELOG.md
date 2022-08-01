@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.3](https://github.com/nuxtlabs/remark-mdc/compare/v1.0.2...v1.0.3) (2022-08-01)
+
+
+### Bug Fixes
+
+* remove extra empty lines ([#48](https://github.com/nuxtlabs/remark-mdc/issues/48)) ([0136a47](https://github.com/nuxtlabs/remark-mdc/commit/0136a47b191312d2de1bee373f4b6f63e03efc36))
+
 ### [1.0.2](https://github.com/nuxtlabs/remark-mdc/compare/v1.0.0...v1.0.2) (2022-07-26)
 
 
