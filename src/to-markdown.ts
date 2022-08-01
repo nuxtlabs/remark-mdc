@@ -41,7 +41,7 @@ export default {
 type NodeComponentContainerSection = Parent & { name: string }
 function componentContainerSection (node: NodeComponentContainerSection, _: any, context: any) {
   context.indexStack = context.stack
-  return `#${(node as any).name}\n\n${content(node, context)}`
+  return `#${(node as any).name}\n${content(node, context)}`.trim()
 }
 
 type NodeTextComponent = Parent & { name: string; rawData: string }
@@ -73,7 +73,7 @@ function containerComponent (node: NodeContainerComponent, _: any, context: any)
   let subvalue
 
   // Convert attributes to YAML FrontMatter format
-  if (node.fmAttributes) {
+  if (node.fmAttributes && Object.keys(node.fmAttributes).length > 0) {
     value += '\n' + stringifyFrontMatter(node.fmAttributes).trim()
   }
 
