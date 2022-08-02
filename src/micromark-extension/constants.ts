@@ -36,6 +36,10 @@ export const Codes = {
    */
   closingParentheses: 41,
   /**
+   * '*'
+   */
+  star: 42,
+  /**
    * ','
    **/
   comma: 44,

@@ -25,7 +25,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     if (
       self.previous !== null &&
       !markdownLineEndingOrSpace(self.previous) &&
-      ![Codes.openingSquareBracket].includes(self.previous)
+      ![Codes.openingSquareBracket, Codes.star, Codes.underscore].includes(self.previous)
     ) {
       return nok(code)
     }
