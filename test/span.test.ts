@@ -1,13 +1,48 @@
 import { describe, expect } from 'vitest'
 import { runMarkdownTests } from './utils'
 
-describe('span', () => {
+describe('span', async () => {
+  const wikiLink = await import('remark-wiki-link').then(r => r.default)
+
   runMarkdownTests({
     simple: {
       markdown: '[span]'
     },
-    'inside-link': {
-      markdown: '[[span]](#href)'
+    'inside-link-valid': {
+      markdown: '[ [span]](#href)',
+      extra (_markdown, ast, _expected) {
+        expect(ast.children[0].children[0]).toMatchObject({
+          type: 'link',
+          children: [
+            { type: 'text', value: ' ' },
+            { type: 'textComponent', name: 'span' }
+          ]
+        })
+      }
+    },
+    'inside-link-invalid': {
+      markdown: '[[span]](#href)',
+      expected: '[\\[span\\]](#href)',
+      extra (_markdown, ast, _expected) {
+        expect(ast.children[0].children[0]).toMatchObject({
+          type: 'link',
+          children: [
+            {
+              type: 'text',
+              value: '[span]'
+            }
+          ]
+        })
+      }
+    },
+    'with-wikilinks': {
+      markdown: '[[span]]',
+      plugins: [wikiLink],
+      extra (_markdown, ast, _expected) {
+        expect(ast.children[0].children[0]).toMatchObject({
+          type: 'wikiLink'
+        })
+      }
     },
     'with-attributes': {
       markdown: '[span]{#theid.aclass foo="bar" class="anotherclass" class="andother"}',
@@ -41,6 +76,22 @@ describe('span', () => {
     },
     'respect-reference-style-link': {
       markdown: '[link][ref]\n\n[ref]: http://example.com'
+    },
+    'ignore-double-bracket': {
+      markdown: '[[wikilink]]',
+      expected: '\\[\\[wikilink]]',
+      extra (_markdown, ast, _expected) {
+        expect(ast.children[0].children[0].type).toEqual('text')
+        expect(ast.children[0].children[0].value).toEqual('[[wikilink]]')
+      }
+    },
+    'ignored-bracket': {
+      markdown: '\\[label]',
+      expected: '\\[label]',
+      extra (_markdown, ast, _expected) {
+        expect(ast.children[0].children[0].type).toEqual('text')
+        expect(ast.children[0].children[0].value).toEqual('[label]')
+      }
     }
   })
 })

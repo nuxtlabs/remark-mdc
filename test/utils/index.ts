@@ -9,18 +9,19 @@ import mdc from '../../src'
 interface MarkdownTest {
   markdown: string
   expected?: string
-  extra?: (markdown, ast, expected) => void
+  extra?: (markdown, ast, expected) => void,
+  plugins?: any[]
 }
 
 export function runMarkdownTests (tests: Record<string, MarkdownTest>) {
   for (const key in tests) {
-    const { markdown, expected, extra } = tests[key]
+    const { markdown, expected, extra, plugins = [] } = tests[key]
     test(key, async () => {
-      const ast = await markdownToAST(markdown)
+      const ast = await markdownToAST(markdown, plugins)
 
       expect(ast).toMatchSnapshot()
 
-      const regenertedMarkdown = await astToMarkdown(ast)
+      const regenertedMarkdown = await astToMarkdown(ast, plugins)
       expect(regenertedMarkdown.trim()).toEqual(expected || markdown)
       if (extra) {
         extra(markdown, ast, expected || markdown)
@@ -29,24 +30,27 @@ export function runMarkdownTests (tests: Record<string, MarkdownTest>) {
   }
 }
 
-async function markdownToAST (markdown: string) {
+async function markdownToAST (markdown: string, plugins = [] as any[]) {
   function compiler (this: any) {
     this.Compiler = function (root: any) {
       return root
     }
   }
 
-  const stream = unified()
+  let stream = unified()
     .use(parse)
     .use(gfm)
     .use(mdc)
 
+  for (const plugin of plugins) {
+    stream = stream.use(plugin)
+  }
   const file = await stream.use(compiler as Preset).process(markdown)
 
   return file.result
 }
 
-async function astToMarkdown (ast: any) {
+async function astToMarkdown (ast: any, plugins = [] as any[]) {
   function jsonParser (this: any) {
     this.Parser = function (root: any) {
       return JSON.parse(root)
@@ -56,9 +60,13 @@ async function astToMarkdown (ast: any) {
     .use(jsonParser)
     .use(mdc)
     .use(gfm)
-    .use(strigify, {
-      bullet: '-'
-    })
-    .process(JSON.stringify(ast))
-  return stream.value as string
+
+  for (const plugin of plugins) {
+    stream.use(plugin)
+  }
+  stream.use(strigify, {
+    bullet: '-'
+  })
+  const result = await stream.process(JSON.stringify(ast))
+  return result.value as string
 }

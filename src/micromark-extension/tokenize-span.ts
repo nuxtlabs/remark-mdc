@@ -6,6 +6,7 @@ import createAttributes from './factory-attributes'
 
 const label: any = { tokenize: tokenizeLabel, partial: true }
 const gfmCheck: any = { tokenize: checkGfmTaskCheckbox, partial: true }
+const doubleBracketCheck: any = { tokenize: checkDoubleBracket, partial: true }
 const attributes: any = { tokenize: tokenizeAttributes, partial: true }
 
 function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: State) {
@@ -26,7 +27,11 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
       return effects.check(gfmCheck, nok, attemptLabel)(code)
     }
 
-    return attemptLabel(code)
+    // Ignore double brackets `[[`, AKA Wiki Links syntax
+    if (self.previous === Codes.openingSquareBracket) {
+      return nok(code)
+    }
+    return effects.check(doubleBracketCheck, nok, attemptLabel)(code)
   }
 
   function attemptLabel (code: Code): void | State {
@@ -89,6 +94,25 @@ function checkGfmTaskCheckbox (effects: Effects, ok: State, nok: State) {
     }
 
     return nok(code)
+  }
+}
+
+function checkDoubleBracket (effects: Effects, ok: State, nok: State) {
+  return enter
+
+  function enter (code: Code): void | State {
+    effects.enter('doubleBracket')
+    effects.consume(code)
+    return check
+  }
+
+  function check (code: Code): void | State {
+    if (code !== Codes.openingSquareBracket) {
+      return nok(code)
+    }
+
+    effects.exit('doubleBracket')
+    return ok(code)
   }
 }
 
