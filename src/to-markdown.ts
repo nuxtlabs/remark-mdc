@@ -5,7 +5,7 @@
  */
 import { stringifyEntitiesLight } from 'stringify-entities'
 import type { Parent } from 'mdast-util-to-markdown/lib/types'
-import { handle } from 'mdast-util-to-markdown/lib/handle'
+import { handle } from 'mdast-util-to-markdown/lib/handle/index'
 import { Context, SafeOptions } from 'mdast-util-to-markdown'
 import { containerFlow, containerPhrasing, checkQuote } from './mdast-util-to-markdown'
 import { stringifyFrontMatter } from './frontmatter'
