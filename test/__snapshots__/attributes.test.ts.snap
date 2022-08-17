@@ -130,6 +130,217 @@ exports[`Attributes > class-suger 1`] = `
 }
 `;
 
+exports[`Attributes > code 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "attributes": {
+            "class": "class",
+            "id": "id",
+          },
+          "position": {
+            "end": {
+              "column": 7,
+              "line": 1,
+              "offset": 6,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "inlineCode",
+          "value": "code",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 19,
+          "line": 1,
+          "offset": 18,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 19,
+      "line": 1,
+      "offset": 18,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`Attributes > emphasis 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "attributes": {
+            "class": "class",
+            "id": "id",
+          },
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 10,
+                  "line": 1,
+                  "offset": 9,
+                },
+                "start": {
+                  "column": 2,
+                  "line": 1,
+                  "offset": 1,
+                },
+              },
+              "type": "text",
+              "value": "emphasis",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 11,
+              "line": 1,
+              "offset": 10,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "emphasis",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 23,
+          "line": 1,
+          "offset": 22,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 23,
+      "line": 1,
+      "offset": 22,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`Attributes > fragment-attribute 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "attributes": {
+            "class": "cls",
+          },
+          "children": [
+            {
+              "alt": "Nuxt",
+              "attributes": {
+                "class": "nest",
+              },
+              "position": {
+                "end": {
+                  "column": 57,
+                  "line": 1,
+                  "offset": 56,
+                },
+                "start": {
+                  "column": 2,
+                  "line": 1,
+                  "offset": 1,
+                },
+              },
+              "title": null,
+              "type": "image",
+              "url": "https://nuxtjs.org/design-kit/colored-logo.svg",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 77,
+              "line": 1,
+              "offset": 76,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "title": null,
+          "type": "link",
+          "url": "https:test",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 83,
+          "line": 1,
+          "offset": 82,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 83,
+      "line": 1,
+      "offset": 82,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`Attributes > html-characters 1`] = `
 {
   "children": [
@@ -322,6 +533,65 @@ exports[`Attributes > id-suger 1`] = `
 }
 `;
 
+exports[`Attributes > image 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "alt": "Nuxt",
+          "attributes": {
+            "class": "class",
+            "id": "id",
+          },
+          "position": {
+            "end": {
+              "column": 56,
+              "line": 1,
+              "offset": 55,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "title": null,
+          "type": "image",
+          "url": "https://nuxtjs.org/design-kit/colored-logo.svg",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 68,
+          "line": 1,
+          "offset": 67,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 68,
+      "line": 1,
+      "offset": 67,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`Attributes > invlid-binding 1`] = `
 {
   "children": [
@@ -387,6 +657,156 @@ exports[`Attributes > invlid-binding 1`] = `
       "column": 9,
       "line": 1,
       "offset": 8,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`Attributes > link 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "attributes": {
+            "class": "class",
+            "id": "id",
+          },
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 6,
+                  "line": 1,
+                  "offset": 5,
+                },
+                "start": {
+                  "column": 2,
+                  "line": 1,
+                  "offset": 1,
+                },
+              },
+              "type": "text",
+              "value": "Nuxt",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 27,
+              "line": 1,
+              "offset": 26,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "title": null,
+          "type": "link",
+          "url": "https://nuxtjs.org",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 39,
+          "line": 1,
+          "offset": 38,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 39,
+      "line": 1,
+      "offset": 38,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`Attributes > strong 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "attributes": {
+            "class": "class",
+            "id": "id",
+          },
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 9,
+                  "line": 1,
+                  "offset": 8,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 1,
+                  "offset": 2,
+                },
+              },
+              "type": "text",
+              "value": "strong",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 11,
+              "line": 1,
+              "offset": 10,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "strong",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 23,
+          "line": 1,
+          "offset": 22,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 23,
+      "line": 1,
+      "offset": 22,
     },
     "start": {
       "column": 1,

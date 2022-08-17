@@ -227,6 +227,12 @@ function exitAttributes () {
     stackTop = stackTop.children[stackTop.children.length - 1]
   }
 
+  // Add attributes to last child of fragment
+  // Example: `[![Nuxt](https://nuxtjs.org/design-kit/colored-logo.svg){.nest}](https://nuxtjs.org)`
+  if (stackTop.type === 'fragment') {
+    stackTop = stackTop.children[stackTop.children.length - 1]
+  }
+
   stackTop.attributes = cleaned
 }
 

@@ -58,8 +58,8 @@ async function astToMarkdown (ast: any, plugins = [] as any[]) {
   }
   const stream = await unified()
     .use(jsonParser)
-    .use(mdc)
     .use(gfm)
+    .use(mdc)
 
   for (const plugin of plugins) {
     stream.use(plugin)
