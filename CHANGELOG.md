@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.5](https://github.com/nuxtlabs/remark-mdc/compare/v1.0.4...v1.0.5) (2022-08-17)
+
+
+### Bug Fixes
+
+* native attributes ([#51](https://github.com/nuxtlabs/remark-mdc/issues/51)) ([0984175](https://github.com/nuxtlabs/remark-mdc/commit/09841753cc7222da28d675db80eb580136f9e038))
+* **span:** ignore double brackets ([#50](https://github.com/nuxtlabs/remark-mdc/issues/50)) ([ccb59b2](https://github.com/nuxtlabs/remark-mdc/commit/ccb59b297c18b6c51492788ff3b8fc5f5092571e))
+
 ### [1.0.4](https://github.com/nuxtlabs/remark-mdc/compare/v1.0.3...v1.0.4) (2022-08-02)
 
 
