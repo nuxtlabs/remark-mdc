@@ -5,6 +5,8 @@
  */
 import { stringifyEntitiesLight } from 'stringify-entities'
 import type { Parent } from 'mdast-util-to-markdown/lib/types'
+import { handle } from 'mdast-util-to-markdown/lib/handle'
+import { Context, SafeOptions } from 'mdast-util-to-markdown'
 import { containerFlow, containerPhrasing, checkQuote } from './mdast-util-to-markdown'
 import { stringifyFrontMatter } from './frontmatter'
 
@@ -34,7 +36,22 @@ export default {
   handlers: {
     containerComponent,
     textComponent,
-    componentContainerSection
+    componentContainerSection,
+    image: (node: Parent, _: any, context: Context, safeOptions: SafeOptions) => {
+      return handle.image(node as any, _, context, safeOptions) + attributes(node, context)
+    },
+    link: (node: Parent, _: any, context: Context, safeOptions: SafeOptions) => {
+      return handle.link(node as any, _, context, safeOptions) + attributes(node, context)
+    },
+    strong: (node: Parent, _: any, context: Context, safeOptions: SafeOptions) => {
+      return handle.strong(node as any, _, context, safeOptions) + attributes(node, context)
+    },
+    inlineCode: (node: Parent, _: any, context: Context) => {
+      return handle.inlineCode(node as any, _, context) + attributes(node, context)
+    },
+    emphasis: (node: Parent, _: any, context: Context, safeOptions: SafeOptions) => {
+      return handle.emphasis(node as any, _, context, safeOptions) + attributes(node, context)
+    }
   }
 }
 
