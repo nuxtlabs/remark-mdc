@@ -137,7 +137,113 @@ exports[`span > [x] 1`] = `
 }
 `;
 
-exports[`span > inside-link 1`] = `
+exports[`span > ignore-double-bracket 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "position": {
+            "end": {
+              "column": 13,
+              "line": 1,
+              "offset": 12,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "text",
+          "value": "[[wikilink]]",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 13,
+          "line": 1,
+          "offset": 12,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 13,
+      "line": 1,
+      "offset": 12,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`span > ignored-bracket 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "position": {
+            "end": {
+              "column": 9,
+              "line": 1,
+              "offset": 8,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "text",
+          "value": "[label]",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 9,
+          "line": 1,
+          "offset": 8,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 9,
+      "line": 1,
+      "offset": 8,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`span > inside-link-invalid 1`] = `
 {
   "children": [
     {
@@ -145,31 +251,6 @@ exports[`span > inside-link 1`] = `
         {
           "children": [
             {
-              "attributes": {},
-              "children": [
-                {
-                  "position": {
-                    "end": {
-                      "column": 7,
-                      "line": 1,
-                      "offset": 6,
-                    },
-                    "start": {
-                      "column": 3,
-                      "line": 1,
-                      "offset": 2,
-                    },
-                  },
-                  "type": "text",
-                  "value": "span",
-                },
-              ],
-              "data": {
-                "hName": "span",
-                "hProperties": {},
-              },
-              "fmAttributes": {},
-              "name": "span",
               "position": {
                 "end": {
                   "column": 8,
@@ -182,7 +263,8 @@ exports[`span > inside-link 1`] = `
                   "offset": 1,
                 },
               },
-              "type": "textComponent",
+              "type": "text",
+              "value": "[span]",
             },
           ],
           "position": {
@@ -222,6 +304,118 @@ exports[`span > inside-link 1`] = `
       "column": 16,
       "line": 1,
       "offset": 15,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`span > inside-link-valid 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 3,
+                  "line": 1,
+                  "offset": 2,
+                },
+                "start": {
+                  "column": 2,
+                  "line": 1,
+                  "offset": 1,
+                },
+              },
+              "type": "text",
+              "value": " ",
+            },
+            {
+              "attributes": {},
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 8,
+                      "line": 1,
+                      "offset": 7,
+                    },
+                    "start": {
+                      "column": 4,
+                      "line": 1,
+                      "offset": 3,
+                    },
+                  },
+                  "type": "text",
+                  "value": "span",
+                },
+              ],
+              "data": {
+                "hName": "span",
+                "hProperties": {},
+              },
+              "fmAttributes": {},
+              "name": "span",
+              "position": {
+                "end": {
+                  "column": 9,
+                  "line": 1,
+                  "offset": 8,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 1,
+                  "offset": 2,
+                },
+              },
+              "type": "textComponent",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 17,
+              "line": 1,
+              "offset": 16,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "title": null,
+          "type": "link",
+          "url": "#href",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 17,
+          "line": 1,
+          "offset": 16,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 17,
+      "line": 1,
+      "offset": 16,
     },
     "start": {
       "column": 1,
@@ -620,6 +814,75 @@ exports[`span > with-attributes 1`] = `
       "column": 70,
       "line": 1,
       "offset": 69,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`span > with-wikilinks 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "data": {
+            "alias": "span",
+            "exists": false,
+            "hChildren": [
+              {
+                "type": "text",
+                "value": "span",
+              },
+            ],
+            "hName": "a",
+            "hProperties": {
+              "className": "internal new",
+              "href": "#/page/span",
+            },
+            "permalink": "span",
+          },
+          "position": {
+            "end": {
+              "column": 9,
+              "line": 1,
+              "offset": 8,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "wikiLink",
+          "value": "span",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 9,
+          "line": 1,
+          "offset": 8,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 9,
+      "line": 1,
+      "offset": 8,
     },
     "start": {
       "column": 1,
