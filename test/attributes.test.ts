@@ -29,6 +29,25 @@ describe('Attributes', () => {
     'invlid-binding': {
       markdown: ':test{:}',
       expected: ':test{:}'
+    },
+    'fragment-attribute': {
+      markdown: '[![Nuxt](https://nuxtjs.org/design-kit/colored-logo.svg){.nest}](https:test){.cls}',
+      expected: '[![Nuxt](https://nuxtjs.org/design-kit/colored-logo.svg){.nest}](https\\:test){.cls}'
+    },
+    image: {
+      markdown: '![Nuxt](https://nuxtjs.org/design-kit/colored-logo.svg){#id .class}'
+    },
+    code: {
+      markdown: '`code`{#id .class}'
+    },
+    strong: {
+      markdown: '**strong**{#id .class}'
+    },
+    link: {
+      markdown: '[Nuxt](https://nuxtjs.org){#id .class}'
+    },
+    emphasis: {
+      markdown: '*emphasis*{#id .class}'
     }
   })
 })
