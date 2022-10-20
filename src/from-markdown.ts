@@ -119,22 +119,25 @@ function enterContainerDataSection (token: Token) {
 }
 
 function exitContainerSection (token: Token) {
+  const section = this.stack[this.stack.length - 1]
+
+  /**
+   * Ensure lists and list-items are closed before closing section
+   * This issue occurs because `---` separtors ar conflict with markdown lists
+   */
+  attempClosingOpenListSection.call(this, section)
+
   this.exit(token)
 }
 
 function exitContainerDataSection (token: Token) {
   let section = this.stack[this.stack.length - 1]
+
   /**
    * Ensure lists and list-items are closed before closing section
    * This issue occurs because `---` separtors ar conflict with markdown lists
    */
-  while (section.type === 'listItem' || section.type === 'list') {
-    // As of mdast-util-from-markdown@1.1.0 tokenStach items is an array containing the token and a handler
-    // https://github.com/syntax-tree/mdast-util-from-markdown/blob/752dc22acfc517d280612e8d499d5ce0cd5a4495/dev/lib/index.js#L548
-    const [stackToken] = this.tokenStack[this.tokenStack.length - 1]
-    this.exit(stackToken)
-    section = this.stack[this.stack.length - 1]
-  }
+  section = attempClosingOpenListSection.call(this, section)
 
   if (section.type === 'componentContainerDataSection') {
     section.rawData = this.sliceSerialize(token)
@@ -247,6 +250,21 @@ function conditionalExit (token: Token) {
   if ((section as Token).type === token.type) {
     this.exit(token)
   }
+}
+
+function attempClosingOpenListSection (section) {
+  /**
+   * Ensure lists and list-items are closed before closing section
+   * This issue occurs because `---` separtors ar conflict with markdown lists
+   */
+  while (section.type === 'listItem' || section.type === 'list') {
+  // As of mdast-util-from-markdown@1.1.0 tokenStach items is an array containing the token and a handler
+  // https://github.com/syntax-tree/mdast-util-from-markdown/blob/752dc22acfc517d280612e8d499d5ce0cd5a4495/dev/lib/index.js#L548
+    const [stackToken] = this.tokenStack[this.tokenStack.length - 1]
+    this.exit(stackToken)
+    section = this.stack[this.stack.length - 1]
+  }
+  return section
 }
 
 export default {

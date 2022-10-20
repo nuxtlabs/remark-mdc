@@ -140,6 +140,17 @@ describe('block-component', () => {
         '',
         'Third line'
       ].join('\n')
+    },
+    'danglig-list': {
+      markdown: [
+        '::component',
+        '-   list item',
+        '-   list item',
+        '',
+        '#slot',
+        'slot content',
+        '::'
+      ].join('\n')
     }
   })
 })
