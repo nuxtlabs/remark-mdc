@@ -1,6 +1,6 @@
 {
   "name": "remark-mdc",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Remark plugin to support MDC syntax",
   "keywords": [
     "remark",
