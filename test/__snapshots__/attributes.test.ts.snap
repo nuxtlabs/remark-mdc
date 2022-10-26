@@ -32,12 +32,28 @@ exports[`Attributes > boolean 1`] = `
           },
           "type": "textComponent",
         },
+        {
+          "position": {
+            "end": {
+              "column": 17,
+              "line": 1,
+              "offset": 16,
+            },
+            "start": {
+              "column": 12,
+              "line": 1,
+              "offset": 11,
+            },
+          },
+          "type": "text",
+          "value": " text",
+        },
       ],
       "position": {
         "end": {
-          "column": 12,
+          "column": 17,
           "line": 1,
-          "offset": 11,
+          "offset": 16,
         },
         "start": {
           "column": 1,
@@ -50,9 +66,9 @@ exports[`Attributes > boolean 1`] = `
   ],
   "position": {
     "end": {
-      "column": 12,
+      "column": 17,
       "line": 1,
-      "offset": 11,
+      "offset": 16,
     },
     "start": {
       "column": 1,
@@ -98,12 +114,28 @@ exports[`Attributes > class-suger 1`] = `
           },
           "type": "textComponent",
         },
+        {
+          "position": {
+            "end": {
+              "column": 46,
+              "line": 1,
+              "offset": 45,
+            },
+            "start": {
+              "column": 41,
+              "line": 1,
+              "offset": 40,
+            },
+          },
+          "type": "text",
+          "value": " text",
+        },
       ],
       "position": {
         "end": {
-          "column": 41,
+          "column": 46,
           "line": 1,
-          "offset": 40,
+          "offset": 45,
         },
         "start": {
           "column": 1,
@@ -116,9 +148,9 @@ exports[`Attributes > class-suger 1`] = `
   ],
   "position": {
     "end": {
-      "column": 41,
+      "column": 46,
       "line": 1,
-      "offset": 40,
+      "offset": 45,
     },
     "start": {
       "column": 1,
@@ -373,12 +405,28 @@ exports[`Attributes > html-characters 1`] = `
           },
           "type": "textComponent",
         },
+        {
+          "position": {
+            "end": {
+              "column": 26,
+              "line": 1,
+              "offset": 25,
+            },
+            "start": {
+              "column": 21,
+              "line": 1,
+              "offset": 20,
+            },
+          },
+          "type": "text",
+          "value": " text",
+        },
       ],
       "position": {
         "end": {
-          "column": 21,
+          "column": 26,
           "line": 1,
-          "offset": 20,
+          "offset": 25,
         },
         "start": {
           "column": 1,
@@ -391,9 +439,9 @@ exports[`Attributes > html-characters 1`] = `
   ],
   "position": {
     "end": {
-      "column": 21,
+      "column": 26,
       "line": 1,
-      "offset": 20,
+      "offset": 25,
     },
     "start": {
       "column": 1,
@@ -437,12 +485,28 @@ exports[`Attributes > html-characters-unquoted 1`] = `
           },
           "type": "textComponent",
         },
+        {
+          "position": {
+            "end": {
+              "column": 24,
+              "line": 1,
+              "offset": 23,
+            },
+            "start": {
+              "column": 19,
+              "line": 1,
+              "offset": 18,
+            },
+          },
+          "type": "text",
+          "value": " text",
+        },
       ],
       "position": {
         "end": {
-          "column": 19,
+          "column": 24,
           "line": 1,
-          "offset": 18,
+          "offset": 23,
         },
         "start": {
           "column": 1,
@@ -455,9 +519,9 @@ exports[`Attributes > html-characters-unquoted 1`] = `
   ],
   "position": {
     "end": {
-      "column": 19,
+      "column": 24,
       "line": 1,
-      "offset": 18,
+      "offset": 23,
     },
     "start": {
       "column": 1,
@@ -501,12 +565,28 @@ exports[`Attributes > id-suger 1`] = `
           },
           "type": "textComponent",
         },
+        {
+          "position": {
+            "end": {
+              "column": 16,
+              "line": 1,
+              "offset": 15,
+            },
+            "start": {
+              "column": 11,
+              "line": 1,
+              "offset": 10,
+            },
+          },
+          "type": "text",
+          "value": " text",
+        },
       ],
       "position": {
         "end": {
-          "column": 11,
+          "column": 16,
           "line": 1,
-          "offset": 10,
+          "offset": 15,
         },
         "start": {
           "column": 1,
@@ -519,9 +599,9 @@ exports[`Attributes > id-suger 1`] = `
   ],
   "position": {
     "end": {
-      "column": 11,
+      "column": 16,
       "line": 1,
-      "offset": 10,
+      "offset": 15,
     },
     "start": {
       "column": 1,
@@ -623,9 +703,9 @@ exports[`Attributes > invlid-binding 1`] = `
         {
           "position": {
             "end": {
-              "column": 9,
+              "column": 14,
               "line": 1,
-              "offset": 8,
+              "offset": 13,
             },
             "start": {
               "column": 6,
@@ -634,14 +714,14 @@ exports[`Attributes > invlid-binding 1`] = `
             },
           },
           "type": "text",
-          "value": "{:}",
+          "value": "{:} text",
         },
       ],
       "position": {
         "end": {
-          "column": 9,
+          "column": 14,
           "line": 1,
-          "offset": 8,
+          "offset": 13,
         },
         "start": {
           "column": 1,
@@ -654,9 +734,9 @@ exports[`Attributes > invlid-binding 1`] = `
   ],
   "position": {
     "end": {
-      "column": 9,
+      "column": 14,
       "line": 1,
-      "offset": 8,
+      "offset": 13,
     },
     "start": {
       "column": 1,
@@ -850,12 +930,28 @@ exports[`Attributes > value-with-space 1`] = `
           },
           "type": "textComponent",
         },
+        {
+          "position": {
+            "end": {
+              "column": 24,
+              "line": 1,
+              "offset": 23,
+            },
+            "start": {
+              "column": 19,
+              "line": 1,
+              "offset": 18,
+            },
+          },
+          "type": "text",
+          "value": " text",
+        },
       ],
       "position": {
         "end": {
-          "column": 19,
+          "column": 24,
           "line": 1,
-          "offset": 18,
+          "offset": 23,
         },
         "start": {
           "column": 1,
@@ -868,9 +964,9 @@ exports[`Attributes > value-with-space 1`] = `
   ],
   "position": {
     "end": {
-      "column": 19,
+      "column": 24,
       "line": 1,
-      "offset": 18,
+      "offset": 23,
     },
     "start": {
       "column": 1,

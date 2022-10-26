@@ -4,13 +4,13 @@ import { runMarkdownTests } from './utils'
 describe('inline-component', () => {
   runMarkdownTests({
     empty: {
-      markdown: ':component'
+      markdown: ':component text'
     },
     text: {
-      markdown: ':component[text]'
+      markdown: ':component[text] text'
     },
     'with-attribute': {
-      markdown: ':component[text]{.class}'
+      markdown: ':component[text]{.class} text'
     },
     strong: {
       markdown: '**:component[text]{.class}**',

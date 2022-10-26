@@ -28,12 +28,28 @@ exports[`label > empty 1`] = `
           },
           "type": "textComponent",
         },
+        {
+          "position": {
+            "end": {
+              "column": 13,
+              "line": 1,
+              "offset": 12,
+            },
+            "start": {
+              "column": 8,
+              "line": 1,
+              "offset": 7,
+            },
+          },
+          "type": "text",
+          "value": " text",
+        },
       ],
       "position": {
         "end": {
-          "column": 8,
+          "column": 13,
           "line": 1,
-          "offset": 7,
+          "offset": 12,
         },
         "start": {
           "column": 1,
@@ -46,9 +62,9 @@ exports[`label > empty 1`] = `
   ],
   "position": {
     "end": {
-      "column": 8,
+      "column": 13,
       "line": 1,
-      "offset": 7,
+      "offset": 12,
     },
     "start": {
       "column": 1,
@@ -91,9 +107,9 @@ exports[`label > invalid-label-eof 1`] = `
         {
           "position": {
             "end": {
-              "column": 7,
+              "column": 12,
               "line": 1,
-              "offset": 6,
+              "offset": 11,
             },
             "start": {
               "column": 6,
@@ -102,14 +118,14 @@ exports[`label > invalid-label-eof 1`] = `
             },
           },
           "type": "text",
-          "value": "[",
+          "value": "[ text",
         },
       ],
       "position": {
         "end": {
-          "column": 7,
+          "column": 12,
           "line": 1,
-          "offset": 6,
+          "offset": 11,
         },
         "start": {
           "column": 1,
@@ -122,9 +138,9 @@ exports[`label > invalid-label-eof 1`] = `
   ],
   "position": {
     "end": {
-      "column": 7,
+      "column": 12,
       "line": 1,
-      "offset": 6,
+      "offset": 11,
     },
     "start": {
       "column": 1,
@@ -257,12 +273,28 @@ exports[`label > scaped-characters 1`] = `
           },
           "type": "textComponent",
         },
+        {
+          "position": {
+            "end": {
+              "column": 31,
+              "line": 1,
+              "offset": 30,
+            },
+            "start": {
+              "column": 26,
+              "line": 1,
+              "offset": 25,
+            },
+          },
+          "type": "text",
+          "value": " text",
+        },
       ],
       "position": {
         "end": {
-          "column": 26,
+          "column": 31,
           "line": 1,
-          "offset": 25,
+          "offset": 30,
         },
         "start": {
           "column": 1,
@@ -275,9 +307,9 @@ exports[`label > scaped-characters 1`] = `
   ],
   "position": {
     "end": {
-      "column": 26,
+      "column": 31,
       "line": 1,
-      "offset": 25,
+      "offset": 30,
     },
     "start": {
       "column": 1,
@@ -334,12 +366,28 @@ exports[`label > simple 1`] = `
           },
           "type": "textComponent",
         },
+        {
+          "position": {
+            "end": {
+              "column": 18,
+              "line": 1,
+              "offset": 17,
+            },
+            "start": {
+              "column": 13,
+              "line": 1,
+              "offset": 12,
+            },
+          },
+          "type": "text",
+          "value": " text",
+        },
       ],
       "position": {
         "end": {
-          "column": 13,
+          "column": 18,
           "line": 1,
-          "offset": 12,
+          "offset": 17,
         },
         "start": {
           "column": 1,
@@ -352,9 +400,9 @@ exports[`label > simple 1`] = `
   ],
   "position": {
     "end": {
-      "column": 13,
+      "column": 18,
       "line": 1,
-      "offset": 12,
+      "offset": 17,
     },
     "start": {
       "column": 1,

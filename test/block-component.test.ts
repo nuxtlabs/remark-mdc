@@ -1,4 +1,4 @@
-import { describe } from 'vitest'
+import { describe, expect } from 'vitest'
 import { runMarkdownTests } from './utils'
 
 describe('block-component', () => {
@@ -151,6 +151,15 @@ describe('block-component', () => {
         'slot content',
         '::'
       ].join('\n')
+    },
+    'sugar-syntax': {
+      markdown: [
+        ':component'
+      ].join('\n'),
+      extra: (_md, ast) => {
+        expect(ast.children[0].type).toBe('textComponent')
+        expect(ast.children[0].name).toBe('component')
+      }
     }
   })
 })

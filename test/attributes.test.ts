@@ -4,31 +4,31 @@ import { runMarkdownTests } from './utils'
 describe('Attributes', () => {
   runMarkdownTests({
     'id-suger': {
-      markdown: ':test{#id}'
+      markdown: ':test{#id} text'
     },
     'class-suger': {
-      markdown: ':test{.class .another-class key="value"}',
-      expected: ':test{.class.another-class key="value"}'
+      markdown: ':test{.class .another-class key="value"} text',
+      expected: ':test{.class.another-class key="value"} text'
     },
     boolean: {
-      markdown: ':test{prop}',
-      expected: ':test{prop="true"}'
+      markdown: ':test{prop} text',
+      expected: ':test{prop="true"} text'
     },
     'html-characters': {
-      markdown: ':test{icon="&copy;"}',
-      expected: ':test{icon="©"}'
+      markdown: ':test{icon="&copy;"} text',
+      expected: ':test{icon="©"} text'
     },
     'html-characters-unquoted': {
-      markdown: ':test{icon=&copy;}',
-      expected: ':test{icon="©"}'
+      markdown: ':test{icon=&copy;} text',
+      expected: ':test{icon="©"} text'
     },
     'value-with-space': {
-      markdown: ':test{attr= value}',
-      expected: ':test{attr="value"}'
+      markdown: ':test{attr= value} text',
+      expected: ':test{attr="value"} text'
     },
     'invlid-binding': {
-      markdown: ':test{:}',
-      expected: ':test{:}'
+      markdown: ':test{:} text',
+      expected: ':test{:} text'
     },
     'fragment-attribute': {
       markdown: '[![Nuxt](https://nuxtjs.org/design-kit/colored-logo.svg){.nest}](https:test){.cls}',
