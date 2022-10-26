@@ -1321,6 +1321,49 @@ exports[`block-component > section-order-2 1`] = `
 }
 `;
 
+exports[`block-component > sugar-syntax 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [],
+      "data": {
+        "hName": "component",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "name": "component",
+      "position": {
+        "end": {
+          "column": 11,
+          "line": 1,
+          "offset": 10,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "textComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 11,
+      "line": 1,
+      "offset": 10,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`block-component > text 1`] = `
 {
   "children": [

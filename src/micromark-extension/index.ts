@@ -11,6 +11,7 @@ import tokenizeInline from './tokenize-inline'
 import tokenizeContainer from './tokenize-container'
 import tokenizeContainerIndented from './tokenize-container-indented'
 import { Codes } from './constants'
+import tokenizeContainerSuger from './tokenize-container-suger'
 
 export default function micromarkComponentsExtension () {
   return {
@@ -20,7 +21,7 @@ export default function micromarkComponentsExtension () {
       [Codes.openingCurlyBracket]: [tokenizeBinding, tokenizeAttribute]
     },
     flow: {
-      [Codes.colon]: [tokenizeContainer]
+      [Codes.colon]: [tokenizeContainer, tokenizeContainerSuger]
     },
     flowInitial: {
       '-2': tokenizeContainerIndented,
