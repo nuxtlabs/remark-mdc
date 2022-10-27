@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/nuxtlabs/remark-mdc/compare/v1.0.8...v1.1.0) (2022-10-27)
+
+
+### Features
+
+* sugar syntax for blocks ([#54](https://github.com/nuxtlabs/remark-mdc/issues/54)) ([3d41472](https://github.com/nuxtlabs/remark-mdc/commit/3d41472ac4b54a288198d9b58003c6d8b1c564e6))
+
+
+### Bug Fixes
+
+* trim slot name ([5459619](https://github.com/nuxtlabs/remark-mdc/commit/5459619b74c921891139b31ff8f8c4e516432c18))
+
 ### [1.0.8](https://github.com/nuxtlabs/remark-mdc/compare/v1.0.7...v1.0.8) (2022-10-20)
 
 
