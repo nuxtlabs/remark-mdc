@@ -1440,3 +1440,105 @@ exports[`block-component > text 1`] = `
   "type": "root",
 }
 `;
+
+exports[`block-component > trim-slot-name 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "attributes": {},
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 13,
+                      "line": 3,
+                      "offset": 31,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 3,
+                      "offset": 19,
+                    },
+                  },
+                  "type": "text",
+                  "value": "slot content",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 13,
+                  "line": 3,
+                  "offset": 31,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 3,
+                  "offset": 19,
+                },
+              },
+              "type": "paragraph",
+            },
+          ],
+          "data": {
+            "hName": "component-slot",
+            "hProperties": {
+              "v-slot:slot": "",
+            },
+          },
+          "name": "slot",
+          "position": {
+            "end": {
+              "column": 3,
+              "line": 4,
+              "offset": 34,
+            },
+            "start": {
+              "column": 2,
+              "line": 2,
+              "offset": 13,
+            },
+          },
+          "type": "componentContainerSection",
+        },
+      ],
+      "data": {
+        "hName": "component",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "name": "component",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 4,
+          "offset": 34,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 4,
+      "offset": 34,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;

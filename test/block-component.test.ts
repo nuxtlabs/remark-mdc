@@ -152,6 +152,20 @@ describe('block-component', () => {
         '::'
       ].join('\n')
     },
+    'trim-slot-name': {
+      markdown: [
+        '::component',
+        '#slot ',
+        'slot content',
+        '::'
+      ].join('\n'),
+      expected: [
+        '::component',
+        '#slot',
+        'slot content',
+        '::'
+      ].join('\n')
+    },
     'sugar-syntax': {
       markdown: [
         ':component'

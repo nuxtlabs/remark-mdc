@@ -146,7 +146,7 @@ function exitContainerDataSection (token: Token) {
 }
 
 function exitContainerSectionTitle (token: Token) {
-  this.stack[this.stack.length - 1].name = this.sliceSerialize(token)
+  this.stack[this.stack.length - 1].name = this.sliceSerialize(token)?.trim()
 }
 
 function enterLeaf (token: Token) {
