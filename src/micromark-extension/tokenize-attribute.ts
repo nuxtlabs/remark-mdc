@@ -41,7 +41,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
      */
     const event = self.events[self.events.length - 1]
     if (markdownLineEnding(self.previous) || !event || !validEvents.includes(event[1].type)) {
-      return nok
+      return nok(code)
     }
 
     return effects.attempt(attributes, ok, nok)(code)
