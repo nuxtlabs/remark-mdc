@@ -6,7 +6,9 @@ import componentContainer from './tokenize-container'
 import { Codes } from './constants'
 
 function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: State) {
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
   const self = this
+
   return factorySpace(effects, lineStart as State, 'linePrefix')
 
   function lineStart (code: Code): void | State {

@@ -14,6 +14,7 @@ text
 
  */
 function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: State) {
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
   const self = this
 
   const tokenizeSugerSyntax = componentContainer.tokenize.call(

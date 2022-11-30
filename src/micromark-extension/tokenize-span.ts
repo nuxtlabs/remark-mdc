@@ -10,7 +10,9 @@ const doubleBracketCheck: any = { tokenize: checkDoubleBracket, partial: true }
 const attributes: any = { tokenize: tokenizeAttributes, partial: true }
 
 function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: State) {
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
   const self = this
+
   return start
 
   function start (code: Code): void | State {

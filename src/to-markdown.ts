@@ -164,7 +164,7 @@ function attributes (node: Parent, context: any) {
         index = -1
 
         while (++index < value.length) {
-          ;(shortcut.test(value[index]) ? classes : classesFull).push(value[index])
+          (shortcut.test(value[index]) ? classes : classesFull).push(value[index])
         }
 
         classesFull = classesFull.length ? quoted('class', classesFull.join(' ')) : ''

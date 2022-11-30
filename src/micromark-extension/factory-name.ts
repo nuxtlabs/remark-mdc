@@ -1,9 +1,9 @@
-import type { Effects, State, Code } from 'micromark-util-types'
+import type { Effects, State, Code, TokenizeContext } from 'micromark-util-types'
 import { asciiAlpha, asciiAlphanumeric } from 'micromark-util-character'
 import { Codes } from './constants'
 
-export default function createName (effects: Effects, ok: State, nok: State, nameType: string) {
-  // @ts-ignore
+export default function createName (this: TokenizeContext, effects: Effects, ok: State, nok: State, nameType: string) {
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
   const self = this
 
   return start

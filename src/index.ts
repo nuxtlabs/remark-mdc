@@ -28,8 +28,7 @@ interface RemarkMDCOptions {
 }
 
 export default <Plugin<Array<RemarkMDCOptions>, Root, Root>> function ({ components = [] }: RemarkMDCOptions = {}) {
-  // @ts-ignore
-  const data = this.data()
+  const data: Record<string, any> = this.data()
 
   add('micromarkExtensions', syntax())
   add('fromMarkdownExtensions', fromMarkdown)
@@ -41,7 +40,7 @@ export default <Plugin<Array<RemarkMDCOptions>, Root, Root>> function ({ compone
       data[field] = []
     }
 
-    ;(data[field] as any[]).push(value)
+    data[field].push(value)
   }
 
   if (components.length) {

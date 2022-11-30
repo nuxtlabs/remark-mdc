@@ -7,7 +7,6 @@ import { Codes } from './constants'
 // to allow empty labels, balanced brackets (such as for nested components),
 // text instead of strings, and optionally disallows EOLs.
 
-// eslint-disable-next-line max-params
 export default function createLabel (
   effects: Effects,
   ok: State,

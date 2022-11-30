@@ -3,7 +3,7 @@ import flat from 'flat'
 
 const FRONTMATTER_DELIMITER = '---'
 
-export function stringifyFrontMatter (data: any, content: string = '') {
+export function stringifyFrontMatter (data: any, content = '') {
   // flatten frontmatter data
   // convert `parent: { child: ... }` into flat keys `parent.child`
   data = flat.flatten(data, {

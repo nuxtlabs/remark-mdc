@@ -12,6 +12,7 @@ const label: any = { tokenize: tokenizeLabel, partial: true }
 const attributes: any = { tokenize: tokenizeAttributes, partial: true }
 
 function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: State) {
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
   const self = this
   const initialPrefix = linePrefixSize(this.events)
   let sizeOpen = 0

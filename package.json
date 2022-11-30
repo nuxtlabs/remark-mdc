@@ -40,26 +40,26 @@
     "micromark-factory-whitespace": "^1.0.0",
     "micromark-util-character": "^1.1.0",
     "parse-entities": "^4.0.0",
-    "scule": "^0.3.2",
+    "scule": "^1.0.0",
     "stringify-entities": "^4.0.3",
     "unist-util-visit": "^4.1.1",
     "unist-util-visit-parents": "^5.1.1"
   },
   "devDependencies": {
-    "@nuxt/kit": "^3.0.0-rc.12",
+    "@nuxt/kit": "^3.0.0",
     "@nuxtjs/eslint-config-typescript": "latest",
     "@types/flat": "^5.0.2",
     "@types/js-yaml": "^4.0.5",
-    "eslint": "^8.26.0",
+    "eslint": "^8.28.0",
     "eslint-plugin-nuxt": "latest",
     "jiti": "^1.16.0",
-    "nuxt": "^3.0.0-rc.12",
+    "nuxt": "^3.0.0",
     "remark-gfm": "^3.0.1",
     "remark-parse": "^10.0.1",
     "remark-stringify": "^10.0.2",
     "remark-wiki-link": "^1.0.4",
     "standard-version": "^9.5.0",
-    "unbuild": "^0.9.4",
+    "unbuild": "^1.0.1",
     "vitest": "latest"
   }
 }

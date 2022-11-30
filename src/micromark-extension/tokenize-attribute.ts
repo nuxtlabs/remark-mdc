@@ -29,6 +29,7 @@ const validEvents = [
 ]
 
 function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: State) {
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
   const self = this
 
   return start

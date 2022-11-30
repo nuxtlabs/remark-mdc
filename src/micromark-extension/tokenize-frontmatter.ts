@@ -20,6 +20,7 @@ export function tokenizeFrontMatter (
 
   // Look for data section
   function tokenizeDataSection (this: TokenizeContext, effects: Effects, ok: State, nok: State) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this
     let size = 0
     let sectionIndentSize = 0
