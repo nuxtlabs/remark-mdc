@@ -71,7 +71,7 @@ function bindNode (node: ComponentNode) {
 
   node.fmAttributes = getNodeData(node)
 
-  nodeData.hName = kebabCase(node.name)
+  nodeData.hName = kebabCase(node.name!)
   nodeData.hProperties = bindData(
     {
       ...node.attributes,
