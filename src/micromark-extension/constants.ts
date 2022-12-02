@@ -52,6 +52,10 @@ export const Codes = {
    */
   dot: 46,
   /**
+   * '/'
+   */
+  slash: 46,
+  /**
    * ':'
    */
   colon: 58,

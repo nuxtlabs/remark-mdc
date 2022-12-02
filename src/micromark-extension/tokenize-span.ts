@@ -1,4 +1,4 @@
-import { markdownSpace } from 'micromark-util-character'
+import { markdownSpace, markdownLineEndingOrSpace } from 'micromark-util-character'
 import type { Effects, State, Code, TokenizeContext } from 'micromark-util-types'
 import { Codes } from './constants'
 import createLabel from './factory-label'
@@ -30,7 +30,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     }
 
     // Ignore double brackets `[[`, AKA Wiki Links syntax
-    if (self.previous === Codes.openingSquareBracket) {
+    if (!markdownLineEndingOrSpace(self.previous) && self.previous !== null) {
       return nok(code)
     }
     return effects.check(doubleBracketCheck, nok, attemptLabel)(code)
