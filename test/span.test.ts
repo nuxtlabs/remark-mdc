@@ -92,6 +92,14 @@ describe('span', async () => {
         expect(ast.children[0].children[0].type).toEqual('text')
         expect(ast.children[0].children[0].value).toEqual('[label]')
       }
+    },
+    'no-white-space': {
+      markdown: "'[publicPath]/images/[name]-[hash][ext]'",
+      expected: "'\\[publicPath]/images/\\[name]-\\[hash]\\[ext]'",
+      extra (_markdown, ast, _expected) {
+        expect(ast.children[0].children[0].type).toEqual('text')
+        expect(ast.children[0].children[0].value).toEqual("'[publicPath]/images/[name]-[hash][ext]'")
+      }
     }
   })
 })

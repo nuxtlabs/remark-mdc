@@ -427,6 +427,59 @@ exports[`span > inside-link-valid 1`] = `
 }
 `;
 
+exports[`span > no-white-space 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "position": {
+            "end": {
+              "column": 41,
+              "line": 1,
+              "offset": 40,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "text",
+          "value": "'[publicPath]/images/[name]-[hash][ext]'",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 41,
+          "line": 1,
+          "offset": 40,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 41,
+      "line": 1,
+      "offset": 40,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`span > respect-gfm-check-list 1`] = `
 {
   "children": [
