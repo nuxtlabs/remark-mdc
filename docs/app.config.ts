@@ -30,14 +30,14 @@ export default defineAppConfig({
 
     main: {
       padded: true,
-      fluid: true
+      fluid: false
     },
 
     header: {
       logo: false,
       showLinkIcon: true,
       exclude: [],
-      fluid: true,
+      fluid: false,
       title: 'Remark MDC'
     },
 
