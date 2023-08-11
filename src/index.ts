@@ -1,6 +1,5 @@
-import type { Plugin } from 'unified'
-import type { Node } from 'unist'
-import type { Root } from 'mdast'
+import { type Plugin } from 'unified'
+import { type Node } from 'unist'
 import { kebabCase } from 'scule'
 import { visit } from 'unist-util-visit'
 import { parseFrontMatter } from './frontmatter'
@@ -9,6 +8,13 @@ import fromMarkdown from './from-markdown'
 import syntax from './micromark-extension'
 
 const toFrontMatter = (yamlString: string) => `---\n${yamlString}\n---`
+
+declare module 'unist' {
+  interface Data {
+    hName?: string
+    hProperties?: Record<string, any>
+  }
+}
 
 interface ComponentHanlder {
   name: string
@@ -27,7 +33,7 @@ interface RemarkMDCOptions {
   components?: ComponentHanlder[]
 }
 
-export default <Plugin<Array<RemarkMDCOptions>, Root, Root>> function ({ components = [] }: RemarkMDCOptions = {}) {
+export default <Plugin<Array<RemarkMDCOptions>>> function ({ components = [] }: RemarkMDCOptions = {}) {
   const data: Record<string, any> = this.data()
 
   add('micromarkExtensions', syntax())

@@ -3,9 +3,6 @@
 # Restore all git changes
 git restore -s@ -SW  -- example src test
 
-# Resolve yarn
-YARN_ENABLE_IMMUTABLE_INSTALLS=false yarn install
-
 # Update token
 if [[ ! -z ${NODE_AUTH_TOKEN} ]] ; then
   echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" >> ~/.npmrc

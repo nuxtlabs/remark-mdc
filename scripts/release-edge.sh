@@ -4,10 +4,7 @@
 git restore -s@ -SW  -- example src test
 
 # Bump versions to edge
-yarn jiti ./scripts/bump-edge
-
-# Resolve yarn
-YARN_ENABLE_IMMUTABLE_INSTALLS=false yarn install
+pnpm jiti ./scripts/bump-edge
 
 # Update token
 if [[ ! -z ${NODE_AUTH_TOKEN} ]] ; then

@@ -4,9 +4,8 @@
  * License: MIT (https://github.com/syntax-tree/mdast-util-directive/blob/main/license)
  */
 import { stringifyEntitiesLight } from 'stringify-entities'
-import type { Parent } from 'mdast-util-to-markdown/lib/types'
-import { handle } from 'mdast-util-to-markdown/lib/handle/index.js'
-import { Context, SafeOptions } from 'mdast-util-to-markdown'
+import { type Parents } from 'mdast-util-to-markdown/lib/types'
+import { type State, type Info, type Unsafe, defaultHandlers } from 'mdast-util-to-markdown'
 import { containerFlow, containerPhrasing, checkQuote } from './mdast-util-to-markdown'
 import { stringifyFrontMatter } from './frontmatter'
 
@@ -15,7 +14,27 @@ const own = {}.hasOwnProperty
 const shortcut = /^[^\t\n\r "#'.<=>`}]+$/
 const baseFense = 2
 
+// import { defaultHandlers } from 'mdast-util-to-markdown/lib/util/compile-pattern'
+function compilePattern (pattern: Unsafe) {
+  if (!pattern._compiled) {
+    const before =
+      (pattern.atBreak ? '[\\r\\n][\\t ]*' : '') +
+      (pattern.before ? '(?:' + pattern.before + ')' : '')
+
+    pattern._compiled = new RegExp(
+      (before ? '(' + before + ')' : '') +
+        (/[|\\{}()[\]^$+*?.-]/.test(pattern.character) ? '\\' : '') +
+        pattern.character +
+        (pattern.after ? '(?:' + pattern.after + ')' : ''),
+      'g'
+    )
+  }
+
+  return pattern._compiled
+}
+
 export default {
+  compilePattern,
   unsafe: [
     {
       character: '\r',
@@ -37,31 +56,33 @@ export default {
     containerComponent,
     textComponent,
     componentContainerSection,
-    image: (node: Parent, _: any, context: Context, safeOptions: SafeOptions) => {
-      return handle.image(node as any, _, context, safeOptions) + attributes(node, context)
+    image: (node: Parents, _: any, state: State, info: Info) => {
+      return defaultHandlers.image(node as any, _, state, info) + attributes(node, state)
     },
-    link: (node: Parent, _: any, context: Context, safeOptions: SafeOptions) => {
-      return handle.link(node as any, _, context, safeOptions) + attributes(node, context)
+    link: (node: Parents, _: any, state: State, info: Info) => {
+      return defaultHandlers.link(node as any, _, state, info) + attributes(node, state)
     },
-    strong: (node: Parent, _: any, context: Context, safeOptions: SafeOptions) => {
-      return handle.strong(node as any, _, context, safeOptions) + attributes(node, context)
+    strong: (node: Parents, _: any, state: State, info: Info) => {
+      return defaultHandlers.strong(node as any, _, state, info) + attributes(node, state)
     },
-    inlineCode: (node: Parent, _: any, context: Context) => {
-      return handle.inlineCode(node as any, _, context) + attributes(node, context)
+    inlineCode: (node: Parents, _: any, state: State) => {
+      // Temporary fix for handling old version of mdast-util-to-markdown
+      state.compilePattern = state.compilePattern || compilePattern
+      return defaultHandlers.inlineCode(node as any, _, state) + attributes(node, state)
     },
-    emphasis: (node: Parent, _: any, context: Context, safeOptions: SafeOptions) => {
-      return handle.emphasis(node as any, _, context, safeOptions) + attributes(node, context)
+    emphasis: (node: Parents, _: any, state: State, info: Info) => {
+      return defaultHandlers.emphasis(node as any, _, state, info) + attributes(node, state)
     }
   }
 }
 
-type NodeComponentContainerSection = Parent & { name: string }
+type NodeComponentContainerSection = Parents & { name: string }
 function componentContainerSection (node: NodeComponentContainerSection, _: any, context: any) {
   context.indexStack = context.stack
   return `#${(node as any).name}\n${content(node, context)}`.trim()
 }
 
-type NodeTextComponent = Parent & { name: string; rawData: string }
+type NodeTextComponent = Parents & { name: string; rawData: string }
 function textComponent (node: NodeTextComponent, _: any, context: any) {
   let value
   context.indexStack = context.stack
@@ -79,7 +100,7 @@ function textComponent (node: NodeTextComponent, _: any, context: any) {
   return value
 }
 
-type NodeContainerComponent = Parent & { name: string; fmAttributes?: Record<string, any> }
+type NodeContainerComponent = Parents & { name: string; fmAttributes?: Record<string, any> }
 let nest = 0
 function containerComponent (node: NodeContainerComponent, _: any, context: any) {
   context.indexStack = context.stack
@@ -123,7 +144,7 @@ containerComponent.peek = function peekComponent () {
   return ':'
 }
 
-function label (node: Parent, context: any) {
+function label (node: Parents, context: State) {
   let label: any = node
 
   if ((node.type as string) === 'containerComponent') {
@@ -132,14 +153,14 @@ function label (node: Parent, context: any) {
   }
 
   const exit = context.enter('label')
-  const subexit = context.enter(node.type + 'Label')
+  const subexit = context.enter((node.type as string + 'Label') as any)
   const value = containerPhrasing(label, context, { before: '[', after: ']' })
   subexit()
   exit()
   return value ? '[' + value + ']' : ''
 }
 
-function attributes (node: Parent, context: any) {
+function attributes (node: any, context: State) {
   const quote = checkQuote(context)
   const subset = (node.type as string) === 'textComponent' ? [quote] : [quote, '\n', '\r']
   const attrs = (node as any).attributes || {}
@@ -196,11 +217,11 @@ function attributes (node: Parent, context: any) {
   }
 }
 
-function content (node: Parent, context: any) {
+function content (node: any, context: State) {
   const content = inlineComponentLabel(node) ? Object.assign({}, node, { children: node.children.slice(1) }) : node
   return containerFlow(content, context)
 }
 
-function inlineComponentLabel (node: Parent) {
+function inlineComponentLabel (node: any) {
   return node.children && node.children[0] && node.children[0].data && node.children[0].data.componentLabel
 }

@@ -16,12 +16,16 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: '16'
-          cache: yarn
-      - run: yarn install
-      - run: yarn lint
-      - run: yarn test
-      - run: yarn build
+          node-version: '18'
+      - uses: pnpm/action-setup@v2.2.4
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8
+      - run: pnpm install
+      - run: pnpm lint
+      - run: pnpm test
+      - run: pnpm build
       - uses: codecov/codecov-action@v2
       - name: Release Edge
         if: |

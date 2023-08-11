@@ -1,5 +1,4 @@
-import { unified } from 'unified'
-import type { Preset } from 'unified'
+import { unified, type Preset } from 'unified'
 import parse from 'remark-parse'
 import gfm from 'remark-gfm'
 import strigify from 'remark-stringify'
