@@ -27,7 +27,7 @@
     "generate": "nuxi generate playground",
     "lint": "eslint --ext .js,.ts,.vue .",
     "test": "yarn lint && vitest run",
-    "prepare": "yarn build",
+    "prepack": "yarn build",
     "release": "release-it"
   },
   "dependencies": {
