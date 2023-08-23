@@ -1,4 +1,4 @@
-import type { Effects, State, Code } from 'micromark-util-types'
+import type { Effects, State, Code, TokenTypeMap } from './types'
 import { Codes } from './constants'
 
 // Measure the number of character codes in chunks.
@@ -41,7 +41,7 @@ export function linePrefixSize (events: any[]) {
 /**
  * Manage token state
  */
-export const useTokenState = (tokenName: string) => {
+export const useTokenState = (tokenName: keyof TokenTypeMap) => {
   const token = {
     isOpen: false,
     /**
@@ -99,12 +99,12 @@ function checkCodeFenced (effects: Effects, ok: State, nok: State) {
 
   return start
 
-  function start (code: Code): State | void {
+  function start (code: Code): State | undefined {
     effects.enter('codeFenced')
     return after(code)
   }
 
-  function after (code: Code): State | void {
+  function after (code: Code): State | undefined {
     if (code === Codes.backTick) {
       backTickCount++
       effects.consume(code)

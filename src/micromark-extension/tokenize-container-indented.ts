@@ -1,4 +1,4 @@
-import type { Effects, State, TokenizeContext, Code } from 'micromark-util-types'
+import type { Effects, State, TokenizeContext, Code } from './types'
 import { codeFenced } from 'micromark-core-commonmark'
 import { factorySpace } from 'micromark-factory-space'
 import { prefixSize } from './utils'

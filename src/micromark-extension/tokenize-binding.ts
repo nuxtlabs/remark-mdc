@@ -1,4 +1,4 @@
-import type { Effects, State, Code, TokenizeContext } from 'micromark-util-types'
+import type { Effects, State, Code, TokenizeContext } from './types'
 import { Codes } from './constants'
 
 function attempClose (this: TokenizeContext, effects: Effects, ok: State, nok: State) {
@@ -38,7 +38,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return secondBracket
   }
 
-  function secondBracket (code: Code): void | State {
+  function secondBracket (code: Code): undefined | State {
     if (code !== Codes.openingCurlyBracket) {
       return nok(code)
     }
@@ -49,7 +49,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return content
   }
 
-  function content (code: Code): void | State {
+  function content (code: Code): undefined | State {
     if (code === Codes.closingCurlyBracket) {
       return effects.attempt({ tokenize: attempClose, partial: true }, close, (code) => {
         effects.consume(code)
@@ -61,7 +61,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return content
   }
 
-  function close (code: Code): void | State {
+  function close (code: Code): undefined | State {
     return ok(code)
   }
 }

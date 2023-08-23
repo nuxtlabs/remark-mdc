@@ -15,7 +15,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
 
   return start
 
-  function start (code: Code): void | State {
+  function start (code: Code): State | undefined {
     if (code !== Codes.openingSquareBracket) {
       throw new Error('expected `[`')
     }
@@ -36,12 +36,12 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return effects.check(doubleBracketCheck, nok, attemptLabel)(code)
   }
 
-  function attemptLabel (code: Code): void | State {
+  function attemptLabel (code: Code): State | undefined {
     effects.enter('textSpan')
     return effects.attempt(label, exit as State, nok)(code)
   }
 
-  function exit (code: Code): void | State {
+  function exit (code: Code): State | undefined {
     // Prevent conflict with link syntax
     if (code === Codes.openingParentheses || code === Codes.openingSquareBracket) {
       return nok(code)
@@ -54,7 +54,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return exitOK(code)
   }
 
-  function exitOK (code: Code): void | State {
+  function exitOK (code: Code): State | undefined {
     effects.exit('textSpan')
     return ok(code)
   }
@@ -74,13 +74,13 @@ export default {
 function checkGfmTaskCheckbox (effects: Effects, ok: State, nok: State) {
   return enter
 
-  function enter (code: Code): void | State {
+  function enter (code: Code): State | undefined {
     effects.enter('formGfmTaskCheckbox')
     effects.consume(code)
     return check
   }
 
-  function check (code: Code): void | State {
+  function check (code: Code): State | undefined {
     if (markdownSpace(code)) {
       effects.consume(code)
       return check
@@ -102,13 +102,13 @@ function checkGfmTaskCheckbox (effects: Effects, ok: State, nok: State) {
 function checkDoubleBracket (effects: Effects, ok: State, nok: State) {
   return enter
 
-  function enter (code: Code): void | State {
+  function enter (code: Code): State | undefined {
     effects.enter('doubleBracket')
     effects.consume(code)
     return check
   }
 
-  function check (code: Code): void | State {
+  function check (code: Code): State | undefined {
     if (code !== Codes.openingSquareBracket) {
       return nok(code)
     }

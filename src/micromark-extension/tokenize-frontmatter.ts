@@ -1,4 +1,4 @@
-import type { Effects, State, TokenizeContext, Code } from 'micromark-util-types'
+import type { Effects, State, TokenizeContext, Code } from './types'
 import { factorySpace } from 'micromark-factory-space'
 import { markdownLineEnding, markdownSpace } from 'micromark-util-character'
 import { Codes, SectionSequenceSize } from './constants'
@@ -27,7 +27,7 @@ export function tokenizeFrontMatter (
 
     return closingPrefixAfter
 
-    function dataLineFirstSpaces (code: Code): State | void {
+    function dataLineFirstSpaces (code: Code): State | undefined {
       if (markdownSpace(code)) {
         effects.consume(code)
         sectionIndentSize += 1
@@ -37,7 +37,7 @@ export function tokenizeFrontMatter (
       return closingPrefixAfter(code)
     }
 
-    function closingPrefixAfter (code: Code): State | void {
+    function closingPrefixAfter (code: Code): State | undefined {
       if (markdownSpace(code)) {
         effects.enter('space')
         return dataLineFirstSpaces(code)
@@ -49,7 +49,7 @@ export function tokenizeFrontMatter (
       return closingSectionSequence(code)
     }
 
-    function closingSectionSequence (code: Code): State | void {
+    function closingSectionSequence (code: Code): State | undefined {
       if (code === Codes.dash || markdownSpace(code)) {
         effects.consume(code)
         size++
@@ -69,7 +69,7 @@ export function tokenizeFrontMatter (
   /**
    * Enter data section
    */
-  function dataSectionOpen (code: Code): State | void {
+  function dataSectionOpen (code: Code): State | undefined {
     effects.enter('componentContainerDataSection')
     return effects.attempt({
       tokenize: tokenizeDataSection as any,
@@ -80,7 +80,7 @@ export function tokenizeFrontMatter (
   /**
    *  Data section line
    */
-  function dataChunkStart (code: Code): State | void {
+  function dataChunkStart (code: Code): State | undefined {
     if (code === null) {
       effects.exit('componentContainerDataSection')
       effects.exit('componentContainer')
@@ -100,7 +100,7 @@ export function tokenizeFrontMatter (
   /**
    * Data section content
    */
-  function dataContentContinue (code: Code): State | void {
+  function dataContentContinue (code: Code): State | undefined {
     if (code === null) {
       effects.exit('chunkDocument')
       effects.exit('componentContainerDataSection')
@@ -124,7 +124,7 @@ export function tokenizeFrontMatter (
   /**
    * Exit data section
    */
-  function dataSectionClose (code: Code): State | void {
+  function dataSectionClose (code: Code): State | undefined {
     effects.exit('componentContainerDataSection')
     return factorySpace(effects, next, 'whitespace')(code)
   }

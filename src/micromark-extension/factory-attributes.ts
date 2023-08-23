@@ -1,4 +1,4 @@
-import type { Effects, State } from 'micromark-util-types'
+import type { Effects, State, TokenTypeMap } from './types'
 import { factorySpace } from 'micromark-factory-space'
 import { factoryWhitespace } from 'micromark-factory-whitespace'
 
@@ -15,20 +15,20 @@ export default function createAttributes (
   effects: Effects,
   ok: State,
   nok: State,
-  attributesType: string,
-  attributesMarkerType: string,
-  attributeType: string,
-  attributeIdType: string,
-  attributeClassType: string,
-  attributeNameType: string,
-  attributeInitializerType: string,
-  attributeValueLiteralType: string,
-  attributeValueType: string,
-  attributeValueMarker: string,
-  attributeValueData: string,
+  attributesType: keyof TokenTypeMap,
+  attributesMarkerType: keyof TokenTypeMap,
+  attributeType: keyof TokenTypeMap,
+  attributeIdType: keyof TokenTypeMap,
+  attributeClassType: keyof TokenTypeMap,
+  attributeNameType: keyof TokenTypeMap,
+  attributeInitializerType: keyof TokenTypeMap,
+  attributeValueLiteralType: keyof TokenTypeMap,
+  attributeValueType: keyof TokenTypeMap,
+  attributeValueMarker: keyof TokenTypeMap,
+  attributeValueData: keyof TokenTypeMap,
   disallowEol?: boolean
 ) {
-  let type: string
+  let type: keyof TokenTypeMap
   let marker: number | undefined
 
   return start
@@ -74,9 +74,9 @@ export default function createAttributes (
   function shortcutStart (code: number) {
     effects.enter(attributeType)
     effects.enter(type)
-    effects.enter(type + 'Marker')
+    effects.enter(type + 'Marker' as keyof TokenTypeMap)
     effects.consume(code)
-    effects.exit(type + 'Marker')
+    effects.exit(type + 'Marker' as keyof TokenTypeMap)
     return shortcutStartAfter
   }
 
@@ -97,7 +97,7 @@ export default function createAttributes (
       return nok(code)
     }
 
-    effects.enter(type + 'Value')
+    effects.enter(type + 'Value' as keyof TokenTypeMap)
     effects.consume(code)
     return shortcut
   }
@@ -116,7 +116,7 @@ export default function createAttributes (
     }
 
     if (code === Codes.hash || code === Codes.dot || code === Codes.closingCurlyBracket || markdownLineEndingOrSpace(code)) {
-      effects.exit(type + 'Value')
+      effects.exit(type + 'Value' as keyof TokenTypeMap)
       effects.exit(type)
       effects.exit(attributeType)
       return between(code)

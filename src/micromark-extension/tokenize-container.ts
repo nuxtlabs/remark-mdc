@@ -1,4 +1,4 @@
-import type { Effects, State, Code, TokenizeContext } from 'micromark-util-types'
+import type { Effects, State, Code, TokenizeContext } from './types'
 import { factorySpace } from 'micromark-factory-space'
 import { markdownLineEnding, asciiAlpha, markdownSpace } from 'micromark-util-character'
 import { linePrefixSize, tokenizeCodeFence, useTokenState } from './utils'
@@ -33,7 +33,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
    */
   return start
 
-  function start (code: Code): State | void {
+  function start (code: Code): State | undefined {
     /* istanbul ignore if - handled by mm */
     if (code !== Codes.colon) { throw new Error('expected `:`') }
     effects.enter('componentContainer')
@@ -48,7 +48,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     let revertSectionState: () => void
     return closingPrefixAfter
 
-    function closingPrefixAfter (code: Code): State | void {
+    function closingPrefixAfter (code: Code): State | undefined {
       sectionIndentSize = linePrefixSize(self.events)
 
       // Close section
@@ -58,7 +58,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
       return closingSectionSequence(code)
     }
 
-    function closingSectionSequence (code: Code): State | void {
+    function closingSectionSequence (code: Code): State | undefined {
       if (code === slotSeparatorCode) {
         effects.consume(code)
         size++
@@ -88,7 +88,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     }
   }
 
-  function sectionOpen (code: Code): void | State {
+  function sectionOpen (code: Code): undefined | State {
     // Open new Section
     section.enter(effects)
 
@@ -100,7 +100,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return sectionTitle(code)
   }
 
-  function sectionTitle (code: Code): State | void {
+  function sectionTitle (code: Code): State | undefined {
     if (markdownLineEnding(code)) {
       effects.exit('componentContainerSectionTitle')
       return factorySpace(effects, lineStart, 'linePrefix', 4)(code)
@@ -109,7 +109,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return sectionTitle
   }
 
-  function sequenceOpen (code: Code): State | void {
+  function sequenceOpen (code: Code): State | undefined {
     if (code === Codes.colon) {
       effects.consume(code)
       sizeOpen++
@@ -124,23 +124,23 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return createName.call(self, effects, afterName, nok, 'componentContainerName')(code)
   }
 
-  function afterName (code: Code): State | void {
+  function afterName (code: Code): State | undefined {
     return code === Codes.openingSquareBracket
       ? effects.attempt(label, afterLabel, afterLabel)(code)
       : afterLabel(code)
   }
 
-  function afterLabel (code: Code): State | void {
+  function afterLabel (code: Code): State | undefined {
     return code === Codes.openingCurlyBracket
       ? effects.attempt(attributes, afterAttributes, afterAttributes)(code)
       : afterAttributes(code)
   }
 
-  function afterAttributes (code: Code): State | void {
+  function afterAttributes (code: Code): State | undefined {
     return factorySpace(effects, openAfter, 'whitespace')(code)
   }
 
-  function openAfter (code: Code): State | void {
+  function openAfter (code: Code): State | undefined {
     effects.exit('componentContainerFence')
 
     if (code === null) {
@@ -159,7 +159,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return nok(code)
   }
 
-  function contentStart (code: Code): State | void {
+  function contentStart (code: Code): State | undefined {
     if (code === null) {
       effects.exit('componentContainer')
       return ok(code)
@@ -173,7 +173,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return lineStart(code)
   }
 
-  function lineStartAfterPrefix (code: Code): State | void {
+  function lineStartAfterPrefix (code: Code): State | undefined {
     if (code === null) {
       return after(code)
     }
@@ -217,7 +217,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return chunkStart(code)
   }
 
-  function lineStart (code: Code): State | void {
+  function lineStart (code: Code): State | undefined {
     if (code === null) {
       return after(code)
     }
@@ -227,7 +227,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
       : lineStartAfterPrefix(code)
   }
 
-  function chunkStart (code: Code): State | void {
+  function chunkStart (code: Code): State | undefined {
     if (code === null) {
       return after(code)
     }
@@ -245,7 +245,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return contentContinue(code)
   }
 
-  function contentContinue (code: Code): State | void {
+  function contentContinue (code: Code): State | undefined {
     if (code === null) {
       effects.exit('chunkDocument')
       return after(code)
@@ -261,7 +261,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return contentContinue
   }
 
-  function after (code: Code): State | void {
+  function after (code: Code): State | undefined {
     // Close section
     section.exit(effects)
     effects.exit('componentContainerContent')
@@ -274,13 +274,13 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
 
     return factorySpace(effects, closingPrefixAfter, 'linePrefix', 4)
 
-    function closingPrefixAfter (code: Code): State | void {
+    function closingPrefixAfter (code: Code): State | undefined {
       effects.enter('componentContainerFence')
       effects.enter('componentContainerSequence')
       return closingSequence(code)
     }
 
-    function closingSequence (code: Code): State | void {
+    function closingSequence (code: Code): State | undefined {
       if (code === Codes.colon) {
         effects.consume(code)
         size++
@@ -300,7 +300,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
       return factorySpace(effects, closingSequenceEnd, 'whitespace')(code)
     }
 
-    function closingSequenceEnd (code: Code): State | void {
+    function closingSequenceEnd (code: Code): State | undefined {
       if (code === null || markdownLineEnding(code)) {
         effects.exit('componentContainerFence')
         return ok(code)

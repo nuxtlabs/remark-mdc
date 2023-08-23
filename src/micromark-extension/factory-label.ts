@@ -1,4 +1,4 @@
-import type { Effects, State } from 'micromark-util-types'
+import type { Effects, State, TokenTypeMap } from './types'
 import { markdownLineEnding } from 'micromark-util-character'
 import { Codes } from './constants'
 
@@ -11,9 +11,9 @@ export default function createLabel (
   effects: Effects,
   ok: State,
   nok: State,
-  type: string,
-  markerType: string,
-  stringType: string,
+  type: keyof TokenTypeMap,
+  markerType: keyof TokenTypeMap,
+  stringType: keyof TokenTypeMap,
   disallowEol?: boolean
 ) {
   let size = 0
