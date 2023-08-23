@@ -36,3 +36,14 @@ export async function markdownToAST(markdown) {
   return file.result
 }
 ```
+
+## 💻 Development
+
+- Clone repository
+- Install dependencies using `pnpm install`
+- Prepare using `pnpm dev:prepare`
+- Try playground using `pnpm dev`
+
+## License
+
+[MIT](./LICENSE) - Made with 💚
