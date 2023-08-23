@@ -1,6 +1,6 @@
-import type { Effects, State, TokenizeContext, Code } from './types'
 import { codeFenced } from 'micromark-core-commonmark'
 import { factorySpace } from 'micromark-factory-space'
+import type { Effects, State, TokenizeContext, Code } from './types'
 import { prefixSize } from './utils'
 import componentContainer from './tokenize-container'
 import { Codes } from './constants'

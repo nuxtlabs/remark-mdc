@@ -32,8 +32,6 @@ declare module 'micromark-util-types' {
     bindingContent: 'bindingContent',
     bindingFence: 'bindingFence',
 
-    
-
     // Component Text
     componentText: 'componentText',
     componentTextMarker: 'componentTextMarker',

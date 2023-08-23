@@ -1,6 +1,6 @@
-import type { Effects, State, TokenizeContext, Code } from './types'
 import { markdownLineEnding } from 'micromark-util-character'
 import { factorySpace } from 'micromark-factory-space'
+import type { Effects, State, TokenizeContext, Code } from './types'
 import componentContainer from './tokenize-inline'
 import { Codes } from './constants'
 

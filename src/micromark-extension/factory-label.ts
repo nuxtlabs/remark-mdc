@@ -1,5 +1,5 @@
-import type { Effects, State, TokenTypeMap } from './types'
 import { markdownLineEnding } from 'micromark-util-character'
+import type { Effects, State, TokenTypeMap } from './types'
 import { Codes } from './constants'
 
 // This is a fork of:

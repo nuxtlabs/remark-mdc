@@ -1,5 +1,5 @@
-import type { Effects, State, Code, TokenizeContext, TokenTypeMap } from './types'
 import { asciiAlpha, asciiAlphanumeric } from 'micromark-util-character'
+import type { Effects, State, Code, TokenizeContext, TokenTypeMap } from './types'
 import { Codes } from './constants'
 
 export default function createName (this: TokenizeContext, effects: Effects, ok: State, nok: State, nameType: keyof TokenTypeMap) {

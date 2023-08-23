@@ -1,6 +1,6 @@
-import type { Effects, State, TokenizeContext, Code } from './types'
 import { factorySpace } from 'micromark-factory-space'
 import { markdownLineEnding, markdownSpace } from 'micromark-util-character'
+import type { Effects, State, TokenizeContext, Code } from './types'
 import { Codes, SectionSequenceSize } from './constants'
 import { linePrefixSize } from './utils'
 

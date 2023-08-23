@@ -1,4 +1,3 @@
-import type { Effects, State, TokenTypeMap } from './types'
 import { factorySpace } from 'micromark-factory-space'
 import { factoryWhitespace } from 'micromark-factory-whitespace'
 
@@ -9,6 +8,7 @@ import {
   asciiAlphanumeric,
   markdownSpace
 } from 'micromark-util-character'
+import type { Effects, State, TokenTypeMap } from './types'
 import { Codes } from './constants'
 
 export default function createAttributes (

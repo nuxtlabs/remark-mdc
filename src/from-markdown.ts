@@ -4,9 +4,9 @@
  * Version: 2.1.0
  * License: MIT (https://github.com/syntax-tree/mdast-util-directive/blob/main/license)
  */
-import type { Token } from './micromark-extension/types'
 import { parseEntities } from 'parse-entities'
 import { kebabCase } from 'scule'
+import type { Token } from './micromark-extension/types'
 
 const canContainEols = ['textComponent']
 const enter = {

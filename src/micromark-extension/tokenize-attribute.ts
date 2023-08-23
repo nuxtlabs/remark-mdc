@@ -1,5 +1,5 @@
-import type { Effects, State, Code, TokenizeContext } from './types'
 import { markdownLineEnding } from 'micromark-util-character'
+import type { Effects, State, Code, TokenizeContext } from './types'
 import { Codes } from './constants'
 import createAttributes from './factory-attributes'
 
