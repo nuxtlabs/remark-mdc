@@ -2,6 +2,7 @@ import { describe, expect } from 'vitest'
 import { runMarkdownTests } from './utils'
 
 describe('span', async () => {
+  // @ts-ignore
   const wikiLink = await import('remark-wiki-link').then(r => r.default)
 
   runMarkdownTests({

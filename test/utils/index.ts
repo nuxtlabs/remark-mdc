@@ -8,7 +8,7 @@ import mdc from '../../src'
 interface MarkdownTest {
   markdown: string
   expected?: string
-  extra?: (markdown, ast, expected) => void,
+  extra?: (markdown: string, ast: any, expected: string) => void,
   plugins?: any[]
 }
 

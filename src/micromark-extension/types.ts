@@ -1,4 +1,41 @@
-export type { Effects, State, Code, TokenizeContext, TokenTypeMap } from 'micromark-util-types'
+import type { CompileContext as MdastCompileContext } from 'mdast-util-from-markdown'
+import type { Parent } from 'mdast-util-from-markdown/lib'
+import type { CompileContext as MicromarkCompileContext } from 'micromark-util-types'
+export type { Effects, State, Code, TokenizeContext, TokenTypeMap, Token } from 'micromark-util-types'
+export type { Fragment, Nodes } from 'mdast-util-from-markdown/lib'
+
+export type CompileContext = MicromarkCompileContext & MdastCompileContext
+
+export type Container = Parent & {
+  type: 'componentContainer'
+  rawData?: string
+}
+
+export type ComponentContainerSection = Parent & {
+  type: 'componentContainerSection'
+  rawData?: string
+}
+
+export type ComponentContainerDataSection = Parent & {
+  type: 'componentContainerDataSection'
+  rawData?: string
+}
+
+export type TextComponent = Partial<Parent> & {
+  type: 'textComponent'
+  name: string
+  attributes: Record<string, any>
+}
+
+declare module 'mdast' {
+  interface RootContentMap {
+    componentContainer: Container
+    componentText: Container
+    componentContainerSection: ComponentContainerSection
+    componentContainerDataSection: ComponentContainerDataSection
+    textComponent: TextComponent
+  }
+}
 
 declare module 'micromark-util-types' {
   interface TokenTypeMap {
@@ -58,5 +95,9 @@ declare module 'micromark-util-types' {
     // Others
     formGfmTaskCheckbox: 'formGfmTaskCheckbox'
     doubleBracket: 'doubleBracket'
+  }
+
+  interface CompileData {
+    componentAttributes: [string, any][]
   }
 }
