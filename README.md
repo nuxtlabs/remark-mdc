@@ -2,8 +2,6 @@
 
 Remark plugin to support MDC Syntax
 
-
-
 ## Install
 
 ```bash
@@ -16,13 +14,13 @@ npm install --save-dev remark-mdc
 ## Use
 
 ```js
-import { unified, Preset } from 'unified';
-import parse from 'remark-parse'
-import remarkMDC from 'remark-mdc'
+import { unified } from 'unified';
+import parse from 'remark-parse';
+import remarkMDC from 'remark-mdc';
 
 function compiler() {
   this.Compiler = function(root) {
-    return root
+    return root;
   }
 }
 
@@ -30,19 +28,19 @@ export async function markdownToAST(markdown) {
   let stream = unified()
     .use(parse)
     .use(remarkMDC)
-    .use(compiler)
+    .use(compiler);
 
-  const file = await stream.process(markdown)
-  return file.result
+  const file = await stream.process(markdown);
+  return file.result;
 }
 ```
 
 ## 💻 Development
 
-- Clone repository
+- Clone the repository
 - Install dependencies using `pnpm install`
-- Prepare using `pnpm dev:prepare`
-- Try playground using `pnpm dev`
+- Prepare using `pnpm run dev:prepare`
+- Try the playground using `pnpm run dev`
 
 ## License
 
