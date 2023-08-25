@@ -39,8 +39,6 @@ export default defineAppConfig({
       exclude: [],
       fluid: false,
       title: 'Remark MDC'
-    },
-
-    titleTemplate: '%s · Remark MDC'
+    }
   }
 })
