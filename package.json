@@ -61,6 +61,7 @@
     "eslint-plugin-nuxt": "latest",
     "jiti": "^1.19.3",
     "nuxt": "^3.6.5",
+    "release-it": "^16.1.5",
     "remark-gfm": "^3.0.1",
     "remark-parse": "^10.0.2",
     "remark-stringify": "^10.0.3",
