@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v1.2.0
+
+[compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v1.1.3...v1.2.0)
+
+### 📖 Documentation
+
+- Enable auto-imports ([291ba74](https://github.com/nuxtlabs/remark-mdc/commit/291ba74))
+- Setup & syntax ([3ff2123](https://github.com/nuxtlabs/remark-mdc/commit/3ff2123))
+- Fluid layout ([aa4cf4a](https://github.com/nuxtlabs/remark-mdc/commit/aa4cf4a))
+- Codesandbox url ([e2defd2](https://github.com/nuxtlabs/remark-mdc/commit/e2defd2))
+- Update cover ([b3159bb](https://github.com/nuxtlabs/remark-mdc/commit/b3159bb))
+- Typos ([5da97a9](https://github.com/nuxtlabs/remark-mdc/commit/5da97a9))
+
+### 🏡 Chore
+
+- **app:** Initial commit by Nuxt Studio ([c1d3e14](https://github.com/nuxtlabs/remark-mdc/commit/c1d3e14))
+- **deployment:** Add workflow file ([be627a8](https://github.com/nuxtlabs/remark-mdc/commit/be627a8))
+- Upgrade deps & adopt pnpm ([ec1b124](https://github.com/nuxtlabs/remark-mdc/commit/ec1b124))
+- Update license ([a70da37](https://github.com/nuxtlabs/remark-mdc/commit/a70da37))
+- Update deps ([72107ef](https://github.com/nuxtlabs/remark-mdc/commit/72107ef))
+- Improve types ([e8e3263](https://github.com/nuxtlabs/remark-mdc/commit/e8e3263))
+- Update README ([d58367f](https://github.com/nuxtlabs/remark-mdc/commit/d58367f))
+- Update types ([0c25732](https://github.com/nuxtlabs/remark-mdc/commit/0c25732))
+- Add release-it ([40b2568](https://github.com/nuxtlabs/remark-mdc/commit/40b2568))
+
+### 🤖 CI
+
+- Prepare before lint ([f6a165f](https://github.com/nuxtlabs/remark-mdc/commit/f6a165f))
+
+### ❤️ Contributors
+
+- Farnabaz <farnabaz@gmail.com>
+
 ### [1.1.3](https://github.com/nuxtlabs/remark-mdc/compare/v1.1.2...v1.1.3) (2022-11-30)
 
 
