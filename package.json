@@ -8,15 +8,9 @@
   ],
   "repository": "https://github.com/nuxtlabs/remark-mdc",
   "license": "MIT",
-  "exports": {
-    ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
-    }
-  },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
+  "exports": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "type": "module",
   "files": [
     "dist"
   ],
@@ -52,15 +46,15 @@
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
-    "@nuxt/kit": "^3.6.5",
+    "@nuxt/kit": "^3.7.0",
     "@nuxtjs/eslint-config-typescript": "latest",
     "@types/flat": "^5.0.2",
     "@types/js-yaml": "^4.0.5",
-    "@types/node": "^20.5.6",
-    "eslint": "^8.47.0",
+    "@types/node": "^20.5.7",
+    "eslint": "^8.48.0",
     "eslint-plugin-nuxt": "latest",
     "jiti": "^1.19.3",
-    "nuxt": "^3.6.5",
+    "nuxt": "^3.7.0",
     "release-it": "^16.1.5",
     "remark-gfm": "^3.0.1",
     "remark-parse": "^10.0.2",
