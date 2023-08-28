@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v2.0.0
+
+[compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v1.2.0...v2.0.0)
+
+### 🚀 Enhancements
+
+- ESM ([eba88e2](https://github.com/nuxtlabs/remark-mdc/commit/eba88e2))
+
+### 📖 Documentation
+
+- Add lockfile ([d8d722f](https://github.com/nuxtlabs/remark-mdc/commit/d8d722f))
+- Update index title ([dbcf91e](https://github.com/nuxtlabs/remark-mdc/commit/dbcf91e))
+- Update social image ([143d93d](https://github.com/nuxtlabs/remark-mdc/commit/143d93d))
+
+### ❤️ Contributors
+
+- Farnabaz <farnabaz@gmail.com>
+
 ## v1.2.0
 
 [compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v1.1.3...v1.2.0)
