@@ -65,11 +65,14 @@ const exit = {
 
 // Bindings
 function enterBindingContent (this: CompileContext, token: Token) {
+  const bindingValue = this.sliceSerialize(token).split('|');
+
   this.enter({
     type: 'textComponent',
     name: 'binding',
     attributes: {
-      value: this.sliceSerialize(token).trim()
+      value: bindingValue[0].trim(),
+      defaultValue: bindingValue.length > 1 ? bindingValue[1].trim() : null,
     }
   }, token)
 }
