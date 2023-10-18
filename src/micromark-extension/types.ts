@@ -9,6 +9,9 @@ export type CompileContext = MicromarkCompileContext & MdastCompileContext
 export type Container = Parent & {
   type: 'componentContainer'
   rawData?: string
+  mdc?: {
+    unwrapped?: string
+  }
 }
 
 export type ComponentContainerSection = Parent & {

@@ -9,18 +9,19 @@ interface MarkdownTest {
   markdown: string
   expected?: string
   extra?: (markdown: string, ast: any, expected: string) => void,
-  plugins?: any[]
+  plugins?: any[],
+  mdcOptions?: Record<string, any>
 }
 
 export function runMarkdownTests (tests: Record<string, MarkdownTest>) {
   for (const key in tests) {
-    const { markdown, expected, extra, plugins = [] } = tests[key]
+    const { markdown, expected, extra, plugins = [], mdcOptions = {} } = tests[key]
     test(key, async () => {
-      const ast = await markdownToAST(markdown, plugins)
+      const ast = await markdownToAST(markdown, plugins, mdcOptions)
 
       expect(ast).toMatchSnapshot()
 
-      const regenertedMarkdown = await astToMarkdown(ast, plugins)
+      const regenertedMarkdown = await astToMarkdown(ast, plugins, mdcOptions)
       expect(regenertedMarkdown.trim()).toEqual(expected || markdown)
       if (extra) {
         extra(markdown, ast, expected || markdown)
@@ -29,7 +30,7 @@ export function runMarkdownTests (tests: Record<string, MarkdownTest>) {
   }
 }
 
-async function markdownToAST (markdown: string, plugins = [] as any[]) {
+async function markdownToAST (markdown: string, plugins = [] as any[], mdcOptions = {}) {
   function compiler (this: any) {
     this.Compiler = function (root: any) {
       return root
@@ -39,7 +40,7 @@ async function markdownToAST (markdown: string, plugins = [] as any[]) {
   let stream = unified()
     .use(parse)
     .use(gfm)
-    .use(mdc)
+    .use(mdc, mdcOptions)
 
   for (const plugin of plugins) {
     stream = stream.use(plugin)
@@ -49,7 +50,7 @@ async function markdownToAST (markdown: string, plugins = [] as any[]) {
   return file.result
 }
 
-async function astToMarkdown (ast: any, plugins = [] as any[]) {
+async function astToMarkdown (ast: any, plugins = [] as any[], mdcOptions = {}) {
   function jsonParser (this: any) {
     this.Parser = function (root: any) {
       return JSON.parse(root)
@@ -58,7 +59,7 @@ async function astToMarkdown (ast: any, plugins = [] as any[]) {
   const stream = await unified()
     .use(jsonParser)
     .use(gfm)
-    .use(mdc)
+    .use(mdc, mdcOptions)
 
   for (const plugin of plugins) {
     stream.use(plugin)

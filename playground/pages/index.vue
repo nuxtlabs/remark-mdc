@@ -1,59 +1,25 @@
 <template>
-  <div class="flex">
-    <textarea v-model="markdown" class="flex-1" />
-    <pre class="flex-1">{{ ast }}</pre>
-    <pre class="flex-1">{{ md }}</pre>
+  <div>
+    <label for="">
+      <input v-model="mdcOptions.experimental.autoUnwrap" type="checkbox"> auto unwrap
+    </label>
+    <div class="flex">
+      <textarea v-model="markdown" class="flex-1" />
+      <pre class="flex-1">{{ ast }}</pre>
+      <pre class="flex-1">{{ md }}</pre>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const markdown = ref(`# Hello World
-
-[span]
-
-- [ ] Task 1 [span]
-- [x] Task 2
-
+const mdcOptions = ref({ experimental: { autoUnwrap: true } })
+const markdown = ref(`
 ::simple-text
-test
-::
-
-::single-empty-slot
-#slot
-::
-
-::with-frontmatter
----
-key: value
-array:
-  - item
-  - itemKey: value
----
-::
-
-::with-frontmatter-and-nested-component
----
-key: value
-array:
-  - item
-  - itemKey: value
----
-Default slot
-
-#secondary-slot
-
-Secondary slot value
-
-  :::hello
-  ---
-  key: value
-  ---
-  :::
-
+test [q] a
 ::
 `)
-const ast = useMarkdownParser(markdown)
-const md = useMarkdownGenerator(ast)
+const ast = useMarkdownParser(markdown, mdcOptions)
+const md = useMarkdownGenerator(ast, mdcOptions)
 </script>
 
 <style>
