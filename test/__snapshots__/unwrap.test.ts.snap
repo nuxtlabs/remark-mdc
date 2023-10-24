@@ -1,0 +1,437 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`auto-unwrap > componentChildren 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "attributes": {},
+          "children": [],
+          "data": {
+            "hName": "another-component",
+            "hProperties": {},
+          },
+          "fmAttributes": {},
+          "name": "another-component",
+          "position": {
+            "end": {
+              "column": 6,
+              "line": 3,
+              "offset": 35,
+            },
+            "start": {
+              "column": 3,
+              "line": 2,
+              "offset": 9,
+            },
+          },
+          "type": "containerComponent",
+        },
+      ],
+      "data": {
+        "hName": "test",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "name": "test",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 4,
+          "offset": 38,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 4,
+      "offset": 38,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`auto-unwrap > simple 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "position": {
+            "end": {
+              "column": 12,
+              "line": 2,
+              "offset": 18,
+            },
+            "start": {
+              "column": 1,
+              "line": 2,
+              "offset": 7,
+            },
+          },
+          "type": "text",
+          "value": "Hello World",
+        },
+      ],
+      "data": {
+        "hName": "test",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "mdc": {
+        "unwrapped": "paragraph",
+      },
+      "name": "test",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 3,
+          "offset": 21,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 3,
+      "offset": 21,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`auto-unwrap > slot 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "attributes": {},
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 12,
+                  "line": 3,
+                  "offset": 25,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 3,
+                  "offset": 14,
+                },
+              },
+              "type": "text",
+              "value": "Hello World",
+            },
+          ],
+          "data": {
+            "hName": "component-slot",
+            "hProperties": {
+              "v-slot:title": "",
+            },
+          },
+          "mdc": {
+            "unwrapped": "paragraph",
+          },
+          "name": "title",
+          "position": {
+            "end": {
+              "column": 3,
+              "line": 4,
+              "offset": 28,
+            },
+            "start": {
+              "column": 2,
+              "line": 2,
+              "offset": 8,
+            },
+          },
+          "type": "componentContainerSection",
+        },
+      ],
+      "data": {
+        "hName": "test",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "name": "test",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 4,
+          "offset": 28,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 4,
+      "offset": 28,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`auto-unwrap > twoChildren 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 8,
+                  "line": 2,
+                  "offset": 14,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 2,
+                  "offset": 7,
+                },
+              },
+              "type": "text",
+              "value": "Foo bar",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 8,
+              "line": 2,
+              "offset": 14,
+            },
+            "start": {
+              "column": 1,
+              "line": 2,
+              "offset": 7,
+            },
+          },
+          "type": "paragraph",
+        },
+        {
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 12,
+                  "line": 4,
+                  "offset": 27,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 4,
+                  "offset": 16,
+                },
+              },
+              "type": "text",
+              "value": "Hello World",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 12,
+              "line": 4,
+              "offset": 27,
+            },
+            "start": {
+              "column": 1,
+              "line": 4,
+              "offset": 16,
+            },
+          },
+          "type": "paragraph",
+        },
+      ],
+      "data": {
+        "hName": "test",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "name": "test",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 5,
+          "offset": 30,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 5,
+      "offset": 30,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`auto-unwrap > twoSlots 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "position": {
+            "end": {
+              "column": 8,
+              "line": 2,
+              "offset": 14,
+            },
+            "start": {
+              "column": 1,
+              "line": 2,
+              "offset": 7,
+            },
+          },
+          "type": "text",
+          "value": "Foo bar",
+        },
+        {
+          "attributes": {},
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 12,
+                  "line": 5,
+                  "offset": 34,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 5,
+                  "offset": 23,
+                },
+              },
+              "type": "text",
+              "value": "Hello World",
+            },
+          ],
+          "data": {
+            "hName": "component-slot",
+            "hProperties": {
+              "v-slot:title": "",
+            },
+          },
+          "mdc": {
+            "unwrapped": "paragraph",
+          },
+          "name": "title",
+          "position": {
+            "end": {
+              "column": 3,
+              "line": 6,
+              "offset": 37,
+            },
+            "start": {
+              "column": 2,
+              "line": 4,
+              "offset": 17,
+            },
+          },
+          "type": "componentContainerSection",
+        },
+      ],
+      "data": {
+        "hName": "test",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "mdc": {
+        "unwrapped": "paragraph",
+      },
+      "name": "test",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 6,
+          "offset": 37,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "rawData": undefined,
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 6,
+      "offset": 37,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
