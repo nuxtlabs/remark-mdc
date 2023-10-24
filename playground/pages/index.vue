@@ -13,9 +13,49 @@
 
 <script setup lang="ts">
 const mdcOptions = ref({ experimental: { autoUnwrap: true } })
-const markdown = ref(`
+const markdown = ref(`# Hello World
+
+[span]
+
+- [ ] Task 1 [span]
+- [x] Task 2
+
 ::simple-text
-test [q] a
+test
+::
+
+::single-empty-slot
+#slot
+::
+
+::with-frontmatter
+---
+key: value
+array:
+  - item
+  - itemKey: value
+---
+::
+
+::with-frontmatter-and-nested-component
+---
+key: value
+array:
+  - item
+  - itemKey: value
+---
+Default slot
+
+#secondary-slot
+
+Secondary slot value
+
+  :::hello
+  ---
+  key: value
+  ---
+  :::
+
 ::
 `)
 const ast = useMarkdownParser(markdown, mdcOptions)
