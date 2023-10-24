@@ -6,6 +6,7 @@ import { parseFrontMatter } from './frontmatter'
 import toMarkdown from './to-markdown'
 import fromMarkdown from './from-markdown'
 import syntax from './micromark-extension'
+import type { RemarkMDCOptions } from './types'
 
 const toFrontMatter = (yamlString: string) => `---\n${yamlString}\n---`
 
@@ -16,12 +17,6 @@ declare module 'unist' {
   }
 }
 
-interface ComponentHanlder {
-  name: string
-  instance: any
-  options?: any
-}
-
 interface ComponentNode extends Node {
   name?: string
   attributes?: Record<string, any>
@@ -29,16 +24,12 @@ interface ComponentNode extends Node {
   rawData?: string
 }
 
-interface RemarkMDCOptions {
-  components?: ComponentHanlder[]
-}
-
-export default <Plugin<Array<RemarkMDCOptions>>> function ({ components = [] }: RemarkMDCOptions = {}) {
+export default <Plugin<Array<RemarkMDCOptions>>> function (opts: RemarkMDCOptions = {}) {
   const data: Record<string, any> = this.data()
 
   add('micromarkExtensions', syntax())
-  add('fromMarkdownExtensions', fromMarkdown)
-  add('toMarkdownExtensions', toMarkdown)
+  add('fromMarkdownExtensions', fromMarkdown(opts))
+  add('toMarkdownExtensions', toMarkdown(opts))
 
   function add (field: string, value: any) {
     /* istanbul ignore if - other extensions. */
@@ -49,12 +40,12 @@ export default <Plugin<Array<RemarkMDCOptions>>> function ({ components = [] }: 
     data[field].push(value)
   }
 
-  if (components.length) {
+  if (opts?.components?.length) {
     return async (tree: ComponentNode, { data }: { data: Record<string, any> }) => {
       const jobs: Promise<unknown>[] = []
       visit<ComponentNode, string[]>(tree, ['textComponent', 'leafComponent', 'containerComponent'], (node) => {
         bindNode(node)
-        const { instance: handler, options } = components.find(c => c.name === node.name) || {}
+        const { instance: handler, options } = opts.components!.find(c => c.name === node.name) || {}
         if (handler) {
           jobs.push(handler(options)(node, data))
         }

@@ -8,7 +8,7 @@ function jsonParser (this: any) {
     return JSON.parse(root)
   }
 }
-export function useMarkdownGenerator (input: Ref<object>) {
+export function useMarkdownGenerator (input: Ref<object>, mdcOptions = ref({})) {
   let _stream
   const markdown = ref('')
   const generate = async (ast: object) => {
@@ -21,7 +21,7 @@ export function useMarkdownGenerator (input: Ref<object>) {
       _stream = await unified()
         .use(jsonParser)
         .use(gfm)
-        .use(mdc)
+        .use(mdc, mdcOptions.value)
         .use(stringify, {
           bullet: '-'
         })
@@ -31,6 +31,11 @@ export function useMarkdownGenerator (input: Ref<object>) {
   }
 
   watch(() => input.value, v => generate(v))
+  watch(() => mdcOptions.value, () => {
+    _stream = null
+    generate(input.value)
+  }, { deep: true })
+
   if (input.value) {
     generate(input.value)
   }

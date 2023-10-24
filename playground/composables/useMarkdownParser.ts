@@ -10,7 +10,7 @@ function compiler (this: any) {
   }
 }
 
-export function useMarkdownParser (input: Ref<string>) {
+export function useMarkdownParser (input: Ref<string>, mdcOptions = ref({})) {
   let _stream
   const ast = ref(null)
   const parse = async (str: string) => {
@@ -23,7 +23,7 @@ export function useMarkdownParser (input: Ref<string>) {
       _stream = unified()
         .use(parse)
         .use(gfm)
-        .use(mdc)
+        .use(mdc, mdcOptions.value)
         .use(compiler as Preset)
     }
     const res = await _stream.process(str).then(file => file.result)
@@ -31,6 +31,11 @@ export function useMarkdownParser (input: Ref<string>) {
   }
 
   watch(() => input.value, v => parse(v))
+  watch(() => mdcOptions.value, () => {
+    _stream = null
+    parse(input.value)
+  }, { deep: true })
+
   parse(input.value)
 
   return ast

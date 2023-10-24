@@ -1,12 +1,18 @@
 <template>
-  <div class="flex">
-    <textarea v-model="markdown" class="flex-1" />
-    <pre class="flex-1">{{ ast }}</pre>
-    <pre class="flex-1">{{ md }}</pre>
+  <div>
+    <label for="">
+      <input v-model="mdcOptions.experimental.autoUnwrap" type="checkbox"> auto unwrap
+    </label>
+    <div class="flex">
+      <textarea v-model="markdown" class="flex-1" />
+      <pre class="flex-1">{{ ast }}</pre>
+      <pre class="flex-1">{{ md }}</pre>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+const mdcOptions = ref({ experimental: { autoUnwrap: true } })
 const markdown = ref(`# Hello World
 
 [span]
@@ -52,8 +58,8 @@ Secondary slot value
 
 ::
 `)
-const ast = useMarkdownParser(markdown)
-const md = useMarkdownGenerator(ast)
+const ast = useMarkdownParser(markdown, mdcOptions)
+const md = useMarkdownGenerator(ast, mdcOptions)
 </script>
 
 <style>
