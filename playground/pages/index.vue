@@ -13,7 +13,9 @@
 
 <script setup lang="ts">
 const mdcOptions = ref({ experimental: { autoUnwrap: true } })
-const markdown = ref(`# Hello World
+const markdown = ref(`{{$doc.name || ok || sdqsd}}
+
+# Hello World
 
 [span]
 
