@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v2.1.0
+
+[compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v2.0.0...v2.1.0)
+
+### 🚀 Enhancements
+
+- Unwrap single child of components and slots ([#62](https://github.com/nuxtlabs/remark-mdc/pull/62))
+- Add default value to variable binding ([#58](https://github.com/nuxtlabs/remark-mdc/pull/58))
+
+### 📖 Documentation
+
+- Add binding variables ([#59](https://github.com/nuxtlabs/remark-mdc/pull/59))
+
+### ❤️ Contributors
+
+- Maxime Pauvert ([@maximepvrt](http://github.com/maximepvrt))
+- Farnabaz ([@farnabaz](http://github.com/farnabaz))
+
 ## v2.0.0
 
 [compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v1.2.0...v2.0.0)
