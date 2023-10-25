@@ -81,11 +81,15 @@ export default (opts: RemarkMDCOptions = {}) => {
 
   // Bindings
   function enterBindingContent (this: CompileContext, token: Token) {
+    const regex = /([^|]*)(?:\|\|\s*'(.*)')?/
+    const values = regex.exec(this.sliceSerialize(token))
+
     this.enter({
       type: 'textComponent',
       name: 'binding',
       attributes: {
-        value: this.sliceSerialize(token).trim()
+        value: values[1].trim(),
+        defaultValue: values[2]
       }
     }, token)
   }
