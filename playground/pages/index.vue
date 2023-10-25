@@ -15,7 +15,7 @@
 const mdcOptions = ref({ experimental: { autoUnwrap: true } })
 const markdown = ref(`# Hello World
 
-{{ $doc.name || ok }}
+{{ $doc.name || 'Nuxt' }}
 
 [span]
 
