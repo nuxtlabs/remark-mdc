@@ -1,7 +1,7 @@
 // @ts-nocheck
 /**
  * Functions to track output positions.
- * This info isn’t used yet but suchs functionality allows line wrapping,
+ * This info isn’t used yet but such functionality allows line wrapping,
  * and theoretically source maps (though, is there practical use in that?).
  *
  * @param {TrackFields} options_

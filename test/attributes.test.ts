@@ -26,7 +26,7 @@ describe('Attributes', () => {
       markdown: ':test{attr= value} text',
       expected: ':test{attr="value"} text'
     },
-    'invlid-binding': {
+    'invalid-binding': {
       markdown: ':test{:} text',
       expected: ':test{:} text'
     },

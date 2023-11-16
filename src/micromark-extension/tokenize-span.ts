@@ -20,7 +20,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
       throw new Error('expected `[`')
     }
 
-    // When we are in the beggining of task list line,
+    // When we are in the beginning of task list line,
     // there is a good chance that we are dealing with a GFM task list
     if (
       self.previous === Codes.EOF &&
@@ -46,7 +46,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     if (code === Codes.openingParentheses || code === Codes.openingSquareBracket) {
       return nok(code)
     }
-    // Attemp parsing attributes
+    // Attempt parsing attributes
     if (code === Codes.openingCurlyBracket) {
       return effects.attempt(attributes, exitOK, exitOK)(code)
     }
