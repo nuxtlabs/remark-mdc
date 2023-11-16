@@ -7,7 +7,7 @@ import { stringifyEntitiesLight } from 'stringify-entities'
 import { type Parents } from 'mdast-util-to-markdown/lib/types'
 import { type State, type Info, type Unsafe, defaultHandlers } from 'mdast-util-to-markdown'
 import { containerFlow, containerPhrasing, checkQuote } from './mdast-util-to-markdown'
-import { stringifyFrontMatter } from './frontmatter'
+import { stringifyFrontMatter, stringifyCodeBlockProps } from './frontmatter'
 import type { RemarkMDCOptions } from './types'
 import { NON_UNWRAPABLE_TYPES } from './utils'
 import { Container } from './micromark-extension/types'
@@ -91,7 +91,8 @@ export default (opts: RemarkMDCOptions = {}) => {
 
     // Convert attributes to YAML FrontMatter format
     if (node.fmAttributes && Object.keys(node.fmAttributes).length > 0) {
-      value += '\n' + stringifyFrontMatter(node.fmAttributes).trim()
+      const fm = opts?.experimental?.componentCodeBlockProps ? stringifyCodeBlockProps(node.fmAttributes) : stringifyFrontMatter(node.fmAttributes)
+      value += '\n' + fm.trim()
     }
 
     // Move default slot's children to the beginning of the content

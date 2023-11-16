@@ -466,6 +466,132 @@ array:
 }
 `;
 
+exports[`block-component > frontmatterYaml 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [],
+      "data": {
+        "hName": "with-frontmatter",
+        "hProperties": {
+          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
+          "key": "value",
+        },
+      },
+      "fmAttributes": {
+        "array": [
+          "item",
+          {
+            "itemKey": "value",
+          },
+        ],
+        "key": "value",
+      },
+      "name": "with-frontmatter",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 8,
+          "offset": 79,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "rawData": "key: value
+array:
+  - item
+  - itemKey: value
+---",
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 8,
+      "offset": 79,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`block-component > frontmatterYaml1 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [],
+      "data": {
+        "hName": "with-frontmatter",
+        "hProperties": {
+          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
+          ":key2": "{\\"subkey\\":\\"value\\",\\"subkey2\\":\\"value\\"}",
+          "key": "value",
+        },
+      },
+      "fmAttributes": {
+        "array": [
+          "item",
+          {
+            "itemKey": "value",
+          },
+        ],
+        "key": "value",
+        "key2": {
+          "subkey": "value",
+          "subkey2": "value",
+        },
+      },
+      "name": "with-frontmatter",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 11,
+          "offset": 118,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "rawData": "key: value
+key2:
+  subkey: value
+  subkey2: value
+array:
+  - item
+  - itemKey: value
+---",
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 11,
+      "offset": 118,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`block-component > ignore-code-fence 1`] = `
 {
   "children": [
@@ -798,6 +924,186 @@ array:
       "column": 3,
       "line": 18,
       "offset": 190,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`block-component > nested-component-yaml 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 13,
+                  "line": 8,
+                  "offset": 110,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 8,
+                  "offset": 98,
+                },
+              },
+              "type": "text",
+              "value": "Default slot",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 13,
+              "line": 8,
+              "offset": 110,
+            },
+            "start": {
+              "column": 1,
+              "line": 8,
+              "offset": 98,
+            },
+          },
+          "type": "paragraph",
+        },
+        {
+          "attributes": {},
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 21,
+                      "line": 11,
+                      "offset": 148,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 11,
+                      "offset": 128,
+                    },
+                  },
+                  "type": "text",
+                  "value": "Secondary slot value",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 21,
+                  "line": 11,
+                  "offset": 148,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 11,
+                  "offset": 128,
+                },
+              },
+              "type": "paragraph",
+            },
+            {
+              "attributes": {},
+              "children": [],
+              "data": {
+                "hName": "hello",
+                "hProperties": {
+                  "key": "value",
+                },
+              },
+              "fmAttributes": {
+                "key": "value",
+              },
+              "name": "hello",
+              "position": {
+                "end": {
+                  "column": 6,
+                  "line": 17,
+                  "offset": 195,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 13,
+                  "offset": 152,
+                },
+              },
+              "rawData": "key: value
+---",
+              "type": "containerComponent",
+            },
+          ],
+          "data": {
+            "hName": "component-slot",
+            "hProperties": {
+              "v-slot:secondary-slot": "",
+            },
+          },
+          "name": "secondary-slot",
+          "position": {
+            "end": {
+              "column": 3,
+              "line": 18,
+              "offset": 198,
+            },
+            "start": {
+              "column": 2,
+              "line": 10,
+              "offset": 113,
+            },
+          },
+          "type": "componentContainerSection",
+        },
+      ],
+      "data": {
+        "hName": "with-frontmatter-and-nested-component",
+        "hProperties": {
+          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
+          "key": "value",
+        },
+      },
+      "fmAttributes": {
+        "array": [
+          "item",
+          {
+            "itemKey": "value",
+          },
+        ],
+        "key": "value",
+      },
+      "name": "with-frontmatter-and-nested-component",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 18,
+          "offset": 198,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "rawData": "key: value
+array:
+  - item
+  - itemKey: value
+---",
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 18,
+      "offset": 198,
     },
     "start": {
       "column": 1,

@@ -17,11 +17,17 @@ declare module 'unist' {
   }
 }
 
+interface ChildrenNode extends Node {
+  value?: unknown
+  lang?: string
+}
+
 interface ComponentNode extends Node {
   name?: string
   attributes?: Record<string, any>
   fmAttributes?: Record<string, any>
   rawData?: string
+  children?: ChildrenNode[];
 }
 
 export default <Plugin<Array<RemarkMDCOptions>>> function (opts: RemarkMDCOptions = {}) {
@@ -79,14 +85,21 @@ function bindNode (node: ComponentNode) {
 }
 
 function getNodeData (node: ComponentNode) {
-  if (!node.rawData) {
-    return {}
+  if (node.rawData) {
+    const yaml = node.rawData.replace(/\s-+$/, '')
+    const { data } = parseFrontMatter(toFrontMatter(yaml))
+    return data
   }
 
-  const yaml = node.rawData.replace(/\s-+$/, '')
-  const { data } = parseFrontMatter(toFrontMatter(yaml))
+  if (node.children?.length && node.children[0].type === 'code' && node.children[0].lang === 'yaml') {
+    const yaml = node.children[0].value as string
+    const { data } = parseFrontMatter(toFrontMatter(yaml))
+    node.rawData = yaml + '\n---'
+    node.children!.splice(0, 1)
+    return data
+  }
 
-  return data
+  return {}
 }
 
 function bindData (data: Record<string, any>) {
