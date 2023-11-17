@@ -21,6 +21,12 @@ describe('inline-component', () => {
     },
     underlined: {
       markdown: '**:component[text]{.class}**'
+    },
+    binding: {
+      markdown: '{{ $doc.variable }}'
+    },
+    bindingWithDefault: {
+      markdown: "{{ $doc.variable || 'mdc' }}"
     }
   })
 })

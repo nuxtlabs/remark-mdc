@@ -61,7 +61,7 @@ export default (opts: RemarkMDCOptions = {}) => {
     return `#${(node as any).name}\n${content(node, context)}`.trim()
   }
 
-  type NodeTextComponent = Parents & { name: string; rawData: string }
+  type NodeTextComponent = Parents & { name: string; rawData: string; attributes: any }
   function textComponent (node: NodeTextComponent, _: any, context: any) {
     let value
     context.indexStack = context.stack
@@ -73,6 +73,11 @@ export default (opts: RemarkMDCOptions = {}) => {
       value = `[${content(node, context)}]${attributes(node, context)}`
     } else {
       value = ':' + (node.name || '') + label(node, context) + attributes(node, context)
+    }
+
+    if (node.name === 'binding') {
+      const defaultValue = node.attributes.defaultValue ? `|| '${node.attributes.defaultValue}' ` : ''
+      value = `{{ ${node.attributes.value} ${defaultValue}}}`
     }
 
     exit()
