@@ -71,6 +71,12 @@ export default (opts: RemarkMDCOptions = {}) => {
     if (node.name === 'span') {
       // Handle span suger syntax
       value = `[${content(node, context)}]${attributes(node, context)}`
+    } else if (node.name === 'binding') {
+      // Handle binding syntax
+      const attrs = (node as any).attributes || {}
+      value = attrs.defaultValue
+        ? `{{ ${attrs.value} || ${JSON.stringify(attrs.defaultValue)} }}`
+        : `{{ ${attrs.value} }}`
     } else {
       value = ':' + (node.name || '') + label(node, context) + attributes(node, context)
     }
@@ -86,12 +92,31 @@ export default (opts: RemarkMDCOptions = {}) => {
     const prefix = ':'.repeat(baseFense + nest)
     nest += 1
     const exit = context.enter(node.type)
-    let value = prefix + (node.name || '') + label(node, context) + attributes(node, context)
+    let value = prefix + (node.name || '') + label(node, context)
+    const attributesText = attributes(node, context)
+    const fmAttributes = node.fmAttributes || {}
+    if ((value + attributesText).length > 80 || Object.keys(fmAttributes).length > 0) {
+      Object.assign(fmAttributes, (node as any).attributes)
+    } else {
+      value += attributes(node, context)
+    }
     let subvalue
 
     // Convert attributes to YAML FrontMatter format
-    if (node.fmAttributes && Object.keys(node.fmAttributes).length > 0) {
-      value += '\n' + stringifyFrontMatter(node.fmAttributes).trim()
+    if (Object.keys(fmAttributes).length > 0) {
+      const attrs = Object.entries(fmAttributes).reduce((acc, [key, value2]) => {
+        if (key?.startsWith(':')) {
+          try {
+            value2 = JSON.parse(value2)
+          } catch {
+            // ignore
+          }
+          key = key.slice(1)
+        }
+        acc[key] = value2
+        return acc
+      }, {} as Record<string, any>)
+      value += '\n' + stringifyFrontMatter(attrs).trim()
     }
 
     // Move default slot's children to the beginning of the content
