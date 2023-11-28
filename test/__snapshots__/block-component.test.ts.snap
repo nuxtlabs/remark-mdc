@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`block-component > danglig-list 1`] = `
+exports[`block-component > dangling-list 1`] = `
 {
   "children": [
     {

@@ -20,8 +20,8 @@
     "dev:prepare": "nuxi prepare playground",
     "generate": "nuxi generate playground",
     "lint": "eslint --ext .js,.ts,.vue .",
-    "test": "yarn lint && vitest run",
-    "prepack": "yarn build",
+    "test": "pnpm lint && vitest run",
+    "prepack": "pnpm build",
     "release": "release-it"
   },
   "dependencies": {

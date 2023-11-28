@@ -38,7 +38,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     if (code !== Codes.openingCurlyBracket) { throw new Error('expected `{`') }
 
     /**
-     * Make sure sytax is used after valid tags
+     * Make sure syntax is used after valid tags
      */
     const event = self.events[self.events.length - 1]
     if (markdownLineEnding(self.previous) || !event || !validEvents.includes(event[1].type)) {

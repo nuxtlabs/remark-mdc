@@ -1,4 +1,4 @@
-export const NON_UNWRAPABLE_TYPES = [
+export const NON_UNWRAPPABLE_TYPES = [
   'componentContainerSection',
   'componentContainerDataSection',
   'containerComponent',

@@ -7,15 +7,15 @@ import { parseEntities } from 'parse-entities'
 import { kebabCase } from 'scule'
 import type { Token, CompileContext, Container, Fragment, Nodes } from './micromark-extension/types'
 import type { RemarkMDCOptions } from './types'
-import { NON_UNWRAPABLE_TYPES } from './utils'
+import { NON_UNWRAPPABLE_TYPES } from './utils'
 
 export default (opts: RemarkMDCOptions = {}) => {
   const canContainEols = ['textComponent']
 
   const experimentalAutoUnwrap = (node: Container) => {
-    if (opts.experimental?.autoUnwrap && NON_UNWRAPABLE_TYPES.includes(node.type)) {
+    if (opts.experimental?.autoUnwrap && NON_UNWRAPPABLE_TYPES.includes(node.type)) {
       const nonSlotChildren = (node.children).filter((child: any) => child.type !== 'componentContainerSection')
-      if (nonSlotChildren.length === 1 && !NON_UNWRAPABLE_TYPES.includes(nonSlotChildren[0].type)) {
+      if (nonSlotChildren.length === 1 && !NON_UNWRAPPABLE_TYPES.includes(nonSlotChildren[0].type)) {
         const nonSlotChildIndex = node.children.indexOf(nonSlotChildren[0])
 
         node.children.splice(nonSlotChildIndex, 1, ...(nonSlotChildren[0] as Container).children)
@@ -149,9 +149,9 @@ export default (opts: RemarkMDCOptions = {}) => {
 
     /**
      * Ensure lists and list-items are closed before closing section
-     * This issue occurs because `---` separtors ar conflict with markdown lists
+     * This issue occurs because `---` separators ar conflict with markdown lists
      */
-    attempClosingOpenListSection.call(this, section)
+    attemptClosingOpenListSection.call(this, section)
 
     experimentalAutoUnwrap(section)
 
@@ -163,9 +163,9 @@ export default (opts: RemarkMDCOptions = {}) => {
 
     /**
    * Ensure lists and list-items are closed before closing section
-   * This issue occurs because `---` separtors ar conflict with markdown lists
+   * This issue occurs because `---` separators ar conflict with markdown lists
    */
-    section = attempClosingOpenListSection.call(this, section)
+    section = attemptClosingOpenListSection.call(this, section)
 
     if (section.type === 'componentContainerDataSection') {
       section.rawData = this.sliceSerialize(token)
@@ -272,7 +272,7 @@ export default (opts: RemarkMDCOptions = {}) => {
   }
 
   function conditionalExit (this: CompileContext, token: Token) {
-  // As of mdast-util-from-markdown@1.1.0 tokenStach items is an array containing the token and a handler
+  // As of mdast-util-from-markdown@1.1.0 tokenStack items is an array containing the token and a handler
   // https://github.com/syntax-tree/mdast-util-from-markdown/blob/752dc22acfc517d280612e8d499d5ce0cd5a4495/dev/lib/index.js#L548
     const [section] = this.tokenStack[this.tokenStack.length - 1]
     if ((section as Token).type === token.type) {
@@ -280,13 +280,13 @@ export default (opts: RemarkMDCOptions = {}) => {
     }
   }
 
-  function attempClosingOpenListSection (this: CompileContext, section: (Fragment | Nodes)) {
+  function attemptClosingOpenListSection (this: CompileContext, section: (Fragment | Nodes)) {
   /**
    * Ensure lists and list-items are closed before closing section
-   * This issue occurs because `---` separtors ar conflict with markdown lists
+   * This issue occurs because `---` separators ar conflict with markdown lists
    */
     while (section.type === 'listItem' || section.type === 'list') {
-      // As of mdast-util-from-markdown@1.1.0 tokenStach items is an array containing the token and a handler
+      // As of mdast-util-from-markdown@1.1.0 tokenStack items is an array containing the token and a handler
       // https://github.com/syntax-tree/mdast-util-from-markdown/blob/752dc22acfc517d280612e8d499d5ce0cd5a4495/dev/lib/index.js#L548
       const [stackToken] = this.tokenStack[this.tokenStack.length - 1]
       this.exit(stackToken)
