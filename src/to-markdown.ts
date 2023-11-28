@@ -73,17 +73,12 @@ export default (opts: RemarkMDCOptions = {}) => {
       value = `[${content(node, context)}]${attributes(node, context)}`
     } else if (node.name === 'binding') {
       // Handle binding syntax
-      const attrs = (node as any).attributes || {}
+      const attrs = node.attributes || {}
       value = attrs.defaultValue
-        ? `{{ ${attrs.value} || ${JSON.stringify(attrs.defaultValue)} }}`
+        ? `{{ ${attrs.value} || '${attrs.defaultValue}' }}`
         : `{{ ${attrs.value} }}`
     } else {
       value = ':' + (node.name || '') + label(node, context) + attributes(node, context)
-    }
-
-    if (node.name === 'binding') {
-      const defaultValue = node.attributes.defaultValue ? `|| '${node.attributes.defaultValue}' ` : ''
-      value = `{{ ${node.attributes.value} ${defaultValue}}}`
     }
 
     exit()
