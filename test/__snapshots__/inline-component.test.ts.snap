@@ -1,5 +1,135 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`inline-component > binding 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "attributes": {
+            "defaultValue": undefined,
+            "value": "$doc.variable",
+          },
+          "data": {
+            "hName": "binding",
+            "hProperties": {
+              ":defaultValue": undefined,
+              "value": "$doc.variable",
+            },
+          },
+          "fmAttributes": {},
+          "name": "binding",
+          "position": {
+            "end": {
+              "column": 18,
+              "line": 1,
+              "offset": 17,
+            },
+            "start": {
+              "column": 3,
+              "line": 1,
+              "offset": 2,
+            },
+          },
+          "type": "textComponent",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 20,
+          "line": 1,
+          "offset": 19,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 20,
+      "line": 1,
+      "offset": 19,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`inline-component > bindingWithDefault 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "attributes": {
+            "defaultValue": "mdc",
+            "value": "$doc.variable",
+          },
+          "data": {
+            "hName": "binding",
+            "hProperties": {
+              "defaultValue": "mdc",
+              "value": "$doc.variable",
+            },
+          },
+          "fmAttributes": {},
+          "name": "binding",
+          "position": {
+            "end": {
+              "column": 27,
+              "line": 1,
+              "offset": 26,
+            },
+            "start": {
+              "column": 3,
+              "line": 1,
+              "offset": 2,
+            },
+          },
+          "type": "textComponent",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 29,
+          "line": 1,
+          "offset": 28,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 29,
+      "line": 1,
+      "offset": 28,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`inline-component > empty 1`] = `
 {
   "children": [

@@ -61,7 +61,7 @@ export default (opts: RemarkMDCOptions = {}) => {
     return `#${(node as any).name}\n${content(node, context)}`.trim()
   }
 
-  type NodeTextComponent = Parents & { name: string; rawData: string }
+  type NodeTextComponent = Parents & { name: string; rawData: string; attributes: any }
   function textComponent (node: NodeTextComponent, _: any, context: any) {
     let value
     context.indexStack = context.stack
@@ -73,9 +73,9 @@ export default (opts: RemarkMDCOptions = {}) => {
       value = `[${content(node, context)}]${attributes(node, context)}`
     } else if (node.name === 'binding') {
       // Handle binding syntax
-      const attrs = (node as any).attributes || {}
+      const attrs = node.attributes || {}
       value = attrs.defaultValue
-        ? `{{ ${attrs.value} || ${JSON.stringify(attrs.defaultValue)} }}`
+        ? `{{ ${attrs.value} || '${attrs.defaultValue}' }}`
         : `{{ ${attrs.value} }}`
     } else {
       value = ':' + (node.name || '') + label(node, context) + attributes(node, context)
