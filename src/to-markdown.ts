@@ -9,13 +9,13 @@ import { type State, type Info, type Unsafe, defaultHandlers } from 'mdast-util-
 import { containerFlow, containerPhrasing, checkQuote } from './mdast-util-to-markdown'
 import { stringifyFrontMatter } from './frontmatter'
 import type { RemarkMDCOptions } from './types'
-import { NON_UNWRAPABLE_TYPES } from './utils'
+import { NON_UNWRAPPABLE_TYPES } from './utils'
 import { Container } from './micromark-extension/types'
 
 const own = {}.hasOwnProperty
 
 const shortcut = /^[^\t\n\r "#'.<=>`}]+$/
-const baseFense = 2
+const baseFence = 2
 
 // import { defaultHandlers } from 'mdast-util-to-markdown/lib/util/compile-pattern'
 function compilePattern (pattern: Unsafe) {
@@ -45,9 +45,9 @@ export default (opts: RemarkMDCOptions = {}) => {
         node.children = [
           {
             type: node.mdc.unwrapped as any,
-            children: node.children.filter(child => !NON_UNWRAPABLE_TYPES.includes(child.type))
+            children: node.children.filter(child => !NON_UNWRAPPABLE_TYPES.includes(child.type))
           },
-          ...node.children.filter(child => NON_UNWRAPABLE_TYPES.includes(child.type))
+          ...node.children.filter(child => NON_UNWRAPPABLE_TYPES.includes(child.type))
         ]
       }
     }
@@ -89,7 +89,7 @@ export default (opts: RemarkMDCOptions = {}) => {
   let nest = 0
   function containerComponent (node: NodeContainerComponent, _: any, context: any) {
     context.indexStack = context.stack
-    const prefix = ':'.repeat(baseFense + nest)
+    const prefix = ':'.repeat(baseFence + nest)
     nest += 1
     const exit = context.enter(node.type)
     let value = prefix + (node.name || '') + label(node, context)

@@ -24,7 +24,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
    * Show whether the current line is in the code fence or not.
    * Lines inside the code fence will not check for the slot separator and component end.
    */
-  let vistingCodeFenced = false
+  let visitingCodeFenced = false
 
   const section = useTokenState('componentContainerSection')
 
@@ -66,19 +66,19 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
       }
 
       if (size !== slotSeparatorLength) {
-        // Revert section state to inital value before failing
+        // Revert section state to initial value before failing
         revertSectionState()
         return nok(code)
       }
       if (sectionIndentSize !== initialPrefix) {
-        // Revert sect to inital value before failing
+        // Revert sect to initial value before failing
         revertSectionState()
         return nok(code)
       }
 
       // non ascii chars are invalid
       if (!asciiAlpha(code)) {
-        // Revert sect to inital value before failing
+        // Revert sect to initial value before failing
         revertSectionState()
         return nok(code)
       }
@@ -183,14 +183,14 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
       return effects.check(
         tokenizeCodeFence,
         (code) => {
-          vistingCodeFenced = !vistingCodeFenced
+          visitingCodeFenced = !visitingCodeFenced
           return chunkStart(code)
         },
         chunkStart
       )(code)
     }
 
-    if (vistingCodeFenced) {
+    if (visitingCodeFenced) {
       return chunkStart(code)
     }
 
@@ -204,7 +204,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     }
 
     /**
-     * disbale spliting inner sections
+     * disable splitting inner sections
      */
     if (code === Codes.colon) {
       return effects.attempt(

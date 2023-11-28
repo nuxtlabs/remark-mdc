@@ -141,7 +141,7 @@ describe('block-component', () => {
         'Third line'
       ].join('\n')
     },
-    'danglig-list': {
+    'dangling-list': {
       markdown: [
         '::component',
         '-   list item',

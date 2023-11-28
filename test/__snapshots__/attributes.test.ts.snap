@@ -672,7 +672,7 @@ exports[`Attributes > image 1`] = `
 }
 `;
 
-exports[`Attributes > invlid-binding 1`] = `
+exports[`Attributes > invalid-binding 1`] = `
 {
   "children": [
     {
