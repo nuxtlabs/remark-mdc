@@ -95,7 +95,7 @@ export default (opts: RemarkMDCOptions = {}) => {
     let value = prefix + (node.name || '') + label(node, context)
     const attributesText = attributes(node, context)
     const fmAttributes = node.fmAttributes || {}
-    if ((value + attributesText).length > 80 || Object.keys(fmAttributes).length > 0) {
+    if ((value + attributesText).length > 80 || Object.keys(fmAttributes).length > 0 || node.children?.some(child => child.type === 'componentContainerSection')) {
       Object.assign(fmAttributes, (node as any).attributes)
     } else {
       value += attributes(node, context)
