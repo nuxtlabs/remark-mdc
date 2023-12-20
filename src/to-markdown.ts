@@ -4,7 +4,7 @@
  * License: MIT (https://github.com/syntax-tree/mdast-util-directive/blob/main/license)
  */
 import { stringifyEntitiesLight } from 'stringify-entities'
-import { type Parents } from 'mdast-util-to-markdown/lib/types'
+import type { Parents } from 'mdast-util-to-markdown/lib/types'
 import { type State, type Info, type Unsafe, defaultHandlers } from 'mdast-util-to-markdown'
 import { containerFlow, containerPhrasing, checkQuote } from './mdast-util-to-markdown'
 import { stringifyFrontMatter } from './frontmatter'
