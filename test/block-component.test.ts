@@ -144,8 +144,8 @@ describe('block-component', () => {
     'dangling-list': {
       markdown: [
         '::component',
-        '-   list item',
-        '-   list item',
+        '- list item',
+        '- list item',
         '',
         '#slot',
         'slot content',

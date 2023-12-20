@@ -57,7 +57,7 @@ export default (opts: RemarkMDCOptions = {}) => {
 
     componentContainerAttributeInitializerMarker (this: CompileContext) {
     // If an attribute name follows by `=` it should be treat as string
-      const attributes = this.getData('componentAttributes')
+      const attributes = (this.data as any).componentAttributes
       attributes[attributes.length - 1][1] = ''
     },
 
@@ -88,8 +88,8 @@ export default (opts: RemarkMDCOptions = {}) => {
       type: 'textComponent',
       name: 'binding',
       attributes: {
-        value: values[1].trim(),
-        defaultValue: values[2]
+        value: values?.[1]?.trim(),
+        defaultValue: values?.[2]
       }
     }, token)
   }
@@ -206,20 +206,20 @@ export default (opts: RemarkMDCOptions = {}) => {
   }
 
   function enterAttributes (this: CompileContext) {
-    this.setData('componentAttributes', [])
+    (this.data as any).componentAttributes = []
     this.buffer() // Capture EOLs
   }
 
   function exitAttributeIdValue (this: CompileContext, token: Token) {
-    this.getData('componentAttributes').push(['id', parseEntities(this.sliceSerialize(token))])
+    (this.data as any).componentAttributes.push(['id', parseEntities(this.sliceSerialize(token))])
   }
 
   function exitAttributeClassValue (this: CompileContext, token: Token) {
-    this.getData('componentAttributes').push(['class', parseEntities(this.sliceSerialize(token))])
+    (this.data as any).componentAttributes.push(['class', parseEntities(this.sliceSerialize(token))])
   }
 
   function exitAttributeValue (this: CompileContext, token: Token) {
-    const attributes = this.getData('componentAttributes')
+    const attributes = (this.data as any).componentAttributes
     attributes[attributes.length - 1][1] = parseEntities(this.sliceSerialize(token))
   }
 
@@ -228,11 +228,11 @@ export default (opts: RemarkMDCOptions = {}) => {
   // references can’t exist.
 
     // Use `true` as attribute default value to solve issue of attributes without value (example `:block{attr1 attr2}`)
-    this.getData('componentAttributes').push([this.sliceSerialize(token), true])
+    (this.data as any).componentAttributes.push([this.sliceSerialize(token), true])
   }
 
   function exitAttributes (this: CompileContext) {
-    const attributes = this.getData('componentAttributes')
+    const attributes = (this.data as any).componentAttributes
     const cleaned: Record<string, any> = {}
     let index = -1
     let attribute
@@ -249,7 +249,8 @@ export default (opts: RemarkMDCOptions = {}) => {
       }
     }
 
-    this.setData('componentAttributes')
+    // this.setData('componentAttributes')
+    (this.data as any).componentAttributes = attributes
     this.resume() // Drop EOLs
 
     let stackTop = this.stack[this.stack.length - 1]

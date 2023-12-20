@@ -73,7 +73,7 @@ describe('span', async () => {
     },
     'respect-gfm-check-list': {
       markdown: '- [ ] task 1\n- [X] task 2',
-      expected: '-   [ ] task 1\n-   [x] task 2'
+      expected: '- [ ] task 1\n- [x] task 2'
     },
     'respect-reference-style-link': {
       markdown: '[link][ref]\n\n[ref]: http://example.com'
