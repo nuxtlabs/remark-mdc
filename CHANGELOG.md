@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v3.0.0
+
+[compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v2.1.0...v3.0.0)
+
+### 🩹 Fixes
+
+- Binding & component props ([a92995c](https://github.com/nuxtlabs/remark-mdc/commit/a92995c))
+- Test script ([fd1c9f6](https://github.com/nuxtlabs/remark-mdc/commit/fd1c9f6))
+- Typing mistakes or misspelled words ([#66](https://github.com/nuxtlabs/remark-mdc/pull/66))
+- Parse binding component AST to markdown ([#68](https://github.com/nuxtlabs/remark-mdc/pull/68))
+- Use yaml style when component has one or more named slot ([2b3218b](https://github.com/nuxtlabs/remark-mdc/commit/2b3218b))
+- Flat package usage ([f849c67](https://github.com/nuxtlabs/remark-mdc/commit/f849c67))
+
+### 📖 Documentation
+
+- Update README.md ([add35c2](https://github.com/nuxtlabs/remark-mdc/commit/add35c2))
+
+### 🏡 Chore
+
+- Upgrade deps ([7b66091](https://github.com/nuxtlabs/remark-mdc/commit/7b66091))
+- Update types ([ead0a87](https://github.com/nuxtlabs/remark-mdc/commit/ead0a87))
+
+### ❤️ Contributors
+
+- Farnabaz ([@farnabaz](http://github.com/farnabaz))
+- Emmanuel Salomon ([@ManUtopiK](http://github.com/ManUtopiK))
+
 ## v2.1.0
 
 [compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v2.0.0...v2.1.0)
