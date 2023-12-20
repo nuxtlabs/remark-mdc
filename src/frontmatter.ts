@@ -1,12 +1,12 @@
 import yaml from 'js-yaml'
-import { flatten, unflatten } from 'flat'
+import * as flat from 'flat'
 
 const FRONTMATTER_DELIMITER = '---'
 
 export function stringifyFrontMatter (data: any, content = '') {
   // flatten frontmatter data
   // convert `parent: { child: ... }` into flat keys `parent.child`
-  data = flatten(data, {
+  data = flat.flatten(data, {
     // preserve arrays and their contents as is and do not walk through arrays
     // flatten array will be like `parent.0.child` and `parent.1.child` with is not readable
     safe: true
@@ -40,6 +40,6 @@ export function parseFrontMatter (content: string) {
   return {
     content,
     // unflatten frontmatter data. convert `parent.child` keys into `parent: { child: ... }`
-    data: unflatten(data || {}, {}) as Record<string, any>
+    data: flat.unflatten(data || {}, {}) as Record<string, any>
   }
 }
