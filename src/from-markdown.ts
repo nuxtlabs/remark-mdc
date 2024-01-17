@@ -53,7 +53,7 @@ export default (opts: RemarkMDCOptions = {}) => {
     componentContainerAttributeValue: exitAttributeValue,
     componentContainerAttributes: exitAttributes,
     componentContainerLabel: exitContainerLabel,
-    componentContainerName: exitName,
+    componentContainerName,
 
     componentContainerAttributeInitializerMarker (this: CompileContext) {
     // If an attribute name follows by `=` it should be treat as string
@@ -76,7 +76,7 @@ export default (opts: RemarkMDCOptions = {}) => {
     componentTextAttributeName: exitAttributeName,
     componentTextAttributeValue: exitAttributeValue,
     componentTextAttributes: exitAttributes,
-    componentTextName: exitName
+    componentTextName: componentContainerName
   }
 
   // Bindings
@@ -191,6 +191,10 @@ export default (opts: RemarkMDCOptions = {}) => {
 
   function enterToken (this: CompileContext, type: string, token: Token) {
     this.enter({ type: type as any, name: '', attributes: {}, children: [] }, token)
+  }
+
+  function componentContainerName (this: CompileContext, token: Token) {
+    (this.stack[this.stack.length - 1] as any).name = kebabCase(this.sliceSerialize(token))
   }
 
   function exitName (this: CompileContext, token: Token) {
