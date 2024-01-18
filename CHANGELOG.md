@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v3.0.1
+
+[compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.0.0...v3.0.1)
+
+### 🩹 Fixes
+
+- **components:** Convert component name to kebab case ([9d2d00e](https://github.com/nuxtlabs/remark-mdc/commit/9d2d00e))
+
+### 🏡 Chore
+
+- Upgrade deps ([a43b209](https://github.com/nuxtlabs/remark-mdc/commit/a43b209))
+
+### ❤️ Contributors
+
+- Farnabaz ([@farnabaz](http://github.com/farnabaz))
+
 ## v3.0.0
 
 [compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v2.1.0...v3.0.0)
