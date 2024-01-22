@@ -47,7 +47,7 @@ describe('Attributes', () => {
       markdown: '[Nuxt](https://nuxtjs.org){#id .class}'
     },
     emphasis: {
-      markdown: '*emphasis*{#id .class}'
+      markdown: '_emphasis_{#id .class}'
     }
   })
 })

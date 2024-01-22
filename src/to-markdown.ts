@@ -10,7 +10,7 @@ import { containerFlow, containerPhrasing, checkQuote } from './mdast-util-to-ma
 import { stringifyFrontMatter } from './frontmatter'
 import type { RemarkMDCOptions } from './types'
 import { NON_UNWRAPPABLE_TYPES } from './utils'
-import { Container } from './micromark-extension/types'
+import { type Container } from './micromark-extension/types'
 
 const own = {}.hasOwnProperty
 

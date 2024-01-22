@@ -65,7 +65,12 @@ async function astToMarkdown (ast: any, plugins = [] as any[], mdcOptions = {}) 
     stream.use(plugin)
   }
   stream.use(stringify, {
-    bullet: '-'
+    bullet: '-',
+    emphasis: '_',
+    listItemIndent: 'one',
+    fence: '`',
+    fences: true,
+    rule: '-'
   })
   const result = await stream.process(JSON.stringify(ast))
   return result.value as string
