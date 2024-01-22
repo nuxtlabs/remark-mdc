@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v3.0.2
+
+[compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.0.1...v3.0.2)
+
+### 🩹 Fixes
+
+- Do not flatted data in fm stringify ([#70](https://github.com/nuxtlabs/remark-mdc/pull/70))
+
+### ❤️ Contributors
+
+- Farnabaz ([@farnabaz](http://github.com/farnabaz))
+
 ## v3.0.1
 
 [compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.0.0...v3.0.1)
