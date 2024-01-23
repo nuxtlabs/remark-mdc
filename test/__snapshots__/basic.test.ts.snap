@@ -1,5 +1,212 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`basic > li 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "checked": null,
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 10,
+                      "line": 1,
+                      "offset": 9,
+                    },
+                    "start": {
+                      "column": 3,
+                      "line": 1,
+                      "offset": 2,
+                    },
+                  },
+                  "type": "text",
+                  "value": "inline ",
+                },
+                {
+                  "attributes": {},
+                  "children": [],
+                  "data": {
+                    "hName": "component",
+                    "hProperties": {},
+                  },
+                  "fmAttributes": {},
+                  "name": "component",
+                  "position": {
+                    "end": {
+                      "column": 20,
+                      "line": 1,
+                      "offset": 19,
+                    },
+                    "start": {
+                      "column": 10,
+                      "line": 1,
+                      "offset": 9,
+                    },
+                  },
+                  "type": "textComponent",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 20,
+                  "line": 1,
+                  "offset": 19,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 1,
+                  "offset": 2,
+                },
+              },
+              "type": "paragraph",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 20,
+              "line": 1,
+              "offset": 19,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "spread": false,
+          "type": "listItem",
+        },
+        {
+          "checked": null,
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 10,
+                      "line": 2,
+                      "offset": 29,
+                    },
+                    "start": {
+                      "column": 3,
+                      "line": 2,
+                      "offset": 22,
+                    },
+                  },
+                  "type": "text",
+                  "value": "inline ",
+                },
+                {
+                  "attributes": {},
+                  "children": [
+                    {
+                      "position": {
+                        "end": {
+                          "column": 25,
+                          "line": 2,
+                          "offset": 44,
+                        },
+                        "start": {
+                          "column": 21,
+                          "line": 2,
+                          "offset": 40,
+                        },
+                      },
+                      "type": "text",
+                      "value": "text",
+                    },
+                  ],
+                  "data": {
+                    "hName": "component",
+                    "hProperties": {},
+                  },
+                  "fmAttributes": {},
+                  "name": "component",
+                  "position": {
+                    "end": {
+                      "column": 26,
+                      "line": 2,
+                      "offset": 45,
+                    },
+                    "start": {
+                      "column": 10,
+                      "line": 2,
+                      "offset": 29,
+                    },
+                  },
+                  "type": "textComponent",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 26,
+                  "line": 2,
+                  "offset": 45,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 2,
+                  "offset": 22,
+                },
+              },
+              "type": "paragraph",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 26,
+              "line": 2,
+              "offset": 45,
+            },
+            "start": {
+              "column": 1,
+              "line": 2,
+              "offset": 20,
+            },
+          },
+          "spread": false,
+          "type": "listItem",
+        },
+      ],
+      "ordered": false,
+      "position": {
+        "end": {
+          "column": 26,
+          "line": 2,
+          "offset": 45,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "spread": false,
+      "start": null,
+      "type": "list",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 26,
+      "line": 2,
+      "offset": 45,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`basic > link 1`] = `
 {
   "children": [

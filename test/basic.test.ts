@@ -26,6 +26,17 @@ describe('basic', () => {
       markdown: [
         '[link](https://nuxtjs.org){target="_blank"}'
       ].join('\n')
+    },
+    li: {
+      mdcOptions: {
+        experimental: {
+          autoUnwrap: true
+        }
+      },
+      markdown: [
+        '- inline :component',
+        '- inline :component[text]'
+      ].join('\n')
     }
   })
 })
