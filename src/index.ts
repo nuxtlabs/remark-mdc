@@ -20,6 +20,7 @@ declare module 'unist' {
 interface ChildrenNode extends Node {
   value?: unknown
   lang?: string
+  meta?: string
 }
 
 interface ComponentNode extends Node {
@@ -91,7 +92,12 @@ function getNodeData (node: ComponentNode) {
     return data
   }
 
-  if (node.children?.length && node.children[0].type === 'code' && node.children[0].lang === 'yaml') {
+  if (
+    node.children?.length &&
+    node.children[0].type === 'code' &&
+    node.children[0].lang === 'yaml' &&
+    node.children[0].meta === null
+  ) {
     const yaml = node.children[0].value as string
     const { data } = parseFrontMatter(toFrontMatter(yaml))
     node.rawData = yaml + '\n---'

@@ -46,7 +46,7 @@ describe('block-component', () => {
       ].join('\n')
     },
     frontmatterYaml: {
-      markdown: '::with-frontmatter\n```yaml\nkey: value\narray:\n  - item\n  - itemKey: value\n```\n::',
+      markdown: '::with-frontmatter-yaml\n```yaml\nkey: value\narray:\n  - item\n  - itemKey: value\n```\n::',
       mdcOptions: {
         experimental: {
           componentCodeBlockProps: true
@@ -55,7 +55,7 @@ describe('block-component', () => {
     },
     frontmatterYaml1: {
       markdown: [
-        '::with-frontmatter',
+        '::with-frontmatter-yaml1',
         '```yaml',
         'key: value',
         'key2:',
@@ -68,7 +68,7 @@ describe('block-component', () => {
         '::'
       ].join('\n'),
       expected: [
-        '::with-frontmatter',
+        '::with-frontmatter-yaml1',
         '```yaml',
         'key: value',
         'key2.subkey: value',
@@ -87,7 +87,7 @@ describe('block-component', () => {
     },
     'nested-component-yaml': {
       markdown: [
-        '::with-frontmatter-and-nested-component',
+        '::with-frontmatter-and-nested-component-yaml',
         '```yaml',
         'key: value',
         'array:',
@@ -106,6 +106,14 @@ describe('block-component', () => {
         '  :::',
         '::'
       ].join('\n'),
+      mdcOptions: {
+        experimental: {
+          componentCodeBlockProps: true
+        }
+      }
+    },
+    frontmatterYamlOnly: {
+      markdown: '::with-frontmatter-only\n```yaml [yaml]\nyaml code\n```\n::',
       mdcOptions: {
         experimental: {
           componentCodeBlockProps: true

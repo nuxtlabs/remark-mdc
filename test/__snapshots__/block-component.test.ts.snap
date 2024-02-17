@@ -473,7 +473,7 @@ exports[`block-component > frontmatterYaml 1`] = `
       "attributes": {},
       "children": [],
       "data": {
-        "hName": "with-frontmatter",
+        "hName": "with-frontmatter-yaml",
         "hProperties": {
           ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
           "key": "value",
@@ -488,12 +488,12 @@ exports[`block-component > frontmatterYaml 1`] = `
         ],
         "key": "value",
       },
-      "name": "with-frontmatter",
+      "name": "with-frontmatter-yaml",
       "position": {
         "end": {
           "column": 3,
           "line": 8,
-          "offset": 79,
+          "offset": 84,
         },
         "start": {
           "column": 1,
@@ -513,7 +513,7 @@ array:
     "end": {
       "column": 3,
       "line": 8,
-      "offset": 79,
+      "offset": 84,
     },
     "start": {
       "column": 1,
@@ -532,7 +532,7 @@ exports[`block-component > frontmatterYaml1 1`] = `
       "attributes": {},
       "children": [],
       "data": {
-        "hName": "with-frontmatter",
+        "hName": "with-frontmatter-yaml1",
         "hProperties": {
           ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
           ":key2": "{\\"subkey\\":\\"value\\",\\"subkey2\\":\\"value\\"}",
@@ -552,12 +552,12 @@ exports[`block-component > frontmatterYaml1 1`] = `
           "subkey2": "value",
         },
       },
-      "name": "with-frontmatter",
+      "name": "with-frontmatter-yaml1",
       "position": {
         "end": {
           "column": 3,
           "line": 11,
-          "offset": 118,
+          "offset": 124,
         },
         "start": {
           "column": 1,
@@ -580,7 +580,69 @@ array:
     "end": {
       "column": 3,
       "line": 11,
-      "offset": 118,
+      "offset": 124,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`block-component > frontmatterYamlOnly 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "lang": "yaml",
+          "meta": "[yaml]",
+          "position": {
+            "end": {
+              "column": 4,
+              "line": 4,
+              "offset": 52,
+            },
+            "start": {
+              "column": 1,
+              "line": 2,
+              "offset": 24,
+            },
+          },
+          "type": "code",
+          "value": "yaml code",
+        },
+      ],
+      "data": {
+        "hName": "with-frontmatter-only",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "name": "with-frontmatter-only",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 5,
+          "offset": 55,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 5,
+      "offset": 55,
     },
     "start": {
       "column": 1,
@@ -948,12 +1010,12 @@ exports[`block-component > nested-component-yaml 1`] = `
                 "end": {
                   "column": 13,
                   "line": 8,
-                  "offset": 110,
+                  "offset": 115,
                 },
                 "start": {
                   "column": 1,
                   "line": 8,
-                  "offset": 98,
+                  "offset": 103,
                 },
               },
               "type": "text",
@@ -964,12 +1026,12 @@ exports[`block-component > nested-component-yaml 1`] = `
             "end": {
               "column": 13,
               "line": 8,
-              "offset": 110,
+              "offset": 115,
             },
             "start": {
               "column": 1,
               "line": 8,
-              "offset": 98,
+              "offset": 103,
             },
           },
           "type": "paragraph",
@@ -984,12 +1046,12 @@ exports[`block-component > nested-component-yaml 1`] = `
                     "end": {
                       "column": 21,
                       "line": 11,
-                      "offset": 148,
+                      "offset": 153,
                     },
                     "start": {
                       "column": 1,
                       "line": 11,
-                      "offset": 128,
+                      "offset": 133,
                     },
                   },
                   "type": "text",
@@ -1000,12 +1062,12 @@ exports[`block-component > nested-component-yaml 1`] = `
                 "end": {
                   "column": 21,
                   "line": 11,
-                  "offset": 148,
+                  "offset": 153,
                 },
                 "start": {
                   "column": 1,
                   "line": 11,
-                  "offset": 128,
+                  "offset": 133,
                 },
               },
               "type": "paragraph",
@@ -1027,12 +1089,12 @@ exports[`block-component > nested-component-yaml 1`] = `
                 "end": {
                   "column": 6,
                   "line": 17,
-                  "offset": 195,
+                  "offset": 200,
                 },
                 "start": {
                   "column": 3,
                   "line": 13,
-                  "offset": 152,
+                  "offset": 157,
                 },
               },
               "rawData": "key: value
@@ -1051,19 +1113,19 @@ exports[`block-component > nested-component-yaml 1`] = `
             "end": {
               "column": 3,
               "line": 18,
-              "offset": 198,
+              "offset": 203,
             },
             "start": {
               "column": 2,
               "line": 10,
-              "offset": 113,
+              "offset": 118,
             },
           },
           "type": "componentContainerSection",
         },
       ],
       "data": {
-        "hName": "with-frontmatter-and-nested-component",
+        "hName": "with-frontmatter-and-nested-component-yaml",
         "hProperties": {
           ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
           "key": "value",
@@ -1078,12 +1140,12 @@ exports[`block-component > nested-component-yaml 1`] = `
         ],
         "key": "value",
       },
-      "name": "with-frontmatter-and-nested-component",
+      "name": "with-frontmatter-and-nested-component-yaml",
       "position": {
         "end": {
           "column": 3,
           "line": 18,
-          "offset": 198,
+          "offset": 203,
         },
         "start": {
           "column": 1,
@@ -1103,7 +1165,7 @@ array:
     "end": {
       "column": 3,
       "line": 18,
-      "offset": 198,
+      "offset": 203,
     },
     "start": {
       "column": 1,
