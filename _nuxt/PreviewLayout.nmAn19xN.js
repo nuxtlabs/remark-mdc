@@ -1,1 +1,0 @@
-import{l as t,b as c,c as o,Z as s}from"./entry.oyK-XLYr.js";const r={},a={class:"preview-layout"};function n(e,d){return c(),o("div",a,[s(e.$slots,"default",{},void 0,!0)])}const l=t(r,[["render",n],["__scopeId","data-v-5ec5c1e2"]]);export{l as default};
