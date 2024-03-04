@@ -16,7 +16,8 @@ describe('block-component', () => {
       expected: '::component\n#text\n::'
     },
     frontmatter: {
-      markdown: '::with-frontmatter\n---\nkey: value\narray:\n  - item\n  - itemKey: value\n---\n::'
+      markdown: '::with-frontmatter\n---\nkey: value\narray:\n  - item\n  - itemKey: value\n---\n::',
+      expected: '::with-frontmatter\n---\narray:\n  - item\n  - itemKey: value\nkey: value\n---\n::'
     },
     frontmatter1: {
       markdown: [
@@ -35,13 +36,13 @@ describe('block-component', () => {
       expected: [
         '::with-frontmatter',
         '---',
+        'array:',
+        '  - item',
+        '  - itemKey: value',
         'key: value',
         'key2:',
         '  subkey: value',
         '  subkey2: value',
-        'array:',
-        '  - item',
-        '  - itemKey: value',
         '---',
         '::'
       ].join('\n')
@@ -54,6 +55,26 @@ describe('block-component', () => {
         'array:',
         '  - item',
         '  - itemKey: value',
+        '---',
+        'Default slot',
+        '',
+        '#secondary-slot',
+        'Secondary slot value',
+        '',
+        '  :::hello',
+        '  ---',
+        '  key: value',
+        '  ---',
+        '  :::',
+        '::'
+      ].join('\n'),
+      expected: [
+        '::with-frontmatter-and-nested-component',
+        '---',
+        'array:',
+        '  - item',
+        '  - itemKey: value',
+        'key: value',
         '---',
         'Default slot',
         '',
