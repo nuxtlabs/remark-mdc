@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v3.1.0
+
+[compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.0.2...v3.1.0)
+
+### 🚀 Enhancements
+
+- Sort attributes to have unique markdown each time ([#74](https://github.com/nuxtlabs/remark-mdc/pull/74))
+
+### 🏡 Chore
+
+- Upgrade deps ([e110e5a](https://github.com/nuxtlabs/remark-mdc/commit/e110e5a))
+
+### ✅ Tests
+
+- Add list item test with inline component ([bd3a3f3](https://github.com/nuxtlabs/remark-mdc/commit/bd3a3f3))
+
+### ❤️ Contributors
+
+- Farnabaz ([@farnabaz](http://github.com/farnabaz))
+
 ## v3.0.2
 
 [compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.0.1...v3.0.2)
