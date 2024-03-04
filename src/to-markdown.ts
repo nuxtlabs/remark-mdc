@@ -93,29 +93,33 @@ export default (opts: RemarkMDCOptions = {}) => {
     nest += 1
     const exit = context.enter(node.type)
     let value = prefix + (node.name || '') + label(node, context)
+
     const attributesText = attributes(node, context)
     const fmAttributes = node.fmAttributes || {}
+
     if ((value + attributesText).length > 80 || Object.keys(fmAttributes).length > 0 || node.children?.some(child => child.type === 'componentContainerSection')) {
       Object.assign(fmAttributes, (node as any).attributes)
     } else {
-      value += attributes(node, context)
+      value += attributesText
     }
     let subvalue
 
     // Convert attributes to YAML FrontMatter format
     if (Object.keys(fmAttributes).length > 0) {
-      const attrs = Object.entries(fmAttributes).reduce((acc, [key, value2]) => {
-        if (key?.startsWith(':')) {
-          try {
-            value2 = JSON.parse(value2)
-          } catch {
+      const attrs = Object.entries(fmAttributes)
+        .sort(([key1], [key2]) => key1.localeCompare(key2))
+        .reduce((acc, [key, value2]) => {
+          if (key?.startsWith(':')) {
+            try {
+              value2 = JSON.parse(value2)
+            } catch {
             // ignore
+            }
+            key = key.slice(1)
           }
-          key = key.slice(1)
-        }
-        acc[key] = value2
-        return acc
-      }, {} as Record<string, any>)
+          acc[key] = value2
+          return acc
+        }, {} as Record<string, any>)
       value += '\n' + stringifyFrontMatter(attrs).trim()
     }
 
@@ -170,7 +174,11 @@ export default (opts: RemarkMDCOptions = {}) => {
   function attributes (node: any, context: State) {
     const quote = checkQuote(context)
     const subset = (node.type as string) === 'textComponent' ? [quote] : [quote, '\n', '\r']
-    const attrs = (node as any).attributes || {}
+    const attrs = Object.fromEntries(
+      Object.entries((node as any).attributes || {})
+        .sort(([key1], [key2]) => key1.localeCompare(key2))
+    )
+
     const values = []
     let id
     let classesFull: string | string[] = ''
