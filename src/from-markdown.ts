@@ -269,6 +269,10 @@ export default (opts: RemarkMDCOptions = {}) => {
       stackTop = stackTop.children[stackTop.children.length - 1]
     }
 
+    if (stackTop.type === 'tableCell') {
+      stackTop = stackTop.children[stackTop.children.length - 1]
+    }
+
     (stackTop as any).attributes = cleaned
   }
 

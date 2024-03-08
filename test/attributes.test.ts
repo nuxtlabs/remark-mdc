@@ -48,6 +48,18 @@ describe('Attributes', () => {
     },
     emphasis: {
       markdown: '_emphasis_{#id .class}'
+    },
+    'nested-in-table': {
+      markdown: [
+        '| Col1 |      Col2      |',
+        '|  --  |      -----     |',
+        '|  aa  | [a](/a){a="a"} |'
+      ].join('\n'),
+      expected: [
+        '| Col1 | Col2           |',
+        '| ---- | -------------- |',
+        '| aa   | [a](/a){a="a"} |'
+      ].join('\n')
     }
   })
 })

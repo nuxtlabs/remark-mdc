@@ -824,6 +824,235 @@ exports[`Attributes > link 1`] = `
 }
 `;
 
+exports[`Attributes > nested-in-table 1`] = `
+{
+  "children": [
+    {
+      "align": [
+        null,
+        null,
+      ],
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 7,
+                      "line": 1,
+                      "offset": 6,
+                    },
+                    "start": {
+                      "column": 3,
+                      "line": 1,
+                      "offset": 2,
+                    },
+                  },
+                  "type": "text",
+                  "value": "Col1",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 8,
+                  "line": 1,
+                  "offset": 7,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 1,
+                  "offset": 0,
+                },
+              },
+              "type": "tableCell",
+            },
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 19,
+                      "line": 1,
+                      "offset": 18,
+                    },
+                    "start": {
+                      "column": 15,
+                      "line": 1,
+                      "offset": 14,
+                    },
+                  },
+                  "type": "text",
+                  "value": "Col2",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 26,
+                  "line": 1,
+                  "offset": 25,
+                },
+                "start": {
+                  "column": 8,
+                  "line": 1,
+                  "offset": 7,
+                },
+              },
+              "type": "tableCell",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 26,
+              "line": 1,
+              "offset": 25,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "tableRow",
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 6,
+                      "line": 3,
+                      "offset": 57,
+                    },
+                    "start": {
+                      "column": 4,
+                      "line": 3,
+                      "offset": 55,
+                    },
+                  },
+                  "type": "text",
+                  "value": "aa",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 8,
+                  "line": 3,
+                  "offset": 59,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 3,
+                  "offset": 52,
+                },
+              },
+              "type": "tableCell",
+            },
+            {
+              "children": [
+                {
+                  "attributes": {
+                    "a": "a",
+                  },
+                  "children": [
+                    {
+                      "position": {
+                        "end": {
+                          "column": 12,
+                          "line": 3,
+                          "offset": 63,
+                        },
+                        "start": {
+                          "column": 11,
+                          "line": 3,
+                          "offset": 62,
+                        },
+                      },
+                      "type": "text",
+                      "value": "a",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 17,
+                      "line": 3,
+                      "offset": 68,
+                    },
+                    "start": {
+                      "column": 10,
+                      "line": 3,
+                      "offset": 61,
+                    },
+                  },
+                  "title": null,
+                  "type": "link",
+                  "url": "/a",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 26,
+                  "line": 3,
+                  "offset": 77,
+                },
+                "start": {
+                  "column": 8,
+                  "line": 3,
+                  "offset": 59,
+                },
+              },
+              "type": "tableCell",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 26,
+              "line": 3,
+              "offset": 77,
+            },
+            "start": {
+              "column": 1,
+              "line": 3,
+              "offset": 52,
+            },
+          },
+          "type": "tableRow",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 26,
+          "line": 3,
+          "offset": 77,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "table",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 26,
+      "line": 3,
+      "offset": 77,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`Attributes > strong 1`] = `
 {
   "children": [
