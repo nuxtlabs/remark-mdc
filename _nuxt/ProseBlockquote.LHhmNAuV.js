@@ -1,0 +1,1 @@
+import{l as o,b as t,c,Z as r}from"./entry.dx-1PRhz.js";const a={};function n(e,s){return t(),c("blockquote",null,[r(e.$slots,"default",{},void 0,!0)])}const d=o(a,[["render",n],["__scopeId","data-v-c06a5a95"]]);export{d as default};
