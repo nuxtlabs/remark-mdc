@@ -258,19 +258,11 @@ export default (opts: RemarkMDCOptions = {}) => {
     this.resume() // Drop EOLs
 
     let stackTop = this.stack[this.stack.length - 1]
-    if (stackTop.type === 'paragraph') {
-    // select last inline component
-      stackTop = stackTop.children[stackTop.children.length - 1]
-    }
 
-    // Add attributes to last child of fragment
-    // Example: `[![Nuxt](https://nuxtjs.org/design-kit/colored-logo.svg){.nest}](https://nuxtjs.org)`
-    if (stackTop.type === 'fragment') {
-      stackTop = stackTop.children[stackTop.children.length - 1]
-    }
-
-    if (stackTop.type === 'tableCell') {
-      stackTop = stackTop.children[stackTop.children.length - 1]
+    if (stackTop.type !== 'textComponent' || stackTop.name === 'span') {
+      while (!stackTop.position?.end && stackTop.children?.length > 0) {
+        stackTop = stackTop.children[stackTop.children.length - 1]
+      }
     }
 
     (stackTop as any).attributes = cleaned

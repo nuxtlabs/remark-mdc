@@ -37,6 +37,12 @@ describe('Attributes', () => {
     image: {
       markdown: '![Nuxt](https://nuxtjs.org/design-kit/colored-logo.svg){#id .class}'
     },
+    nested: {
+      markdown: '[Hello [World]{.x}](/world){style="color: green"}'
+    },
+    nested2: {
+      markdown: '[Hello [World](/world){.x}]{style="color: green"}'
+    },
     code: {
       markdown: '`code`{#id .class}'
     },

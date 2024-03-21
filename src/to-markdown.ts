@@ -4,9 +4,9 @@
  * License: MIT (https://github.com/syntax-tree/mdast-util-directive/blob/main/license)
  */
 import { stringifyEntitiesLight } from 'stringify-entities'
-import type { Parents } from 'mdast-util-to-markdown/lib/types'
+import type { Parents } from 'mdast'
 import { type State, type Info, type Unsafe, defaultHandlers } from 'mdast-util-to-markdown'
-import { containerFlow, containerPhrasing, checkQuote } from './mdast-util-to-markdown'
+import { containerFlow, containerPhrasing, checkQuote, inlineContainerFlow } from './mdast-util-to-markdown'
 import { stringifyFrontMatter } from './frontmatter'
 import type { RemarkMDCOptions } from './types'
 import { NON_UNWRAPPABLE_TYPES } from './utils'
@@ -45,9 +45,9 @@ export default (opts: RemarkMDCOptions = {}) => {
         node.children = [
           {
             type: node.mdc.unwrapped as any,
-            children: node.children.filter(child => !NON_UNWRAPPABLE_TYPES.includes(child.type))
+            children: node.children.filter((child: Parents) => !NON_UNWRAPPABLE_TYPES.includes(child.type))
           },
-          ...node.children.filter(child => NON_UNWRAPPABLE_TYPES.includes(child.type))
+          ...node.children.filter((child: Parents) => NON_UNWRAPPABLE_TYPES.includes(child.type))
         ]
       }
     }
@@ -95,9 +95,9 @@ export default (opts: RemarkMDCOptions = {}) => {
     let value = prefix + (node.name || '') + label(node, context)
 
     const attributesText = attributes(node, context)
-    const fmAttributes = node.fmAttributes || {}
+    const fmAttributes: Record<string, string> = node.fmAttributes || {}
 
-    if ((value + attributesText).length > 80 || Object.keys(fmAttributes).length > 0 || node.children?.some(child => child.type === 'componentContainerSection')) {
+    if ((value + attributesText).length > 80 || Object.keys(fmAttributes).length > 0 || node.children?.some((child: Parents) => child.type === 'componentContainerSection')) {
       Object.assign(fmAttributes, (node as any).attributes)
     } else {
       value += attributesText
@@ -234,7 +234,7 @@ export default (opts: RemarkMDCOptions = {}) => {
 
   function content (node: any, context: State) {
     const content = inlineComponentLabel(node) ? Object.assign({}, node, { children: node.children.slice(1) }) : node
-    return containerFlow(content, context)
+    return node.type === 'textComponent' ? inlineContainerFlow(content, context) : containerFlow(content, context)
   }
 
   function inlineComponentLabel (node: any) {
