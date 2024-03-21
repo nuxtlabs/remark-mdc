@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v3.2.0
+
+[compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.1.0...v3.2.0)
+
+### 🩹 Fixes
+
+- **attributes:** Handle attribute of elements in tableCell ([#75](https://github.com/nuxtlabs/remark-mdc/pull/75))
+- Handle attributes in nested components ([#76](https://github.com/nuxtlabs/remark-mdc/pull/76))
+- Update types ([04947ff](https://github.com/nuxtlabs/remark-mdc/commit/04947ff))
+
+### ❤️ Contributors
+
+- Farnabaz ([@farnabaz](http://github.com/farnabaz))
+
 ## v3.1.0
 
 [compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.0.2...v3.1.0)
