@@ -1,4 +1,5 @@
-import type { Preset } from 'unified'
+import type { Root, Node } from 'mdast'
+import type { Preset, Processor } from 'unified'
 import type { Ref } from 'vue'
 
 // workaround for kleur
@@ -11,8 +12,8 @@ function compiler (this: any) {
 }
 
 export function useMarkdownParser (input: Ref<string>, mdcOptions = ref({})) {
-  let _stream
-  const ast = ref(null)
+  let _stream: Processor<Root, Node, Node, undefined, undefined> | null = null
+  const ast = ref()
   const parse = async (str: string) => {
     if (!_stream) {
       const unified = await import('unified').then(r => r.unified)

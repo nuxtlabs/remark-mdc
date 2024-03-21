@@ -5,7 +5,7 @@
  */
 import { parseEntities } from 'parse-entities'
 import { kebabCase } from 'scule'
-import type { Token, CompileContext, Container, Fragment, Nodes } from './micromark-extension/types'
+import type { Token, CompileContext, Container, Nodes } from './micromark-extension/types'
 import type { RemarkMDCOptions } from './types'
 import { NON_UNWRAPPABLE_TYPES } from './utils'
 
@@ -165,7 +165,7 @@ export default (opts: RemarkMDCOptions = {}) => {
    * Ensure lists and list-items are closed before closing section
    * This issue occurs because `---` separators ar conflict with markdown lists
    */
-    section = attemptClosingOpenListSection.call(this, section)
+    section = attemptClosingOpenListSection.call(this, section as Nodes)
 
     if (section.type === 'componentContainerDataSection') {
       section.rawData = this.sliceSerialize(token)
@@ -260,8 +260,8 @@ export default (opts: RemarkMDCOptions = {}) => {
     let stackTop = this.stack[this.stack.length - 1]
 
     if (stackTop.type !== 'textComponent' || stackTop.name === 'span') {
-      while (!stackTop.position?.end && stackTop.children?.length > 0) {
-        stackTop = stackTop.children[stackTop.children.length - 1]
+      while (!stackTop.position?.end && (stackTop as Container).children?.length > 0) {
+        stackTop = (stackTop as Container).children[(stackTop as Container).children.length - 1]
       }
     }
 
@@ -281,7 +281,7 @@ export default (opts: RemarkMDCOptions = {}) => {
     }
   }
 
-  function attemptClosingOpenListSection (this: CompileContext, section: (Fragment | Nodes)) {
+  function attemptClosingOpenListSection (this: CompileContext, section: Nodes) {
   /**
    * Ensure lists and list-items are closed before closing section
    * This issue occurs because `---` separators ar conflict with markdown lists
@@ -291,7 +291,7 @@ export default (opts: RemarkMDCOptions = {}) => {
       // https://github.com/syntax-tree/mdast-util-from-markdown/blob/752dc22acfc517d280612e8d499d5ce0cd5a4495/dev/lib/index.js#L548
       const [stackToken] = this.tokenStack[this.tokenStack.length - 1]
       this.exit(stackToken)
-      section = this.stack[this.stack.length - 1]
+      section = this.stack[this.stack.length - 1] as Nodes
     }
     return section
   }

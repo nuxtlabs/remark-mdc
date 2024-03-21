@@ -4,7 +4,7 @@
  * License: MIT (https://github.com/syntax-tree/mdast-util-directive/blob/main/license)
  */
 import { stringifyEntitiesLight } from 'stringify-entities'
-import type { Parents } from 'mdast'
+import type { Parents, RootContent } from 'mdast'
 import { type State, type Info, type Unsafe, defaultHandlers } from 'mdast-util-to-markdown'
 import { containerFlow, containerPhrasing, checkQuote, inlineContainerFlow } from './mdast-util-to-markdown'
 import { stringifyFrontMatter } from './frontmatter'
@@ -45,9 +45,9 @@ export default (opts: RemarkMDCOptions = {}) => {
         node.children = [
           {
             type: node.mdc.unwrapped as any,
-            children: node.children.filter((child: Parents) => !NON_UNWRAPPABLE_TYPES.includes(child.type))
+            children: node.children.filter((child: RootContent) => !NON_UNWRAPPABLE_TYPES.includes(child.type))
           },
-          ...node.children.filter((child: Parents) => NON_UNWRAPPABLE_TYPES.includes(child.type))
+          ...node.children.filter((child: RootContent) => NON_UNWRAPPABLE_TYPES.includes(child.type))
         ]
       }
     }
@@ -97,7 +97,7 @@ export default (opts: RemarkMDCOptions = {}) => {
     const attributesText = attributes(node, context)
     const fmAttributes: Record<string, string> = node.fmAttributes || {}
 
-    if ((value + attributesText).length > 80 || Object.keys(fmAttributes).length > 0 || node.children?.some((child: Parents) => child.type === 'componentContainerSection')) {
+    if ((value + attributesText).length > 80 || Object.keys(fmAttributes).length > 0 || node.children?.some((child: RootContent) => child.type === 'componentContainerSection')) {
       Object.assign(fmAttributes, (node as any).attributes)
     } else {
       value += attributesText
