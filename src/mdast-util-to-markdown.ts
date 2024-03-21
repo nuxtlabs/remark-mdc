@@ -52,6 +52,36 @@ function track (options_) {
   }
 }
 
+export function inlineContainerFlow (parent, context, safeOptions = {}) {
+  const indexStack = context.indexStack
+  const children = parent.children || []
+  const tracker = track(safeOptions)
+  /** @type {Array<string>} */
+  const results = []
+  let index = -1
+
+  indexStack.push(-1)
+
+  while (++index < children.length) {
+    const child = children[index]
+
+    indexStack[indexStack.length - 1] = index
+
+    results.push(
+      tracker.move(
+        context.handle(child, parent, context, {
+          before: '',
+          after: '',
+          ...tracker.current()
+        })
+      )
+    )
+  }
+
+  indexStack.pop()
+
+  return results.join('')
+}
 // import { containerFlow } from 'mdast-util-to-markdown/lib/util/container-flow.js'
 /**
   * @param {Parent} parent
