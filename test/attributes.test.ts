@@ -43,6 +43,9 @@ describe('Attributes', () => {
     nested2: {
       markdown: '[Hello [World](/world){.x}]{style="color: green"}'
     },
+    nested3: {
+      markdown: '_**[Nuxt](https://nuxtjs.org){#id .class} strong**{#id2 .class2} emphasis_{#id3 .class3}'
+    },
     code: {
       markdown: '`code`{#id .class}'
     },

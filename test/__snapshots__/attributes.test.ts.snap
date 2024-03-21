@@ -1291,6 +1291,156 @@ exports[`Attributes > nested2 1`] = `
 }
 `;
 
+exports[`Attributes > nested3 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "attributes": {
+            "class": "class3",
+            "id": "id3",
+          },
+          "children": [
+            {
+              "attributes": {
+                "class": "class2",
+                "id": "id2",
+              },
+              "children": [
+                {
+                  "attributes": {
+                    "class": "class",
+                    "id": "id",
+                  },
+                  "children": [
+                    {
+                      "position": {
+                        "end": {
+                          "column": 9,
+                          "line": 1,
+                          "offset": 8,
+                        },
+                        "start": {
+                          "column": 5,
+                          "line": 1,
+                          "offset": 4,
+                        },
+                      },
+                      "type": "text",
+                      "value": "Nuxt",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 30,
+                      "line": 1,
+                      "offset": 29,
+                    },
+                    "start": {
+                      "column": 4,
+                      "line": 1,
+                      "offset": 3,
+                    },
+                  },
+                  "title": null,
+                  "type": "link",
+                  "url": "https://nuxtjs.org",
+                },
+                {
+                  "position": {
+                    "end": {
+                      "column": 49,
+                      "line": 1,
+                      "offset": 48,
+                    },
+                    "start": {
+                      "column": 42,
+                      "line": 1,
+                      "offset": 41,
+                    },
+                  },
+                  "type": "text",
+                  "value": " strong",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 51,
+                  "line": 1,
+                  "offset": 50,
+                },
+                "start": {
+                  "column": 2,
+                  "line": 1,
+                  "offset": 1,
+                },
+              },
+              "type": "strong",
+            },
+            {
+              "position": {
+                "end": {
+                  "column": 74,
+                  "line": 1,
+                  "offset": 73,
+                },
+                "start": {
+                  "column": 65,
+                  "line": 1,
+                  "offset": 64,
+                },
+              },
+              "type": "text",
+              "value": " emphasis",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 75,
+              "line": 1,
+              "offset": 74,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "emphasis",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 89,
+          "line": 1,
+          "offset": 88,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 89,
+      "line": 1,
+      "offset": 88,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`Attributes > strong 1`] = `
 {
   "children": [
