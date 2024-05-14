@@ -1,5 +1,9 @@
 # Remark MDC
 
+[![npm version][npm-version-src]][npm-version-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
+[![License][license-src]][license-href]
+
 Remark plugin to parse Markdown Components syntax.
 
 ## Setup
@@ -249,3 +253,14 @@ Or locally:
 [MIT License](https://github.com/nuxtlabs/remark-mdc/blob/main/LICENSE)
 
 Copyright (c) NuxtLabs
+
+
+<!-- Badges -->
+[npm-version-src]: https://img.shields.io/npm/v/remark-mdc/latest.svg?style=flat&colorA=020420&colorB=28CF8D
+[npm-version-href]: https://npmjs.com/package/remark-mdc
+
+[npm-downloads-src]: https://img.shields.io/npm/dm/remark-mdc.svg?style=flat&colorA=020420&colorB=28CF8D
+[npm-downloads-href]: https://npmjs.com/package/remark-mdc
+
+[license-src]: https://img.shields.io/github/license/nuxtlabs/remark-mdc.svg?style=flat&colorA=020420&colorB=28CF8D
+[license-href]: https://github.com/nuxtlabs/remark-mdc/blob/main/LICENSE
