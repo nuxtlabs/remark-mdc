@@ -6,6 +6,8 @@
 
 Remark plugin to parse Markdown Components syntax.
 
+For MDC syntax highlight on VS Code, checkout [vscode-mdc](https://github.com/nuxtlabs/vscode-mdc).
+
 ## Setup
 
 Add the `remark-mdc` dependency to your project:
