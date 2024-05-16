@@ -2,7 +2,7 @@ import yaml from 'js-yaml'
 import * as flat from 'flat'
 
 const FRONTMATTER_DELIMITER_DEFAULT = '---'
-const FRONTMATTER_DELIMITER_CODEBLOCK_STYLE = '```yaml'
+const FRONTMATTER_DELIMITER_CODEBLOCK_STYLE = '```yaml [props]'
 
 export function stringifyFrontMatter (data: any, content = '') {
   if (!Object.keys(data).length) {

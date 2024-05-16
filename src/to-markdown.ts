@@ -7,7 +7,7 @@ import { stringifyEntitiesLight } from 'stringify-entities'
 import type { Parents, RootContent } from 'mdast'
 import { type State, type Info, type Unsafe, defaultHandlers } from 'mdast-util-to-markdown'
 import { containerFlow, containerPhrasing, checkQuote, inlineContainerFlow } from './mdast-util-to-markdown'
-import { stringifyFrontMatter } from './frontmatter'
+import { stringifyFrontMatter, stringifyCodeBlockProps } from './frontmatter'
 import type { RemarkMDCOptions } from './types'
 import { NON_UNWRAPPABLE_TYPES } from './utils'
 import { type Container } from './micromark-extension/types'
@@ -18,7 +18,7 @@ const shortcut = /^[^\t\n\r "#'.<=>`}]+$/
 const baseFence = 2
 
 // import { defaultHandlers } from 'mdast-util-to-markdown/lib/util/compile-pattern'
-function compilePattern(pattern: Unsafe) {
+function compilePattern (pattern: Unsafe) {
   if (!pattern._compiled) {
     const before =
       (pattern.atBreak ? '[\\r\\n][\\t ]*' : '') +
@@ -53,7 +53,7 @@ export default (opts: RemarkMDCOptions = {}) => {
     }
   }
 
-  function componentContainerSection(node: NodeComponentContainerSection, _: any, context: any) {
+  function componentContainerSection (node: NodeComponentContainerSection, _: any, context: any) {
     context.indexStack = context.stack
 
     experimentalAutoUnwrap(node as any)
@@ -62,7 +62,7 @@ export default (opts: RemarkMDCOptions = {}) => {
   }
 
   type NodeTextComponent = Parents & { name: string; rawData: string; attributes: any }
-  function textComponent(node: NodeTextComponent, _: any, context: any) {
+  function textComponent (node: NodeTextComponent, _: any, context: any) {
     let value
     context.indexStack = context.stack
 
@@ -87,7 +87,7 @@ export default (opts: RemarkMDCOptions = {}) => {
 
   type NodeContainerComponent = Parents & { name: string; fmAttributes?: Record<string, any> }
   let nest = 0
-  function containerComponent(node: NodeContainerComponent, _: any, context: any) {
+  function containerComponent (node: NodeContainerComponent, _: any, context: any) {
     context.indexStack = context.stack
     const prefix = ':'.repeat(baseFence + nest)
     nest += 1
@@ -120,7 +120,7 @@ export default (opts: RemarkMDCOptions = {}) => {
           acc[key] = value2
           return acc
         }, {} as Record<string, any>)
-      const fm = opts?.experimental?.componentCodeBlockProps ? stringifyCodeBlockProps(node.fmAttributes) : stringifyFrontMatter(attrs)
+      const fm = opts?.experimental?.componentCodeBlockYamlProps ? stringifyCodeBlockProps(attrs) : stringifyFrontMatter(attrs)
       value += '\n' + fm.trim()
     }
 
@@ -152,11 +152,11 @@ export default (opts: RemarkMDCOptions = {}) => {
     return value
   }
 
-  containerComponent.peek = function peekComponent() {
+  containerComponent.peek = function peekComponent () {
     return ':'
   }
 
-  function label(node: Parents, context: State) {
+  function label (node: Parents, context: State) {
     let label: any = node
 
     if ((node.type as string) === 'containerComponent') {
@@ -172,7 +172,7 @@ export default (opts: RemarkMDCOptions = {}) => {
     return value ? '[' + value + ']' : ''
   }
 
-  function attributes(node: any, context: State) {
+  function attributes (node: any, context: State) {
     const quote = checkQuote(context)
     const subset = (node.type as string) === 'textComponent' ? [quote] : [quote, '\n', '\r']
     const attrs = Object.fromEntries(
@@ -228,17 +228,17 @@ export default (opts: RemarkMDCOptions = {}) => {
 
     return values.length ? '{' + values.join(' ') + '}' : ''
 
-    function quoted(key: string, value: string) {
+    function quoted (key: string, value: string) {
       return key + '=' + quote + stringifyEntitiesLight(value, { subset }) + quote
     }
   }
 
-  function content(node: any, context: State) {
+  function content (node: any, context: State) {
     const content = inlineComponentLabel(node) ? Object.assign({}, node, { children: node.children.slice(1) }) : node
     return node.type === 'textComponent' ? inlineContainerFlow(content, context) : containerFlow(content, context)
   }
 
-  function inlineComponentLabel(node: any) {
+  function inlineComponentLabel (node: any) {
     return node.children && node.children[0] && node.children[0].data && node.children[0].data.componentLabel
   }
 

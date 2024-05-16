@@ -1,0 +1,562 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`basic > YamlProps 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [],
+      "data": {
+        "hName": "with-frontmatter-yaml",
+        "hProperties": {
+          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
+          "key": "value",
+        },
+      },
+      "fmAttributes": {
+        "array": [
+          "item",
+          {
+            "itemKey": "value",
+          },
+        ],
+        "key": "value",
+      },
+      "name": "with-frontmatter-yaml",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 8,
+          "offset": 92,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "rawData": "array:
+  - item
+  - itemKey: value
+key: value
+---",
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 8,
+      "offset": 92,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`basic > nested-component-yamlProps 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 13,
+                  "line": 8,
+                  "offset": 123,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 8,
+                  "offset": 111,
+                },
+              },
+              "type": "text",
+              "value": "Default slot",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 13,
+              "line": 8,
+              "offset": 123,
+            },
+            "start": {
+              "column": 1,
+              "line": 8,
+              "offset": 111,
+            },
+          },
+          "type": "paragraph",
+        },
+        {
+          "attributes": {},
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 21,
+                      "line": 11,
+                      "offset": 161,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 11,
+                      "offset": 141,
+                    },
+                  },
+                  "type": "text",
+                  "value": "Secondary slot value",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 21,
+                  "line": 11,
+                  "offset": 161,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 11,
+                  "offset": 141,
+                },
+              },
+              "type": "paragraph",
+            },
+            {
+              "attributes": {},
+              "children": [],
+              "data": {
+                "hName": "hello",
+                "hProperties": {
+                  "key": "value",
+                },
+              },
+              "fmAttributes": {
+                "key": "value",
+              },
+              "name": "hello",
+              "position": {
+                "end": {
+                  "column": 6,
+                  "line": 17,
+                  "offset": 216,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 13,
+                  "offset": 165,
+                },
+              },
+              "rawData": "key: value
+---",
+              "type": "containerComponent",
+            },
+          ],
+          "data": {
+            "hName": "component-slot",
+            "hProperties": {
+              "v-slot:secondary-slot": "",
+            },
+          },
+          "name": "secondary-slot",
+          "position": {
+            "end": {
+              "column": 3,
+              "line": 18,
+              "offset": 219,
+            },
+            "start": {
+              "column": 2,
+              "line": 10,
+              "offset": 126,
+            },
+          },
+          "type": "componentContainerSection",
+        },
+      ],
+      "data": {
+        "hName": "with-frontmatter-and-nested-component-yaml",
+        "hProperties": {
+          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
+          "key": "value",
+        },
+      },
+      "fmAttributes": {
+        "array": [
+          "item",
+          {
+            "itemKey": "value",
+          },
+        ],
+        "key": "value",
+      },
+      "name": "with-frontmatter-and-nested-component-yaml",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 18,
+          "offset": 219,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "rawData": "array:
+  - item
+  - itemKey: value
+key: value
+---",
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 18,
+      "offset": 219,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`basic > notYamlProps 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "lang": "yaml",
+          "meta": null,
+          "position": {
+            "end": {
+              "column": 4,
+              "line": 7,
+              "offset": 81,
+            },
+            "start": {
+              "column": 1,
+              "line": 2,
+              "offset": 24,
+            },
+          },
+          "type": "code",
+          "value": "key: value
+array:
+  - item
+  - itemKey: value",
+        },
+      ],
+      "data": {
+        "hName": "with-frontmatter-yaml",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "name": "with-frontmatter-yaml",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 8,
+          "offset": 84,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 8,
+      "offset": 84,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`basic > notYamlProps2 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "lang": "yaml[props]",
+          "meta": null,
+          "position": {
+            "end": {
+              "column": 4,
+              "line": 7,
+              "offset": 88,
+            },
+            "start": {
+              "column": 1,
+              "line": 2,
+              "offset": 24,
+            },
+          },
+          "type": "code",
+          "value": "key: value
+array:
+  - item
+  - itemKey: value",
+        },
+      ],
+      "data": {
+        "hName": "with-frontmatter-yaml",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "name": "with-frontmatter-yaml",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 8,
+          "offset": 91,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 8,
+      "offset": 91,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`basic > notYamlProps3 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "lang": "yaml",
+          "meta": "[yaml]",
+          "position": {
+            "end": {
+              "column": 4,
+              "line": 7,
+              "offset": 88,
+            },
+            "start": {
+              "column": 1,
+              "line": 2,
+              "offset": 24,
+            },
+          },
+          "type": "code",
+          "value": "key: value
+array:
+  - item
+  - itemKey: value",
+        },
+      ],
+      "data": {
+        "hName": "with-frontmatter-yaml",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "name": "with-frontmatter-yaml",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 8,
+          "offset": 91,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 8,
+      "offset": 91,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`basic > shouldConvertYamlProps 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [],
+      "data": {
+        "hName": "with-frontmatter-yaml",
+        "hProperties": {
+          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
+          "key": "value",
+        },
+      },
+      "fmAttributes": {
+        "array": [
+          "item",
+          {
+            "itemKey": "value",
+          },
+        ],
+        "key": "value",
+      },
+      "name": "with-frontmatter-yaml",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 8,
+          "offset": 80,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "rawData": "
+array:
+  - item
+  - itemKey: value
+key: value
+---",
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 8,
+      "offset": 80,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`basic > yamlProps1 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [],
+      "data": {
+        "hName": "with-frontmatter-yaml1",
+        "hProperties": {
+          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
+          ":key2": "{\\"subkey\\":\\"value\\",\\"subkey2\\":\\"value\\"}",
+          "key": "value",
+        },
+      },
+      "fmAttributes": {
+        "array": [
+          "item",
+          {
+            "itemKey": "value",
+          },
+        ],
+        "key": "value",
+        "key2": {
+          "subkey": "value",
+          "subkey2": "value",
+        },
+      },
+      "name": "with-frontmatter-yaml1",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 11,
+          "offset": 132,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "rawData": "key: value
+key2:
+  subkey: value
+  subkey2: value
+array:
+  - item
+  - itemKey: value
+---",
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 11,
+      "offset": 132,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;

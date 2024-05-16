@@ -28,7 +28,7 @@ interface ComponentNode extends Node {
   attributes?: Record<string, any>
   fmAttributes?: Record<string, any>
   rawData?: string
-  children?: ChildrenNode[];
+  children?: ChildrenNode[]
 }
 
 export default <Plugin<Array<RemarkMDCOptions>>> function (opts: RemarkMDCOptions = {}) {
@@ -96,7 +96,7 @@ function getNodeData (node: ComponentNode) {
     node.children?.length &&
     node.children[0].type === 'code' &&
     node.children[0].lang === 'yaml' &&
-    node.children[0].meta === null
+    node.children[0].meta === '[props]'
   ) {
     const yaml = node.children[0].value as string
     const { data } = parseFrontMatter(toFrontMatter(yaml))

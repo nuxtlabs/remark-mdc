@@ -3,8 +3,8 @@
     <label for="autoUnwrap">
       <input id="autoUnwrap" v-model="mdcOptions.experimental.autoUnwrap" type="checkbox"> auto unwrap
     </label>
-    <label for="componentCodeBlockProps">
-      <input id="componentCodeBlockProps" v-model="mdcOptions.experimental.componentCodeBlockProps" type="checkbox">
+    <label for="componentCodeBlockYamlProps">
+      <input id="componentCodeBlockYamlProps" v-model="mdcOptions.experimental.componentCodeBlockYamlProps" type="checkbox">
       Component props code block style
     </label>
     <div class="flex">
@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-const mdcOptions = ref({ experimental: { autoUnwrap: true, componentCodeBlockProps: false } })
+const mdcOptions = ref({ experimental: { autoUnwrap: true, componentCodeBlockYamlProps: false } })
 const markdown = ref(`# Hello World
 
 {{ $doc.name || 'Nuxt' }}
