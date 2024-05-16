@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v3.2.1
+
+[compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.2.0...v3.2.1)
+
+### 🚀 Enhancements
+
+- Support code block as component props ([#67](https://github.com/nuxtlabs/remark-mdc/pull/67))
+
+### 📖 Documentation
+
+- Add badges ([eb67516](https://github.com/nuxtlabs/remark-mdc/commit/eb67516))
+- Add link to vscode-mdc ([864feea](https://github.com/nuxtlabs/remark-mdc/commit/864feea))
+
+### 🏡 Chore
+
+- Remove packagemanger from pakcage json ([875982c](https://github.com/nuxtlabs/remark-mdc/commit/875982c))
+
+### ❤️ Contributors
+
+- Farnabaz <farnabaz@gmail.com>
+- Emmanuel Salomon ([@ManUtopiK](http://github.com/ManUtopiK))
+- Sébastien Chopin <seb@nuxtlabs.com>
+
 ## v3.2.0
 
 [compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.1.0...v3.2.0)
