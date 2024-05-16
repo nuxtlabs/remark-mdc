@@ -5,17 +5,17 @@
  */
 import { parseEntities } from 'parse-entities'
 import { kebabCase } from 'scule'
-import type { Token, CompileContext, Container, Fragment, Nodes } from './micromark-extension/types'
+import type { Token, CompileContext, Container, Nodes } from './micromark-extension/types'
 import type { RemarkMDCOptions } from './types'
-import { NON_UNWRAPABLE_TYPES } from './utils'
+import { NON_UNWRAPPABLE_TYPES } from './utils'
 
 export default (opts: RemarkMDCOptions = {}) => {
   const canContainEols = ['textComponent']
 
   const experimentalAutoUnwrap = (node: Container) => {
-    if (opts.experimental?.autoUnwrap && NON_UNWRAPABLE_TYPES.includes(node.type)) {
+    if (opts.experimental?.autoUnwrap && NON_UNWRAPPABLE_TYPES.includes(node.type)) {
       const nonSlotChildren = (node.children).filter((child: any) => child.type !== 'componentContainerSection')
-      if (nonSlotChildren.length === 1 && !NON_UNWRAPABLE_TYPES.includes(nonSlotChildren[0].type)) {
+      if (nonSlotChildren.length === 1 && !NON_UNWRAPPABLE_TYPES.includes(nonSlotChildren[0].type)) {
         const nonSlotChildIndex = node.children.indexOf(nonSlotChildren[0])
 
         node.children.splice(nonSlotChildIndex, 1, ...(nonSlotChildren[0] as Container).children)
@@ -53,11 +53,11 @@ export default (opts: RemarkMDCOptions = {}) => {
     componentContainerAttributeValue: exitAttributeValue,
     componentContainerAttributes: exitAttributes,
     componentContainerLabel: exitContainerLabel,
-    componentContainerName: exitName,
+    componentContainerName,
 
     componentContainerAttributeInitializerMarker (this: CompileContext) {
     // If an attribute name follows by `=` it should be treat as string
-      const attributes = this.getData('componentAttributes')
+      const attributes = (this.data as any).componentAttributes
       attributes[attributes.length - 1][1] = ''
     },
 
@@ -76,7 +76,7 @@ export default (opts: RemarkMDCOptions = {}) => {
     componentTextAttributeName: exitAttributeName,
     componentTextAttributeValue: exitAttributeValue,
     componentTextAttributes: exitAttributes,
-    componentTextName: exitName
+    componentTextName: componentContainerName
   }
 
   // Bindings
@@ -88,8 +88,8 @@ export default (opts: RemarkMDCOptions = {}) => {
       type: 'textComponent',
       name: 'binding',
       attributes: {
-        value: values[1].trim(),
-        defaultValue: values[2]
+        value: values?.[1]?.trim(),
+        defaultValue: values?.[2]
       }
     }, token)
   }
@@ -149,9 +149,9 @@ export default (opts: RemarkMDCOptions = {}) => {
 
     /**
      * Ensure lists and list-items are closed before closing section
-     * This issue occurs because `---` separtors ar conflict with markdown lists
+     * This issue occurs because `---` separators ar conflict with markdown lists
      */
-    attempClosingOpenListSection.call(this, section)
+    attemptClosingOpenListSection.call(this, section)
 
     experimentalAutoUnwrap(section)
 
@@ -163,9 +163,9 @@ export default (opts: RemarkMDCOptions = {}) => {
 
     /**
    * Ensure lists and list-items are closed before closing section
-   * This issue occurs because `---` separtors ar conflict with markdown lists
+   * This issue occurs because `---` separators ar conflict with markdown lists
    */
-    section = attempClosingOpenListSection.call(this, section)
+    section = attemptClosingOpenListSection.call(this, section as Nodes)
 
     if (section.type === 'componentContainerDataSection') {
       section.rawData = this.sliceSerialize(token)
@@ -193,6 +193,10 @@ export default (opts: RemarkMDCOptions = {}) => {
     this.enter({ type: type as any, name: '', attributes: {}, children: [] }, token)
   }
 
+  function componentContainerName (this: CompileContext, token: Token) {
+    (this.stack[this.stack.length - 1] as any).name = kebabCase(this.sliceSerialize(token))
+  }
+
   function exitName (this: CompileContext, token: Token) {
     (this.stack[this.stack.length - 1] as any).name = this.sliceSerialize(token)
   }
@@ -206,20 +210,20 @@ export default (opts: RemarkMDCOptions = {}) => {
   }
 
   function enterAttributes (this: CompileContext) {
-    this.setData('componentAttributes', [])
+    (this.data as any).componentAttributes = []
     this.buffer() // Capture EOLs
   }
 
   function exitAttributeIdValue (this: CompileContext, token: Token) {
-    this.getData('componentAttributes').push(['id', parseEntities(this.sliceSerialize(token))])
+    (this.data as any).componentAttributes.push(['id', parseEntities(this.sliceSerialize(token))])
   }
 
   function exitAttributeClassValue (this: CompileContext, token: Token) {
-    this.getData('componentAttributes').push(['class', parseEntities(this.sliceSerialize(token))])
+    (this.data as any).componentAttributes.push(['class', parseEntities(this.sliceSerialize(token))])
   }
 
   function exitAttributeValue (this: CompileContext, token: Token) {
-    const attributes = this.getData('componentAttributes')
+    const attributes = (this.data as any).componentAttributes
     attributes[attributes.length - 1][1] = parseEntities(this.sliceSerialize(token))
   }
 
@@ -228,11 +232,11 @@ export default (opts: RemarkMDCOptions = {}) => {
   // references can’t exist.
 
     // Use `true` as attribute default value to solve issue of attributes without value (example `:block{attr1 attr2}`)
-    this.getData('componentAttributes').push([this.sliceSerialize(token), true])
+    (this.data as any).componentAttributes.push([this.sliceSerialize(token), true])
   }
 
   function exitAttributes (this: CompileContext) {
-    const attributes = this.getData('componentAttributes')
+    const attributes = (this.data as any).componentAttributes
     const cleaned: Record<string, any> = {}
     let index = -1
     let attribute
@@ -249,19 +253,16 @@ export default (opts: RemarkMDCOptions = {}) => {
       }
     }
 
-    this.setData('componentAttributes')
+    // this.setData('componentAttributes')
+    (this.data as any).componentAttributes = attributes
     this.resume() // Drop EOLs
 
     let stackTop = this.stack[this.stack.length - 1]
-    if (stackTop.type === 'paragraph') {
-    // select last inline component
-      stackTop = stackTop.children[stackTop.children.length - 1]
-    }
 
-    // Add attributes to last child of fragment
-    // Example: `[![Nuxt](https://nuxtjs.org/design-kit/colored-logo.svg){.nest}](https://nuxtjs.org)`
-    if (stackTop.type === 'fragment') {
-      stackTop = stackTop.children[stackTop.children.length - 1]
+    if (stackTop.type !== 'textComponent' || stackTop.name === 'span') {
+      while (!stackTop.position?.end && (stackTop as Container).children?.length > 0) {
+        stackTop = (stackTop as Container).children[(stackTop as Container).children.length - 1]
+      }
     }
 
     (stackTop as any).attributes = cleaned
@@ -272,7 +273,7 @@ export default (opts: RemarkMDCOptions = {}) => {
   }
 
   function conditionalExit (this: CompileContext, token: Token) {
-  // As of mdast-util-from-markdown@1.1.0 tokenStach items is an array containing the token and a handler
+  // As of mdast-util-from-markdown@1.1.0 tokenStack items is an array containing the token and a handler
   // https://github.com/syntax-tree/mdast-util-from-markdown/blob/752dc22acfc517d280612e8d499d5ce0cd5a4495/dev/lib/index.js#L548
     const [section] = this.tokenStack[this.tokenStack.length - 1]
     if ((section as Token).type === token.type) {
@@ -280,17 +281,17 @@ export default (opts: RemarkMDCOptions = {}) => {
     }
   }
 
-  function attempClosingOpenListSection (this: CompileContext, section: (Fragment | Nodes)) {
+  function attemptClosingOpenListSection (this: CompileContext, section: Nodes) {
   /**
    * Ensure lists and list-items are closed before closing section
-   * This issue occurs because `---` separtors ar conflict with markdown lists
+   * This issue occurs because `---` separators ar conflict with markdown lists
    */
     while (section.type === 'listItem' || section.type === 'list') {
-      // As of mdast-util-from-markdown@1.1.0 tokenStach items is an array containing the token and a handler
+      // As of mdast-util-from-markdown@1.1.0 tokenStack items is an array containing the token and a handler
       // https://github.com/syntax-tree/mdast-util-from-markdown/blob/752dc22acfc517d280612e8d499d5ce0cd5a4495/dev/lib/index.js#L548
       const [stackToken] = this.tokenStack[this.tokenStack.length - 1]
       this.exit(stackToken)
-      section = this.stack[this.stack.length - 1]
+      section = this.stack[this.stack.length - 1] as Nodes
     }
     return section
   }

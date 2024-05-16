@@ -4,21 +4,21 @@
  * License: MIT (https://github.com/syntax-tree/mdast-util-directive/blob/main/license)
  */
 import { stringifyEntitiesLight } from 'stringify-entities'
-import { type Parents } from 'mdast-util-to-markdown/lib/types'
+import type { Parents, RootContent } from 'mdast'
 import { type State, type Info, type Unsafe, defaultHandlers } from 'mdast-util-to-markdown'
-import { containerFlow, containerPhrasing, checkQuote } from './mdast-util-to-markdown'
-import { stringifyFrontMatter, stringifyCodeBlockProps } from './frontmatter'
+import { containerFlow, containerPhrasing, checkQuote, inlineContainerFlow } from './mdast-util-to-markdown'
+import { stringifyFrontMatter } from './frontmatter'
 import type { RemarkMDCOptions } from './types'
-import { NON_UNWRAPABLE_TYPES } from './utils'
-import { Container } from './micromark-extension/types'
+import { NON_UNWRAPPABLE_TYPES } from './utils'
+import { type Container } from './micromark-extension/types'
 
 const own = {}.hasOwnProperty
 
 const shortcut = /^[^\t\n\r "#'.<=>`}]+$/
-const baseFense = 2
+const baseFence = 2
 
 // import { defaultHandlers } from 'mdast-util-to-markdown/lib/util/compile-pattern'
-function compilePattern (pattern: Unsafe) {
+function compilePattern(pattern: Unsafe) {
   if (!pattern._compiled) {
     const before =
       (pattern.atBreak ? '[\\r\\n][\\t ]*' : '') +
@@ -26,9 +26,9 @@ function compilePattern (pattern: Unsafe) {
 
     pattern._compiled = new RegExp(
       (before ? '(' + before + ')' : '') +
-        (/[|\\{}()[\]^$+*?.-]/.test(pattern.character) ? '\\' : '') +
-        pattern.character +
-        (pattern.after ? '(?:' + pattern.after + ')' : ''),
+      (/[|\\{}()[\]^$+*?.-]/.test(pattern.character) ? '\\' : '') +
+      pattern.character +
+      (pattern.after ? '(?:' + pattern.after + ')' : ''),
       'g'
     )
   }
@@ -45,15 +45,15 @@ export default (opts: RemarkMDCOptions = {}) => {
         node.children = [
           {
             type: node.mdc.unwrapped as any,
-            children: node.children.filter(child => !NON_UNWRAPABLE_TYPES.includes(child.type))
+            children: node.children.filter((child: RootContent) => !NON_UNWRAPPABLE_TYPES.includes(child.type))
           },
-          ...node.children.filter(child => NON_UNWRAPABLE_TYPES.includes(child.type))
+          ...node.children.filter((child: RootContent) => NON_UNWRAPPABLE_TYPES.includes(child.type))
         ]
       }
     }
   }
 
-  function componentContainerSection (node: NodeComponentContainerSection, _: any, context: any) {
+  function componentContainerSection(node: NodeComponentContainerSection, _: any, context: any) {
     context.indexStack = context.stack
 
     experimentalAutoUnwrap(node as any)
@@ -61,8 +61,8 @@ export default (opts: RemarkMDCOptions = {}) => {
     return `#${(node as any).name}\n${content(node, context)}`.trim()
   }
 
-  type NodeTextComponent = Parents & { name: string; rawData: string }
-  function textComponent (node: NodeTextComponent, _: any, context: any) {
+  type NodeTextComponent = Parents & { name: string; rawData: string; attributes: any }
+  function textComponent(node: NodeTextComponent, _: any, context: any) {
     let value
     context.indexStack = context.stack
 
@@ -71,6 +71,12 @@ export default (opts: RemarkMDCOptions = {}) => {
     if (node.name === 'span') {
       // Handle span suger syntax
       value = `[${content(node, context)}]${attributes(node, context)}`
+    } else if (node.name === 'binding') {
+      // Handle binding syntax
+      const attrs = node.attributes || {}
+      value = attrs.defaultValue
+        ? `{{ ${attrs.value} || '${attrs.defaultValue}' }}`
+        : `{{ ${attrs.value} }}`
     } else {
       value = ':' + (node.name || '') + label(node, context) + attributes(node, context)
     }
@@ -81,17 +87,40 @@ export default (opts: RemarkMDCOptions = {}) => {
 
   type NodeContainerComponent = Parents & { name: string; fmAttributes?: Record<string, any> }
   let nest = 0
-  function containerComponent (node: NodeContainerComponent, _: any, context: any) {
+  function containerComponent(node: NodeContainerComponent, _: any, context: any) {
     context.indexStack = context.stack
-    const prefix = ':'.repeat(baseFense + nest)
+    const prefix = ':'.repeat(baseFence + nest)
     nest += 1
     const exit = context.enter(node.type)
-    let value = prefix + (node.name || '') + label(node, context) + attributes(node, context)
+    let value = prefix + (node.name || '') + label(node, context)
+
+    const attributesText = attributes(node, context)
+    const fmAttributes: Record<string, string> = node.fmAttributes || {}
+
+    if ((value + attributesText).length > 80 || Object.keys(fmAttributes).length > 0 || node.children?.some((child: RootContent) => child.type === 'componentContainerSection')) {
+      Object.assign(fmAttributes, (node as any).attributes)
+    } else {
+      value += attributesText
+    }
     let subvalue
 
     // Convert attributes to YAML FrontMatter format
-    if (node.fmAttributes && Object.keys(node.fmAttributes).length > 0) {
-      const fm = opts?.experimental?.componentCodeBlockProps ? stringifyCodeBlockProps(node.fmAttributes) : stringifyFrontMatter(node.fmAttributes)
+    if (Object.keys(fmAttributes).length > 0) {
+      const attrs = Object.entries(fmAttributes)
+        .sort(([key1], [key2]) => key1.localeCompare(key2))
+        .reduce((acc, [key, value2]) => {
+          if (key?.startsWith(':')) {
+            try {
+              value2 = JSON.parse(value2)
+            } catch {
+              // ignore
+            }
+            key = key.slice(1)
+          }
+          acc[key] = value2
+          return acc
+        }, {} as Record<string, any>)
+      const fm = opts?.experimental?.componentCodeBlockProps ? stringifyCodeBlockProps(node.fmAttributes) : stringifyFrontMatter(attrs)
       value += '\n' + fm.trim()
     }
 
@@ -123,11 +152,11 @@ export default (opts: RemarkMDCOptions = {}) => {
     return value
   }
 
-  containerComponent.peek = function peekComponent () {
+  containerComponent.peek = function peekComponent() {
     return ':'
   }
 
-  function label (node: Parents, context: State) {
+  function label(node: Parents, context: State) {
     let label: any = node
 
     if ((node.type as string) === 'containerComponent') {
@@ -143,10 +172,14 @@ export default (opts: RemarkMDCOptions = {}) => {
     return value ? '[' + value + ']' : ''
   }
 
-  function attributes (node: any, context: State) {
+  function attributes(node: any, context: State) {
     const quote = checkQuote(context)
     const subset = (node.type as string) === 'textComponent' ? [quote] : [quote, '\n', '\r']
-    const attrs = (node as any).attributes || {}
+    const attrs = Object.fromEntries(
+      Object.entries((node as any).attributes || {})
+        .sort(([key1], [key2]) => key1.localeCompare(key2))
+    )
+
     const values = []
     let id
     let classesFull: string | string[] = ''
@@ -195,17 +228,17 @@ export default (opts: RemarkMDCOptions = {}) => {
 
     return values.length ? '{' + values.join(' ') + '}' : ''
 
-    function quoted (key: string, value: string) {
+    function quoted(key: string, value: string) {
       return key + '=' + quote + stringifyEntitiesLight(value, { subset }) + quote
     }
   }
 
-  function content (node: any, context: State) {
+  function content(node: any, context: State) {
     const content = inlineComponentLabel(node) ? Object.assign({}, node, { children: node.children.slice(1) }) : node
-    return containerFlow(content, context)
+    return node.type === 'textComponent' ? inlineContainerFlow(content, context) : containerFlow(content, context)
   }
 
-  function inlineComponentLabel (node: any) {
+  function inlineComponentLabel(node: any) {
     return node.children && node.children[0] && node.children[0].data && node.children[0].data.componentLabel
   }
 

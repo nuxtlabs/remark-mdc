@@ -1,3 +1,5 @@
+import type { Root, Node } from 'mdast'
+import type { Processor } from 'unified'
 import type { Ref } from 'vue'
 
 // workaround for kleur
@@ -9,7 +11,7 @@ function jsonParser (this: any) {
   }
 }
 export function useMarkdownGenerator (input: Ref<object>, mdcOptions = ref({})) {
-  let _stream
+  let _stream: Processor<undefined, Node, Node, Root, string> | null = null
   const markdown = ref('')
   const generate = async (ast: object) => {
     if (!_stream) {
@@ -26,7 +28,7 @@ export function useMarkdownGenerator (input: Ref<object>, mdcOptions = ref({})) 
           bullet: '-'
         })
     }
-    const res = await _stream.process(JSON.stringify(ast)).then(file => file.value)
+    const res = await _stream.process(JSON.stringify(ast)).then(file => file.value as string)
     markdown.value = res
   }
 

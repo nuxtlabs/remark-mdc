@@ -1,7 +1,7 @@
 import { unified, type Preset } from 'unified'
 import parse from 'remark-parse'
 import gfm from 'remark-gfm'
-import strigify from 'remark-stringify'
+import stringify from 'remark-stringify'
 import { expect, test } from 'vitest'
 import mdc from '../../src'
 
@@ -21,8 +21,8 @@ export function runMarkdownTests (tests: Record<string, MarkdownTest>) {
 
       expect(ast).toMatchSnapshot()
 
-      const regenertedMarkdown = await astToMarkdown(ast, plugins, mdcOptions)
-      expect(regenertedMarkdown.trim()).toEqual(expected || markdown)
+      const regeneratedMarkdown = await astToMarkdown(ast, plugins, mdcOptions)
+      expect(regeneratedMarkdown.trim()).toEqual(expected || markdown)
       if (extra) {
         extra(markdown, ast, expected || markdown)
       }
@@ -64,8 +64,13 @@ async function astToMarkdown (ast: any, plugins = [] as any[], mdcOptions = {}) 
   for (const plugin of plugins) {
     stream.use(plugin)
   }
-  stream.use(strigify, {
-    bullet: '-'
+  stream.use(stringify, {
+    bullet: '-',
+    emphasis: '_',
+    listItemIndent: 'one',
+    fence: '`',
+    fences: true,
+    rule: '-'
   })
   const result = await stream.process(JSON.stringify(ast))
   return result.value as string

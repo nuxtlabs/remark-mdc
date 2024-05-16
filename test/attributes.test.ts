@@ -26,7 +26,7 @@ describe('Attributes', () => {
       markdown: ':test{attr= value} text',
       expected: ':test{attr="value"} text'
     },
-    'invlid-binding': {
+    'invalid-binding': {
       markdown: ':test{:} text',
       expected: ':test{:} text'
     },
@@ -36,6 +36,15 @@ describe('Attributes', () => {
     },
     image: {
       markdown: '![Nuxt](https://nuxtjs.org/design-kit/colored-logo.svg){#id .class}'
+    },
+    nested: {
+      markdown: '[Hello [World]{.x}](/world){style="color: green"}'
+    },
+    nested2: {
+      markdown: '[Hello [World](/world){.x}]{style="color: green"}'
+    },
+    nested3: {
+      markdown: '_**[Nuxt](https://nuxtjs.org){#id .class} strong**{#id2 .class2} emphasis_{#id3 .class3}'
     },
     code: {
       markdown: '`code`{#id .class}'
@@ -47,7 +56,19 @@ describe('Attributes', () => {
       markdown: '[Nuxt](https://nuxtjs.org){#id .class}'
     },
     emphasis: {
-      markdown: '*emphasis*{#id .class}'
+      markdown: '_emphasis_{#id .class}'
+    },
+    'nested-in-table': {
+      markdown: [
+        '| Col1 |      Col2      |',
+        '|  --  |      -----     |',
+        '|  aa  | [a](/a){a="a"} |'
+      ].join('\n'),
+      expected: [
+        '| Col1 | Col2           |',
+        '| ---- | -------------- |',
+        '| aa   | [a](/a){a="a"} |'
+      ].join('\n')
     }
   })
 })

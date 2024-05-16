@@ -21,12 +21,16 @@ const markdown = ref(`# Hello World
 
 {{ $doc.name || 'Nuxt' }}
 
+| Col1 |    Col2    |
+|  --  |    -----   |
+|aaa   |      bbb   |
+
 [span]
 
 - [ ] Task 1 [span]
 - [x] Task 2
 
-::simple-text
+::simple-text{c="c1" b="b1"}
 test
 ::
 

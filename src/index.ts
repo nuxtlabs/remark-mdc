@@ -1,5 +1,5 @@
 import { type Plugin } from 'unified'
-import { type Node } from 'unist'
+import type { Node } from 'unist'
 import { kebabCase } from 'scule'
 import { visit } from 'unist-util-visit'
 import { parseFrontMatter } from './frontmatter'

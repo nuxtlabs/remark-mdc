@@ -1,8 +1,8 @@
 import type { CompileContext as MdastCompileContext } from 'mdast-util-from-markdown'
-import type { Parent } from 'mdast-util-from-markdown/lib'
+import type { Parent } from 'mdast'
 import type { CompileContext as MicromarkCompileContext } from 'micromark-util-types'
 export type { Effects, State, Code, TokenizeContext, TokenTypeMap, Token } from 'micromark-util-types'
-export type { Fragment, Nodes } from 'mdast-util-from-markdown/lib'
+export type { Nodes } from 'mdast'
 
 export type CompileContext = MicromarkCompileContext & MdastCompileContext
 

@@ -16,7 +16,8 @@ describe('block-component', () => {
       expected: '::component\n#text\n::'
     },
     frontmatter: {
-      markdown: '::with-frontmatter\n---\nkey: value\narray:\n  - item\n  - itemKey: value\n---\n::'
+      markdown: '::with-frontmatter\n---\nkey: value\narray:\n  - item\n  - itemKey: value\n---\n::',
+      expected: '::with-frontmatter\n---\narray:\n  - item\n  - itemKey: value\nkey: value\n---\n::'
     },
     frontmatter1: {
       markdown: [
@@ -35,12 +36,13 @@ describe('block-component', () => {
       expected: [
         '::with-frontmatter',
         '---',
-        'key: value',
-        'key2.subkey: value',
-        'key2.subkey2: value',
         'array:',
         '  - item',
         '  - itemKey: value',
+        'key: value',
+        'key2:',
+        '  subkey: value',
+        '  subkey2: value',
         '---',
         '::'
       ].join('\n')
@@ -140,6 +142,26 @@ describe('block-component', () => {
         '  ---',
         '  :::',
         '::'
+      ].join('\n'),
+      expected: [
+        '::with-frontmatter-and-nested-component',
+        '---',
+        'array:',
+        '  - item',
+        '  - itemKey: value',
+        'key: value',
+        '---',
+        'Default slot',
+        '',
+        '#secondary-slot',
+        'Secondary slot value',
+        '',
+        '  :::hello',
+        '  ---',
+        '  key: value',
+        '  ---',
+        '  :::',
+        '::'
       ].join('\n')
     },
     'section-order': {
@@ -216,11 +238,11 @@ describe('block-component', () => {
         'Third line'
       ].join('\n')
     },
-    'danglig-list': {
+    'dangling-list': {
       markdown: [
         '::component',
-        '-   list item',
-        '-   list item',
+        '- list item',
+        '- list item',
         '',
         '#slot',
         'slot content',
