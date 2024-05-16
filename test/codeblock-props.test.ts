@@ -78,8 +78,9 @@ describe('basic', () => {
         '  - item',
         '  - itemKey: value',
         'key: value',
-        'key2.subkey: value',
-        'key2.subkey2: value',
+        'key2:',
+        '  subkey: value',
+        '  subkey2: value',
         '```',
         '::'
       ].join('\n')
