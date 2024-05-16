@@ -63,7 +63,6 @@
     "unbuild": "^2.0.0",
     "vitest": "latest"
   },
-  "packageManager": "pnpm@8.6.5",
   "release-it": {
     "git": {
       "commitMessage": "chore(release): release v${version}"
