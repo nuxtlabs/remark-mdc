@@ -8,5 +8,6 @@ export interface RemarkMDCOptions {
   components?: ComponentHandler[]
   experimental?: {
     autoUnwrap?: boolean
+    componentCodeBlockYamlProps?: boolean
   }
 }

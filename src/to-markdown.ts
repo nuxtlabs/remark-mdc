@@ -7,7 +7,7 @@ import { stringifyEntitiesLight } from 'stringify-entities'
 import type { Parents, RootContent } from 'mdast'
 import { type State, type Info, type Unsafe, defaultHandlers } from 'mdast-util-to-markdown'
 import { containerFlow, containerPhrasing, checkQuote, inlineContainerFlow } from './mdast-util-to-markdown'
-import { stringifyFrontMatter } from './frontmatter'
+import { stringifyFrontMatter, stringifyCodeBlockProps } from './frontmatter'
 import type { RemarkMDCOptions } from './types'
 import { NON_UNWRAPPABLE_TYPES } from './utils'
 import { type Container } from './micromark-extension/types'
@@ -26,9 +26,9 @@ function compilePattern (pattern: Unsafe) {
 
     pattern._compiled = new RegExp(
       (before ? '(' + before + ')' : '') +
-        (/[|\\{}()[\]^$+*?.-]/.test(pattern.character) ? '\\' : '') +
-        pattern.character +
-        (pattern.after ? '(?:' + pattern.after + ')' : ''),
+      (/[|\\{}()[\]^$+*?.-]/.test(pattern.character) ? '\\' : '') +
+      pattern.character +
+      (pattern.after ? '(?:' + pattern.after + ')' : ''),
       'g'
     )
   }
@@ -113,14 +113,15 @@ export default (opts: RemarkMDCOptions = {}) => {
             try {
               value2 = JSON.parse(value2)
             } catch {
-            // ignore
+              // ignore
             }
             key = key.slice(1)
           }
           acc[key] = value2
           return acc
         }, {} as Record<string, any>)
-      value += '\n' + stringifyFrontMatter(attrs).trim()
+      const fm = opts?.experimental?.componentCodeBlockYamlProps ? stringifyCodeBlockProps(attrs) : stringifyFrontMatter(attrs)
+      value += '\n' + fm.trim()
     }
 
     // Move default slot's children to the beginning of the content

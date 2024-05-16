@@ -1,7 +1,8 @@
 import yaml from 'js-yaml'
 import * as flat from 'flat'
 
-const FRONTMATTER_DELIMITER = '---'
+const FRONTMATTER_DELIMITER_DEFAULT = '---'
+const FRONTMATTER_DELIMITER_CODEBLOCK_STYLE = '```yaml [props]'
 
 export function stringifyFrontMatter (data: any, content = '') {
   if (!Object.keys(data).length) {
@@ -11,17 +12,32 @@ export function stringifyFrontMatter (data: any, content = '') {
   data = flat.unflatten(data || {}, {})
 
   return [
-    FRONTMATTER_DELIMITER,
+    FRONTMATTER_DELIMITER_DEFAULT,
     yaml.dump(data, { lineWidth: -1 }).trim(),
-    FRONTMATTER_DELIMITER,
+    FRONTMATTER_DELIMITER_DEFAULT,
+    content
+  ].join('\n')
+}
+
+export function stringifyCodeBlockProps (data: any, content = '') {
+  if (!Object.keys(data).length) {
+    return ''
+  }
+
+  data = flat.unflatten(data || {}, {})
+
+  return [
+    FRONTMATTER_DELIMITER_CODEBLOCK_STYLE,
+    yaml.dump(data, { lineWidth: -1 }).trim(),
+    '```',
     content
   ].join('\n')
 }
 
 export function parseFrontMatter (content: string) {
   let data: any = {}
-  if (content.startsWith(FRONTMATTER_DELIMITER)) {
-    const idx = content.indexOf('\n' + FRONTMATTER_DELIMITER)
+  if (content.startsWith(FRONTMATTER_DELIMITER_DEFAULT)) {
+    const idx = content.indexOf('\n' + FRONTMATTER_DELIMITER_DEFAULT)
     if (idx !== -1) {
       const frontmatter = content.slice(4, idx)
       if (frontmatter) {

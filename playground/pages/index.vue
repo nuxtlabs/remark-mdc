@@ -1,7 +1,11 @@
 <template>
   <div>
-    <label for="">
-      <input v-model="mdcOptions.experimental.autoUnwrap" type="checkbox"> auto unwrap
+    <label for="autoUnwrap">
+      <input id="autoUnwrap" v-model="mdcOptions.experimental.autoUnwrap" type="checkbox"> auto unwrap
+    </label>
+    <label for="componentCodeBlockYamlProps">
+      <input id="componentCodeBlockYamlProps" v-model="mdcOptions.experimental.componentCodeBlockYamlProps" type="checkbox">
+      Component props code block style
     </label>
     <div class="flex">
       <textarea v-model="markdown" class="flex-1" />
@@ -12,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-const mdcOptions = ref({ experimental: { autoUnwrap: true } })
+const mdcOptions = ref({ experimental: { autoUnwrap: true, componentCodeBlockYamlProps: false } })
 const markdown = ref(`# Hello World
 
 {{ $doc.name || 'Nuxt' }}
@@ -73,6 +77,7 @@ const md = useMarkdownGenerator(ast, mdcOptions)
   display: flex;
   width: 100%;
 }
+
 .flex-1 {
   flex: 1;
   height: calc(100vh - 40px);
