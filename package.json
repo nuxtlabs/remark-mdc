@@ -21,6 +21,7 @@
     "generate": "nuxi generate playground",
     "lint": "eslint --ext .js,.ts,.vue .",
     "test": "pnpm lint && vitest run",
+    "test:ui": "pnpm lint && vitest --ui --open=false",
     "prepack": "pnpm build",
     "release": "release-it"
   },

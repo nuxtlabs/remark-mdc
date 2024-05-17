@@ -6,6 +6,7 @@ interface ComponentHandler {
 
 export interface RemarkMDCOptions {
   components?: ComponentHandler[]
+  maxAttributesLength?: number
   experimental?: {
     autoUnwrap?: boolean
     componentCodeBlockYamlProps?: boolean
