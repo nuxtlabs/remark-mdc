@@ -1,7 +1,17 @@
-import { describe, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
+import { parse, stringify } from 'yaml'
 import { runMarkdownTests } from './utils'
 
 describe('block-component', () => {
+  it('should parse frontmatter binding values', () => {
+    const fmAttributes = {
+      array: ['item', { ':itemKey': 'value' }],
+      ':key': 'value',
+      key2: { ':subkey': 'value', subkey2: 'value' }
+    }
+    expect(parse(stringify(fmAttributes).trim())).toEqual(fmAttributes)
+  })
+
   runMarkdownTests({
     empty: {
       markdown: '::component\n::',
@@ -42,6 +52,21 @@ describe('block-component', () => {
         'key: value',
         'key2:',
         '  subkey: value',
+        '  subkey2: value',
+        '---',
+        '::'
+      ].join('\n')
+    },
+    'frontmatter-with-binding-variables': {
+      markdown: [
+        '::with-frontmatter',
+        '---',
+        ':key: value',
+        'array:',
+        '  - item',
+        '  - :itemKey: value',
+        'object:',
+        '  :subkey: value',
         '  subkey2: value',
         '---',
         '::'
