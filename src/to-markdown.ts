@@ -172,6 +172,15 @@ export default (opts: RemarkMDCOptions = {}) => {
     return value ? '[' + value + ']' : ''
   }
 
+  const isValidJSON = (str: string) => {
+    try {
+      JSON.parse(str)
+      return true
+    } catch (e) {
+      return false
+    }
+  }
+
   function attributes (node: any, context: State) {
     const quote = checkQuote(context)
     const subset = (node.type as string) === 'textComponent' ? [quote] : [quote, '\n', '\r']
@@ -208,6 +217,8 @@ export default (opts: RemarkMDCOptions = {}) => {
           classes = classes.length ? '.' + classes.join('.') : ''
         } else if (key.startsWith(':') && value === 'true') {
           values.push(key.slice(1))
+        } else if (key.startsWith(':') && isValidJSON(value)) {
+          values.push(`${key}='${value}'`)
         } else {
           values.push(quoted(key, value))
         }
