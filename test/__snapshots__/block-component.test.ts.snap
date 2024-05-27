@@ -99,13 +99,13 @@ exports[`block-component > component-attributes-array-of-string 1`] = `
   "children": [
     {
       "attributes": {
-        ":items": "[\\"Nuxt\\", \\"Vue\\"]",
+        ":items": "["Nuxt", "Vue"]",
       },
       "children": [],
       "data": {
         "hName": "container-component",
         "hProperties": {
-          ":items": "[\\"Nuxt\\", \\"Vue\\"]",
+          ":items": "["Nuxt", "Vue"]",
         },
       },
       "fmAttributes": {},
@@ -240,13 +240,13 @@ exports[`block-component > component-attributes-object 1`] = `
   "children": [
     {
       "attributes": {
-        ":items": "{\\"key\\": \\"value\\"}",
+        ":items": "{"key": "value"}",
       },
       "children": [],
       "data": {
         "hName": "container-component",
         "hProperties": {
-          ":items": "{\\"key\\": \\"value\\"}",
+          ":items": "{"key": "value"}",
         },
       },
       "fmAttributes": {},
@@ -287,13 +287,13 @@ exports[`block-component > component-hProperties-be-the-same 1`] = `
   "children": [
     {
       "attributes": {
-        ":items": "{\\"key\\":\\"value\\"}",
+        ":items": "{"key":"value"}",
       },
       "children": [],
       "data": {
         "hName": "container-component",
         "hProperties": {
-          ":items": "{\\"key\\":\\"value\\"}",
+          ":items": "{"key":"value"}",
         },
       },
       "fmAttributes": {},
@@ -318,7 +318,7 @@ exports[`block-component > component-hProperties-be-the-same 1`] = `
       "data": {
         "hName": "container-component",
         "hProperties": {
-          ":items": "{\\"key\\":\\"value\\"}",
+          ":items": "{"key":"value"}",
         },
       },
       "fmAttributes": {
