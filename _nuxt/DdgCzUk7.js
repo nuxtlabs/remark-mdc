@@ -1,0 +1,1 @@
+import{l as t,b as n,c,Z as o}from"./BCMg6AXG.js";const r={};function a(e,s){return n(),c("td",null,[o(e.$slots,"default",{},void 0,!0)])}const d=t(r,[["render",a],["__scopeId","data-v-91ca4f9d"]]);export{d as default};

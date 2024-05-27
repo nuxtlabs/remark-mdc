@@ -1,1 +1,0 @@
-import{l as n,b as t,c as o,Z as c}from"./CbDxKgB8.js";const r={};function s(e,_){return t(),o("p",null,[c(e.$slots,"default",{},void 0,!0)])}const d=n(r,[["render",s],["__scopeId","data-v-df0bb2b5"]]);export{d as default};
