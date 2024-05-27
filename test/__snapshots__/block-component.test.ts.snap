@@ -709,7 +709,7 @@ exports[`block-component > frontmatter 1`] = `
       "data": {
         "hName": "with-frontmatter",
         "hProperties": {
-          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
+          ":array": "["item",{"itemKey":"value"}]",
           "key": "value",
         },
       },
@@ -760,6 +760,74 @@ array:
 }
 `;
 
+exports[`block-component > frontmatter-with-binding-variables 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [],
+      "data": {
+        "hName": "with-frontmatter",
+        "hProperties": {
+          ":array": "["item",{":itemKey":"value"}]",
+          ":key": "value",
+          ":object": "{":subkey":"value","subkey2":"value"}",
+        },
+      },
+      "fmAttributes": {
+        ":key": "value",
+        "array": [
+          "item",
+          {
+            ":itemKey": "value",
+          },
+        ],
+        "object": {
+          ":subkey": "value",
+          "subkey2": "value",
+        },
+      },
+      "name": "with-frontmatter",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 11,
+          "offset": 119,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "rawData": "
+:key: value
+array:
+  - item
+  - :itemKey: value
+object:
+  :subkey: value
+  subkey2: value
+---",
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 11,
+      "offset": 119,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`block-component > frontmatter1 1`] = `
 {
   "children": [
@@ -769,8 +837,8 @@ exports[`block-component > frontmatter1 1`] = `
       "data": {
         "hName": "with-frontmatter",
         "hProperties": {
-          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
-          ":key2": "{\\"subkey\\":\\"value\\",\\"subkey2\\":\\"value\\"}",
+          ":array": "["item",{"itemKey":"value"}]",
+          ":key2": "{"subkey":"value","subkey2":"value"}",
           "key": "value",
         },
       },
@@ -1120,7 +1188,7 @@ exports[`block-component > nested-component 1`] = `
       "data": {
         "hName": "with-frontmatter-and-nested-component",
         "hProperties": {
-          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
+          ":array": "["item",{"itemKey":"value"}]",
           "key": "value",
         },
       },

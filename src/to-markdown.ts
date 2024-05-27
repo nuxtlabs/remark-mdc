@@ -109,7 +109,8 @@ export default (opts: RemarkMDCOptions = {}) => {
       const attrs = Object.entries(fmAttributes)
         .sort(([key1], [key2]) => key1.localeCompare(key2))
         .reduce((acc, [key, value2]) => {
-          if (key?.startsWith(':')) {
+          // Stringify only JSON objects. `{":key:": "value"}` can be used for binding data to frontmatter.
+          if (key?.startsWith(':') && typeof value2 !== 'string') {
             try {
               value2 = JSON.parse(value2)
             } catch {

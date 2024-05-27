@@ -1,4 +1,4 @@
-import yaml from 'js-yaml'
+import { parse, stringify } from 'yaml'
 import * as flat from 'flat'
 
 const FRONTMATTER_DELIMITER_DEFAULT = '---'
@@ -13,7 +13,7 @@ export function stringifyFrontMatter (data: any, content = '') {
 
   return [
     FRONTMATTER_DELIMITER_DEFAULT,
-    yaml.dump(data, { lineWidth: -1 }).trim(),
+    stringify(data).trim(),
     FRONTMATTER_DELIMITER_DEFAULT,
     content
   ].join('\n')
@@ -28,7 +28,7 @@ export function stringifyCodeBlockProps (data: any, content = '') {
 
   return [
     FRONTMATTER_DELIMITER_CODEBLOCK_STYLE,
-    yaml.dump(data, { lineWidth: -1 }).trim(),
+    stringify(data).trim(),
     '```',
     content
   ].join('\n')
@@ -41,7 +41,7 @@ export function parseFrontMatter (content: string) {
     if (idx !== -1) {
       const frontmatter = content.slice(4, idx)
       if (frontmatter) {
-        data = yaml.load(frontmatter)
+        data = parse(frontmatter)
         content = content.slice(idx + 4)
       }
     }
