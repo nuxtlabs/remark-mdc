@@ -1,8 +1,20 @@
-import { describe } from 'vitest'
+import { expect, describe } from 'vitest'
 import { runMarkdownTests } from './utils'
 
 describe('basic', () => {
+  let attachers
   runMarkdownTests({
+    remarkPluginName: {
+      markdown: '',
+      plugins: [
+        function test () {
+          attachers = this.attachers
+        }
+      ],
+      extra () {
+        expect(attachers.map(a => a[0].name)).toContain('remarkMDC')
+      }
+    },
     simple: {
       mdcOptions: {
         experimental: {
