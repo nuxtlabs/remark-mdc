@@ -31,7 +31,7 @@ interface ComponentNode extends Node {
   children?: ChildrenNode[]
 }
 
-export default <Plugin<Array<RemarkMDCOptions>>> function (opts: RemarkMDCOptions = {}) {
+export default <Plugin<Array<RemarkMDCOptions>>> function remarkMDC (opts: RemarkMDCOptions = {}) {
   const data: Record<string, any> = this.data()
 
   add('micromarkExtensions', syntax())
