@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`basic > YamlProps 1`] = `
+exports[`codeblock-props > YamlProps 1`] = `
 {
   "children": [
     {
@@ -9,7 +9,7 @@ exports[`basic > YamlProps 1`] = `
       "data": {
         "hName": "with-frontmatter-yaml",
         "hProperties": {
-          ":array": "["item",{"itemKey":"value"}]",
+          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
           "key": "value",
         },
       },
@@ -59,7 +59,7 @@ key: value
 }
 `;
 
-exports[`basic > nested-component-yamlProps 1`] = `
+exports[`codeblock-props > nested-component-yamlProps 1`] = `
 {
   "children": [
     {
@@ -189,7 +189,7 @@ exports[`basic > nested-component-yamlProps 1`] = `
       "data": {
         "hName": "with-frontmatter-and-nested-component-yaml",
         "hProperties": {
-          ":array": "["item",{"itemKey":"value"}]",
+          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
           "key": "value",
         },
       },
@@ -239,7 +239,7 @@ key: value
 }
 `;
 
-exports[`basic > notYamlProps 1`] = `
+exports[`codeblock-props > notYamlProps 1`] = `
 {
   "children": [
     {
@@ -304,7 +304,7 @@ array:
 }
 `;
 
-exports[`basic > notYamlProps2 1`] = `
+exports[`codeblock-props > notYamlProps2 1`] = `
 {
   "children": [
     {
@@ -369,7 +369,7 @@ array:
 }
 `;
 
-exports[`basic > notYamlProps3 1`] = `
+exports[`codeblock-props > notYamlProps3 1`] = `
 {
   "children": [
     {
@@ -434,7 +434,7 @@ array:
 }
 `;
 
-exports[`basic > shouldConvertYamlProps 1`] = `
+exports[`codeblock-props > shouldConvertYamlProps 1`] = `
 {
   "children": [
     {
@@ -443,7 +443,7 @@ exports[`basic > shouldConvertYamlProps 1`] = `
       "data": {
         "hName": "with-frontmatter-yaml",
         "hProperties": {
-          ":array": "["item",{"itemKey":"value"}]",
+          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
           "key": "value",
         },
       },
@@ -494,7 +494,66 @@ key: value
 }
 `;
 
-exports[`basic > yamlProps1 1`] = `
+exports[`codeblock-props > shouldConvertYamlPropsWithoutOption 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [],
+      "data": {
+        "hName": "with-frontmatter-yaml",
+        "hProperties": {
+          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
+          "key": "value",
+        },
+      },
+      "fmAttributes": {
+        "array": [
+          "item",
+          {
+            "itemKey": "value",
+          },
+        ],
+        "key": "value",
+      },
+      "name": "with-frontmatter-yaml",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 8,
+          "offset": 92,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "rawData": "array:
+  - item
+  - itemKey: value
+key: value
+---",
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 8,
+      "offset": 92,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`codeblock-props > yamlProps1 1`] = `
 {
   "children": [
     {
@@ -503,8 +562,8 @@ exports[`basic > yamlProps1 1`] = `
       "data": {
         "hName": "with-frontmatter-yaml1",
         "hProperties": {
-          ":array": "["item",{"itemKey":"value"}]",
-          ":key2": "{"subkey":"value","subkey2":"value"}",
+          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
+          ":key2": "{\\"subkey\\":\\"value\\",\\"subkey2\\":\\"value\\"}",
           "key": "value",
         },
       },
