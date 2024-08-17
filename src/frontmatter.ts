@@ -1,5 +1,5 @@
 import { parse, stringify } from 'yaml'
-import * as flat from 'flat'
+import { unflatten } from './utils'
 
 const FRONTMATTER_DELIMITER_DEFAULT = '---'
 const FRONTMATTER_DELIMITER_CODEBLOCK_STYLE = '```yaml [props]'
@@ -9,7 +9,7 @@ export function stringifyFrontMatter (data: any, content = '') {
     return ''
   }
 
-  data = flat.unflatten(data || {}, {})
+  data = unflatten(data || {})
 
   return [
     FRONTMATTER_DELIMITER_DEFAULT,
@@ -24,7 +24,7 @@ export function stringifyCodeBlockProps (data: any, content = '') {
     return ''
   }
 
-  data = flat.unflatten(data || {}, {})
+  data = unflatten(data || {})
 
   return [
     FRONTMATTER_DELIMITER_CODEBLOCK_STYLE,
@@ -49,7 +49,6 @@ export function parseFrontMatter (content: string) {
 
   return {
     content,
-    // unflatten frontmatter data. convert `parent.child` keys into `parent: { child: ... }`
-    data: flat.unflatten(data || {}, {}) as Record<string, any>
+    data: unflatten(data || {}) as Record<string, any>
   }
 }
