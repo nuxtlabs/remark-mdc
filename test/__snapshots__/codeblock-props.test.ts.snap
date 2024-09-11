@@ -9,7 +9,7 @@ exports[`codeblock-props > YamlProps 1`] = `
       "data": {
         "hName": "with-frontmatter-yaml",
         "hProperties": {
-          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
+          ":array": "["item",{"itemKey":"value"}]",
           "key": "value",
         },
       },
@@ -189,7 +189,7 @@ exports[`codeblock-props > nested-component-yamlProps 1`] = `
       "data": {
         "hName": "with-frontmatter-and-nested-component-yaml",
         "hProperties": {
-          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
+          ":array": "["item",{"itemKey":"value"}]",
           "key": "value",
         },
       },
@@ -443,7 +443,7 @@ exports[`codeblock-props > shouldConvertYamlProps 1`] = `
       "data": {
         "hName": "with-frontmatter-yaml",
         "hProperties": {
-          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
+          ":array": "["item",{"itemKey":"value"}]",
           "key": "value",
         },
       },
@@ -503,7 +503,7 @@ exports[`codeblock-props > shouldConvertYamlPropsWithoutOption 1`] = `
       "data": {
         "hName": "with-frontmatter-yaml",
         "hProperties": {
-          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
+          ":array": "["item",{"itemKey":"value"}]",
           "key": "value",
         },
       },
@@ -562,8 +562,8 @@ exports[`codeblock-props > yamlProps1 1`] = `
       "data": {
         "hName": "with-frontmatter-yaml1",
         "hProperties": {
-          ":array": "[\\"item\\",{\\"itemKey\\":\\"value\\"}]",
-          ":key2": "{\\"subkey\\":\\"value\\",\\"subkey2\\":\\"value\\"}",
+          ":array": "["item",{"itemKey":"value"}]",
+          ":key2": "{"subkey":"value","subkey2":"value"}",
           "key": "value",
         },
       },
