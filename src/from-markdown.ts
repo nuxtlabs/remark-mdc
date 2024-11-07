@@ -224,7 +224,9 @@ export default (opts: RemarkMDCOptions = {}) => {
 
   function exitAttributeValue (this: CompileContext, token: Token) {
     const attributes = (this.data as any).componentAttributes
-    attributes[attributes.length - 1][1] = parseEntities(this.sliceSerialize(token))
+    const lastAttribute = attributes[attributes.length - 1]
+
+    lastAttribute[1] = (typeof lastAttribute[1] === 'string' ? lastAttribute[1] : '') + parseEntities(this.sliceSerialize(token))
   }
 
   function exitAttributeName (this: CompileContext, token: Token) {

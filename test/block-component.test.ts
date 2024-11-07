@@ -29,6 +29,12 @@ describe('block-component', () => {
       markdown: '::with-frontmatter\n---\nkey: value\narray:\n  - item\n  - itemKey: value\n---\n::',
       expected: '::with-frontmatter\n---\narray:\n  - item\n  - itemKey: value\nkey: value\n---\n::'
     },
+    jsonScapeAttr: {
+      markdown: '::foo{:test=\'{"foo":"I\\\'d love to"}\'}\n::',
+      extra: (_md, ast) => {
+        expect(ast.children[0].type).toBe('containerComponent')
+      }
+    },
     frontmatter1: {
       markdown: [
         '::with-frontmatter',
