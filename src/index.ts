@@ -92,19 +92,6 @@ function getNodeData (node: ComponentNode) {
     return data
   }
 
-  if (
-    node.children?.length &&
-    node.children[0].type === 'code' &&
-    node.children[0].lang === 'yaml' &&
-    node.children[0].meta === '[props]'
-  ) {
-    const yaml = node.children[0].value as string
-    const { data } = parseFrontMatter(toFrontMatter(yaml))
-    node.rawData = yaml + '\n---'
-    node.children!.splice(0, 1)
-    return data
-  }
-
   return {}
 }
 

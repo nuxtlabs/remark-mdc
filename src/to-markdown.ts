@@ -52,11 +52,14 @@ export default (opts: RemarkMDCOptions = {}) => {
       }
     }
   }
+  const processNode = (node: Container) => {
+    experimentalAutoUnwrap(node)
+  }
 
   function componentContainerSection (node: NodeComponentContainerSection, _: any, context: any) {
     context.indexStack = context.stack
 
-    experimentalAutoUnwrap(node as any)
+    processNode(node as any)
 
     return `#${(node as any).name}\n${content(node, context)}`.trim()
   }
@@ -134,7 +137,7 @@ export default (opts: RemarkMDCOptions = {}) => {
       ...slots
     ]
 
-    experimentalAutoUnwrap(node as any)
+    processNode(node as any)
 
     if ((node.type as string) === 'containerComponent') {
       subvalue = content(node, context)
