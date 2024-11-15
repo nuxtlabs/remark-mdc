@@ -296,12 +296,29 @@ export default function createAttributes (
   }
 
   function valueQuoted (code: number) {
+    if (code === Codes.backSlash) {
+      effects.exit(attributeValueData)
+      effects.exit(attributeValueType)
+      effects.enter('escapeCharacter')
+      effects.consume(code)
+      effects.exit('escapeCharacter')
+      effects.enter(attributeValueType)
+      effects.enter(attributeValueData)
+      return valueQuotedEscape
+    }
+
     if (code === marker || code === Codes.EOF || markdownLineEnding(code)) {
       effects.exit(attributeValueData)
       return valueQuotedBetween(code)
     }
 
     effects.consume(code)
+    return valueQuoted
+  }
+
+  function valueQuotedEscape (code: number) {
+    effects.consume(code)
+
     return valueQuoted
   }
 

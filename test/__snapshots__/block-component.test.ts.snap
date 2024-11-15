@@ -1057,6 +1057,53 @@ exports[`block-component > ignore-code-fence 1`] = `
 }
 `;
 
+exports[`block-component > jsonScapeAttr 1`] = `
+{
+  "children": [
+    {
+      "attributes": {
+        ":test": "{"foo":"I'd love to"}",
+      },
+      "children": [],
+      "data": {
+        "hName": "foo",
+        "hProperties": {
+          ":test": "{"foo":"I'd love to"}",
+        },
+      },
+      "fmAttributes": {},
+      "name": "foo",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 2,
+          "offset": 40,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 2,
+      "offset": 40,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`block-component > nested-component 1`] = `
 {
   "children": [

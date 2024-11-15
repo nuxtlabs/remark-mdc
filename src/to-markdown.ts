@@ -222,7 +222,7 @@ export default (opts: RemarkMDCOptions = {}) => {
         } else if (key.startsWith(':') && value === 'true') {
           values.push(key.slice(1))
         } else if (key.startsWith(':') && isValidJSON(value)) {
-          values.push(`${key}='${value}'`)
+          values.push(`${key}='${value.replace(/([^/])'/g, '$1\\\'')}'`)
         } else {
           values.push(quoted(key, value))
         }

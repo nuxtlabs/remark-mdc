@@ -73,6 +73,8 @@ declare module 'micromark-util-types' {
     bindingContent: 'bindingContent',
     bindingFence: 'bindingFence',
 
+    escapeCharacter: 'escapeCharacter',
+
     // Component Text
     componentText: 'componentText',
     componentTextMarker: 'componentTextMarker',
