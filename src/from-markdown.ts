@@ -13,16 +13,18 @@ export default (opts: RemarkMDCOptions = {}) => {
   const canContainEols = ['textComponent']
 
   const experimentalCodeBlockYamlProps = (node: Container) => {
+    const firstSection = node.children[0] as Container
     if (
-      node.children?.length &&
-      node.children[0].type === 'code' &&
-      node.children[0].lang === 'yaml' &&
-      node.children[0].meta === '[props]'
+      firstSection &&
+      firstSection.children?.length &&
+      firstSection.children[0].type === 'code' &&
+      firstSection.children[0].lang === 'yaml' &&
+      firstSection.children[0].meta === '[props]'
     ) {
-      node.rawData = node.children[0].value as string
+      node.rawData = firstSection.children[0].value as string
       node.mdc = node.mdc || {}
       node.mdc.codeBlockProps = true
-      node.children!.splice(0, 1)
+      firstSection.children!.splice(0, 1)
     }
   }
   const experimentalAutoUnwrap = (node: Container) => {
