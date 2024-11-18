@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v3.3.0
+
+[compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.2.1...v3.3.0)
+
+### 🚀 Enhancements
+
+- Option for max attributes length ([#79](https://github.com/nuxtlabs/remark-mdc/pull/79))
+- Allow using inline components inside parentheses ([f0f168c](https://github.com/nuxtlabs/remark-mdc/commit/f0f168c))
+
+### 🩹 Fixes
+
+- **to-markdown:** Check if value if an object to properly simple quote value ([#81](https://github.com/nuxtlabs/remark-mdc/pull/81))
+- Resolve experimental features conflict ([b0e2daa](https://github.com/nuxtlabs/remark-mdc/commit/b0e2daa))
+- **autoUnwrap:** Do not unwrap tables ([7195bcc](https://github.com/nuxtlabs/remark-mdc/commit/7195bcc))
+- Codeblock yaml data section ([b74b764](https://github.com/nuxtlabs/remark-mdc/commit/b74b764))
+- Remove scaped char `\` from attributes value ([#89](https://github.com/nuxtlabs/remark-mdc/pull/89))
+- **to-markdown:** Parse component props object ([#84](https://github.com/nuxtlabs/remark-mdc/pull/84))
+- **to-markdown:** Link reference attributes ([41f7e3c](https://github.com/nuxtlabs/remark-mdc/commit/41f7e3c))
+
+### 🏡 Chore
+
+- Replace `js-yaml` by `yaml` package ([#82](https://github.com/nuxtlabs/remark-mdc/pull/82))
+- Remove studio ci ([58ca74a](https://github.com/nuxtlabs/remark-mdc/commit/58ca74a))
+
+### ✅ Tests
+
+- Update snapshots ([f92a84f](https://github.com/nuxtlabs/remark-mdc/commit/f92a84f))
+
+### 🤖 CI
+
+- Upgrade actions ([fcb2ff3](https://github.com/nuxtlabs/remark-mdc/commit/fcb2ff3))
+
+### ❤️ Contributors
+
+- Farnabaz <farnabaz@gmail.com>
+- Emmanuel Salomon ([@ManUtopiK](http://github.com/ManUtopiK))
+
 ## v3.2.1
 
 [compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.2.0...v3.2.1)
