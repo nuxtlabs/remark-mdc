@@ -1,7 +1,7 @@
 import { expect, describe } from 'vitest'
 import { runMarkdownTests } from './utils'
 
-describe('basic', () => {
+describe('codeblock-props', () => {
   runMarkdownTests({
     YamlProps: {
       mdcOptions: {
@@ -52,6 +52,10 @@ describe('basic', () => {
       markdown: '::with-frontmatter-yaml\n---\narray:\n  - item\n  - itemKey: value\nkey: value\n---\n::',
       expected: '::with-frontmatter-yaml\n```yaml [props]\narray:\n  - item\n  - itemKey: value\nkey: value\n```\n::'
     },
+    // shouldConvertYamlPropsWithoutOption: {
+    //   markdown: '::with-frontmatter-yaml\n```yaml [props]\narray:\n  - item\n  - itemKey: value\nkey: value\n```\n::',
+    //   expected: '::with-frontmatter-yaml\n---\narray:\n  - item\n  - itemKey: value\nkey: value\n---\n::'
+    // },
     yamlProps1: {
       mdcOptions: {
         experimental: {
