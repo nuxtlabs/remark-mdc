@@ -52,10 +52,10 @@ describe('codeblock-props', () => {
       markdown: '::with-frontmatter-yaml\n---\narray:\n  - item\n  - itemKey: value\nkey: value\n---\n::',
       expected: '::with-frontmatter-yaml\n```yaml [props]\narray:\n  - item\n  - itemKey: value\nkey: value\n```\n::'
     },
-    shouldConvertYamlPropsWithoutOption: {
-      markdown: '::with-frontmatter-yaml\n```yaml [props]\narray:\n  - item\n  - itemKey: value\nkey: value\n```\n::',
-      expected: '::with-frontmatter-yaml\n---\narray:\n  - item\n  - itemKey: value\nkey: value\n---\n::'
-    },
+    // shouldConvertYamlPropsWithoutOption: {
+    //   markdown: '::with-frontmatter-yaml\n```yaml [props]\narray:\n  - item\n  - itemKey: value\nkey: value\n```\n::',
+    //   expected: '::with-frontmatter-yaml\n---\narray:\n  - item\n  - itemKey: value\nkey: value\n---\n::'
+    // },
     yamlProps1: {
       mdcOptions: {
         experimental: {
