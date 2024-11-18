@@ -55,6 +55,9 @@ describe('Attributes', () => {
     link: {
       markdown: '[Nuxt](https://nuxtjs.org){#id .class}'
     },
+    linkReference: {
+      markdown: '[Nuxt][nuxt]{#id .class}\n\n[nuxt]: https://nuxt.com'
+    },
     emphasis: {
       markdown: '_emphasis_{#id .class}'
     },

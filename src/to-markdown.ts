@@ -286,6 +286,9 @@ export default (opts: RemarkMDCOptions = {}) => {
       link: (node: Parents, _: any, state: State, info: Info) => {
         return defaultHandlers.link(node as any, _, state, info) + attributes(node, state)
       },
+      linkReference: (node: Parents, _: any, state: State, info: Info) => {
+        return defaultHandlers.linkReference(node as any, _, state, info) + attributes(node, state)
+      },
       strong: (node: Parents, _: any, state: State, info: Info) => {
         return defaultHandlers.strong(node as any, _, state, info) + attributes(node, state)
       },

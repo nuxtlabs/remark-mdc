@@ -824,6 +824,102 @@ exports[`Attributes > link 1`] = `
 }
 `;
 
+exports[`Attributes > linkReference 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "attributes": {
+            "class": "class",
+            "id": "id",
+          },
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 6,
+                  "line": 1,
+                  "offset": 5,
+                },
+                "start": {
+                  "column": 2,
+                  "line": 1,
+                  "offset": 1,
+                },
+              },
+              "type": "text",
+              "value": "Nuxt",
+            },
+          ],
+          "identifier": "nuxt",
+          "label": "nuxt",
+          "position": {
+            "end": {
+              "column": 13,
+              "line": 1,
+              "offset": 12,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "referenceType": "full",
+          "type": "linkReference",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 25,
+          "line": 1,
+          "offset": 24,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+    {
+      "identifier": "nuxt",
+      "label": "nuxt",
+      "position": {
+        "end": {
+          "column": 25,
+          "line": 3,
+          "offset": 50,
+        },
+        "start": {
+          "column": 1,
+          "line": 3,
+          "offset": 26,
+        },
+      },
+      "title": null,
+      "type": "definition",
+      "url": "https://nuxt.com",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 25,
+      "line": 3,
+      "offset": 50,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`Attributes > nested 1`] = `
 {
   "children": [
