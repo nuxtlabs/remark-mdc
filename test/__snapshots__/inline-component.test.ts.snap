@@ -206,6 +206,119 @@ exports[`inline-component > empty 1`] = `
 }
 `;
 
+exports[`inline-component > parentheses 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "position": {
+            "end": {
+              "column": 2,
+              "line": 1,
+              "offset": 1,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "text",
+          "value": "(",
+        },
+        {
+          "attributes": {
+            "class": "class",
+          },
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 17,
+                  "line": 1,
+                  "offset": 16,
+                },
+                "start": {
+                  "column": 13,
+                  "line": 1,
+                  "offset": 12,
+                },
+              },
+              "type": "text",
+              "value": "text",
+            },
+          ],
+          "data": {
+            "hName": "component",
+            "hProperties": {
+              "class": "class",
+            },
+          },
+          "fmAttributes": {},
+          "name": "component",
+          "position": {
+            "end": {
+              "column": 26,
+              "line": 1,
+              "offset": 25,
+            },
+            "start": {
+              "column": 2,
+              "line": 1,
+              "offset": 1,
+            },
+          },
+          "type": "textComponent",
+        },
+        {
+          "position": {
+            "end": {
+              "column": 27,
+              "line": 1,
+              "offset": 26,
+            },
+            "start": {
+              "column": 26,
+              "line": 1,
+              "offset": 25,
+            },
+          },
+          "type": "text",
+          "value": ")",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 27,
+          "line": 1,
+          "offset": 26,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 27,
+      "line": 1,
+      "offset": 26,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`inline-component > strong 1`] = `
 {
   "children": [

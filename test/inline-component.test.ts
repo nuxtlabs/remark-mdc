@@ -22,6 +22,9 @@ describe('inline-component', () => {
     underlined: {
       markdown: '**:component[text]{.class}**'
     },
+    parentheses: {
+      markdown: '(:component[text]{.class})'
+    },
     binding: {
       markdown: '{{ $doc.variable }}'
     },
