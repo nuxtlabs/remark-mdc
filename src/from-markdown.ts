@@ -12,17 +12,38 @@ import { NON_UNWRAPPABLE_TYPES } from './utils'
 export default (opts: RemarkMDCOptions = {}) => {
   const canContainEols = ['textComponent']
 
+  const experimentalCodeBlockYamlProps = (node: Container) => {
+    const firstSection = node.children[0] as Container
+    if (
+      firstSection &&
+      firstSection.children?.length &&
+      firstSection.children[0].type === 'code' &&
+      firstSection.children[0].lang === 'yaml' &&
+      firstSection.children[0].meta === '[props]'
+    ) {
+      node.rawData = firstSection.children[0].value as string
+      node.mdc = node.mdc || {}
+      node.mdc.codeBlockProps = true
+      firstSection.children!.splice(0, 1)
+    }
+  }
   const experimentalAutoUnwrap = (node: Container) => {
     if (opts.experimental?.autoUnwrap && NON_UNWRAPPABLE_TYPES.includes(node.type)) {
       const nonSlotChildren = (node.children).filter((child: any) => child.type !== 'componentContainerSection')
       if (nonSlotChildren.length === 1 && !NON_UNWRAPPABLE_TYPES.includes(nonSlotChildren[0].type)) {
         const nonSlotChildIndex = node.children.indexOf(nonSlotChildren[0])
 
-        node.children.splice(nonSlotChildIndex, 1, ...(nonSlotChildren[0] as Container).children)
+        node.children.splice(nonSlotChildIndex, 1, ...((nonSlotChildren[0] as Container)?.children || []))
         node.mdc = node.mdc || {}
         node.mdc.unwrapped = nonSlotChildren[0].type
       }
     }
+  }
+  const processNode = (node: Container) => {
+    if (opts.experimental?.componentCodeBlockYamlProps) {
+      experimentalCodeBlockYamlProps(node)
+    }
+    experimentalAutoUnwrap(node)
   }
   const enter = {
     componentContainer: enterContainer,
@@ -109,7 +130,7 @@ export default (opts: RemarkMDCOptions = {}) => {
       container.rawData = dataSection?.rawData
     }
 
-    experimentalAutoUnwrap(container)
+    processNode(container)
 
     container.children = container.children.flatMap((child: any) => {
       if (child.rawData) {
@@ -153,7 +174,7 @@ export default (opts: RemarkMDCOptions = {}) => {
      */
     attemptClosingOpenListSection.call(this, section)
 
-    experimentalAutoUnwrap(section)
+    processNode(section)
 
     this.exit(token)
   }

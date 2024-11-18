@@ -282,6 +282,25 @@ exports[`basic > link 1`] = `
 }
 `;
 
+exports[`basic > remarkPluginName 1`] = `
+{
+  "children": [],
+  "position": {
+    "end": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`basic > simple 1`] = `
 {
   "children": [

@@ -22,6 +22,9 @@ exports[`codeblock-props > YamlProps 1`] = `
         ],
         "key": "value",
       },
+      "mdc": {
+        "codeBlockProps": true,
+      },
       "name": "with-frontmatter-yaml",
       "position": {
         "end": {
@@ -38,8 +41,7 @@ exports[`codeblock-props > YamlProps 1`] = `
       "rawData": "array:
   - item
   - itemKey: value
-key: value
----",
+key: value",
       "type": "containerComponent",
     },
   ],
@@ -146,6 +148,9 @@ exports[`codeblock-props > nested-component-yamlProps 1`] = `
               "fmAttributes": {
                 "key": "value",
               },
+              "mdc": {
+                "codeBlockProps": true,
+              },
               "name": "hello",
               "position": {
                 "end": {
@@ -159,8 +164,7 @@ exports[`codeblock-props > nested-component-yamlProps 1`] = `
                   "offset": 165,
                 },
               },
-              "rawData": "key: value
----",
+              "rawData": "key: value",
               "type": "containerComponent",
             },
           ],
@@ -202,6 +206,9 @@ exports[`codeblock-props > nested-component-yamlProps 1`] = `
         ],
         "key": "value",
       },
+      "mdc": {
+        "codeBlockProps": true,
+      },
       "name": "with-frontmatter-and-nested-component-yaml",
       "position": {
         "end": {
@@ -218,8 +225,7 @@ exports[`codeblock-props > nested-component-yamlProps 1`] = `
       "rawData": "array:
   - item
   - itemKey: value
-key: value
----",
+key: value",
       "type": "containerComponent",
     },
   ],
@@ -580,6 +586,9 @@ exports[`codeblock-props > yamlProps1 1`] = `
           "subkey2": "value",
         },
       },
+      "mdc": {
+        "codeBlockProps": true,
+      },
       "name": "with-frontmatter-yaml1",
       "position": {
         "end": {
@@ -599,8 +608,7 @@ key2:
   subkey2: value
 array:
   - item
-  - itemKey: value
----",
+  - itemKey: value",
       "type": "containerComponent",
     },
   ],

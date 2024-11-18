@@ -20,7 +20,7 @@
     "dev:prepare": "nuxi prepare playground",
     "generate": "nuxi generate playground",
     "lint": "eslint --ext .js,.ts,.vue .",
-    "test": "pnpm lint && vitest run",
+    "test": "vitest run",
     "prepack": "pnpm build",
     "release": "release-it"
   },
@@ -74,5 +74,6 @@
     "hooks": {
       "after:bump": "npx changelogen@latest --no-commit --no-tag --output --r $(node -p \"require('./package.json').version\")"
     }
-  }
+  },
+  "packageManager": "pnpm@9.12.3"
 }
