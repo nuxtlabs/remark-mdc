@@ -25,6 +25,33 @@ describe('block-component', () => {
       markdown: '::component\n#text\n::',
       expected: '::component\n#text\n::'
     },
+    'component-attributes': {
+      markdown: '::component{key="value"}\n::'
+    },
+    'component-attributes-remove-duplicate': {
+      markdown: '::component{key="value" key="value"}\n::',
+      expected: '::component{key="value"}\n::'
+    },
+    'component-attributes-length-80': {
+      // `::component{a=""}` = 17 characters + 1 because array start at 0
+      markdown: `::component{a="${new Array(80 - 17 + 1).join('a')}"}\n::`
+    },
+    'component-attributes-length-81': {
+      markdown: `::component{a="${new Array(81 - 17 + 1).join('a')}"}\n::`,
+      expected: [
+        '::component',
+        '---',
+        `a: ${new Array(81 - 17 + 1).join('a')}`,
+        '---',
+        '::'
+      ].join('\n')
+    },
+    'component-max-attributes-length-option': {
+      mdcOptions: {
+        maxAttributesLength: 100
+      },
+      markdown: `::component{a="${new Array(100 - 17 + 1).join('a')}"}\n::`
+    },
     frontmatter: {
       markdown: '::with-frontmatter\n---\nkey: value\narray:\n  - item\n  - itemKey: value\n---\n::',
       expected: '::with-frontmatter\n---\narray:\n  - item\n  - itemKey: value\nkey: value\n---\n::'

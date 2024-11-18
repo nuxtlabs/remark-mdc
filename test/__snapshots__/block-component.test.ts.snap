@@ -1,5 +1,52 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`block-component > component-attributes 1`] = `
+{
+  "children": [
+    {
+      "attributes": {
+        "key": "value",
+      },
+      "children": [],
+      "data": {
+        "hName": "component",
+        "hProperties": {
+          "key": "value",
+        },
+      },
+      "fmAttributes": {},
+      "name": "component",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 2,
+          "offset": 27,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 2,
+      "offset": 27,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`block-component > component-attributes-array-convert-double-quote 1`] = `
 {
   "children": [
@@ -235,6 +282,100 @@ exports[`block-component > component-attributes-bind-frontmatter 1`] = `
 }
 `;
 
+exports[`block-component > component-attributes-length-80 1`] = `
+{
+  "children": [
+    {
+      "attributes": {
+        "a": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      },
+      "children": [],
+      "data": {
+        "hName": "component",
+        "hProperties": {
+          "a": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        },
+      },
+      "fmAttributes": {},
+      "name": "component",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 2,
+          "offset": 83,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 2,
+      "offset": 83,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`block-component > component-attributes-length-81 1`] = `
+{
+  "children": [
+    {
+      "attributes": {
+        "a": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      },
+      "children": [],
+      "data": {
+        "hName": "component",
+        "hProperties": {
+          "a": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        },
+      },
+      "fmAttributes": {},
+      "name": "component",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 2,
+          "offset": 84,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 2,
+      "offset": 84,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`block-component > component-attributes-object 1`] = `
 {
   "children": [
@@ -271,6 +412,53 @@ exports[`block-component > component-attributes-object 1`] = `
       "column": 3,
       "line": 2,
       "offset": 51,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`block-component > component-attributes-remove-duplicate 1`] = `
+{
+  "children": [
+    {
+      "attributes": {
+        "key": "value",
+      },
+      "children": [],
+      "data": {
+        "hName": "component",
+        "hProperties": {
+          "key": "value",
+        },
+      },
+      "fmAttributes": {},
+      "name": "component",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 2,
+          "offset": 39,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 2,
+      "offset": 39,
     },
     "start": {
       "column": 1,
@@ -351,6 +539,53 @@ items:
       "column": 3,
       "line": 9,
       "offset": 104,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`block-component > component-max-attributes-length-option 1`] = `
+{
+  "children": [
+    {
+      "attributes": {
+        "a": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      },
+      "children": [],
+      "data": {
+        "hName": "component",
+        "hProperties": {
+          "a": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        },
+      },
+      "fmAttributes": {},
+      "name": "component",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 2,
+          "offset": 103,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 2,
+      "offset": 103,
     },
     "start": {
       "column": 1,

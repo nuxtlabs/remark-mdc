@@ -100,7 +100,7 @@ export default (opts: RemarkMDCOptions = {}) => {
     const attributesText = attributes(node, context)
     const fmAttributes: Record<string, string> = node.fmAttributes || {}
 
-    if ((value + attributesText).length > 80 || Object.keys(fmAttributes).length > 0 || node.children?.some((child: RootContent) => child.type === 'componentContainerSection')) {
+    if ((value + attributesText).length > (opts?.maxAttributesLength || 80) || Object.keys(fmAttributes).length > 0 || node.children?.some((child: RootContent) => child.type === 'componentContainerSection')) {
       Object.assign(fmAttributes, (node as any).attributes)
     } else {
       value += attributesText
