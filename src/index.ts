@@ -31,7 +31,7 @@ interface ComponentNode extends Node {
   children?: ChildrenNode[]
 }
 
-export default <Plugin<Array<RemarkMDCOptions>>> function (opts: RemarkMDCOptions = {}) {
+export default <Plugin<Array<RemarkMDCOptions>>> function remarkMDC (opts: RemarkMDCOptions = {}) {
   const data: Record<string, any> = this.data()
 
   add('micromarkExtensions', syntax())
@@ -89,19 +89,6 @@ function getNodeData (node: ComponentNode) {
   if (node.rawData) {
     const yaml = node.rawData.replace(/\s-+$/, '')
     const { data } = parseFrontMatter(toFrontMatter(yaml))
-    return data
-  }
-
-  if (
-    node.children?.length &&
-    node.children[0].type === 'code' &&
-    node.children[0].lang === 'yaml' &&
-    node.children[0].meta === '[props]'
-  ) {
-    const yaml = node.children[0].value as string
-    const { data } = parseFrontMatter(toFrontMatter(yaml))
-    node.rawData = yaml + '\n---'
-    node.children!.splice(0, 1)
     return data
   }
 

@@ -52,11 +52,14 @@ export default (opts: RemarkMDCOptions = {}) => {
       }
     }
   }
+  const processNode = (node: Container) => {
+    experimentalAutoUnwrap(node)
+  }
 
   function componentContainerSection (node: NodeComponentContainerSection, _: any, context: any) {
     context.indexStack = context.stack
 
-    experimentalAutoUnwrap(node as any)
+    processNode(node as any)
 
     return `#${(node as any).name}\n${content(node, context)}`.trim()
   }
@@ -109,7 +112,8 @@ export default (opts: RemarkMDCOptions = {}) => {
       const attrs = Object.entries(fmAttributes)
         .sort(([key1], [key2]) => key1.localeCompare(key2))
         .reduce((acc, [key, value2]) => {
-          if (key?.startsWith(':')) {
+          // Parse only JSON objects. `{":key:": "value"}` can be used for binding data to frontmatter.
+          if (key?.startsWith(':') && isValidJSON(value2)) {
             try {
               value2 = JSON.parse(value2)
             } catch {
@@ -133,7 +137,7 @@ export default (opts: RemarkMDCOptions = {}) => {
       ...slots
     ]
 
-    experimentalAutoUnwrap(node as any)
+    processNode(node as any)
 
     if ((node.type as string) === 'containerComponent') {
       subvalue = content(node, context)
@@ -172,6 +176,15 @@ export default (opts: RemarkMDCOptions = {}) => {
     return value ? '[' + value + ']' : ''
   }
 
+  const isValidJSON = (str: string) => {
+    try {
+      JSON.parse(str)
+      return true
+    } catch (e) {
+      return false
+    }
+  }
+
   function attributes (node: any, context: State) {
     const quote = checkQuote(context)
     const subset = (node.type as string) === 'textComponent' ? [quote] : [quote, '\n', '\r']
@@ -208,6 +221,8 @@ export default (opts: RemarkMDCOptions = {}) => {
           classes = classes.length ? '.' + classes.join('.') : ''
         } else if (key.startsWith(':') && value === 'true') {
           values.push(key.slice(1))
+        } else if (key.startsWith(':') && isValidJSON(value)) {
+          values.push(`${key}='${value.replace(/([^/])'/g, '$1\\\'')}'`)
         } else {
           values.push(quoted(key, value))
         }

@@ -11,6 +11,7 @@ export type Container = Parent & {
   rawData?: string
   mdc?: {
     unwrapped?: string
+    codeBlockProps?: boolean
   }
 }
 
@@ -71,6 +72,8 @@ declare module 'micromark-util-types' {
 
     bindingContent: 'bindingContent',
     bindingFence: 'bindingFence',
+
+    escapeCharacter: 'escapeCharacter',
 
     // Component Text
     componentText: 'componentText',

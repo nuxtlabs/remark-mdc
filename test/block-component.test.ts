@@ -1,7 +1,17 @@
-import { describe, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
+import { parse, stringify } from 'yaml'
 import { runMarkdownTests } from './utils'
 
 describe('block-component', () => {
+  it('should parse frontmatter binding values', () => {
+    const fmAttributes = {
+      array: ['item', { ':itemKey': 'value' }],
+      ':key': 'value',
+      key2: { ':subkey': 'value', subkey2: 'value' }
+    }
+    expect(parse(stringify(fmAttributes).trim())).toEqual(fmAttributes)
+  })
+
   runMarkdownTests({
     empty: {
       markdown: '::component\n::',
@@ -46,6 +56,12 @@ describe('block-component', () => {
       markdown: '::with-frontmatter\n---\nkey: value\narray:\n  - item\n  - itemKey: value\n---\n::',
       expected: '::with-frontmatter\n---\narray:\n  - item\n  - itemKey: value\nkey: value\n---\n::'
     },
+    jsonScapeAttr: {
+      markdown: '::foo{:test=\'{"foo":"I\\\'d love to"}\'}\n::',
+      extra: (_md, ast) => {
+        expect(ast.children[0].type).toBe('containerComponent')
+      }
+    },
     frontmatter1: {
       markdown: [
         '::with-frontmatter',
@@ -69,6 +85,21 @@ describe('block-component', () => {
         'key: value',
         'key2:',
         '  subkey: value',
+        '  subkey2: value',
+        '---',
+        '::'
+      ].join('\n')
+    },
+    'frontmatter-with-binding-variables': {
+      markdown: [
+        '::with-frontmatter',
+        '---',
+        ':key: value',
+        'array:',
+        '  - item',
+        '  - :itemKey: value',
+        'object:',
+        '  :subkey: value',
         '  subkey2: value',
         '---',
         '::'
@@ -222,6 +253,67 @@ describe('block-component', () => {
       extra: (_md, ast) => {
         expect(ast.children[0].type).toBe('textComponent')
         expect(ast.children[0].name).toBe('component')
+      }
+    },
+    'component-attributes-bind-frontmatter': {
+      markdown: '::text-component{:key="value"}\n::',
+      extra (_, ast) {
+        expect(ast.children[0].attributes).toEqual({ ':key': 'value' })
+        expect(ast.children[0].data.hProperties).toEqual({ ':key': 'value' })
+      }
+    },
+    'component-attributes-array-of-string': {
+      markdown: '::container-component{:items=\'["Nuxt", "Vue"]\'}\n::',
+      // expected: '::container-component{:items="[&#x22;Nuxt&#x22;, &#x22;Vue&#x22;]"}\n::',
+      extra (_, ast) {
+        expect(ast.children[0].attributes).toEqual({ ':items': '["Nuxt", "Vue"]' })
+        expect(ast.children[0].data.hProperties).toEqual({ ':items': '["Nuxt", "Vue"]' })
+      }
+    },
+    'component-attributes-bad-array': {
+      markdown: '::container-component{:items="[Nuxt,Vue]"}\n::',
+      extra (_, ast) {
+        expect(ast.children[0].attributes).toEqual({ ':items': '[Nuxt,Vue]' })
+        expect(ast.children[0].data.hProperties).toEqual({ ':items': '[Nuxt,Vue]' })
+      }
+    },
+    'component-attributes-array-of-number': {
+      markdown: '::container-component{:items=\'[1,2,3.5]\'}\n::',
+      extra (_, ast) {
+        expect(ast.children[0].attributes).toEqual({ ':items': '[1,2,3.5]' })
+        expect(ast.children[0].data.hProperties).toEqual({ ':items': '[1,2,3.5]' })
+      }
+    },
+    'component-attributes-array-convert-double-quote': {
+      markdown: '::container-component{:items="[1,2,3.5]"}\n::',
+      expected: '::container-component{:items=\'[1,2,3.5]\'}\n::',
+      extra (_, ast) {
+        expect(ast.children[0].attributes).toEqual({ ':items': '[1,2,3.5]' })
+        expect(ast.children[0].data.hProperties).toEqual({ ':items': '[1,2,3.5]' })
+      }
+    },
+    'component-attributes-object': {
+      markdown: '::container-component{:items=\'{"key": "value"}\'}\n::',
+      extra (_, ast) {
+        expect(ast.children[0].attributes).toEqual({ ':items': '{"key": "value"}' })
+        expect(ast.children[0].data.hProperties).toEqual({ ':items': '{"key": "value"}' })
+      }
+    },
+    'component-hProperties-be-the-same': {
+      markdown: [
+        '::container-component{:items=\'{"key":"value"}\'}\n::',
+        '',
+        '::container-component',
+        '---',
+        'items:',
+        '  key: value',
+        '---',
+        '::'
+      ].join('\n'),
+      extra (_, ast) {
+        expect(ast.children[0].attributes).toEqual({ ':items': '{"key":"value"}' })
+        expect(ast.children[1].attributes).toEqual({})
+        expect(ast.children[0].data.hProperties).toEqual(ast.children[1].data.hProperties)
       }
     }
   })

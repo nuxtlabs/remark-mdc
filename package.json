@@ -20,8 +20,8 @@
     "dev:prepare": "nuxi prepare playground",
     "generate": "nuxi generate playground",
     "lint": "eslint --ext .js,.ts,.vue .",
-    "test": "pnpm lint && vitest run",
     "test:ui": "pnpm lint && vitest --ui --open=false",
+    "test": "vitest run",
     "prepack": "pnpm build",
     "release": "release-it"
   },
@@ -29,7 +29,6 @@
     "@types/mdast": "^4.0.3",
     "@types/unist": "^3.0.2",
     "flat": "^6.0.1",
-    "js-yaml": "^4.1.0",
     "mdast-util-from-markdown": "^2.0.0",
     "mdast-util-to-markdown": "^2.1.0",
     "micromark": "^4.0.0",
@@ -43,7 +42,8 @@
     "stringify-entities": "^4.0.3",
     "unified": "^11.0.4",
     "unist-util-visit": "^5.0.0",
-    "unist-util-visit-parents": "^6.0.1"
+    "unist-util-visit-parents": "^6.0.1",
+    "yaml": "^2.4.2"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.2.0",
@@ -75,5 +75,6 @@
     "hooks": {
       "after:bump": "npx changelogen@latest --no-commit --no-tag --output --r $(node -p \"require('./package.json').version\")"
     }
-  }
+  },
+  "packageManager": "pnpm@9.12.3"
 }
