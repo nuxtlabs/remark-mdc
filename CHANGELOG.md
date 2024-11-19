@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v3.3.1
+
+[compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.3.0...v3.3.1)
+
+### 🩹 Fixes
+
+- Do not unwrapp `pre` ([5a98ba7](https://github.com/nuxtlabs/remark-mdc/commit/5a98ba7))
+
+### ❤️ Contributors
+
+- Farnabaz <farnabaz@gmail.com>
+
 ## v3.3.0
 
 [compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.2.1...v3.3.0)
