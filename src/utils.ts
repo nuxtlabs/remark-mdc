@@ -4,5 +4,6 @@ export const NON_UNWRAPPABLE_TYPES = [
   'containerComponent',
   'leafComponent',
   'table',
-  'pre'
+  'pre',
+  'code'
 ]
