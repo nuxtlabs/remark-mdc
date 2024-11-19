@@ -7,8 +7,18 @@ interface ComponentHandler {
 export interface RemarkMDCOptions {
   components?: ComponentHandler[]
   maxAttributesLength?: number
+  autoUnwrap?: boolean | {
+    safeTypes?: Array<string>
+  }
+  yamlCodeBlockProps?: boolean
   experimental?: {
+    /**
+     * @deprecated This feature is out of experimental, use `autoUnwrap`
+     */
     autoUnwrap?: boolean
+    /**
+     * @deprecated This feature is out of experimental, use `yamlCodeBlockProps`
+     */
     componentCodeBlockYamlProps?: boolean
   }
 }

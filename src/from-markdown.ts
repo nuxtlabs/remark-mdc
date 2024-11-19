@@ -7,12 +7,12 @@ import { parseEntities } from 'parse-entities'
 import { kebabCase } from 'scule'
 import type { Token, CompileContext, Container, Nodes } from './micromark-extension/types'
 import type { RemarkMDCOptions } from './types'
-import { NON_UNWRAPPABLE_TYPES } from './utils'
+import { CONTAINER_NODE_TYPES, NON_UNWRAPPABLE_TYPES } from './utils'
 
 export default (opts: RemarkMDCOptions = {}) => {
   const canContainEols = ['textComponent']
 
-  const experimentalCodeBlockYamlProps = (node: Container) => {
+  const applyYamlCodeBlockProps = (node: Container) => {
     const firstSection = node.children[0] as Container
     if (
       firstSection &&
@@ -27,23 +27,39 @@ export default (opts: RemarkMDCOptions = {}) => {
       firstSection.children!.splice(0, 1)
     }
   }
-  const experimentalAutoUnwrap = (node: Container) => {
-    if (opts.experimental?.autoUnwrap && NON_UNWRAPPABLE_TYPES.includes(node.type)) {
-      const nonSlotChildren = (node.children).filter((child: any) => child.type !== 'componentContainerSection')
-      if (nonSlotChildren.length === 1 && !NON_UNWRAPPABLE_TYPES.includes(nonSlotChildren[0].type)) {
-        const nonSlotChildIndex = node.children.indexOf(nonSlotChildren[0])
 
-        node.children.splice(nonSlotChildIndex, 1, ...((nonSlotChildren[0] as Container)?.children || []))
-        node.mdc = node.mdc || {}
-        node.mdc.unwrapped = nonSlotChildren[0].type
-      }
+  const applyAutomaticUnwrap = (node: Container, { safeTypes = [] }: Exclude<RemarkMDCOptions['autoUnwrap'], boolean | undefined>) => {
+    if (!CONTAINER_NODE_TYPES.has(node.type)) {
+      // unwrap only applicable for container components
+      return
     }
+
+    const nonSlotChildren = (node.children).filter((child: any) => child.type !== 'componentContainerSection')
+    if (nonSlotChildren.length !== 1) {
+      // unwrapp only works when container has only one child (slots are separated children)
+      return
+    }
+
+    const child = nonSlotChildren[0]
+    if (NON_UNWRAPPABLE_TYPES.has(child.type) || safeTypes.includes(child.type)) {
+      // Ignore child if it's in safe types list
+      return
+    }
+
+    const childIndex = node.children.indexOf(child)
+
+    node.children.splice(childIndex, 1, ...((child as Container)?.children || []))
+    node.mdc = node.mdc || {}
+    node.mdc.unwrapped = child.type
   }
+
   const processNode = (node: Container) => {
-    if (opts.experimental?.componentCodeBlockYamlProps) {
-      experimentalCodeBlockYamlProps(node)
+    if (opts.yamlCodeBlockProps) {
+      applyYamlCodeBlockProps(node)
     }
-    experimentalAutoUnwrap(node)
+    if (opts.autoUnwrap) {
+      applyAutomaticUnwrap(node, typeof opts.autoUnwrap === 'boolean' ? {} : opts.autoUnwrap)
+    }
   }
   const enter = {
     componentContainer: enterContainer,

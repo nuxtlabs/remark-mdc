@@ -12,6 +12,8 @@ import type { RemarkMDCOptions } from './types'
 import { NON_UNWRAPPABLE_TYPES } from './utils'
 import { type Container } from './micromark-extension/types'
 
+type NodeContainerComponent = Parents & { name: string; fmAttributes?: Record<string, any> }
+
 const own = {}.hasOwnProperty
 
 const shortcut = /^[^\t\n\r "#'.<=>`}]+$/
@@ -39,21 +41,54 @@ function compilePattern (pattern: Unsafe) {
 type NodeComponentContainerSection = Parents & { name: string }
 
 export default (opts: RemarkMDCOptions = {}) => {
-  const experimentalAutoUnwrap = (node: Container) => {
-    if (opts?.experimental?.autoUnwrap) {
-      if (node.mdc?.unwrapped) {
-        node.children = [
-          {
-            type: node.mdc.unwrapped as any,
-            children: node.children.filter((child: RootContent) => !NON_UNWRAPPABLE_TYPES.includes(child.type))
-          },
-          ...node.children.filter((child: RootContent) => NON_UNWRAPPABLE_TYPES.includes(child.type))
-        ]
-      }
+  const applyAutomaticUnwrap = (node: Container, { safeTypes = [] }: Exclude<RemarkMDCOptions['autoUnwrap'], boolean | undefined>) => {
+    const isSafe = (type: string) => NON_UNWRAPPABLE_TYPES.has(type) || safeTypes.includes(type)
+    if (!node.mdc?.unwrapped) {
+      return
     }
+    node.children = [
+      {
+        type: node.mdc.unwrapped as any,
+        children: node.children.filter((child: RootContent) => !isSafe(child.type))
+      },
+      ...node.children.filter((child: RootContent) => isSafe(child.type))
+    ]
   }
+
+  const frontmatter = (node: NodeContainerComponent) => {
+    const entries = Object.entries(node.fmAttributes || {})
+
+    if (entries.length === 0) {
+      return ''
+    }
+
+    const attrs = entries
+      .sort(([key1], [key2]) => key1.localeCompare(key2))
+      .reduce((acc, [key, value2]) => {
+        // Parse only JSON objects. `{":key:": "value"}` can be used for binding data to frontmatter.
+        if (key?.startsWith(':') && isValidJSON(value2)) {
+          try {
+            value2 = JSON.parse(value2)
+          } catch {
+            // ignore
+          }
+          key = key.slice(1)
+        }
+        acc[key] = value2
+        return acc
+      }, {} as Record<string, any>)
+
+    return '\n' + (
+      opts?.yamlCodeBlockProps
+        ? stringifyCodeBlockProps(attrs).trim()
+        : stringifyFrontMatter(attrs).trim()
+    )
+  }
+
   const processNode = (node: Container) => {
-    experimentalAutoUnwrap(node)
+    if (opts.autoUnwrap) {
+      applyAutomaticUnwrap(node, typeof opts.autoUnwrap === 'boolean' ? {} : opts.autoUnwrap)
+    }
   }
 
   function componentContainerSection (node: NodeComponentContainerSection, _: any, context: any) {
@@ -88,7 +123,6 @@ export default (opts: RemarkMDCOptions = {}) => {
     return value
   }
 
-  type NodeContainerComponent = Parents & { name: string; fmAttributes?: Record<string, any> }
   let nest = 0
   function containerComponent (node: NodeContainerComponent, _: any, context: any) {
     context.indexStack = context.stack
@@ -96,37 +130,6 @@ export default (opts: RemarkMDCOptions = {}) => {
     nest += 1
     const exit = context.enter(node.type)
     let value = prefix + (node.name || '') + label(node, context)
-
-    const attributesText = attributes(node, context)
-    const fmAttributes: Record<string, string> = node.fmAttributes || {}
-
-    if ((value + attributesText).length > (opts?.maxAttributesLength || 80) || Object.keys(fmAttributes).length > 0 || node.children?.some((child: RootContent) => child.type === 'componentContainerSection')) {
-      Object.assign(fmAttributes, (node as any).attributes)
-    } else {
-      value += attributesText
-    }
-    let subvalue
-
-    // Convert attributes to YAML FrontMatter format
-    if (Object.keys(fmAttributes).length > 0) {
-      const attrs = Object.entries(fmAttributes)
-        .sort(([key1], [key2]) => key1.localeCompare(key2))
-        .reduce((acc, [key, value2]) => {
-          // Parse only JSON objects. `{":key:": "value"}` can be used for binding data to frontmatter.
-          if (key?.startsWith(':') && isValidJSON(value2)) {
-            try {
-              value2 = JSON.parse(value2)
-            } catch {
-              // ignore
-            }
-            key = key.slice(1)
-          }
-          acc[key] = value2
-          return acc
-        }, {} as Record<string, any>)
-      const fm = opts?.experimental?.componentCodeBlockYamlProps ? stringifyCodeBlockProps(attrs) : stringifyFrontMatter(attrs)
-      value += '\n' + fm.trim()
-    }
 
     // Move default slot's children to the beginning of the content
     const defaultSlotChildren = node.children.filter((child: any) => child.type !== 'componentContainerSection')
@@ -137,8 +140,26 @@ export default (opts: RemarkMDCOptions = {}) => {
       ...slots
     ]
 
+    // ensure fmAttributes exists
+    node.fmAttributes = node.fmAttributes || {}
+    const attributesText = attributes(node, context)
+    if (
+      (value + attributesText).length > (opts?.maxAttributesLength || 80) ||
+      Object.keys(node.fmAttributes).length > 0 || // remove: allow using both yaml and inline attributes simentensoly
+      node.children?.some((child: RootContent) => child.type === 'componentContainerSection') // remove: allow using both yaml and inline attributes simentensoly
+    ) {
+      // add attributes to frontmatter
+      Object.assign(node.fmAttributes, (node as any).attributes)
+      // clear attributes
+      ;(node as any).attributes = []
+    }
+
     processNode(node as any)
 
+    value += attributes(node, context)
+    value += frontmatter(node)
+
+    let subvalue
     if ((node.type as string) === 'containerComponent') {
       subvalue = content(node, context)
       if (subvalue) { value += '\n' + subvalue }

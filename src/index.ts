@@ -34,6 +34,17 @@ interface ComponentNode extends Node {
 export default <Plugin<Array<RemarkMDCOptions>>> function remarkMDC (opts: RemarkMDCOptions = {}) {
   const data: Record<string, any> = this.data()
 
+  /**
+   * Convert experimental options
+   * Will drop experimental options in v5
+   */
+  if (opts.autoUnwrap === undefined && opts.experimental?.autoUnwrap) {
+    opts.autoUnwrap = opts.experimental.autoUnwrap ? { safeTypes: [] } : false
+  }
+  if (opts.yamlCodeBlockProps === undefined && opts.experimental?.componentCodeBlockYamlProps) {
+    opts.yamlCodeBlockProps = opts.experimental.componentCodeBlockYamlProps
+  }
+
   add('micromarkExtensions', syntax())
   add('fromMarkdownExtensions', fromMarkdown(opts))
   add('toMarkdownExtensions', toMarkdown(opts))
