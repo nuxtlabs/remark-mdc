@@ -3,5 +3,6 @@ export const NON_UNWRAPPABLE_TYPES = [
   'componentContainerDataSection',
   'containerComponent',
   'leafComponent',
-  'table'
+  'table',
+  'pre'
 ]
