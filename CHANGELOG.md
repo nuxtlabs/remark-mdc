@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v3.4.0
+
+[compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.3.2...v3.4.0)
+
+### 🚀 Enhancements
+
+- Move autoUnwrap & CodeBlock props out of experimental ([1699b7a](https://github.com/nuxtlabs/remark-mdc/commit/1699b7a))
+
+### ❤️ Contributors
+
+- Farnabaz <farnabaz@gmail.com>
+
 ## v3.3.2
 
 [compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.3.1...v3.3.2)
