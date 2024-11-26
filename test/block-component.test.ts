@@ -328,6 +328,19 @@ describe('block-component', () => {
         expect(slot.type).toBe('componentContainerSection')
         expect(slot.attributes).toEqual({ key: 'value' })
       }
+    },
+    'default-slot-attributes': {
+      markdown: [
+        '::container-component',
+        '#default{key="value"}',
+        'slot content',
+        '::'
+      ].join('\n'),
+      extra (_, ast) {
+        const slot = ast.children[0].children[0]
+        expect(slot.type).toBe('componentContainerSection')
+        expect(slot.attributes).toEqual({ key: 'value' })
+      }
     }
   })
 })
