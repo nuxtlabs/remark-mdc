@@ -152,7 +152,7 @@ export default (opts: RemarkMDCOptions = {}) => {
       if (child.rawData) {
         return []
       }
-      if (child.name === 'default' || !child.name) {
+      if ((child.name === 'default' && Object.keys(child.attributes).length === 0) || !child.name) {
         // Project default slot unwrap state to parent
         if (child.mdc?.unwrapped) {
           container.mdc = container.mdc || {}
