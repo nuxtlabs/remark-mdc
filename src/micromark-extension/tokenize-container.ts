@@ -101,10 +101,26 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
   }
 
   function sectionTitle (code: Code): State | undefined {
+    // parse attributes
+    if (code === Codes.openingCurlyBracket) {
+      return effects.check(
+        attributes,
+        (code) => {
+          effects.exit('componentContainerSectionTitle')
+          return effects.attempt(attributes, factorySpace(effects, lineStart, 'linePrefix', 4), nok)(code)
+        },
+        (code) => {
+          effects.consume(code)
+          return sectionTitle
+        }
+      )(code)
+    }
+
     if (markdownLineEnding(code)) {
       effects.exit('componentContainerSectionTitle')
       return factorySpace(effects, lineStart, 'linePrefix', 4)(code)
     }
+
     effects.consume(code)
     return sectionTitle
   }

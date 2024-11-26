@@ -96,7 +96,7 @@ export default (opts: RemarkMDCOptions = {}) => {
 
     processNode(node as any)
 
-    return `#${(node as any).name}\n${content(node, context)}`.trim()
+    return `#${(node as any).name}${attributes(node, context)}\n${content(node, context)}`.trim()
   }
 
   type NodeTextComponent = Parents & { name: string; rawData: string; attributes: any }

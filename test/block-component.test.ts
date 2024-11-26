@@ -315,6 +315,19 @@ describe('block-component', () => {
         expect(ast.children[1].attributes).toEqual({})
         expect(ast.children[0].data.hProperties).toEqual(ast.children[1].data.hProperties)
       }
+    },
+    'slot-attributes': {
+      markdown: [
+        '::container-component',
+        '#slot{key="value"}',
+        'slot content',
+        '::'
+      ].join('\n'),
+      extra (_, ast) {
+        const slot = ast.children[0].children[0]
+        expect(slot.type).toBe('componentContainerSection')
+        expect(slot.attributes).toEqual({ key: 'value' })
+      }
     }
   })
 })
