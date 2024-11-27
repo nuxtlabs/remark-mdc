@@ -19,13 +19,13 @@ Secondary slot value
 `
 export default () => markdownToAST(content)
 
-function compiler (this: any) {
+function compiler(this: any) {
   this.Compiler = function (root: any) {
     return root
   }
 }
 
-export async function markdownToAST (markdown: string) {
+export async function markdownToAST(markdown: string) {
   const stream = unified().use(parse).use(mdc)
 
   const file = await stream.use(compiler as Preset).process(markdown)

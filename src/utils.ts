@@ -1,7 +1,7 @@
 export const CONTAINER_NODE_TYPES = new Set([
   'componentContainerSection',
   'containerComponent',
-  'leafComponent'
+  'leafComponent',
 ])
 
 export const NON_UNWRAPPABLE_TYPES = new Set([
@@ -12,5 +12,5 @@ export const NON_UNWRAPPABLE_TYPES = new Set([
   'table',
   'pre',
   'code',
-  'textComponent'
+  'textComponent',
 ])

@@ -1,4 +1,4 @@
-import { type Plugin } from 'unified'
+import type { Plugin } from 'unified'
 import type { Node } from 'unist'
 import { kebabCase } from 'scule'
 import { visit } from 'unist-util-visit'
@@ -31,7 +31,7 @@ interface ComponentNode extends Node {
   children?: ChildrenNode[]
 }
 
-export default <Plugin<Array<RemarkMDCOptions>>> function remarkMDC (opts: RemarkMDCOptions = {}) {
+export default <Plugin<Array<RemarkMDCOptions>>> function remarkMDC(opts: RemarkMDCOptions = {}) {
   const data: Record<string, any> = this.data()
 
   /**
@@ -49,7 +49,7 @@ export default <Plugin<Array<RemarkMDCOptions>>> function remarkMDC (opts: Remar
   add('fromMarkdownExtensions', fromMarkdown(opts))
   add('toMarkdownExtensions', toMarkdown(opts))
 
-  function add (field: string, value: any) {
+  function add(field: string, value: any) {
     /* istanbul ignore if - other extensions. */
     if (!data[field]) {
       data[field] = []
@@ -81,7 +81,7 @@ export default <Plugin<Array<RemarkMDCOptions>>> function remarkMDC (opts: Remar
   }
 }
 
-function bindNode (node: ComponentNode) {
+function bindNode(node: ComponentNode) {
   const nodeData = node.data || (node.data = {})
 
   node.fmAttributes = getNodeData(node)
@@ -91,12 +91,12 @@ function bindNode (node: ComponentNode) {
     {
       ...node.attributes,
       // Parse data slots and retrieve data
-      ...node.fmAttributes
-    }
+      ...node.fmAttributes,
+    },
   )
 }
 
-function getNodeData (node: ComponentNode) {
+function getNodeData(node: ComponentNode) {
   if (node.rawData) {
     const yaml = node.rawData.replace(/\s-+$/, '')
     const { data } = parseFrontMatter(toFrontMatter(yaml))
@@ -106,7 +106,7 @@ function getNodeData (node: ComponentNode) {
   return {}
 }
 
-function bindData (data: Record<string, any>) {
+function bindData(data: Record<string, any>) {
   const entries = Object.entries(data).map(([key, value]) => {
     if (key.startsWith(':')) {
       return [key, value]

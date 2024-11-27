@@ -8,12 +8,12 @@ import mdc from '../../src'
 interface MarkdownTest {
   markdown: string
   expected?: string
-  extra?: (markdown: string, ast: any, expected: string) => void,
-  plugins?: any[],
+  extra?: (markdown: string, ast: any, expected: string) => void
+  plugins?: any[]
   mdcOptions?: Record<string, any>
 }
 
-export function runMarkdownTests (tests: Record<string, MarkdownTest>) {
+export function runMarkdownTests(tests: Record<string, MarkdownTest>) {
   for (const key in tests) {
     const { markdown, expected, extra, plugins = [], mdcOptions = {} } = tests[key]
     test(key, async () => {
@@ -30,8 +30,8 @@ export function runMarkdownTests (tests: Record<string, MarkdownTest>) {
   }
 }
 
-async function markdownToAST (markdown: string, plugins = [] as any[], mdcOptions = {}) {
-  function compiler (this: any) {
+async function markdownToAST(markdown: string, plugins = [] as any[], mdcOptions = {}) {
+  function compiler(this: any) {
     this.Compiler = function (root: any) {
       return root
     }
@@ -50,8 +50,8 @@ async function markdownToAST (markdown: string, plugins = [] as any[], mdcOption
   return file.result
 }
 
-async function astToMarkdown (ast: any, plugins = [] as any[], mdcOptions = {}) {
-  function jsonParser (this: any) {
+async function astToMarkdown(ast: any, plugins = [] as any[], mdcOptions = {}) {
+  function jsonParser(this: any) {
     this.Parser = function (root: any) {
       return JSON.parse(root)
     }
@@ -70,7 +70,7 @@ async function astToMarkdown (ast: any, plugins = [] as any[], mdcOptions = {}) 
     listItemIndent: 'one',
     fence: '`',
     fences: true,
-    rule: '-'
+    rule: '-',
   })
   const result = await stream.process(JSON.stringify(ast))
   return result.value as string

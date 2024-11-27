@@ -15,11 +15,11 @@ export default (opts: RemarkMDCOptions = {}) => {
   const applyYamlCodeBlockProps = (node: Container) => {
     const firstSection = node.children[0] as Container
     if (
-      firstSection &&
-      firstSection.children?.length &&
-      firstSection.children[0].type === 'code' &&
-      firstSection.children[0].lang === 'yaml' &&
-      firstSection.children[0].meta === '[props]'
+      firstSection
+      && firstSection.children?.length
+      && firstSection.children[0].type === 'code'
+      && firstSection.children[0].lang === 'yaml'
+      && firstSection.children[0].meta === '[props]'
     ) {
       node.rawData = firstSection.children[0].value as string
       node.mdc = node.mdc || {}
@@ -73,7 +73,7 @@ export default (opts: RemarkMDCOptions = {}) => {
 
     componentText: enterText,
     textSpan: enterTextSpan,
-    componentTextAttributes: enterAttributes
+    componentTextAttributes: enterAttributes,
   }
   const exit = {
     bindingContent: exitBindingContent,
@@ -92,7 +92,7 @@ export default (opts: RemarkMDCOptions = {}) => {
     componentContainerLabel: exitContainerLabel,
     componentContainerName,
 
-    componentContainerAttributeInitializerMarker (this: CompileContext) {
+    componentContainerAttributeInitializerMarker(this: CompileContext) {
     // If an attribute name follows by `=` it should be treat as string
       const attributes = (this.data as any).componentAttributes
       attributes[attributes.length - 1][1] = ''
@@ -113,11 +113,11 @@ export default (opts: RemarkMDCOptions = {}) => {
     componentTextAttributeName: exitAttributeName,
     componentTextAttributeValue: exitAttributeValue,
     componentTextAttributes: exitAttributes,
-    componentTextName: componentContainerName
+    componentTextName: componentContainerName,
   }
 
   // Bindings
-  function enterBindingContent (this: CompileContext, token: Token) {
+  function enterBindingContent(this: CompileContext, token: Token) {
     const regex = /([^|]*)(?:\|\|\s*'(.*)')?/
     const values = regex.exec(this.sliceSerialize(token))
 
@@ -126,20 +126,20 @@ export default (opts: RemarkMDCOptions = {}) => {
       name: 'binding',
       attributes: {
         value: values?.[1]?.trim(),
-        defaultValue: values?.[2]
-      }
+        defaultValue: values?.[2],
+      },
     }, token)
   }
 
-  function exitBindingContent (this: CompileContext, token: Token) {
+  function exitBindingContent(this: CompileContext, token: Token) {
     this.exit(token)
   }
 
-  function enterContainer (this: CompileContext, token: Token) {
+  function enterContainer(this: CompileContext, token: Token) {
     enterToken.call(this, 'containerComponent', token)
   }
 
-  function exitContainer (this: CompileContext, token: Token) {
+  function exitContainer(this: CompileContext, token: Token) {
     const container = this.stack[this.stack.length - 1] as Container
     if (container.children.length > 1) {
       const dataSection = container.children.find((child: any) => child.rawData) as Container
@@ -164,8 +164,8 @@ export default (opts: RemarkMDCOptions = {}) => {
         hName: 'component-slot',
         hProperties: {
           ...child.attributes,
-          [`v-slot:${child.name}`]: ''
-        }
+          [`v-slot:${child.name}`]: '',
+        },
       }
       return child
     })
@@ -173,15 +173,15 @@ export default (opts: RemarkMDCOptions = {}) => {
     this.exit(token)
   }
 
-  function enterContainerSection (this: CompileContext, token: Token) {
+  function enterContainerSection(this: CompileContext, token: Token) {
     enterToken.call(this, 'componentContainerSection', token)
   }
 
-  function enterContainerDataSection (this: CompileContext, token: Token) {
+  function enterContainerDataSection(this: CompileContext, token: Token) {
     enterToken.call(this, 'componentContainerDataSection', token)
   }
 
-  function exitContainerSection (this: CompileContext, token: Token) {
+  function exitContainerSection(this: CompileContext, token: Token) {
     const section = this.stack[this.stack.length - 1] as Container
 
     /**
@@ -195,13 +195,13 @@ export default (opts: RemarkMDCOptions = {}) => {
     this.exit(token)
   }
 
-  function exitContainerDataSection (this: CompileContext, token: Token) {
+  function exitContainerDataSection(this: CompileContext, token: Token) {
     let section = this.stack[this.stack.length - 1]
 
     /**
-   * Ensure lists and list-items are closed before closing section
-   * This issue occurs because `---` separators ar conflict with markdown lists
-   */
+     * Ensure lists and list-items are closed before closing section
+     * This issue occurs because `---` separators ar conflict with markdown lists
+     */
     section = attemptClosingOpenListSection.call(this, section as Nodes)
 
     if (section.type === 'componentContainerDataSection') {
@@ -210,63 +210,63 @@ export default (opts: RemarkMDCOptions = {}) => {
     }
   }
 
-  function exitContainerSectionTitle (this: CompileContext, token: Token) {
+  function exitContainerSectionTitle(this: CompileContext, token: Token) {
     (this.stack[this.stack.length - 1] as any).name = this.sliceSerialize(token)?.trim()
   }
 
-  function enterLeaf (this: CompileContext, token: Token) {
+  function enterLeaf(this: CompileContext, token: Token) {
     enterToken.call(this, 'leafComponent', token)
   }
 
-  function enterTextSpan (this: CompileContext, token: Token) {
+  function enterTextSpan(this: CompileContext, token: Token) {
     this.enter({ type: 'textComponent', name: 'span', attributes: {}, children: [] }, token)
   }
 
-  function enterText (this: CompileContext, token: Token) {
+  function enterText(this: CompileContext, token: Token) {
     enterToken.call(this, 'textComponent', token)
   }
 
-  function enterToken (this: CompileContext, type: string, token: Token) {
+  function enterToken(this: CompileContext, type: string, token: Token) {
     this.enter({ type: type as any, name: '', attributes: {}, children: [] }, token)
   }
 
-  function componentContainerName (this: CompileContext, token: Token) {
+  function componentContainerName(this: CompileContext, token: Token) {
     (this.stack[this.stack.length - 1] as any).name = kebabCase(this.sliceSerialize(token))
   }
 
-  function exitName (this: CompileContext, token: Token) {
+  function exitName(this: CompileContext, token: Token) {
     (this.stack[this.stack.length - 1] as any).name = this.sliceSerialize(token)
   }
 
-  function enterContainerLabel (this: CompileContext, token: Token) {
+  function enterContainerLabel(this: CompileContext, token: Token) {
     this.enter({ type: 'paragraph', data: { componentLabel: true } as any, children: [] }, token)
   }
 
-  function exitContainerLabel (this: CompileContext, token: Token) {
+  function exitContainerLabel(this: CompileContext, token: Token) {
     this.exit(token)
   }
 
-  function enterAttributes (this: CompileContext) {
+  function enterAttributes(this: CompileContext) {
     (this.data as any).componentAttributes = []
     this.buffer() // Capture EOLs
   }
 
-  function exitAttributeIdValue (this: CompileContext, token: Token) {
+  function exitAttributeIdValue(this: CompileContext, token: Token) {
     (this.data as any).componentAttributes.push(['id', parseEntities(this.sliceSerialize(token))])
   }
 
-  function exitAttributeClassValue (this: CompileContext, token: Token) {
+  function exitAttributeClassValue(this: CompileContext, token: Token) {
     (this.data as any).componentAttributes.push(['class', parseEntities(this.sliceSerialize(token))])
   }
 
-  function exitAttributeValue (this: CompileContext, token: Token) {
+  function exitAttributeValue(this: CompileContext, token: Token) {
     const attributes = (this.data as any).componentAttributes
     const lastAttribute = attributes[attributes.length - 1]
 
     lastAttribute[1] = (typeof lastAttribute[1] === 'string' ? lastAttribute[1] : '') + parseEntities(this.sliceSerialize(token))
   }
 
-  function exitAttributeName (this: CompileContext, token: Token) {
+  function exitAttributeName(this: CompileContext, token: Token) {
   // Attribute names in CommonMark are significantly limited, so character
   // references can’t exist.
 
@@ -274,7 +274,7 @@ export default (opts: RemarkMDCOptions = {}) => {
     (this.data as any).componentAttributes.push([this.sliceSerialize(token), true])
   }
 
-  function exitAttributes (this: CompileContext) {
+  function exitAttributes(this: CompileContext) {
     const attributes = (this.data as any).componentAttributes
     const cleaned: Record<string, any> = {}
     let index = -1
@@ -287,7 +287,8 @@ export default (opts: RemarkMDCOptions = {}) => {
 
       if (name === 'class' && cleaned.class) {
         cleaned.class += ' ' + attribute[1]
-      } else {
+      }
+      else {
         cleaned[name] = attribute[1]
       }
     }
@@ -307,11 +308,11 @@ export default (opts: RemarkMDCOptions = {}) => {
     (stackTop as any).attributes = cleaned
   }
 
-  function exitToken (this: CompileContext, token: Token) {
+  function exitToken(this: CompileContext, token: Token) {
     this.exit(token)
   }
 
-  function conditionalExit (this: CompileContext, token: Token) {
+  function conditionalExit(this: CompileContext, token: Token) {
   // As of mdast-util-from-markdown@1.1.0 tokenStack items is an array containing the token and a handler
   // https://github.com/syntax-tree/mdast-util-from-markdown/blob/752dc22acfc517d280612e8d499d5ce0cd5a4495/dev/lib/index.js#L548
     const [section] = this.tokenStack[this.tokenStack.length - 1]
@@ -320,7 +321,7 @@ export default (opts: RemarkMDCOptions = {}) => {
     }
   }
 
-  function attemptClosingOpenListSection (this: CompileContext, section: Nodes) {
+  function attemptClosingOpenListSection(this: CompileContext, section: Nodes) {
   /**
    * Ensure lists and list-items are closed before closing section
    * This issue occurs because `---` separators ar conflict with markdown lists
@@ -338,6 +339,6 @@ export default (opts: RemarkMDCOptions = {}) => {
   return {
     canContainEols,
     enter,
-    exit
+    exit,
   }
 }

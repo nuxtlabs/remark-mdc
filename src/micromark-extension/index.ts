@@ -2,7 +2,7 @@
  * Based on: https://github.com/micromark/micromark-extension-directive
  * Version: 2.1.0
  * License: MIT (https://github.com/micromark/micromark-extension-directive/blob/main/license)
- **/
+ */
 
 import tokenizeSpan from './tokenize-span'
 import tokenizeAttribute from './tokenize-attribute'
@@ -13,20 +13,20 @@ import tokenizeContainerIndented from './tokenize-container-indented'
 import { Codes } from './constants'
 import tokenizeContainerSuger from './tokenize-container-suger'
 
-export default function micromarkComponentsExtension () {
+export default function micromarkComponentsExtension() {
   return {
     text: {
       [Codes.colon]: tokenizeInline,
       [Codes.openingSquareBracket]: [tokenizeSpan],
-      [Codes.openingCurlyBracket]: [tokenizeBinding, tokenizeAttribute]
+      [Codes.openingCurlyBracket]: [tokenizeBinding, tokenizeAttribute],
     },
     flow: {
-      [Codes.colon]: [tokenizeContainer, tokenizeContainerSuger]
+      [Codes.colon]: [tokenizeContainer, tokenizeContainerSuger],
     },
     flowInitial: {
       '-2': tokenizeContainerIndented,
       '-1': tokenizeContainerIndented,
-      [Codes.space]: tokenizeContainerIndented
-    }
+      [Codes.space]: tokenizeContainerIndented,
+    },
   }
 }

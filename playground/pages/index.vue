@@ -1,14 +1,25 @@
 <template>
   <div>
     <label for="autoUnwrap">
-      <input id="autoUnwrap" v-model="mdcOptions.experimental.autoUnwrap" type="checkbox"> auto unwrap
+      <input
+        id="autoUnwrap"
+        v-model="mdcOptions.experimental.autoUnwrap"
+        type="checkbox"
+      > auto unwrap
     </label>
     <label for="componentCodeBlockYamlProps">
-      <input id="componentCodeBlockYamlProps" v-model="mdcOptions.experimental.componentCodeBlockYamlProps" type="checkbox">
+      <input
+        id="componentCodeBlockYamlProps"
+        v-model="mdcOptions.experimental.componentCodeBlockYamlProps"
+        type="checkbox"
+      >
       Component props code block style
     </label>
     <div class="flex">
-      <textarea v-model="markdown" class="flex-1" />
+      <textarea
+        v-model="markdown"
+        class="flex-1"
+      />
       <pre class="flex-1">{{ ast }}</pre>
       <pre class="flex-1">{{ md }}</pre>
     </div>

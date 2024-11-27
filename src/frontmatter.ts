@@ -4,7 +4,7 @@ import * as flat from 'flat'
 const FRONTMATTER_DELIMITER_DEFAULT = '---'
 const FRONTMATTER_DELIMITER_CODEBLOCK_STYLE = '```yaml [props]'
 
-export function stringifyFrontMatter (data: any, content = '') {
+export function stringifyFrontMatter(data: any, content = '') {
   if (!Object.keys(data).length) {
     return ''
   }
@@ -15,11 +15,11 @@ export function stringifyFrontMatter (data: any, content = '') {
     FRONTMATTER_DELIMITER_DEFAULT,
     stringify(data).trim(),
     FRONTMATTER_DELIMITER_DEFAULT,
-    content
+    content,
   ].join('\n')
 }
 
-export function stringifyCodeBlockProps (data: any, content = '') {
+export function stringifyCodeBlockProps(data: any, content = '') {
   if (!Object.keys(data).length) {
     return ''
   }
@@ -30,11 +30,11 @@ export function stringifyCodeBlockProps (data: any, content = '') {
     FRONTMATTER_DELIMITER_CODEBLOCK_STYLE,
     stringify(data).trim(),
     '```',
-    content
+    content,
   ].join('\n')
 }
 
-export function parseFrontMatter (content: string) {
+export function parseFrontMatter(content: string) {
   let data: any = {}
   if (content.startsWith(FRONTMATTER_DELIMITER_DEFAULT)) {
     const idx = content.indexOf('\n' + FRONTMATTER_DELIMITER_DEFAULT)
@@ -50,6 +50,6 @@ export function parseFrontMatter (content: string) {
   return {
     content,
     // unflatten frontmatter data. convert `parent.child` keys into `parent: { child: ... }`
-    data: flat.unflatten(data || {}, {}) as Record<string, any>
+    data: flat.unflatten(data || {}, {}) as Record<string, any>,
   }
 }

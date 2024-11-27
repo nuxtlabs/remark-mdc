@@ -10,8 +10,8 @@ export default defineAppConfig({
       nuxt: {
         label: 'Nuxt',
         icon: 'simple-icons:nuxtdotjs',
-        href: 'https://nuxt.com'
-      }
+        href: 'https://nuxt.com',
+      },
     },
 
     github: {
@@ -19,18 +19,18 @@ export default defineAppConfig({
       branch: 'main',
       repo: 'remark-mdc',
       owner: 'nuxtlabs',
-      edit: true
+      edit: true,
     },
 
     aside: {
       level: 0,
       collapsed: false,
-      exclude: []
+      exclude: [],
     },
 
     main: {
       padded: true,
-      fluid: false
+      fluid: false,
     },
 
     header: {
@@ -38,7 +38,7 @@ export default defineAppConfig({
       showLinkIcon: true,
       exclude: [],
       fluid: false,
-      title: 'Remark MDC'
-    }
-  }
+      title: 'Remark MDC',
+    },
+  },
 })
