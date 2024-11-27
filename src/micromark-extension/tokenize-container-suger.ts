@@ -5,15 +5,13 @@ import componentContainer from './tokenize-inline'
 import { Codes } from './constants'
 
 /**
-
-text
-
-:component
-
-text
-
+ * text
+ *
+ * :component
+ *
+ * text
  */
-function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: State) {
+function tokenize(this: TokenizeContext, effects: Effects, ok: State, nok: State) {
   // eslint-disable-next-line @typescript-eslint/no-this-alias
   const self = this
 
@@ -21,19 +19,19 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     self,
     effects,
     factorySpace(effects, exit as State, 'linePrefix'),
-    nok
+    nok,
   )
 
   return factorySpace(effects, lineStart as State, 'linePrefix')
 
-  function lineStart (code: Code): void | State {
+  function lineStart(code: Code): undefined | State {
     if (code === Codes.colon) {
       return tokenizeSugerSyntax(code)
     }
     return nok(code)
   }
 
-  function exit (code: Code): void | State {
+  function exit(code: Code): undefined | State {
     if (markdownLineEnding(code) || code === Codes.EOF) {
       return ok(code)
     }
@@ -42,5 +40,5 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
 }
 
 export default {
-  tokenize
+  tokenize,
 }

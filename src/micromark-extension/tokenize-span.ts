@@ -7,13 +7,13 @@ const label: any = { tokenize: tokenizeLabel, partial: true }
 const gfmCheck: any = { tokenize: checkGfmTaskCheckbox, partial: true }
 const doubleBracketCheck: any = { tokenize: checkDoubleBracket, partial: true }
 
-function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: State) {
+function tokenize(this: TokenizeContext, effects: Effects, ok: State, nok: State) {
   // eslint-disable-next-line @typescript-eslint/no-this-alias
   const self = this
 
   return start
 
-  function start (code: Code): State | undefined {
+  function start(code: Code): State | undefined {
     if (code !== Codes.openingSquareBracket) {
       throw new Error('expected `[`')
     }
@@ -21,8 +21,8 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     // When we are in the beginning of task list line,
     // there is a good chance that we are dealing with a GFM task list
     if (
-      self.previous === Codes.EOF &&
-      self._gfmTasklistFirstContentOfListItem
+      self.previous === Codes.EOF
+      && self._gfmTasklistFirstContentOfListItem
     ) {
       return effects.check(gfmCheck, nok, attemptLabel)(code)
     }
@@ -34,12 +34,12 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return effects.check(doubleBracketCheck, nok, attemptLabel)(code)
   }
 
-  function attemptLabel (code: Code): State | undefined {
+  function attemptLabel(code: Code): State | undefined {
     effects.enter('textSpan')
     return effects.attempt(label, exit as State, nok)(code)
   }
 
-  function exit (code: Code): State | undefined {
+  function exit(code: Code): State | undefined {
     // Prevent conflict with link syntax
     if (code === Codes.openingParentheses || code === Codes.openingSquareBracket) {
       return nok(code)
@@ -48,7 +48,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return exitOK(code)
   }
 
-  function exitOK (code: Code): State | undefined {
+  function exitOK(code: Code): State | undefined {
     effects.exit('textSpan')
     return ok(code)
   }
@@ -57,24 +57,24 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
 /**
  * Labels starts with `[` and ends with `]`
  */
-function tokenizeLabel (effects: Effects, ok: State, nok: State) {
+function tokenizeLabel(effects: Effects, ok: State, nok: State) {
   return createLabel(effects, ok, nok, 'componentTextLabel', 'componentTextLabelMarker', 'componentTextLabelString')
 }
 
 export default {
-  tokenize
+  tokenize,
 }
 
-function checkGfmTaskCheckbox (effects: Effects, ok: State, nok: State) {
+function checkGfmTaskCheckbox(effects: Effects, ok: State, nok: State) {
   return enter
 
-  function enter (code: Code): State | undefined {
+  function enter(code: Code): State | undefined {
     effects.enter('formGfmTaskCheckbox')
     effects.consume(code)
     return check
   }
 
-  function check (code: Code): State | undefined {
+  function check(code: Code): State | undefined {
     if (markdownSpace(code)) {
       effects.consume(code)
       return check
@@ -93,16 +93,16 @@ function checkGfmTaskCheckbox (effects: Effects, ok: State, nok: State) {
   }
 }
 
-function checkDoubleBracket (effects: Effects, ok: State, nok: State) {
+function checkDoubleBracket(effects: Effects, ok: State, nok: State) {
   return enter
 
-  function enter (code: Code): State | undefined {
+  function enter(code: Code): State | undefined {
     effects.enter('doubleBracket')
     effects.consume(code)
     return check
   }
 
-  function check (code: Code): State | undefined {
+  function check(code: Code): State | undefined {
     if (code !== Codes.openingSquareBracket) {
       return nok(code)
     }

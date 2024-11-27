@@ -25,17 +25,19 @@ const validEvents = [
   /**
    * Image
    */
-  'image'
+  'image',
 ]
 
-function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: State) {
+function tokenize(this: TokenizeContext, effects: Effects, ok: State, nok: State) {
   // eslint-disable-next-line @typescript-eslint/no-this-alias
   const self = this
 
   return start
 
-  function start (code: Code): void | State {
-    if (code !== Codes.openingCurlyBracket) { throw new Error('expected `{`') }
+  function start(code: Code): undefined | State {
+    if (code !== Codes.openingCurlyBracket) {
+      throw new Error('expected `{`')
+    }
 
     /**
      * Make sure syntax is used after valid tags
@@ -49,7 +51,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
   }
 }
 
-function tokenizeAttributes (effects: Effects, ok: State, nok: State) {
+function tokenizeAttributes(effects: Effects, ok: State, nok: State) {
   // Always a `{`
   return createAttributes(
     effects,
@@ -65,10 +67,10 @@ function tokenizeAttributes (effects: Effects, ok: State, nok: State) {
     'componentTextAttributeValueLiteral',
     'componentTextAttributeValue',
     'componentTextAttributeValueMarker',
-    'componentTextAttributeValueData'
+    'componentTextAttributeValueData',
   )
 }
 
 export default {
-  tokenize
+  tokenize,
 }

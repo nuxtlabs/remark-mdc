@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Functions to track output positions.
  * This info isn’t used yet but such functionality allows line wrapping,
@@ -6,7 +5,7 @@
  *
  * @param {TrackFields} options_
  */
-function track (options_) {
+function track(options_: any) {
   // Defaults are used to prevent crashes when older utilities somehow activate
   // this code.
   /* c8 ignore next 5 */
@@ -23,7 +22,7 @@ function track (options_) {
    *
    * @returns {{now: Point, lineShift: number}}
    */
-  function current () {
+  function current() {
     return { now: { line, column }, lineShift }
   }
 
@@ -32,7 +31,7 @@ function track (options_) {
    *
    * @param {number} value
    */
-  function shift (value) {
+  function shift(value: number) {
     lineShift += value
   }
 
@@ -42,17 +41,17 @@ function track (options_) {
    * @param {string} value
    * @returns {string}
    */
-  function move (value = '') {
+  function move(value = '') {
     const chunks = value.split(/\r?\n|\r/g)
     const tail = chunks[chunks.length - 1]
     line += chunks.length - 1
-    column =
-      chunks.length === 1 ? column + tail.length : 1 + tail.length + lineShift
+    column
+      = chunks.length === 1 ? column + tail.length : 1 + tail.length + lineShift
     return value
   }
 }
 
-export function inlineContainerFlow (parent, context, safeOptions = {}) {
+export function inlineContainerFlow(parent: any, context: any, safeOptions = {}) {
   const indexStack = context.indexStack
   const children = parent.children || []
   const tracker = track(safeOptions)
@@ -72,9 +71,9 @@ export function inlineContainerFlow (parent, context, safeOptions = {}) {
         context.handle(child, parent, context, {
           before: '',
           after: '',
-          ...tracker.current()
-        })
-      )
+          ...tracker.current(),
+        }),
+      ),
     )
   }
 
@@ -84,12 +83,12 @@ export function inlineContainerFlow (parent, context, safeOptions = {}) {
 }
 // import { containerFlow } from 'mdast-util-to-markdown/lib/util/container-flow.js'
 /**
-  * @param {Parent} parent
-  * @param {Context} context
-  * @param {TrackFields} safeOptions
-  * @returns {string}
-  */
-export function containerFlow (parent, context, safeOptions = {}) {
+ * @param {Parent} parent
+ * @param {Context} context
+ * @param {TrackFields} safeOptions
+ * @returns {string}
+ */
+export function containerFlow(parent: any, context: any, safeOptions = {}) {
   const indexStack = context.indexStack
   const children = parent.children || []
   const tracker = track(safeOptions)
@@ -109,9 +108,9 @@ export function containerFlow (parent, context, safeOptions = {}) {
         context.handle(child, parent, context, {
           before: '\n',
           after: '\n',
-          ...tracker.current()
-        })
-      )
+          ...tracker.current(),
+        }),
+      ),
     )
 
     if (child.type !== 'list') {
@@ -128,11 +127,11 @@ export function containerFlow (parent, context, safeOptions = {}) {
   return results.join('')
 
   /**
-    * @param {Node} left
-    * @param {Node} right
-    * @returns {string}
-    */
-  function between (left, right) {
+   * @param {Node} left
+   * @param {Node} right
+   * @returns {string}
+   */
+  function between(left: any, right: any) {
     let index = context.join.length
 
     while (index--) {
@@ -156,11 +155,11 @@ export function containerFlow (parent, context, safeOptions = {}) {
 }
 
 // import { containerPhrasing } from 'mdast-util-to-markdown/lib/util/container-phrasing.js'
-export function containerPhrasing (parent, context, safeOptions) {
+export function containerPhrasing(parent: any, context: any, safeOptions: any) {
   const indexStack = context.indexStack
   const children = parent.children || []
   /** @type {Array<string>} */
-  const results = []
+  const results: string[] = []
   let index = -1
   let before = safeOptions.before
 
@@ -169,22 +168,24 @@ export function containerPhrasing (parent, context, safeOptions) {
 
   while (++index < children.length) {
     const child = children[index]
-    /** @type {string} */
-    let after
+    let after: string
 
     indexStack[indexStack.length - 1] = index
 
     if (index + 1 < children.length) {
       let handle = context.handle.handlers[children[index + 1].type]
-      if (handle && handle.peek) { handle = handle.peek }
+      if (handle && handle.peek) {
+        handle = handle.peek
+      }
       after = handle
         ? handle(children[index + 1], parent, context, {
           before: '',
           after: '',
-          ...tracker.current()
+          ...tracker.current(),
         }).charAt(0)
         : ''
-    } else {
+    }
+    else {
       after = safeOptions.after
     }
 
@@ -195,13 +196,13 @@ export function containerPhrasing (parent, context, safeOptions) {
     // reasonable approach: replace that eol with a space.
     // See: <https://github.com/syntax-tree/mdast-util-to-markdown/issues/15>
     if (
-      results.length > 0 &&
-      (before === '\r' || before === '\n') &&
-      child.type === 'html'
+      results.length > 0
+      && (before === '\r' || before === '\n')
+      && child.type === 'html'
     ) {
       results[results.length - 1] = results[results.length - 1].replace(
         /(\r?\n|\r)$/,
-        ' '
+        ' ',
       )
       before = ' '
 
@@ -215,9 +216,9 @@ export function containerPhrasing (parent, context, safeOptions) {
         context.handle(child, parent, context, {
           ...tracker.current(),
           before,
-          after
-        })
-      )
+          after,
+        }),
+      ),
     )
 
     before = results[results.length - 1].slice(-1)
@@ -233,14 +234,14 @@ export function containerPhrasing (parent, context, safeOptions) {
  * @param {Context} context
  * @returns {Exclude<Options['quote'], undefined>}
  */
-export function checkQuote (context) {
+export function checkQuote(context: any) {
   const marker = context.options.quote || '"'
 
-  if (marker !== '"' && marker !== "'") {
+  if (marker !== '"' && marker !== '\'') {
     throw new Error(
-      'Cannot serialize title with `' +
-        marker +
-        '` for `options.quote`, expected `"`, or `\'`'
+      'Cannot serialize title with `'
+      + marker
+      + '` for `options.quote`, expected `"`, or `\'`',
     )
   }
 

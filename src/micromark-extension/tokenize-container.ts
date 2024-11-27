@@ -11,7 +11,7 @@ import { tokenizeFrontMatter } from './tokenize-frontmatter'
 const label: any = { tokenize: tokenizeLabel, partial: true }
 const attributes: any = { tokenize: tokenizeAttributes, partial: true }
 
-function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: State) {
+function tokenize(this: TokenizeContext, effects: Effects, ok: State, nok: State) {
   // eslint-disable-next-line @typescript-eslint/no-this-alias
   const self = this
   const initialPrefix = linePrefixSize(this.events)
@@ -33,22 +33,24 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
    */
   return start
 
-  function start (code: Code): State | undefined {
+  function start(code: Code): State | undefined {
     /* istanbul ignore if - handled by mm */
-    if (code !== Codes.colon) { throw new Error('expected `:`') }
+    if (code !== Codes.colon) {
+      throw new Error('expected `:`')
+    }
     effects.enter('componentContainer')
     effects.enter('componentContainerFence')
     effects.enter('componentContainerSequence')
     return sequenceOpen(code)
   }
 
-  function tokenizeSectionClosing (effects: Effects, ok: State, nok: State) {
+  function tokenizeSectionClosing(effects: Effects, ok: State, nok: State) {
     let size = 0
     let sectionIndentSize = 0
     let revertSectionState: () => void
     return closingPrefixAfter
 
-    function closingPrefixAfter (code: Code): State | undefined {
+    function closingPrefixAfter(code: Code): State | undefined {
       sectionIndentSize = linePrefixSize(self.events)
 
       // Close section
@@ -58,7 +60,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
       return closingSectionSequence(code)
     }
 
-    function closingSectionSequence (code: Code): State | undefined {
+    function closingSectionSequence(code: Code): State | undefined {
       if (code === slotSeparatorCode) {
         effects.consume(code)
         size++
@@ -88,7 +90,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     }
   }
 
-  function sectionOpen (code: Code): undefined | State {
+  function sectionOpen(code: Code): undefined | State {
     // Open new Section
     section.enter(effects)
 
@@ -100,16 +102,32 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return sectionTitle(code)
   }
 
-  function sectionTitle (code: Code): State | undefined {
+  function sectionTitle(code: Code): State | undefined {
+    // parse attributes
+    if (code === Codes.openingCurlyBracket) {
+      return effects.check(
+        attributes,
+        (code) => {
+          effects.exit('componentContainerSectionTitle')
+          return effects.attempt(attributes, factorySpace(effects, lineStart, 'linePrefix', 4), nok)(code)
+        },
+        (code) => {
+          effects.consume(code)
+          return sectionTitle
+        },
+      )(code)
+    }
+
     if (markdownLineEnding(code)) {
       effects.exit('componentContainerSectionTitle')
       return factorySpace(effects, lineStart, 'linePrefix', 4)(code)
     }
+
     effects.consume(code)
     return sectionTitle
   }
 
-  function sequenceOpen (code: Code): State | undefined {
+  function sequenceOpen(code: Code): State | undefined {
     if (code === Codes.colon) {
       effects.consume(code)
       sizeOpen++
@@ -124,23 +142,23 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return createName.call(self, effects, afterName, nok, 'componentContainerName')(code)
   }
 
-  function afterName (code: Code): State | undefined {
+  function afterName(code: Code): State | undefined {
     return code === Codes.openingSquareBracket
       ? effects.attempt(label, afterLabel, afterLabel)(code)
       : afterLabel(code)
   }
 
-  function afterLabel (code: Code): State | undefined {
+  function afterLabel(code: Code): State | undefined {
     return code === Codes.openingCurlyBracket
       ? effects.attempt(attributes, afterAttributes, afterAttributes)(code)
       : afterAttributes(code)
   }
 
-  function afterAttributes (code: Code): State | undefined {
+  function afterAttributes(code: Code): State | undefined {
     return factorySpace(effects, openAfter, 'whitespace')(code)
   }
 
-  function openAfter (code: Code): State | undefined {
+  function openAfter(code: Code): State | undefined {
     effects.exit('componentContainerFence')
 
     if (code === null) {
@@ -159,7 +177,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return nok(code)
   }
 
-  function contentStart (code: Code): State | undefined {
+  function contentStart(code: Code): State | undefined {
     if (code === null) {
       effects.exit('componentContainer')
       return ok(code)
@@ -173,7 +191,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return lineStart(code)
   }
 
-  function lineStartAfterPrefix (code: Code): State | undefined {
+  function lineStartAfterPrefix(code: Code): State | undefined {
     if (code === null) {
       return after(code)
     }
@@ -186,7 +204,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
           visitingCodeFenced = !visitingCodeFenced
           return chunkStart(code)
         },
-        chunkStart
+        chunkStart,
       )(code)
     }
 
@@ -199,7 +217,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
       return effects.attempt(
         { tokenize: tokenizeSectionClosing, partial: true },
         sectionOpen,
-        chunkStart
+        chunkStart,
       )(code)
     }
 
@@ -210,14 +228,14 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
       return effects.attempt(
         { tokenize: tokenizeClosingFence, partial: true },
         after,
-        chunkStart
+        chunkStart,
       )(code)
     }
 
     return chunkStart(code)
   }
 
-  function lineStart (code: Code): State | undefined {
+  function lineStart(code: Code): State | undefined {
     if (code === null) {
       return after(code)
     }
@@ -227,7 +245,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
       : lineStartAfterPrefix(code)
   }
 
-  function chunkStart (code: Code): State | undefined {
+  function chunkStart(code: Code): State | undefined {
     if (code === null) {
       return after(code)
     }
@@ -235,17 +253,18 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     // Open new Section
     section.enterOnce(effects)
 
-    // @ts-ignore
     const token = effects.enter('chunkDocument', {
       contentType: 'document',
-      previous
+      previous,
     })
-    if (previous) { previous.next = token }
+    if (previous) {
+      previous.next = token
+    }
     previous = token
     return contentContinue(code)
   }
 
-  function contentContinue (code: Code): State | undefined {
+  function contentContinue(code: Code): State | undefined {
     if (code === null) {
       effects.exit('chunkDocument')
       return after(code)
@@ -261,7 +280,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return contentContinue
   }
 
-  function after (code: Code): State | undefined {
+  function after(code: Code): State | undefined {
     // Close section
     section.exit(effects)
     effects.exit('componentContainerContent')
@@ -269,18 +288,18 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return ok(code)
   }
 
-  function tokenizeClosingFence (effects: Effects, ok: State, nok: State) {
+  function tokenizeClosingFence(effects: Effects, ok: State, nok: State) {
     let size = 0
 
     return factorySpace(effects, closingPrefixAfter, 'linePrefix', 4)
 
-    function closingPrefixAfter (code: Code): State | undefined {
+    function closingPrefixAfter(code: Code): State | undefined {
       effects.enter('componentContainerFence')
       effects.enter('componentContainerSequence')
       return closingSequence(code)
     }
 
-    function closingSequence (code: Code): State | undefined {
+    function closingSequence(code: Code): State | undefined {
       if (code === Codes.colon) {
         effects.consume(code)
         size++
@@ -295,12 +314,14 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
       }
 
       // it is important to match sequence
-      if (size !== sizeOpen) { return nok(code) }
+      if (size !== sizeOpen) {
+        return nok(code)
+      }
       effects.exit('componentContainerSequence')
       return factorySpace(effects, closingSequenceEnd, 'whitespace')(code)
     }
 
-    function closingSequenceEnd (code: Code): State | undefined {
+    function closingSequenceEnd(code: Code): State | undefined {
       if (code === null || markdownLineEnding(code)) {
         effects.exit('componentContainerFence')
         return ok(code)
@@ -311,7 +332,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
   }
 }
 
-function tokenizeLabel (effects: Effects, ok: State, nok: State) {
+function tokenizeLabel(effects: Effects, ok: State, nok: State) {
   // Always a `[`
   return createLabel(
     effects,
@@ -320,11 +341,11 @@ function tokenizeLabel (effects: Effects, ok: State, nok: State) {
     'componentContainerLabel',
     'componentContainerLabelMarker',
     'componentContainerLabelString',
-    true
+    true,
   )
 }
 
-function tokenizeAttributes (effects: Effects, ok: State, nok: State) {
+function tokenizeAttributes(effects: Effects, ok: State, nok: State) {
   // Always a `{`
   return createAttributes(
     effects,
@@ -341,11 +362,11 @@ function tokenizeAttributes (effects: Effects, ok: State, nok: State) {
     'componentContainerAttributeValue',
     'componentContainerAttributeValueMarker',
     'componentContainerAttributeValueData',
-    true
+    true,
   )
 }
 
 export default {
   tokenize,
-  concrete: true
+  concrete: true,
 }

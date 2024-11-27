@@ -1,6 +1,7 @@
 import type { CompileContext as MdastCompileContext } from 'mdast-util-from-markdown'
 import type { Parent } from 'mdast'
 import type { CompileContext as MicromarkCompileContext } from 'micromark-util-types'
+
 export type { Effects, State, Code, TokenizeContext, TokenTypeMap, Token } from 'micromark-util-types'
 export type { Nodes } from 'mdast'
 
@@ -43,60 +44,60 @@ declare module 'mdast' {
 
 declare module 'micromark-util-types' {
   interface TokenTypeMap {
-    componentContainer: 'componentContainer',
-    componentContainerName: 'componentContainerName',
-    componentContainerFence: 'componentContainerFence',
-    componentContainerSequence: 'componentContainerSequence',
-    componentContainerSection: 'componentContainerSection',
-    componentContainerSectionSequence: 'componentContainerSectionSequence',
-    componentContainerSectionTitle: 'componentContainerSectionTitle',
-    componentContainerContent: 'componentContainerContent',
+    componentContainer: 'componentContainer'
+    componentContainerName: 'componentContainerName'
+    componentContainerFence: 'componentContainerFence'
+    componentContainerSequence: 'componentContainerSequence'
+    componentContainerSection: 'componentContainerSection'
+    componentContainerSectionSequence: 'componentContainerSectionSequence'
+    componentContainerSectionTitle: 'componentContainerSectionTitle'
+    componentContainerContent: 'componentContainerContent'
 
-    componentContainerLabel: 'componentContainerLabel',
-    componentContainerLabelMarker: 'componentContainerLabelMarker',
-    componentContainerLabelString: 'componentContainerLabelString',
+    componentContainerLabel: 'componentContainerLabel'
+    componentContainerLabelMarker: 'componentContainerLabelMarker'
+    componentContainerLabelString: 'componentContainerLabelString'
 
-    componentContainerDataSection: 'componentContainerDataSection',
+    componentContainerDataSection: 'componentContainerDataSection'
 
-    componentContainerAttributes: 'componentContainerAttributes',
-    componentContainerAttributesMarker: 'componentContainerAttributesMarker',
-    componentContainerAttribute: 'componentContainerAttribute',
-    componentContainerAttributeId: 'componentContainerAttributeId',
-    componentContainerAttributeClass: 'componentContainerAttributeClass',
-    componentContainerAttributeName: 'componentContainerAttributeName',
-    componentContainerAttributeInitializerMarker: 'componentContainerAttributeInitializerMarker',
-    componentContainerAttributeValueLiteral: 'componentContainerAttributeValueLiteral',
-    componentContainerAttributeValue: 'componentContainerAttributeValue',
-    componentContainerAttributeValueMarker: 'componentContainerAttributeValueMarker',
-    componentContainerAttributeValueData: 'componentContainerAttributeValueData',
+    componentContainerAttributes: 'componentContainerAttributes'
+    componentContainerAttributesMarker: 'componentContainerAttributesMarker'
+    componentContainerAttribute: 'componentContainerAttribute'
+    componentContainerAttributeId: 'componentContainerAttributeId'
+    componentContainerAttributeClass: 'componentContainerAttributeClass'
+    componentContainerAttributeName: 'componentContainerAttributeName'
+    componentContainerAttributeInitializerMarker: 'componentContainerAttributeInitializerMarker'
+    componentContainerAttributeValueLiteral: 'componentContainerAttributeValueLiteral'
+    componentContainerAttributeValue: 'componentContainerAttributeValue'
+    componentContainerAttributeValueMarker: 'componentContainerAttributeValueMarker'
+    componentContainerAttributeValueData: 'componentContainerAttributeValueData'
 
-    bindingContent: 'bindingContent',
-    bindingFence: 'bindingFence',
+    bindingContent: 'bindingContent'
+    bindingFence: 'bindingFence'
 
-    escapeCharacter: 'escapeCharacter',
+    escapeCharacter: 'escapeCharacter'
 
     // Component Text
-    componentText: 'componentText',
-    componentTextMarker: 'componentTextMarker',
-    componentTextName: 'componentTextName',
-    componentTextLabel: 'componentTextLabel',
-    componentTextLabelMarker: 'componentTextLabelMarker',
-    componentTextLabelString: 'componentTextLabelString',
+    componentText: 'componentText'
+    componentTextMarker: 'componentTextMarker'
+    componentTextName: 'componentTextName'
+    componentTextLabel: 'componentTextLabel'
+    componentTextLabelMarker: 'componentTextLabelMarker'
+    componentTextLabelString: 'componentTextLabelString'
 
-    componentTextAttributes: 'componentTextAttributes',
-    componentTextAttributesMarker: 'componentTextAttributesMarker',
-    componentTextAttribute: 'componentTextAttribute',
-    componentTextAttributeId: 'componentTextAttributeId',
-    componentTextAttributeClass: 'componentTextAttributeClass',
-    componentTextAttributeName: 'componentTextAttributeName',
-    componentTextAttributeInitializerMarker: 'componentTextAttributeInitializerMarker',
-    componentTextAttributeValueLiteral: 'componentTextAttributeValueLiteral',
-    componentTextAttributeValue: 'componentTextAttributeValue',
-    componentTextAttributeValueMarker: 'componentTextAttributeValueMarker',
-    componentTextAttributeValueData: 'componentTextAttributeValueData',
+    componentTextAttributes: 'componentTextAttributes'
+    componentTextAttributesMarker: 'componentTextAttributesMarker'
+    componentTextAttribute: 'componentTextAttribute'
+    componentTextAttributeId: 'componentTextAttributeId'
+    componentTextAttributeClass: 'componentTextAttributeClass'
+    componentTextAttributeName: 'componentTextAttributeName'
+    componentTextAttributeInitializerMarker: 'componentTextAttributeInitializerMarker'
+    componentTextAttributeValueLiteral: 'componentTextAttributeValueLiteral'
+    componentTextAttributeValue: 'componentTextAttributeValue'
+    componentTextAttributeValueMarker: 'componentTextAttributeValueMarker'
+    componentTextAttributeValueData: 'componentTextAttributeValueData'
 
     // Text Span
-    textSpan: 'textSpan',
+    textSpan: 'textSpan'
 
     // Others
     formGfmTaskCheckbox: 'formGfmTaskCheckbox'

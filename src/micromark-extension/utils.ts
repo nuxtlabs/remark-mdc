@@ -3,7 +3,7 @@ import { Codes } from './constants'
 
 // Measure the number of character codes in chunks.
 // Counts tabs based on their expanded size, and CR+LF as one character.
-export function sizeChunks (chunks: any[]) {
+export function sizeChunks(chunks: any[]) {
   let index = -1
   let size = 0
 
@@ -14,9 +14,11 @@ export function sizeChunks (chunks: any[]) {
   return size
 }
 
-export function prefixSize (events: any, type: string) {
+export function prefixSize(events: any, type: string) {
   const tail = events[events.length - 1]
-  if (!tail || tail[1].type !== type) { return 0 }
+  if (!tail || tail[1].type !== type) {
+    return 0
+  }
   return sizeChunks(tail[2].sliceStream(tail[1]))
 }
 
@@ -25,7 +27,7 @@ export function prefixSize (events: any, type: string) {
  * @param events parser tokens
  * @returns line indention size
  */
-export function linePrefixSize (events: any[]) {
+export function linePrefixSize(events: any[]) {
   let size = 0
   let index = events.length - 1
   let tail = events[index]
@@ -88,23 +90,23 @@ export const useTokenState = (tokenName: keyof TokenTypeMap) => {
       return () => {
         token.isOpen = initialState
       }
-    }
+    },
   }
   return token
 }
 
 export const tokenizeCodeFence = { tokenize: checkCodeFenced, partial: true }
-function checkCodeFenced (effects: Effects, ok: State, nok: State) {
+function checkCodeFenced(effects: Effects, ok: State, nok: State) {
   let backTickCount = 0
 
   return start
 
-  function start (code: Code): State | undefined {
+  function start(code: Code): State | undefined {
     effects.enter('codeFenced')
     return after(code)
   }
 
-  function after (code: Code): State | undefined {
+  function after(code: Code): State | undefined {
     if (code === Codes.backTick) {
       backTickCount++
       effects.consume(code)

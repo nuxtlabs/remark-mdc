@@ -3,64 +3,64 @@ import { runMarkdownTests } from './utils'
 
 describe('codeblock-props', () => {
   runMarkdownTests({
-    YamlProps: {
+    'YamlProps': {
       mdcOptions: {
         experimental: {
-          componentCodeBlockYamlProps: true
-        }
+          componentCodeBlockYamlProps: true,
+        },
       },
       markdown: '::with-frontmatter-yaml\n```yaml [props]\narray:\n  - item\n  - itemKey: value\nkey: value\n```\n::',
-      extra (_markdown, ast, _expected) {
+      extra(_markdown, ast, _expected) {
         expect(ast.children[0].type).toEqual('containerComponent')
         expect(ast.children[0].fmAttributes).toEqual({ array: ['item', { itemKey: 'value' }], key: 'value' })
-      }
+      },
     },
-    notYamlProps: {
+    'notYamlProps': {
       mdcOptions: {
         experimental: {
-          componentCodeBlockYamlProps: true
-        }
+          componentCodeBlockYamlProps: true,
+        },
       },
       markdown: '::with-frontmatter-yaml\n```yaml\nkey: value\narray:\n  - item\n  - itemKey: value\n```\n::',
-      extra (_markdown, ast, _expected) {
+      extra(_markdown, ast, _expected) {
         expect(ast.children[0].type).toEqual('containerComponent')
         expect(ast.children[0].fmAttributes).toEqual({})
-      }
-    },
-    notYamlProps2: {
-      mdcOptions: {
-        experimental: {
-          componentCodeBlockYamlProps: true
-        }
       },
-      markdown: '::with-frontmatter-yaml\n```yaml[props]\nkey: value\narray:\n  - item\n  - itemKey: value\n```\n::'
     },
-    notYamlProps3: {
+    'notYamlProps2': {
       mdcOptions: {
         experimental: {
-          componentCodeBlockYamlProps: true
-        }
+          componentCodeBlockYamlProps: true,
+        },
       },
-      markdown: '::with-frontmatter-yaml\n```yaml [yaml]\nkey: value\narray:\n  - item\n  - itemKey: value\n```\n::'
+      markdown: '::with-frontmatter-yaml\n```yaml[props]\nkey: value\narray:\n  - item\n  - itemKey: value\n```\n::',
     },
-    shouldConvertYamlProps: {
+    'notYamlProps3': {
       mdcOptions: {
         experimental: {
-          componentCodeBlockYamlProps: true
-        }
+          componentCodeBlockYamlProps: true,
+        },
+      },
+      markdown: '::with-frontmatter-yaml\n```yaml [yaml]\nkey: value\narray:\n  - item\n  - itemKey: value\n```\n::',
+    },
+    'shouldConvertYamlProps': {
+      mdcOptions: {
+        experimental: {
+          componentCodeBlockYamlProps: true,
+        },
       },
       markdown: '::with-frontmatter-yaml\n---\narray:\n  - item\n  - itemKey: value\nkey: value\n---\n::',
-      expected: '::with-frontmatter-yaml\n```yaml [props]\narray:\n  - item\n  - itemKey: value\nkey: value\n```\n::'
+      expected: '::with-frontmatter-yaml\n```yaml [props]\narray:\n  - item\n  - itemKey: value\nkey: value\n```\n::',
     },
     // shouldConvertYamlPropsWithoutOption: {
     //   markdown: '::with-frontmatter-yaml\n```yaml [props]\narray:\n  - item\n  - itemKey: value\nkey: value\n```\n::',
     //   expected: '::with-frontmatter-yaml\n---\narray:\n  - item\n  - itemKey: value\nkey: value\n---\n::'
     // },
-    yamlProps1: {
+    'yamlProps1': {
       mdcOptions: {
         experimental: {
-          componentCodeBlockYamlProps: true
-        }
+          componentCodeBlockYamlProps: true,
+        },
       },
       markdown: [
         '::with-frontmatter-yaml1',
@@ -73,7 +73,7 @@ describe('codeblock-props', () => {
         '  - item',
         '  - itemKey: value',
         '```',
-        '::'
+        '::',
       ].join('\n'),
       expected: [
         '::with-frontmatter-yaml1',
@@ -86,14 +86,14 @@ describe('codeblock-props', () => {
         '  subkey: value',
         '  subkey2: value',
         '```',
-        '::'
-      ].join('\n')
+        '::',
+      ].join('\n'),
     },
     'nested-component-yamlProps': {
       mdcOptions: {
         experimental: {
-          componentCodeBlockYamlProps: true
-        }
+          componentCodeBlockYamlProps: true,
+        },
       },
       markdown: [
         '::with-frontmatter-and-nested-component-yaml',
@@ -113,13 +113,13 @@ describe('codeblock-props', () => {
         '  key: value',
         '  ```',
         '  :::',
-        '::'
+        '::',
       ].join('\n'),
-      extra (_markdown, ast, _expected) {
+      extra(_markdown, ast, _expected) {
         expect(ast.children[0].type).toEqual('containerComponent')
         expect(ast.children[0].fmAttributes).toEqual({ array: ['item', { itemKey: 'value' }], key: 'value' })
         expect(ast.children[0].children[1].children[1].fmAttributes).toEqual({ key: 'value' })
-      }
-    }
+      },
+    },
   })
 })

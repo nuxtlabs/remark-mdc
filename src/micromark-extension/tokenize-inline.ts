@@ -8,25 +8,27 @@ import createName from './factory-name'
 const label: any = { tokenize: tokenizeLabel, partial: true }
 const attributes: any = { tokenize: tokenizeAttributes, partial: true }
 
-function previous (this: TokenizeContext, code: Code) {
+function previous(this: TokenizeContext, code: Code) {
   // If there is a previous code, there will always be a tail.
   return code !== Codes.colon /* `:` */ || this.events[this.events.length - 1][1].type === 'characterEscape'
 }
 
-function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: State) {
+function tokenize(this: TokenizeContext, effects: Effects, ok: State, nok: State) {
   // eslint-disable-next-line @typescript-eslint/no-this-alias
   const self = this
 
   return start
 
-  function start (code: Code): void | State {
+  function start(code: Code): undefined | State {
     /* istanbul ignore if - handled by mm */
-    if (code !== Codes.colon /* `:` */) { throw new Error('expected `:`') }
+    if (code !== Codes.colon /* `:` */) {
+      throw new Error('expected `:`')
+    }
 
     if (
-      self.previous !== null &&
-      !markdownLineEndingOrSpace(self.previous) &&
-      ![Codes.openingSquareBracket, Codes.star, Codes.underscore, Codes.openingParentheses].includes(self.previous)
+      self.previous !== null
+      && !markdownLineEndingOrSpace(self.previous)
+      && ![Codes.openingSquareBracket, Codes.star, Codes.underscore, Codes.openingParentheses].includes(self.previous)
     ) {
       return nok(code)
     }
@@ -43,7 +45,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return createName.call(self, effects, afterName as State, nok, 'componentTextName')
   }
 
-  function afterName (code: Code): void | State {
+  function afterName(code: Code): undefined | State {
     if (code === Codes.colon /* `:` */) {
       return nok(code)
     }
@@ -61,7 +63,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return exit(code)
   }
 
-  function afterAttributes (code: Code): void | State {
+  function afterAttributes(code: Code): undefined | State {
     // Check for label after attributes
     if (code === Codes.openingSquareBracket) {
       return effects.attempt(label, afterLabel as State, afterLabel as State)(code)
@@ -70,7 +72,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return exit(code)
   }
 
-  function afterLabel (code: Code): void | State {
+  function afterLabel(code: Code): undefined | State {
     // Check for attributes after label
     if (code === Codes.openingCurlyBracket) {
       return effects.attempt(attributes, exit as State, exit as State)(code)
@@ -78,7 +80,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return exit(code)
   }
 
-  function exit (code: Code): void | State {
+  function exit(code: Code): undefined | State {
     // Allow everything else to exit the componentText state
     // if (!markdownLineEndingOrSpace(code) && ![Codes.EOF, Codes.closingSquareBracket, Codes.dot, Codes.comma].includes(code)) {
     //   return nok(code)
@@ -88,12 +90,12 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
   }
 }
 
-function tokenizeLabel (effects: Effects, ok: State, nok: State) {
+function tokenizeLabel(effects: Effects, ok: State, nok: State) {
   // Always a `[`
   return createLabel(effects, ok, nok, 'componentTextLabel', 'componentTextLabelMarker', 'componentTextLabelString')
 }
 
-function tokenizeAttributes (effects: Effects, ok: State, nok: State) {
+function tokenizeAttributes(effects: Effects, ok: State, nok: State) {
   // Always a `{`
   return createAttributes(
     effects,
@@ -109,11 +111,11 @@ function tokenizeAttributes (effects: Effects, ok: State, nok: State) {
     'componentTextAttributeValueLiteral',
     'componentTextAttributeValue',
     'componentTextAttributeValueMarker',
-    'componentTextAttributeValueData'
+    'componentTextAttributeValueData',
   )
 }
 
 export default {
   tokenize,
-  previous
+  previous,
 }

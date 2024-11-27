@@ -5,13 +5,13 @@ import type { Ref } from 'vue'
 // workaround for kleur
 process.env = process.env || {}
 
-function compiler (this: any) {
+function compiler(this: any) {
   this.Compiler = function (root: any) {
     return root
   }
 }
 
-export function useMarkdownParser (input: Ref<string>, mdcOptions = ref({})) {
+export function useMarkdownParser(input: Ref<string>, mdcOptions = ref({})) {
   let _stream: Processor<Root, Node, Node, undefined, undefined> | null = null
   const ast = ref()
   const parse = async (str: string) => {

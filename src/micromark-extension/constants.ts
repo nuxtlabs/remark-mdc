@@ -41,7 +41,7 @@ export const Codes = {
   star: 42,
   /**
    * ','
-   **/
+   */
   comma: 44,
   /**
    * '-'
@@ -102,5 +102,5 @@ export const Codes = {
   /**
    * '}'
    */
-  closingCurlyBracket: 125
+  closingCurlyBracket: 125,
 }

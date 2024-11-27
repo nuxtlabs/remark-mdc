@@ -7,23 +7,25 @@ import { Codes } from './constants'
 // to allow empty labels, balanced brackets (such as for nested components),
 // text instead of strings, and optionally disallows EOLs.
 
-export default function createLabel (
+export default function createLabel(
   effects: Effects,
   ok: State,
   nok: State,
   type: keyof TokenTypeMap,
   markerType: keyof TokenTypeMap,
   stringType: keyof TokenTypeMap,
-  disallowEol?: boolean
+  disallowEol?: boolean,
 ) {
   let size = 0
   let balance = 0
 
   return start
 
-  function start (code: number) {
+  function start(code: number) {
     /* istanbul ignore if - always `[` */
-    if (code !== Codes.openingSquareBracket) { throw new Error('expected `[`') }
+    if (code !== Codes.openingSquareBracket) {
+      throw new Error('expected `[`')
+    }
     effects.enter(type)
     effects.enter(markerType)
     effects.consume(code)
@@ -31,7 +33,7 @@ export default function createLabel (
     return afterStart
   }
 
-  function afterStart (code: number) {
+  function afterStart(code: number) {
     if (code === Codes.closingSquareBracket) {
       effects.enter(markerType)
       effects.consume(code)
@@ -44,11 +46,11 @@ export default function createLabel (
     return atBreak(code)
   }
 
-  function atBreak (code: number) {
+  function atBreak(code: number) {
     if (
-      code === Codes.EOF ||
+      code === Codes.EOF
       /* <https://github.com/micromark/micromark/blob/bf53bf9/lib/constant/constants.js#L34> */
-      size > 999
+      || size > 999
     ) {
       return nok(code)
     }
@@ -68,17 +70,16 @@ export default function createLabel (
       return atBreak
     }
 
-    // @ts-ignore
     effects.enter('chunkText', { contentType: 'text' })
     return label(code)
   }
 
-  function label (code: number): void | State {
+  function label(code: number): State | undefined {
     if (
-      code === Codes.EOF ||
-      markdownLineEnding(code) ||
+      code === Codes.EOF
+      || markdownLineEnding(code)
       /* <https://github.com/micromark/micromark/blob/bf53bf9/lib/constant/constants.js#L34> */
-      size > 999
+      || size > 999
     ) {
       effects.exit('chunkText')
       return atBreak(code) as State
@@ -97,7 +98,7 @@ export default function createLabel (
     return (code === Codes.backSlash ? labelEscape : label) as State
   }
 
-  function atClosingBrace (code: number) {
+  function atClosingBrace(code: number) {
     effects.exit(stringType)
     effects.enter(markerType)
     effects.consume(code)
@@ -106,7 +107,7 @@ export default function createLabel (
     return ok
   }
 
-  function labelEscape (code: number): void | State {
+  function labelEscape(code: number): undefined | State {
     if (code === Codes.openingSquareBracket || code === Codes.backSlash || code === Codes.closingSquareBracket) {
       effects.consume(code)
       size++

@@ -1,10 +1,10 @@
 import type { Effects, State, Code, TokenizeContext } from './types'
 import { Codes } from './constants'
 
-function attempClose (this: TokenizeContext, effects: Effects, ok: State, nok: State) {
+function attempClose(this: TokenizeContext, effects: Effects, ok: State, nok: State) {
   return start
 
-  function start (code: Code) {
+  function start(code: Code) {
     if (code !== Codes.closingCurlyBracket) {
       return nok(code)
     }
@@ -14,7 +14,7 @@ function attempClose (this: TokenizeContext, effects: Effects, ok: State, nok: S
     return secondBracket
   }
 
-  function secondBracket (code: Code) {
+  function secondBracket(code: Code) {
     if (code !== Codes.closingCurlyBracket) {
       return nok(code)
     }
@@ -25,10 +25,10 @@ function attempClose (this: TokenizeContext, effects: Effects, ok: State, nok: S
   }
 }
 
-function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: State) {
+function tokenize(this: TokenizeContext, effects: Effects, ok: State, nok: State) {
   return start
 
-  function start (code: Code): void | State {
+  function start(code: Code): undefined | State {
     if (code !== Codes.openingCurlyBracket) {
       throw new Error('expected `{`')
     }
@@ -38,7 +38,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return secondBracket
   }
 
-  function secondBracket (code: Code): undefined | State {
+  function secondBracket(code: Code): undefined | State {
     if (code !== Codes.openingCurlyBracket) {
       return nok(code)
     }
@@ -49,7 +49,7 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return content
   }
 
-  function content (code: Code): undefined | State {
+  function content(code: Code): undefined | State {
     if (code === Codes.closingCurlyBracket) {
       return effects.attempt({ tokenize: attempClose, partial: true }, close, (code) => {
         effects.consume(code)
@@ -61,11 +61,11 @@ function tokenize (this: TokenizeContext, effects: Effects, ok: State, nok: Stat
     return content
   }
 
-  function close (code: Code): undefined | State {
+  function close(code: Code): undefined | State {
     return ok(code)
   }
 }
 
 export default {
-  tokenize
+  tokenize,
 }

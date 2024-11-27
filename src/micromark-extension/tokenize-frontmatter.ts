@@ -4,22 +4,22 @@ import type { Effects, State, TokenizeContext, Code } from './types'
 import { Codes, SectionSequenceSize } from './constants'
 import { linePrefixSize } from './utils'
 
-export function tokenizeFrontMatter (
+export function tokenizeFrontMatter(
   effects: Effects,
   ok: State,
   _nok: State,
   next: State,
-  initialPrefix: number
+  initialPrefix: number,
 ) {
   let previous: any
 
   return effects.attempt({
     tokenize: tokenizeDataSection as any,
-    partial: true
+    partial: true,
   }, dataSectionOpen as State, next as State) as State
 
   // Look for data section
-  function tokenizeDataSection (this: TokenizeContext, effects: Effects, ok: State, nok: State) {
+  function tokenizeDataSection(this: TokenizeContext, effects: Effects, ok: State, nok: State) {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this
     let size = 0
@@ -27,7 +27,7 @@ export function tokenizeFrontMatter (
 
     return closingPrefixAfter
 
-    function dataLineFirstSpaces (code: Code): State | undefined {
+    function dataLineFirstSpaces(code: Code): State | undefined {
       if (markdownSpace(code)) {
         effects.consume(code)
         sectionIndentSize += 1
@@ -37,7 +37,7 @@ export function tokenizeFrontMatter (
       return closingPrefixAfter(code)
     }
 
-    function closingPrefixAfter (code: Code): State | undefined {
+    function closingPrefixAfter(code: Code): State | undefined {
       if (markdownSpace(code)) {
         effects.enter('space')
         return dataLineFirstSpaces(code)
@@ -49,17 +49,23 @@ export function tokenizeFrontMatter (
       return closingSectionSequence(code)
     }
 
-    function closingSectionSequence (code: Code): State | undefined {
+    function closingSectionSequence(code: Code): State | undefined {
       if (code === Codes.dash || markdownSpace(code)) {
         effects.consume(code)
         size++
         return closingSectionSequence
       }
 
-      if (size < SectionSequenceSize) { return nok(code) }
-      if (sectionIndentSize !== initialPrefix) { return nok(code) }
+      if (size < SectionSequenceSize) {
+        return nok(code)
+      }
+      if (sectionIndentSize !== initialPrefix) {
+        return nok(code)
+      }
 
-      if (!markdownLineEnding(code)) { return nok(code) }
+      if (!markdownLineEnding(code)) {
+        return nok(code)
+      }
 
       effects.exit('componentContainerSectionSequence')
       return factorySpace(effects, ok, 'whitespace')(code)
@@ -69,30 +75,31 @@ export function tokenizeFrontMatter (
   /**
    * Enter data section
    */
-  function dataSectionOpen (code: Code): State | undefined {
+  function dataSectionOpen(code: Code): State | undefined {
     effects.enter('componentContainerDataSection')
     return effects.attempt({
       tokenize: tokenizeDataSection as any,
-      partial: true
+      partial: true,
     }, dataSectionClose as State, dataChunkStart as State)(code)
   }
 
   /**
    *  Data section line
    */
-  function dataChunkStart (code: Code): State | undefined {
+  function dataChunkStart(code: Code): State | undefined {
     if (code === null) {
       effects.exit('componentContainerDataSection')
       effects.exit('componentContainer')
       return ok(code)
     }
 
-    // @ts-ignore
     const token = effects.enter('chunkDocument', {
       contentType: 'document',
-      previous
+      previous,
     })
-    if (previous) { previous.next = token }
+    if (previous) {
+      previous.next = token
+    }
     previous = token
     return dataContentContinue(code)
   }
@@ -100,7 +107,7 @@ export function tokenizeFrontMatter (
   /**
    * Data section content
    */
-  function dataContentContinue (code: Code): State | undefined {
+  function dataContentContinue(code: Code): State | undefined {
     if (code === null) {
       effects.exit('chunkDocument')
       effects.exit('componentContainerDataSection')
@@ -113,7 +120,7 @@ export function tokenizeFrontMatter (
       effects.exit('chunkDocument')
       return effects.attempt({
         tokenize: tokenizeDataSection as any,
-        partial: true
+        partial: true,
       }, dataSectionClose as State, dataChunkStart as State)
     }
 
@@ -124,7 +131,7 @@ export function tokenizeFrontMatter (
   /**
    * Exit data section
    */
-  function dataSectionClose (code: Code): State | undefined {
+  function dataSectionClose(code: Code): State | undefined {
     effects.exit('componentContainerDataSection')
     return factorySpace(effects, next, 'whitespace')(code)
   }

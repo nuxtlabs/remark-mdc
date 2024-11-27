@@ -5,12 +5,12 @@ import type { Ref } from 'vue'
 // workaround for kleur
 process.env = process.env || {}
 
-function jsonParser (this: any) {
+function jsonParser(this: any) {
   this.Parser = function (root: any) {
     return JSON.parse(root)
   }
 }
-export function useMarkdownGenerator (input: Ref<object>, mdcOptions = ref({})) {
+export function useMarkdownGenerator(input: Ref<object>, mdcOptions = ref({})) {
   let _stream: Processor<undefined, Node, Node, Root, string> | null = null
   const markdown = ref('')
   const generate = async (ast: object) => {
@@ -25,7 +25,7 @@ export function useMarkdownGenerator (input: Ref<object>, mdcOptions = ref({})) 
         .use(gfm)
         .use(mdc, mdcOptions.value)
         .use(stringify, {
-          bullet: '-'
+          bullet: '-',
         })
     }
     const res = await _stream.process(JSON.stringify(ast)).then(file => file.value as string)
