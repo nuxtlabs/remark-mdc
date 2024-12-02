@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v3.5.0
+
+[compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.4.0...v3.5.0)
+
+### 🚀 Enhancements
+
+- Slot attributes syntax ([#90](https://github.com/nuxtlabs/remark-mdc/pull/90))
+
+### 🏡 Chore
+
+- Upgrade deps ([a26dee0](https://github.com/nuxtlabs/remark-mdc/commit/a26dee0))
+
+### ✅ Tests
+
+- Add testcase for escaped chars ([ebca643](https://github.com/nuxtlabs/remark-mdc/commit/ebca643))
+
+### ❤️ Contributors
+
+- Farnabaz <farnabaz@gmail.com>
+
 ## v3.4.0
 
 [compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.3.2...v3.4.0)
