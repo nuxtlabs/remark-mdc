@@ -613,6 +613,53 @@ exports[`Attributes > id-suger 1`] = `
 }
 `;
 
+exports[`Attributes > ignoreEscapeAttrInNormalAttribute 1`] = `
+{
+  "children": [
+    {
+      "attributes": {
+        "code": "D:\\Software\\",
+      },
+      "children": [],
+      "data": {
+        "hName": "copy",
+        "hProperties": {
+          "code": "D:\\Software\\",
+        },
+      },
+      "fmAttributes": {},
+      "name": "copy",
+      "position": {
+        "end": {
+          "column": 29,
+          "line": 1,
+          "offset": 28,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "textComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 29,
+      "line": 1,
+      "offset": 28,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`Attributes > image 1`] = `
 {
   "children": [

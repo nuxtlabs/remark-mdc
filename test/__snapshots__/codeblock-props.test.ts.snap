@@ -500,65 +500,6 @@ key: value
 }
 `;
 
-exports[`codeblock-props > shouldConvertYamlPropsWithoutOption 1`] = `
-{
-  "children": [
-    {
-      "attributes": {},
-      "children": [],
-      "data": {
-        "hName": "with-frontmatter-yaml",
-        "hProperties": {
-          ":array": "["item",{"itemKey":"value"}]",
-          "key": "value",
-        },
-      },
-      "fmAttributes": {
-        "array": [
-          "item",
-          {
-            "itemKey": "value",
-          },
-        ],
-        "key": "value",
-      },
-      "name": "with-frontmatter-yaml",
-      "position": {
-        "end": {
-          "column": 3,
-          "line": 8,
-          "offset": 92,
-        },
-        "start": {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
-      },
-      "rawData": "array:
-  - item
-  - itemKey: value
-key: value
----",
-      "type": "containerComponent",
-    },
-  ],
-  "position": {
-    "end": {
-      "column": 3,
-      "line": 8,
-      "offset": 92,
-    },
-    "start": {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
-  },
-  "type": "root",
-}
-`;
-
 exports[`codeblock-props > yamlProps1 1`] = `
 {
   "children": [
