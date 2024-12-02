@@ -53,10 +53,10 @@
     "@nuxtjs/eslint-config-typescript": "latest",
     "@types/flat": "^5.0.5",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^22.10.0",
-    "eslint": "^9.15.0",
+    "@types/node": "^22.10.1",
+    "eslint": "^9.16.0",
     "eslint-plugin-nuxt": "latest",
-    "jiti": "^2.4.0",
+    "jiti": "^2.4.1",
     "nuxt": "^3.14.1592",
     "release-it": "^17.10.0",
     "remark-gfm": "^4.0.0",
@@ -78,5 +78,5 @@
       "after:bump": "npx changelogen@latest --no-commit --no-tag --output --r $(node -p \"require('./package.json').version\")"
     }
   },
-  "packageManager": "pnpm@9.14.2"
+  "packageManager": "pnpm@9.14.4"
 }
