@@ -1,6 +1,5 @@
-import { describe } from 'vitest'
+import { describe, expect } from 'vitest'
 import { runMarkdownTests } from './utils'
-import { expect } from 'vitest'
 
 describe('Attributes', () => {
   runMarkdownTests({
@@ -62,13 +61,13 @@ describe('Attributes', () => {
     'emphasis': {
       markdown: '_emphasis_{#id .class}',
     },
-    ignoreEscapeAttrInNormalAttribute: {
+    'ignoreEscapeAttrInNormalAttribute': {
       markdown: ':copy{code="D:\\\\Software\\\\"}',
       expected: ':copy{code="D:\\Software\\"}',
       extra: (_md, ast) => {
         expect(ast.children[0].type).toBe('textComponent')
         expect(ast.children[0].attributes.code).toBe('D:\\Software\\')
-      }
+      },
     },
     'nested-in-table': {
       markdown: [
