@@ -6,17 +6,23 @@ const FRONTMATTER_DELIMITER_CODEBLOCK_STYLE = '```yaml [props]'
 
 export function stringifyFrontMatter(data: any, content = '') {
   if (!Object.keys(data).length) {
-    return ''
+    return content.trim()
   }
 
   data = flat.unflatten(data || {}, {})
 
-  return [
+  const frontmatter = [
     FRONTMATTER_DELIMITER_DEFAULT,
     stringify(data).trim(),
     FRONTMATTER_DELIMITER_DEFAULT,
-    content,
+    '',
   ].join('\n')
+
+  if (content) {
+    return [frontmatter, content.trim(), ''].join('\n')
+  }
+
+  return frontmatter
 }
 
 export function stringifyCodeBlockProps(data: any, content = '') {
