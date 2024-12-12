@@ -660,6 +660,56 @@ exports[`Attributes > ignoreEscapeCharacterInNormalAttribute 1`] = `
 }
 `;
 
+exports[`Attributes > ignoreEscapeCharacterInNormalAttributeYaml 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [],
+      "data": {
+        "hName": "copy",
+        "hProperties": {
+          "code": "D:\\Software\\",
+        },
+      },
+      "fmAttributes": {
+        "code": "D:\\Software\\",
+      },
+      "name": "copy",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 5,
+          "offset": 36,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "rawData": "
+code: D:\\Software\\
+---",
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 5,
+      "offset": 36,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`Attributes > image 1`] = `
 {
   "children": [

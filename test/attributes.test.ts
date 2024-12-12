@@ -61,14 +61,6 @@ describe('Attributes', () => {
     'emphasis': {
       markdown: '_emphasis_{#id .class}',
     },
-    'ignoreEscapeCharacterInNormalAttribute': {
-      markdown: ':copy{code="D:\\Software\\"}',
-      expected: ':copy{code="D:\\Software\\"}',
-      extra: (_md, ast) => {
-        expect(ast.children[0].type).toBe('textComponent')
-        expect(ast.children[0].attributes.code).toBe('D:\\Software\\')
-      },
-    },
     'nested-in-table': {
       markdown: [
         '| Col1 |      Col2      |',
@@ -80,6 +72,22 @@ describe('Attributes', () => {
         '| ---- | -------------- |',
         '| aa   | [a](/a){a="a"} |',
       ].join('\n'),
+    },
+    'ignoreEscapeCharacterInNormalAttribute': {
+      markdown: ':copy{code="D:\\Software\\"}',
+      expected: ':copy{code="D:\\Software\\"}',
+      extra: (_md, ast) => {
+        expect(ast.children[0].type).toBe('textComponent')
+        expect(ast.children[0].attributes.code).toBe('D:\\Software\\')
+      },
+    },
+    'ignoreEscapeCharacterInNormalAttributeYaml': {
+      markdown: '::copy\n---\ncode: D:\\Software\\\n---\n::',
+      expected: '::copy\n---\ncode: D:\\Software\\\n---\n::',
+      extra: (_md, ast) => {
+        expect(ast.children[0].type).toBe('containerComponent')
+        expect(ast.children[0].fmAttributes.code).toBe('D:\\Software\\')
+      },
     },
   })
 })
