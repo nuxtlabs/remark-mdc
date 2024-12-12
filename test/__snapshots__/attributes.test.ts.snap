@@ -613,7 +613,7 @@ exports[`Attributes > id-suger 1`] = `
 }
 `;
 
-exports[`Attributes > ignoreEscapeAttrInNormalAttribute 1`] = `
+exports[`Attributes > ignoreEscapeCharacterInNormalAttribute 1`] = `
 {
   "children": [
     {
@@ -631,9 +631,9 @@ exports[`Attributes > ignoreEscapeAttrInNormalAttribute 1`] = `
       "name": "copy",
       "position": {
         "end": {
-          "column": 29,
+          "column": 27,
           "line": 1,
-          "offset": 28,
+          "offset": 26,
         },
         "start": {
           "column": 1,
@@ -646,9 +646,9 @@ exports[`Attributes > ignoreEscapeAttrInNormalAttribute 1`] = `
   ],
   "position": {
     "end": {
-      "column": 29,
+      "column": 27,
       "line": 1,
-      "offset": 28,
+      "offset": 26,
     },
     "start": {
       "column": 1,

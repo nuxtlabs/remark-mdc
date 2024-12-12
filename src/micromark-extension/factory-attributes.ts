@@ -30,6 +30,7 @@ export default function createAttributes(
 ) {
   let type: keyof TokenTypeMap
   let marker: number | undefined
+  let isBindAttribute: boolean = false
 
   return start
 
@@ -57,6 +58,7 @@ export default function createAttributes(
       effects.enter(attributeType)
       effects.enter(attributeNameType)
       effects.consume(code)
+      isBindAttribute = code === Codes.colon
       return (code === Codes.colon ? bindAttributeName : name) as State
     }
 
@@ -296,7 +298,7 @@ export default function createAttributes(
   }
 
   function valueQuoted(code: number) {
-    if (code === Codes.backSlash) {
+    if (isBindAttribute && code === Codes.backSlash) {
       effects.exit(attributeValueData)
       effects.exit(attributeValueType)
       effects.enter('escapeCharacter')
