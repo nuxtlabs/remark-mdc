@@ -210,6 +210,8 @@ Object
 ::
 ```
 
+> **Escape Character Behavior:** In MDC, the escape character (backslash `\`) can be used to escape special characters within attribute values. However, this behavior only applies to bound attributes. For example, in a bound attribute like `:list="[\"item 1\"]"`, the escape character will allow you to include quotes within the value. In contrast, for non-bound attributes such as `class="my-class"`, the escape character will not have any effect, and the value will be rendered as is. Therefore, it's important to use binding when you need to include special characters in attribute values.
+
 ### `---` Yaml Props
 
 The YAML method uses the `---` identifier to declare one prop per line, which can be useful for readability.

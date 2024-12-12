@@ -26,6 +26,11 @@ export function runMarkdownTests(tests: Record<string, MarkdownTest>) {
       if (extra) {
         extra(markdown, ast, expected || markdown)
       }
+
+      // We should be able regenerate same markdown starting from the `regeneratedMarkdown`
+      const ast2 = await markdownToAST(regeneratedMarkdown, plugins, mdcOptions)
+      const regeneratedMarkdown2 = await astToMarkdown(ast2, plugins, mdcOptions)
+      expect(regeneratedMarkdown2).toEqual(regeneratedMarkdown)
     })
   }
 }
