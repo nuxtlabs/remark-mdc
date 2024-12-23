@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v3.5.1
+
+[compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.5.0...v3.5.1)
+
+### 🚀 Enhancements
+
+- Expose micromark extension ([533ee0c](https://github.com/nuxtlabs/remark-mdc/commit/533ee0c))
+
+### 🩹 Fixes
+
+- **stringify:** Empty line between frontmatter and content ([80673e0](https://github.com/nuxtlabs/remark-mdc/commit/80673e0))
+- **attributes:** Treat non-bounded attribute like html attributes ([#91](https://github.com/nuxtlabs/remark-mdc/pull/91))
+
+### ❤️ Contributors
+
+- Farnabaz <farnabaz@gmail.com>
+
 ## v3.5.0
 
 [compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.4.0...v3.5.0)
