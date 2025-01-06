@@ -3,6 +3,8 @@ import * as flat from 'flat'
 
 const FRONTMATTER_DELIMITER_DEFAULT = '---'
 const FRONTMATTER_DELIMITER_CODEBLOCK_STYLE = '```yaml [props]'
+const LF = '\n'
+const CR = '\r'
 
 export function stringifyFrontMatter(data: any, content = '') {
   if (!Object.keys(data).length) {
@@ -43,8 +45,11 @@ export function stringifyCodeBlockProps(data: any, content = '') {
 export function parseFrontMatter(content: string) {
   let data: any = {}
   if (content.startsWith(FRONTMATTER_DELIMITER_DEFAULT)) {
-    const idx = content.indexOf('\n' + FRONTMATTER_DELIMITER_DEFAULT)
+    let idx = content.indexOf(LF + FRONTMATTER_DELIMITER_DEFAULT)
     if (idx !== -1) {
+      if (content[idx - 1] === CR) {
+        idx -= 1
+      }
       const frontmatter = content.slice(4, idx)
       if (frontmatter) {
         data = parse(frontmatter)
