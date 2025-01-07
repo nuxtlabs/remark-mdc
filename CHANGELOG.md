@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v3.5.2
+
+[compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.5.1...v3.5.2)
+
+### 🩹 Fixes
+
+- **frontmatter:** Remove dangling CR ([9f07da0](https://github.com/nuxtlabs/remark-mdc/commit/9f07da0))
+
+### ❤️ Contributors
+
+- Farnabaz <farnabaz@gmail.com>
+
 ## v3.5.1
 
 [compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.5.0...v3.5.1)
