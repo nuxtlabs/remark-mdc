@@ -45,15 +45,13 @@ export function stringifyCodeBlockProps(data: any, content = '') {
 export function parseFrontMatter(content: string) {
   let data: any = {}
   if (content.startsWith(FRONTMATTER_DELIMITER_DEFAULT)) {
-    let idx = content.indexOf(LF + FRONTMATTER_DELIMITER_DEFAULT)
+    const idx = content.indexOf(LF + FRONTMATTER_DELIMITER_DEFAULT)
     if (idx !== -1) {
-      if (content[idx - 1] === CR) {
-        idx -= 1
-      }
-      const frontmatter = content.slice(4, idx)
+      const hasCarriageReturn = content[idx - 1] === CR
+      const frontmatter = content.slice(4, idx - (hasCarriageReturn ? 1 : 0))
       if (frontmatter) {
         data = parse(frontmatter)
-        content = content.slice(idx + 4)
+        content = content.slice(idx + 4 + (hasCarriageReturn ? 1 : 0))
       }
     }
   }
