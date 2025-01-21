@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v3.5.3
+
+[compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.5.2...v3.5.3)
+
+### 🩹 Fixes
+
+- **parse-frontmatter:** Issue with CR in content extract ([d68cbea](https://github.com/nuxtlabs/remark-mdc/commit/d68cbea))
+
+### ❤️ Contributors
+
+- Farnabaz <farnabaz@gmail.com>
+
 ## v3.5.2
 
 [compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.5.1...v3.5.2)
