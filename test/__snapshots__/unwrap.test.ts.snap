@@ -17,6 +17,73 @@ exports[`auto-unwrap > componentChildren 1`] = `
           "name": "another-component",
           "position": {
             "end": {
+              "column": 4,
+              "line": 3,
+              "offset": 31,
+            },
+            "start": {
+              "column": 1,
+              "line": 2,
+              "offset": 7,
+            },
+          },
+          "type": "containerComponent",
+        },
+      ],
+      "data": {
+        "hName": "test",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "name": "test",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 4,
+          "offset": 34,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 4,
+      "offset": 34,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`auto-unwrap > componentChildren 2`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "attributes": {},
+          "children": [],
+          "data": {
+            "hName": "another-component",
+            "hProperties": {},
+          },
+          "fmAttributes": {},
+          "name": "another-component",
+          "position": {
+            "end": {
               "column": 6,
               "line": 3,
               "offset": 35,
@@ -130,6 +197,69 @@ exports[`auto-unwrap > simple 1`] = `
 }
 `;
 
+exports[`auto-unwrap > simple 2`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "position": {
+            "end": {
+              "column": 14,
+              "line": 2,
+              "offset": 20,
+            },
+            "start": {
+              "column": 3,
+              "line": 2,
+              "offset": 9,
+            },
+          },
+          "type": "text",
+          "value": "Hello World",
+        },
+      ],
+      "data": {
+        "hName": "test",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "mdc": {
+        "unwrapped": "paragraph",
+      },
+      "name": "test",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 3,
+          "offset": 23,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 3,
+      "offset": 23,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`auto-unwrap > slot 1`] = `
 {
   "children": [
@@ -207,6 +337,94 @@ exports[`auto-unwrap > slot 1`] = `
       "column": 3,
       "line": 4,
       "offset": 28,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`auto-unwrap > slot 2`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "attributes": {},
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 14,
+                  "line": 3,
+                  "offset": 27,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 3,
+                  "offset": 16,
+                },
+              },
+              "type": "text",
+              "value": "Hello World",
+            },
+          ],
+          "data": {
+            "hName": "component-slot",
+            "hProperties": {
+              "v-slot:title": "",
+            },
+          },
+          "mdc": {
+            "unwrapped": "paragraph",
+          },
+          "name": "title",
+          "position": {
+            "end": {
+              "column": 3,
+              "line": 4,
+              "offset": 30,
+            },
+            "start": {
+              "column": 2,
+              "line": 2,
+              "offset": 8,
+            },
+          },
+          "type": "componentContainerSection",
+        },
+      ],
+      "data": {
+        "hName": "test",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "name": "test",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 4,
+          "offset": 30,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 4,
+      "offset": 30,
     },
     "start": {
       "column": 1,
@@ -328,6 +546,116 @@ exports[`auto-unwrap > twoChildren 1`] = `
 }
 `;
 
+exports[`auto-unwrap > twoChildren 2`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 10,
+                  "line": 2,
+                  "offset": 16,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 2,
+                  "offset": 9,
+                },
+              },
+              "type": "text",
+              "value": "Foo bar",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 10,
+              "line": 2,
+              "offset": 16,
+            },
+            "start": {
+              "column": 3,
+              "line": 2,
+              "offset": 9,
+            },
+          },
+          "type": "paragraph",
+        },
+        {
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 14,
+                  "line": 4,
+                  "offset": 31,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 4,
+                  "offset": 20,
+                },
+              },
+              "type": "text",
+              "value": "Hello World",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 14,
+              "line": 4,
+              "offset": 31,
+            },
+            "start": {
+              "column": 3,
+              "line": 4,
+              "offset": 20,
+            },
+          },
+          "type": "paragraph",
+        },
+      ],
+      "data": {
+        "hName": "test",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "name": "test",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 5,
+          "offset": 34,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 5,
+      "offset": 34,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`auto-unwrap > twoSlots 1`] = `
 {
   "children": [
@@ -425,6 +753,114 @@ exports[`auto-unwrap > twoSlots 1`] = `
       "column": 3,
       "line": 6,
       "offset": 37,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`auto-unwrap > twoSlots 2`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "position": {
+            "end": {
+              "column": 10,
+              "line": 2,
+              "offset": 16,
+            },
+            "start": {
+              "column": 3,
+              "line": 2,
+              "offset": 9,
+            },
+          },
+          "type": "text",
+          "value": "Foo bar",
+        },
+        {
+          "attributes": {},
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 14,
+                  "line": 5,
+                  "offset": 38,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 5,
+                  "offset": 27,
+                },
+              },
+              "type": "text",
+              "value": "Hello World",
+            },
+          ],
+          "data": {
+            "hName": "component-slot",
+            "hProperties": {
+              "v-slot:title": "",
+            },
+          },
+          "mdc": {
+            "unwrapped": "paragraph",
+          },
+          "name": "title",
+          "position": {
+            "end": {
+              "column": 3,
+              "line": 6,
+              "offset": 41,
+            },
+            "start": {
+              "column": 2,
+              "line": 4,
+              "offset": 19,
+            },
+          },
+          "type": "componentContainerSection",
+        },
+      ],
+      "data": {
+        "hName": "test",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "mdc": {
+        "unwrapped": "paragraph",
+      },
+      "name": "test",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 6,
+          "offset": 41,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "rawData": undefined,
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 6,
+      "offset": 41,
     },
     "start": {
       "column": 1,

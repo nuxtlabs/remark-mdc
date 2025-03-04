@@ -61,6 +61,67 @@ key: value",
 }
 `;
 
+exports[`codeblock-props > YamlProps 2`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [],
+      "data": {
+        "hName": "with-frontmatter-yaml",
+        "hProperties": {
+          ":array": "["item",{"itemKey":"value"}]",
+          "key": "value",
+        },
+      },
+      "fmAttributes": {
+        "array": [
+          "item",
+          {
+            "itemKey": "value",
+          },
+        ],
+        "key": "value",
+      },
+      "mdc": {
+        "codeBlockProps": true,
+      },
+      "name": "with-frontmatter-yaml",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 8,
+          "offset": 92,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "rawData": "array:
+  - item
+  - itemKey: value
+key: value",
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 8,
+      "offset": 92,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`codeblock-props > nested-component-yamlProps 1`] = `
 {
   "children": [
@@ -154,14 +215,14 @@ exports[`codeblock-props > nested-component-yamlProps 1`] = `
               "name": "hello",
               "position": {
                 "end": {
-                  "column": 6,
+                  "column": 4,
                   "line": 17,
-                  "offset": 216,
+                  "offset": 206,
                 },
                 "start": {
-                  "column": 3,
+                  "column": 1,
                   "line": 13,
-                  "offset": 165,
+                  "offset": 163,
                 },
               },
               "rawData": "key: value",
@@ -179,7 +240,7 @@ exports[`codeblock-props > nested-component-yamlProps 1`] = `
             "end": {
               "column": 3,
               "line": 18,
-              "offset": 219,
+              "offset": 209,
             },
             "start": {
               "column": 2,
@@ -214,7 +275,7 @@ exports[`codeblock-props > nested-component-yamlProps 1`] = `
         "end": {
           "column": 3,
           "line": 18,
-          "offset": 219,
+          "offset": 209,
         },
         "start": {
           "column": 1,
@@ -233,7 +294,191 @@ key: value",
     "end": {
       "column": 3,
       "line": 18,
-      "offset": 219,
+      "offset": 209,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`codeblock-props > nested-component-yamlProps 2`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 13,
+                  "line": 8,
+                  "offset": 123,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 8,
+                  "offset": 111,
+                },
+              },
+              "type": "text",
+              "value": "Default slot",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 13,
+              "line": 8,
+              "offset": 123,
+            },
+            "start": {
+              "column": 1,
+              "line": 8,
+              "offset": 111,
+            },
+          },
+          "type": "paragraph",
+        },
+        {
+          "attributes": {},
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 21,
+                      "line": 11,
+                      "offset": 161,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 11,
+                      "offset": 141,
+                    },
+                  },
+                  "type": "text",
+                  "value": "Secondary slot value",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 21,
+                  "line": 11,
+                  "offset": 161,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 11,
+                  "offset": 141,
+                },
+              },
+              "type": "paragraph",
+            },
+            {
+              "attributes": {},
+              "children": [],
+              "data": {
+                "hName": "hello",
+                "hProperties": {
+                  "key": "value",
+                },
+              },
+              "fmAttributes": {
+                "key": "value",
+              },
+              "mdc": {
+                "codeBlockProps": true,
+              },
+              "name": "hello",
+              "position": {
+                "end": {
+                  "column": 4,
+                  "line": 17,
+                  "offset": 206,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 13,
+                  "offset": 163,
+                },
+              },
+              "rawData": "key: value",
+              "type": "containerComponent",
+            },
+          ],
+          "data": {
+            "hName": "component-slot",
+            "hProperties": {
+              "v-slot:secondary-slot": "",
+            },
+          },
+          "name": "secondary-slot",
+          "position": {
+            "end": {
+              "column": 3,
+              "line": 18,
+              "offset": 209,
+            },
+            "start": {
+              "column": 2,
+              "line": 10,
+              "offset": 126,
+            },
+          },
+          "type": "componentContainerSection",
+        },
+      ],
+      "data": {
+        "hName": "with-frontmatter-and-nested-component-yaml",
+        "hProperties": {
+          ":array": "["item",{"itemKey":"value"}]",
+          "key": "value",
+        },
+      },
+      "fmAttributes": {
+        "array": [
+          "item",
+          {
+            "itemKey": "value",
+          },
+        ],
+        "key": "value",
+      },
+      "mdc": {
+        "codeBlockProps": true,
+      },
+      "name": "with-frontmatter-and-nested-component-yaml",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 18,
+          "offset": 209,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "rawData": "array:
+  - item
+  - itemKey: value
+key: value",
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 18,
+      "offset": 209,
     },
     "start": {
       "column": 1,
@@ -310,6 +555,71 @@ array:
 }
 `;
 
+exports[`codeblock-props > notYamlProps 2`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "lang": "yaml",
+          "meta": null,
+          "position": {
+            "end": {
+              "column": 6,
+              "line": 7,
+              "offset": 93,
+            },
+            "start": {
+              "column": 3,
+              "line": 2,
+              "offset": 26,
+            },
+          },
+          "type": "code",
+          "value": "key: value
+array:
+  - item
+  - itemKey: value",
+        },
+      ],
+      "data": {
+        "hName": "with-frontmatter-yaml",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "name": "with-frontmatter-yaml",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 8,
+          "offset": 96,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 8,
+      "offset": 96,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`codeblock-props > notYamlProps2 1`] = `
 {
   "children": [
@@ -364,6 +674,71 @@ array:
       "column": 3,
       "line": 8,
       "offset": 91,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`codeblock-props > notYamlProps2 2`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "lang": "yaml[props]",
+          "meta": null,
+          "position": {
+            "end": {
+              "column": 6,
+              "line": 7,
+              "offset": 100,
+            },
+            "start": {
+              "column": 3,
+              "line": 2,
+              "offset": 26,
+            },
+          },
+          "type": "code",
+          "value": "key: value
+array:
+  - item
+  - itemKey: value",
+        },
+      ],
+      "data": {
+        "hName": "with-frontmatter-yaml",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "name": "with-frontmatter-yaml",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 8,
+          "offset": 103,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 8,
+      "offset": 103,
     },
     "start": {
       "column": 1,
@@ -440,6 +815,71 @@ array:
 }
 `;
 
+exports[`codeblock-props > notYamlProps3 2`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [
+        {
+          "lang": "yaml",
+          "meta": "[yaml]",
+          "position": {
+            "end": {
+              "column": 6,
+              "line": 7,
+              "offset": 100,
+            },
+            "start": {
+              "column": 3,
+              "line": 2,
+              "offset": 26,
+            },
+          },
+          "type": "code",
+          "value": "key: value
+array:
+  - item
+  - itemKey: value",
+        },
+      ],
+      "data": {
+        "hName": "with-frontmatter-yaml",
+        "hProperties": {},
+      },
+      "fmAttributes": {},
+      "name": "with-frontmatter-yaml",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 8,
+          "offset": 103,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 8,
+      "offset": 103,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`codeblock-props > shouldConvertYamlProps 1`] = `
 {
   "children": [
@@ -500,7 +940,136 @@ key: value
 }
 `;
 
+exports[`codeblock-props > shouldConvertYamlProps 2`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [],
+      "data": {
+        "hName": "with-frontmatter-yaml",
+        "hProperties": {
+          ":array": "["item",{"itemKey":"value"}]",
+          "key": "value",
+        },
+      },
+      "fmAttributes": {
+        "array": [
+          "item",
+          {
+            "itemKey": "value",
+          },
+        ],
+        "key": "value",
+      },
+      "name": "with-frontmatter-yaml",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 8,
+          "offset": 80,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "rawData": "
+array:
+  - item
+  - itemKey: value
+key: value
+---",
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 8,
+      "offset": 80,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
 exports[`codeblock-props > yamlProps1 1`] = `
+{
+  "children": [
+    {
+      "attributes": {},
+      "children": [],
+      "data": {
+        "hName": "with-frontmatter-yaml1",
+        "hProperties": {
+          ":array": "["item",{"itemKey":"value"}]",
+          ":key2": "{"subkey":"value","subkey2":"value"}",
+          "key": "value",
+        },
+      },
+      "fmAttributes": {
+        "array": [
+          "item",
+          {
+            "itemKey": "value",
+          },
+        ],
+        "key": "value",
+        "key2": {
+          "subkey": "value",
+          "subkey2": "value",
+        },
+      },
+      "mdc": {
+        "codeBlockProps": true,
+      },
+      "name": "with-frontmatter-yaml1",
+      "position": {
+        "end": {
+          "column": 3,
+          "line": 11,
+          "offset": 132,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "rawData": "key: value
+key2:
+  subkey: value
+  subkey2: value
+array:
+  - item
+  - itemKey: value",
+      "type": "containerComponent",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 3,
+      "line": 11,
+      "offset": 132,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`codeblock-props > yamlProps1 2`] = `
 {
   "children": [
     {
