@@ -11,6 +11,7 @@ export interface RemarkMDCOptions {
     safeTypes?: Array<string>
   }
   yamlCodeBlockProps?: boolean
+  indentContent?: boolean
   experimental?: {
     /**
      * @deprecated This feature is out of experimental, use `autoUnwrap`

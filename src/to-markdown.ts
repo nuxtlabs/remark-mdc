@@ -41,6 +41,14 @@ function compilePattern(pattern: Unsafe) {
 type NodeComponentContainerSection = Parents & { name: string }
 
 export default (opts: RemarkMDCOptions = {}) => {
+  const indentedContent = (node: any, context: State) => {
+    if (opts.indentContent) {
+      return content(node, context).split('\n')
+        .map(line => line.length > 0 ? '  ' + line : line)
+        .join('\n')
+    }
+    return content(node, context)
+  }
   const applyAutomaticUnwrap = (node: Container, { safeTypes = [] }: Exclude<RemarkMDCOptions['autoUnwrap'], boolean | undefined>) => {
     const isSafe = (type: string) => NON_UNWRAPPABLE_TYPES.has(type) || safeTypes.includes(type)
     if (!node.mdc?.unwrapped) {
@@ -97,7 +105,9 @@ export default (opts: RemarkMDCOptions = {}) => {
 
     processNode(node as any)
 
-    return `#${(node as any).name}${attributes(node, context)}\n${content(node, context)}`.trim()
+    const subvalue = indentedContent(node, context)
+
+    return `#${(node as any).name}${attributes(node, context)}\n${subvalue}`.trim()
   }
 
   type NodeTextComponent = Parents & { name: string, rawData: string, attributes: any }
@@ -164,18 +174,16 @@ export default (opts: RemarkMDCOptions = {}) => {
 
     let subvalue
     if ((node.type as string) === 'containerComponent') {
-      subvalue = content(node, context)
+      subvalue = node.children.map((child) => {
+        return child.type === 'componentContainerSection'
+          ? content({ children: [child] }, context)
+          : indentedContent({ children: [child] }, context)
+      }).join('\n\n')
+
       if (subvalue) {
         value += '\n' + subvalue
       }
       value += '\n' + prefix
-
-      if (nest > 1) {
-        value = value
-          .split('\n')
-          .map(line => '  ' + line)
-          .join('\n')
-      }
     }
     nest -= 1
     exit()

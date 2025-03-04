@@ -44,6 +44,9 @@ export default <Plugin<Array<RemarkMDCOptions>>> function remarkMDC(opts: Remark
   if (opts.yamlCodeBlockProps === undefined && opts.experimental?.componentCodeBlockYamlProps) {
     opts.yamlCodeBlockProps = opts.experimental.componentCodeBlockYamlProps
   }
+  if (typeof opts.indentContent === 'undefined') {
+    opts.indentContent = true
+  }
 
   add('micromarkExtensions', syntax())
   add('fromMarkdownExtensions', fromMarkdown(opts))

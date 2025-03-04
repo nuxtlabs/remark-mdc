@@ -3,9 +3,10 @@ import parse from 'remark-parse'
 import gfm from 'remark-gfm'
 import stringify from 'remark-stringify'
 import { expect, test } from 'vitest'
+import defu from 'defu'
 import mdc from '../../src'
 
-interface MarkdownTest {
+export interface MarkdownTest {
   markdown: string
   expected?: string
   extra?: (markdown: string, ast: any, expected: string) => void
@@ -13,23 +14,24 @@ interface MarkdownTest {
   mdcOptions?: Record<string, any>
 }
 
-export function runMarkdownTests(tests: Record<string, MarkdownTest>) {
+export function runMarkdownTests(tests: Record<string, MarkdownTest>, testsMdcOptions: Record<string, any> = {}) {
   for (const key in tests) {
     const { markdown, expected, extra, plugins = [], mdcOptions = {} } = tests[key]
+    const _mdcOptions = defu({}, mdcOptions, testsMdcOptions)
     test(key, async () => {
-      const ast = await markdownToAST(markdown, plugins, mdcOptions)
+      const ast = await markdownToAST(markdown, plugins, _mdcOptions)
 
       expect(ast).toMatchSnapshot()
 
-      const regeneratedMarkdown = await astToMarkdown(ast, plugins, mdcOptions)
+      const regeneratedMarkdown = await astToMarkdown(ast, plugins, _mdcOptions)
       expect(regeneratedMarkdown.trim()).toEqual(expected || markdown)
       if (extra) {
         extra(markdown, ast, expected || markdown)
       }
 
       // We should be able regenerate same markdown starting from the `regeneratedMarkdown`
-      const ast2 = await markdownToAST(regeneratedMarkdown, plugins, mdcOptions)
-      const regeneratedMarkdown2 = await astToMarkdown(ast2, plugins, mdcOptions)
+      const ast2 = await markdownToAST(regeneratedMarkdown, plugins, _mdcOptions)
+      const regeneratedMarkdown2 = await astToMarkdown(ast2, plugins, _mdcOptions)
       expect(regeneratedMarkdown2).toEqual(regeneratedMarkdown)
     })
   }
