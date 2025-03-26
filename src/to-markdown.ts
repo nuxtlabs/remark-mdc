@@ -237,8 +237,9 @@ export default (opts: RemarkMDCOptions = {}) => {
         if (key === 'id') {
           id = shortcut.test(value) ? '#' + value : quoted('id', value)
         }
-        else if (key === 'class') {
-          value = value.split(/[\t\n\r ]+/g)
+        else if (key === "class" || key === "className") {
+          value = Array.isArray(attrs[key]) ? attrs[key].join(' ') : value
+          value = value.split(/[\t\n\r ]+/g).filter(Boolean)
           classesFull = []
           classes = []
           index = -1
