@@ -177,13 +177,21 @@ export function containerPhrasing(parent: any, context: any, safeOptions: any) {
       if (handle && handle.peek) {
         handle = handle.peek
       }
-      after = handle
-        ? handle(children[index + 1], parent, context, {
+      after = ''
+
+      if (handle) {
+        after = handle(
+          children[index + 1],
+          parent,
+          context,
+          {
             before: '',
             after: '',
             ...tracker.current(),
-          }).charAt(0)
-        : ''
+          },
+        )
+          .charAt(0)
+      }
     }
     else {
       after = safeOptions.after
