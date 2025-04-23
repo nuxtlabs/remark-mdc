@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v3.6.0
+
+[compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.5.3...v3.6.0)
+
+### 🩹 Fixes
+
+- Use `.` syntax for `className` attribute ([886c109](https://github.com/nuxtlabs/remark-mdc/commit/886c109))
+- Html entities inside components ([fefe176](https://github.com/nuxtlabs/remark-mdc/commit/fefe176))
+
+### 🏡 Chore
+
+- Upgrade deps ([65be34d](https://github.com/nuxtlabs/remark-mdc/commit/65be34d))
+
+### 🤖 CI
+
+- Release chore commits ([6d19aad](https://github.com/nuxtlabs/remark-mdc/commit/6d19aad))
+
+### ❤️ Contributors
+
+- Farnabaz <farnabaz@gmail.com>
+
 ## v3.5.3
 
 [compare changes](https://github.com/nuxtlabs/remark-mdc/compare/v3.5.2...v3.5.3)
