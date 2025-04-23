@@ -20,7 +20,7 @@ function track(options_: any) {
   /**
    * Get the current tracked info.
    *
-   * @returns {{now: Point, lineShift: number}}
+   * @returns {{now: Point, lineShift: number}} Current tracked info
    */
   function current() {
     return { now: { line, column }, lineShift }
@@ -39,7 +39,7 @@ function track(options_: any) {
    * Move past a string.
    *
    * @param {string} value
-   * @returns {string}
+   * @returns {string} The string with the tracked info
    */
   function move(value = '') {
     const chunks = value.split(/\r?\n|\r/g)
@@ -86,7 +86,7 @@ export function inlineContainerFlow(parent: any, context: any, safeOptions = {})
  * @param {Parent} parent
  * @param {Context} context
  * @param {TrackFields} safeOptions
- * @returns {string}
+ * @returns {string} The string with the tracked info
  */
 export function containerFlow(parent: any, context: any, safeOptions = {}) {
   const indexStack = context.indexStack
@@ -129,7 +129,7 @@ export function containerFlow(parent: any, context: any, safeOptions = {}) {
   /**
    * @param {Node} left
    * @param {Node} right
-   * @returns {string}
+   * @returns {string} The string with the tracked info
    */
   function between(left: any, right: any) {
     let index = context.join.length
@@ -232,7 +232,7 @@ export function containerPhrasing(parent: any, context: any, safeOptions: any) {
 // import { checkQuote } from 'mdast-util-to-markdown/lib/util/check-quote.js'
 /**
  * @param {Context} context
- * @returns {Exclude<Options['quote'], undefined>}
+ * @returns {Exclude<Options['quote'], undefined>} The quote
  */
 export function checkQuote(context: any) {
   const marker = context.options.quote || '"'
