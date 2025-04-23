@@ -121,3 +121,4 @@ function bindData(data: Record<string, any>) {
 
 export { stringifyFrontMatter, parseFrontMatter } from './frontmatter'
 export { default as micromarkExtension } from './micromark-extension'
+export { convertHtmlEntitiesToChars } from './utils'

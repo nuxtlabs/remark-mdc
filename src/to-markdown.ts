@@ -9,7 +9,7 @@ import { type State, type Info, type Unsafe, defaultHandlers } from 'mdast-util-
 import { containerFlow, containerPhrasing, checkQuote, inlineContainerFlow } from './mdast-util-to-markdown'
 import { stringifyFrontMatter, stringifyCodeBlockProps } from './frontmatter'
 import type { RemarkMDCOptions } from './types'
-import { NON_UNWRAPPABLE_TYPES } from './utils'
+import { convertHtmlEntitiesToChars, NON_UNWRAPPABLE_TYPES } from './utils'
 import type { Container } from './micromark-extension/types'
 
 type NodeContainerComponent = Parents & { name: string, fmAttributes?: Record<string, any> }
@@ -24,7 +24,7 @@ function compilePattern(pattern: Unsafe) {
   if (!pattern._compiled) {
     const before
       = (pattern.atBreak ? '[\\r\\n][\\t ]*' : '')
-      + (pattern.before ? '(?:' + pattern.before + ')' : '')
+        + (pattern.before ? '(?:' + pattern.before + ')' : '')
 
     pattern._compiled = new RegExp(
       (before ? '(' + before + ')' : '')
@@ -237,8 +237,8 @@ export default (opts: RemarkMDCOptions = {}) => {
         if (key === 'id') {
           id = shortcut.test(value) ? '#' + value : quoted('id', value)
         }
-        else if (key === "class" || key === "className") {
-          value = Array.isArray(attrs[key]) ? attrs[key].join(' ') : value
+        else if (key === 'class' || key === 'className') {
+          value = Array.isArray(attrs[key]) ? (attrs[key] as string[]).join(' ') : value
           value = value.split(/[\t\n\r ]+/g).filter(Boolean)
           classesFull = []
           classes = []
@@ -284,7 +284,13 @@ export default (opts: RemarkMDCOptions = {}) => {
 
   function content(node: any, context: State) {
     const content = inlineComponentLabel(node) ? Object.assign({}, node, { children: node.children.slice(1) }) : node
-    return node.type === 'textComponent' ? inlineContainerFlow(content, context) : containerFlow(content, context)
+    let result = node.type === 'textComponent' ? inlineContainerFlow(content, context) : containerFlow(content, context)
+
+    if (result.includes('&#x')) {
+      result = convertHtmlEntitiesToChars(result)
+    }
+
+    return result
   }
 
   function inlineComponentLabel(node: any) {

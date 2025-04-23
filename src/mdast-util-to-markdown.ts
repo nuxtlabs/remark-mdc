@@ -179,10 +179,10 @@ export function containerPhrasing(parent: any, context: any, safeOptions: any) {
       }
       after = handle
         ? handle(children[index + 1], parent, context, {
-          before: '',
-          after: '',
-          ...tracker.current(),
-        }).charAt(0)
+            before: '',
+            after: '',
+            ...tracker.current(),
+          }).charAt(0)
         : ''
     }
     else {

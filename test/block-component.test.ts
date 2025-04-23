@@ -21,6 +21,13 @@ describe('block-component', () => {
       markdown: '::component\ntext\n::',
       expected: '::component\ntext\n::',
     },
+    'paragraphWithComponents': {
+      markdown: [
+        '::test',
+        'Hello world :this is a **test**, with _different_ **styles** and a [link](https://nuxtjs.org){target="_blank"}',
+        '::',
+      ].join('\n'),
+    },
     'empty-slot': {
       markdown: '::component\n#text\n::',
       expected: '::component\n#text\n::',
