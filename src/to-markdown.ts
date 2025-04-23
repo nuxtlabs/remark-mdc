@@ -22,9 +22,7 @@ const baseFence = 2
 // import { defaultHandlers } from 'mdast-util-to-markdown/lib/util/compile-pattern'
 function compilePattern(pattern: Unsafe) {
   if (!pattern._compiled) {
-    const before
-      = (pattern.atBreak ? '[\\r\\n][\\t ]*' : '')
-        + (pattern.before ? '(?:' + pattern.before + ')' : '')
+    const before = (pattern.atBreak ? '[\\r\\n][\\t ]*' : '') + (pattern.before ? '(?:' + pattern.before + ')' : '')
 
     pattern._compiled = new RegExp(
       (before ? '(' + before + ')' : '')
